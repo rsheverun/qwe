@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use Spatie\Permission\Models\Role;
+use Session;
+use App;
 class HomeController extends Controller
 {
     /**
@@ -16,9 +18,7 @@ class HomeController extends Controller
     public function __construct()
 
     {
-    
         $this->middleware(['auth','isVerified']);
-    
     }
 
     /**
@@ -28,6 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+
         return view('home');
     }
     public function chartData(){
@@ -49,5 +50,14 @@ class HomeController extends Controller
                 'data' => [40, 39, 10, 40],
             ])
       ];
+    }
+
+    public function change_locale(Request $request)
+    {
+
+        Session::put(['lang'=> $request->lang]);
+        App::setLocale(Session::pull('language'));
+        return back();
+
     }
 }

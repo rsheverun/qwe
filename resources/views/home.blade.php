@@ -6,7 +6,14 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
-
+                <form action="{{ route('change_locale') }}">
+                {{ csrf_field() }}
+                <select name="lang" onchange="this.form.submit()">
+                    <option value="en" @if(Session::get('lang') == "en") selected @endif>En</option>
+                    <option value="ger" @if(Session::get('lang') == "ger") selected @endif>Ger</option>
+                </select>
+                </form>
+            @lang('text.test')
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -38,7 +45,8 @@
         </div>
 
     </div>
-   
+    
 </div>
 </div>
+
 @endsection

@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Session;
-
+use App;
 
 class IsVerified
 {
@@ -18,10 +18,14 @@ class IsVerified
      */
     public function handle($request, Closure $next)
     {
-        if(!auth()->user()->verified){
+        App::setLocale(Session::get('lang'));
+
+        if (!auth()->user()->verified) {
             Session::flush();
+            
             return redirect('login')->withAlert('Please verify your email before login.');
         }
+        
         return $next($request);
     }
 }
