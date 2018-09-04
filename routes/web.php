@@ -12,10 +12,13 @@
 */
 Route::get('/data-chart', 'HomeController@chartData')->name('chart-data');
 Route::get('/data-pie-chart','HomeController@chartPieData');
-
-Route::get('/', 'HomeController@index');
+Route::view('/', 'welcome');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
+Route::group(['middleware' => ['role:active']], function () {
+   
+    
 
-Route::get('/home', 'HomeController@index')->name('home');
+});
 

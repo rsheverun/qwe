@@ -4,9 +4,14 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+
+
+use Jrean\UserVerification\Traits\VerifiesUsers;
+use Jrean\UserVerification\Facades\UserVerification;
+use Illuminate\Http\Request;
+
 
 class RegisterController extends Controller
 {
@@ -17,11 +22,16 @@ class RegisterController extends Controller
     |
     | This controller handles the registration of new users as well as their
     | validation and creation. By default this controller uses a trait to
+
+ 
     | provide this functionality without requiring any additional code.
     |
     */
 
+
     use RegistersUsers;
+    use VerifiesUsers;
+
 
     /**
      * Where to redirect users after registration.
@@ -30,6 +40,7 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/home';
 
+
     /**
      * Create a new controller instance.
      *
@@ -37,8 +48,9 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest',['except' => ['getVerification', 'getVerificationError']]);
     }
+
 
     /**
      * Get a validator for an incoming registration request.
@@ -55,19 +67,29 @@ class RegisterController extends Controller
         ]);
     }
 
+
     /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return User
      */
     protected function create(array $data)
     {
-        $user = User::create([
+        return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => bcrypt($data['password']),
         ]);
-        return $user->assignRole('group2');
+    }
+
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        $user = $this->create($request->all());
+        UserVerification::generate($user);
+        UserVerification::send($user, 'Email Verification');
+        return redirect()->route('login')->withAlert('Register successfully, please verify your email.');
     }
 }

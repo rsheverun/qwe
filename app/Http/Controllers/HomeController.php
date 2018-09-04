@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
-
+use Spatie\Permission\Models\Role;
 class HomeController extends Controller
 {
     /**
@@ -14,8 +14,11 @@ class HomeController extends Controller
      * @return void
      */
     public function __construct()
+
     {
-        $this->middleware('auth');
+    
+        $this->middleware(['auth','isVerified']);
+    
     }
 
     /**
@@ -25,7 +28,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //dd(User::role('group2')->get());
         return view('home');
     }
     public function chartData(){

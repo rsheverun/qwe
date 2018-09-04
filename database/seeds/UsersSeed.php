@@ -19,7 +19,7 @@ class UsersSeed extends Seeder
             'group_id' => 1,
          ]);
  
-         $user1->assignRole('group1');
+         $user1->assignRole('active');
 
          $user2 = User::create([
             'email' => 'user2@user.com',
@@ -28,6 +28,6 @@ class UsersSeed extends Seeder
             'group_id' => 2,
          ]);
  
-         $user2->assignRole('group2');
+         $user2->assignRole('inactive');
     }
 }

@@ -1902,7 +1902,7 @@
             try {
                 oldLocale = globalLocale._abbr;
                 var aliasedRequire = require;
-                __webpack_require__(210)("./" + name);
+                __webpack_require__(209)("./" + name);
                 getSetGlobalLocale(oldLocale);
             } catch (e) {}
         }
@@ -4584,9 +4584,9 @@
 
 
 module.exports = __webpack_require__(9);
-module.exports.easing = __webpack_require__(184);
-module.exports.canvas = __webpack_require__(185);
-module.exports.options = __webpack_require__(186);
+module.exports.easing = __webpack_require__(183);
+module.exports.canvas = __webpack_require__(184);
+module.exports.options = __webpack_require__(185);
 
 
 /***/ }),
@@ -5048,10 +5048,10 @@ module.exports = Element;
 
 
 module.exports = {};
-module.exports.Arc = __webpack_require__(192);
-module.exports.Line = __webpack_require__(193);
-module.exports.Point = __webpack_require__(194);
-module.exports.Rectangle = __webpack_require__(195);
+module.exports.Arc = __webpack_require__(191);
+module.exports.Line = __webpack_require__(192);
+module.exports.Point = __webpack_require__(193);
+module.exports.Rectangle = __webpack_require__(194);
 
 
 /***/ }),
@@ -19547,8 +19547,8 @@ module.exports = function normalizeComponent (
 
 "use strict";
 /* unused harmony export VueCharts */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_index_js__ = __webpack_require__(180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__BaseCharts__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_index_js__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__BaseCharts__ = __webpack_require__(180);
 /* unused harmony reexport Bar */
 /* unused harmony reexport HorizontalBar */
 /* unused harmony reexport Doughnut */
@@ -19586,8 +19586,8 @@ var VueCharts = {
 /***/ (function(module, exports, __webpack_require__) {
 
 /* MIT license */
-var convert = __webpack_require__(188);
-var string = __webpack_require__(190);
+var convert = __webpack_require__(187);
+var string = __webpack_require__(189);
 
 var Color = function (obj) {
 	if (obj instanceof Color) {
@@ -20417,8 +20417,8 @@ module.exports = {
 
 
 var helpers = __webpack_require__(1);
-var basic = __webpack_require__(196);
-var dom = __webpack_require__(197);
+var basic = __webpack_require__(195);
+var dom = __webpack_require__(196);
 
 // @TODO Make possible to select another platform at build time.
 var implementation = dom._enabled ? dom : basic;
@@ -32729,7 +32729,7 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(150);
-module.exports = __webpack_require__(234);
+module.exports = __webpack_require__(233);
 
 
 /***/ }),
@@ -32744,8 +32744,7 @@ module.exports = __webpack_require__(234);
  */
 
 __webpack_require__(151);
-__webpack_require__(173);
-window.Vue = __webpack_require__(174);
+window.Vue = __webpack_require__(173);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -32753,8 +32752,8 @@ window.Vue = __webpack_require__(174);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('chartpie-component', __webpack_require__(177));
-Vue.component('chartline-component', __webpack_require__(230));
+Vue.component('chartpie-component', __webpack_require__(176));
+Vue.component('chartline-component', __webpack_require__(229));
 
 var app = new Vue({
   el: '#app'
@@ -54774,403 +54773,6 @@ module.exports = function spread(callback) {
 
 /***/ }),
 /* 173 */
-/***/ (function(module, exports) {
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-/* ========================================================================
- * Bootstrap: push.js v1.0
- * http://joakim.langeler.se/
- * ========================================================================
- * Copyright 2017 Joakim Langeler
- *
- * Licensed under the Apache License, Version 2.0 (the "License")
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * ======================================================================== */
-
-+function ($) {
-	'use strict';
-
-	// PUSH PLUGIN CLASS DEFINITION
-	// ============================
-
-	// variable used to indetify inilitizing of the Push plugin
-
-	var pushAPI = '[data-toggle="push"]'; // Default value is '[data-toggle="push"]'
-
-	// Main function to get off canvas element and options
-	var Push = function Push(element, options) {
-		this.element = element;
-		this.options = options;
-	};
-
-	// Current version
-	Push.VERSION = '1.0';
-
-	// Transition duration
-	Push.TRANSITION_DURATION = 150;
-
-	// Default PUSH plugin settings
-	Push.DEFAULTS = {
-
-		// Easing method, used for the element when it (opens / closes).
-		easing: 'cubic-bezier(.2,.7,.5,1)', // Default value is 'cubic-bezier(.2,.7,.5,1)'
-
-		// Duration for an element to (open / close)
-		duration: 300, // Default value is 300
-
-		// Delay before the element (opens / closes)
-		delay: 0, // Default value is 0
-
-		// Distance an element (opens / closes)
-		distance: 250, // Default value is 250
-
-		// Enable or disable Anti Scrolling (outside the element)
-		antiScroll: true, // Default value is true
-
-		// Enable or disable keyboard closing (escape key to close the element)
-		keyboard: true, // Default value is true
-
-		// Enable or disable a modal like overlay (outside the element).
-		overlay: true, // Default value is true
-
-		// Canvas element (outside togglable sidebars).
-		canvas: '#canvas' // Default value is '#wrapper'
-
-
-		// Function to check if the canvas element is open
-	};Push.prototype.isOpen = function () {
-
-		// Return if the canvas element has the isOpen class
-		return $(this.options.canvas).hasClass('isOpen');
-	};
-
-	// Function to toggle (open or close)
-	Push.prototype.toggle = function () {
-
-		// If canvas is already open
-		if (this.isOpen()) {
-			this.close(); // close canvas and hide element
-		}
-
-		// If canvas isn't open
-		else {
-				this.open(); // open canvas and reveal element
-			}
-	};
-
-	// Function to find all fixed elements
-	Push.prototype.findFixed = function () {
-
-		// Filter all elements with position: fixed
-		var fixed_elements = $('*').filter(function () {
-			return $(this).css("position") === 'fixed';
-		}).not(this.element); // Skip sidebar element
-
-		// Return all fixed elements, except the sidebar element
-		return fixed_elements;
-	};
-
-	// Function to disable scrolling outside an element
-	Push.prototype.disableScrolling = function () {
-
-		// Add overflow hidden to body, to prevent scrolling
-		$(document.body).css('overflow', 'hidden');
-
-		// On touch devices, overflow: hidden, is ignored. So we specefiy another prevention for touch devices.
-		if ('ontouchstart' in document.documentElement) {
-			$(document).on('touchmove.bs.push', function (e) {
-				e.preventDefault();
-			});
-		}
-	};
-
-	// Function to enable scrolling outside an element
-	Push.prototype.enableScrolling = function () {
-
-		// Override the previously added overflow hiddien. To active normal scroll behaviour
-		$(document.body).css('overflow', 'auto');
-
-		// Turn off the anti touch functionality for touch devices.
-		if ('ontouchstart' in document.documentElement) {
-			$(document).off('touchmove.bs.push');
-		}
-	};
-
-	// Function to disable key press to close an element
-	Push.prototype.disableKeyboard = function () {
-
-		// Turn off the previously added keybind to close an open sidebar
-		$(window).off('keydown.bs.push');
-	};
-
-	// Function to enable key press to close an element
-	Push.prototype.enableKeyboard = function () {
-
-		// Add functionality to close a sidebar, with a specefied keybind
-		$(window).one('keydown.bs.push', $.proxy(function (e) {
-			e.which == 27 && this.close(); // default value is: 27 (ESC key)
-		}, this));
-	};
-
-	// Function to remove an overlay outside the element
-	Push.prototype.disableOverlay = function () {
-
-		// Prepare the overlay variable
-		var $overlay = $(".modal-backdrop");
-
-		// Remove previously added overlay effect, from the canvas element
-		$overlay.remove();
-	};
-
-	// Function to add an overlay outside the element
-	Push.prototype.enableOverlay = function () {
-
-		// Prepare the overlay variable
-		var $overlay = $('<div class="modal-backdrop in"></div>');
-
-		// Add an overlay effect to the canvas element
-		$overlay.appendTo(this.options.canvas);
-	};
-
-	// Function to open an element
-	Push.prototype.open = function () {
-
-		// Set the (that) variable, for easy access, and to avoid conflict.
-		var that = this;
-
-		// Get all fixed elements, except the sidebar elements
-		var fixedElements = this.findFixed();
-
-		// If options is set to disable scrolling, disable it on opening
-		if (this.options.antiScroll) this.disableScrolling();
-
-		// If options is set to enable keyboard, enable it on opening
-		if (this.options.keyboard) this.enableKeyboard();
-
-		// If options is set to activate overlay, activate it on opening
-		if (this.options.overlay) this.enableOverlay();
-
-		// Reveal the toggled sidebar
-		$(this.element).removeClass('hidden');
-
-		// Open the canvas elemen
-		$(this.options.canvas).on('click.bs.push', $.proxy(this.close, this)) // If the user clicks on the canvas element, call the close functionality.
-		.trigger('open.bs.push') // Trigger the open sequence
-		.addClass('isOpen'); // adds the isOpen class, to identify that the canvas is open
-
-		// If browser doesn't support CSS3 transitions & translations
-		if (!$.support.transition) {
-
-			// Move all specefied fixed elements, when canvas is open
-			fixedElements.css({
-				'left': this.options.distance + 'px',
-				'position': 'relative'
-			});
-
-			// Move the actual canvas
-			$(this.options.canvas).css({
-				'left': this.options.distance + 'px',
-				'position': 'relative'
-			}).trigger('opened.bs.push'); // Indicate that the opening sequence is complete
-			return;
-		}
-
-		// Prepare the CSS3 transitioning of the all fixed elements, except for the sidebars
-		fixedElements.css({
-			'-webkit-transition': '-webkit-transform ' + this.options.duration + 'ms ' + this.options.easing,
-			'-ms-transition': '-ms-transform ' + this.options.duration + 'ms ' + this.options.easing,
-			'transition': 'transform ' + this.options.duration + 'ms ' + this.options.easing
-		});
-
-		// Prepare the CSS3 transitioning of the canvas element
-		$(this.options.canvas).css({
-			'-webkit-transition': '-webkit-transform ' + this.options.duration + 'ms ' + this.options.easing,
-			'-ms-transition': '-ms-transform ' + this.options.duration + 'ms ' + this.options.easing,
-			'transition': 'transform ' + this.options.duration + 'ms ' + this.options.easing
-		});
-
-		this.options.canvas.offsetWidth; // Force reflow
-
-		// Move all specefied fixed elements, when the canvas opening sequence is initilised
-		fixedElements.css({
-			'-webkit-transform': 'translateX(' + this.options.distance + 'px)',
-			'-ms-transform': 'translateX(' + this.options.distance + 'px)',
-			'transform': 'translateX(' + this.options.distance + 'px)'
-		});
-
-		// Move the actual canvas element, when the opening sequence is initialised
-		$(this.options.canvas).css({
-			'-webkit-transform': 'translateX(' + this.options.distance + 'px)',
-			'-ms-transform': 'translateX(' + this.options.distance + 'px)',
-			'transform': 'translateX(' + this.options.distance + 'px)'
-		}).one('bsTransitionEnd', function () {
-			$(that.options.canvas).trigger('opened.bs.push'); // Indicate that the opening sequence is complete
-		}).emulateTransitionEnd(this.options.duration); // Emulate the ending prosedure of the canvas opening
-	};
-
-	// Function to close an element
-	Push.prototype.close = function () {
-
-		// Set the (that) variable, for easy access, and to avoid conflict.
-		var that = this;
-
-		// Get all fixed elements, except the sidebar elements
-		var fixedElements = this.findFixed();
-
-		// If options is set to enable keyboard, disable it on closing
-		if (this.options.keyboard) this.disableKeyboard();
-
-		// If options is set to activate overlay, deactivate it on closing
-		if (this.options.overlay) this.disableOverlay();
-
-		// If options is set to disable scrolling, enable it on clsoing
-		if (this.options.antiScroll) this.enableScrolling();
-
-		// Function to finilize the closing prosedure
-		function complete() {
-
-			// Hide the toggled sidebar
-			$(that.element).addClass('hidden');
-
-			// Reset the CSS3 transitioning and translation, of the all fixed elements back to default.
-			fixedElements.css({
-				'-webkit-transition': '',
-				'-ms-transition': '',
-				'transition': '',
-				'-webkit-transform': '',
-				'-ms-transform': '',
-				'transform': ''
-			});
-
-			// Reset the CSS3 transitioning and translation, of the canvas element back to default.
-			$(that.options.canvas).removeClass('isOpen') // remove the isOpen class, to identify that the canvas is closed
-			.css({
-				'-webkit-transition': '',
-				'-ms-transition': '',
-				'transition': '',
-				'-webkit-transform': '',
-				'-ms-transform': '',
-				'transform': ''
-			}).trigger('closed.bs.push'); // Indicate that the closing sequence is complete
-		}
-
-		// If browser doesn't support CSS3 transitions & translations
-		if (!$.support.transition) {
-
-			// Move back all specefied fixed elements to default.
-			fixedElements.css({
-				'left': '',
-				'position': ''
-			});
-
-			// Move back the canvas element to default.
-			$(this.options.canvas).trigger('close.bs.push') // Trigger the close sequence
-			.css({
-				'left': '',
-				'position': ''
-			}).off('click.bs.push'); // Turn off the click indicator for the canvas element
-
-			// Initilise the final closing functionality
-			return complete();
-		}
-
-		// Remove the CSS3 trasform values for all fixed elements
-		fixedElements.css({
-			'-webkit-transform': 'none',
-			'-ms-transform': 'none',
-			'transform': 'none'
-		});
-
-		// Remove the CSS3 transform values for the canvas element
-		$(this.options.canvas).trigger('close.bs.push') // Trigger the close sequence
-		.off('click.bs.push') // Turn off the click indicator for the canvas element
-		.css({
-			'-webkit-transform': 'none',
-			'-ms-transform': 'none',
-			'transform': 'none'
-		}).one('bsTransitionEnd', complete) // // Initilize the complete function, to finilise the closing
-		.emulateTransitionEnd(this.options.duration); // Emulate the ending prosedure of the canvas closing
-	};
-
-	// PUSH PLUGIN DEFINITION
-	// ======================
-
-	// Function to initlise the push Plugin
-	function Plugin(option) {
-
-		// Begin initilising of the push plugin, for every indicator clicked
-		return this.each(function () {
-
-			// Prepare a variable, containing the designated element
-			var $this = $(this);
-
-			// Prepare a variable, containing the data-attributes
-			var data = $this.data('bs.push');
-
-			// Prepare the plugin options
-			var options = $.extend({
-				// extentions...
-			}, Push.DEFAULTS, // Initilise default plugin values
-			$this.data(), // Get the extending options from the plugin indicator
-			(typeof option === 'undefined' ? 'undefined' : _typeof(option)) == 'object' && option // Setup an object with the designated options
-			);
-
-			// If the push indicatore doesn't contain any data atributes. Use the default values
-			if (!data) $this.data('bs.push', data = new Push(this, options));
-
-			// If the push indicator has a data attribute, containing a string
-			if (typeof option == 'string') data[option](); // Setup the option
-		});
-	}
-
-	var old = $.fn.push;
-
-	$.fn.push = Plugin;
-	$.fn.push.Constructor = Push;
-
-	// PUSH AVOID CONFLICT
-	// ====================
-
-	$.fn.push.noConflict = function () {
-
-		$.fn.push = old;
-		return this;
-	};
-
-	// PUSH DATA-API
-	// =============
-
-	// When clicked on a push data API indicator, initilise the plugin
-	$(document).on('click', pushAPI, function () {
-
-		// Get all the data options
-		var options = $(this).data();
-
-		// Get the designated data-target (sidebar element)
-		var $target = $(this.getAttribute('data-target'));
-
-		// If no designated data-target is spcefied, use default value
-		if (!$target.data('bs.push')) {
-			$target.push(options); // Get all the other data options
-		}
-
-		// Toggle the designated data-target (sidebar	)
-		$target.push('toggle');
-	});
-}(jQuery);
-
-/***/ }),
-/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66133,10 +65735,10 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(175).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(174).setImmediate))
 
 /***/ }),
-/* 175 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -66192,7 +65794,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(176);
+__webpack_require__(175);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -66206,7 +65808,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 176 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -66399,15 +66001,15 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(15)))
 
 /***/ }),
-/* 177 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(20)
 /* script */
-var __vue_script__ = __webpack_require__(178)
+var __vue_script__ = __webpack_require__(177)
 /* template */
-var __vue_template__ = __webpack_require__(229)
+var __vue_template__ = __webpack_require__(228)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -66446,12 +66048,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 178 */
+/* 177 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PieChart_js__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PieChart_js__ = __webpack_require__(178);
 //
 //
 //
@@ -66490,7 +66092,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 179 */
+/* 178 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -66507,7 +66109,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 180 */
+/* 179 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -66607,7 +66209,7 @@ var reactiveProp = {
 });
 
 /***/ }),
-/* 181 */
+/* 180 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -66621,7 +66223,7 @@ var reactiveProp = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return Radar; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Bubble; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return Scatter; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_chart_js__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_chart_js__ = __webpack_require__(181);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_chart_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_chart_js__);
 
 function generateChart(chartId, chartType) {
@@ -66720,18 +66322,18 @@ var Scatter = generateChart('scatter-chart', 'scatter');
 });
 
 /***/ }),
-/* 182 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * @namespace Chart
  */
-var Chart = __webpack_require__(183)();
+var Chart = __webpack_require__(182)();
 
 Chart.helpers = __webpack_require__(1);
 
 // @todo dispatch these helpers into appropriated helpers/helpers.* file and write unit tests!
-__webpack_require__(187)(Chart);
+__webpack_require__(186)(Chart);
 
 Chart.defaults = __webpack_require__(2);
 Chart.Element = __webpack_require__(4);
@@ -66742,40 +66344,40 @@ Chart.platform = __webpack_require__(24);
 Chart.plugins = __webpack_require__(25);
 Chart.Ticks = __webpack_require__(8);
 
+__webpack_require__(197)(Chart);
 __webpack_require__(198)(Chart);
 __webpack_require__(199)(Chart);
 __webpack_require__(200)(Chart);
 __webpack_require__(201)(Chart);
 __webpack_require__(202)(Chart);
-__webpack_require__(203)(Chart);
 
+__webpack_require__(203)(Chart);
 __webpack_require__(204)(Chart);
 __webpack_require__(205)(Chart);
 __webpack_require__(206)(Chart);
 __webpack_require__(207)(Chart);
 __webpack_require__(208)(Chart);
-__webpack_require__(209)(Chart);
 
 // Controllers must be loaded after elements
 // See Chart.core.datasetController.dataElementType
+__webpack_require__(210)(Chart);
 __webpack_require__(211)(Chart);
 __webpack_require__(212)(Chart);
 __webpack_require__(213)(Chart);
 __webpack_require__(214)(Chart);
 __webpack_require__(215)(Chart);
 __webpack_require__(216)(Chart);
-__webpack_require__(217)(Chart);
 
+__webpack_require__(217)(Chart);
 __webpack_require__(218)(Chart);
 __webpack_require__(219)(Chart);
 __webpack_require__(220)(Chart);
 __webpack_require__(221)(Chart);
 __webpack_require__(222)(Chart);
 __webpack_require__(223)(Chart);
-__webpack_require__(224)(Chart);
 
 // Loading built-it plugins
-var plugins = __webpack_require__(225);
+var plugins = __webpack_require__(224);
 for (var k in plugins) {
 	if (plugins.hasOwnProperty(k)) {
 		Chart.plugins.register(plugins[k]);
@@ -66848,7 +66450,7 @@ Chart.layoutService = Chart.layouts;
 
 
 /***/ }),
-/* 183 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66904,7 +66506,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 184 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67161,7 +66763,7 @@ helpers.easingEffects = effects;
 
 
 /***/ }),
-/* 185 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67382,7 +66984,7 @@ helpers.drawRoundedRectangle = function(ctx) {
 
 
 /***/ }),
-/* 186 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67485,7 +67087,7 @@ module.exports = {
 
 
 /***/ }),
-/* 187 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68103,10 +67705,10 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 188 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var conversions = __webpack_require__(189);
+var conversions = __webpack_require__(188);
 
 var convert = function() {
    return new Converter();
@@ -68200,7 +67802,7 @@ Converter.prototype.getValues = function(space) {
 module.exports = convert;
 
 /***/ }),
-/* 189 */
+/* 188 */
 /***/ (function(module, exports) {
 
 /* MIT license */
@@ -68904,11 +68506,11 @@ for (var key in cssKeywords) {
 
 
 /***/ }),
-/* 190 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* MIT license */
-var colorNames = __webpack_require__(191);
+var colorNames = __webpack_require__(190);
 
 module.exports = {
    getRgba: getRgba,
@@ -69131,7 +68733,7 @@ for (var name in colorNames) {
 
 
 /***/ }),
-/* 191 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69290,7 +68892,7 @@ module.exports = {
 
 
 /***/ }),
-/* 192 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69404,7 +69006,7 @@ module.exports = Element.extend({
 
 
 /***/ }),
-/* 193 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69502,7 +69104,7 @@ module.exports = Element.extend({
 
 
 /***/ }),
-/* 194 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69615,7 +69217,7 @@ module.exports = Element.extend({
 
 
 /***/ }),
-/* 195 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69839,7 +69441,7 @@ module.exports = Element.extend({
 
 
 /***/ }),
-/* 196 */
+/* 195 */
 /***/ (function(module, exports) {
 
 /**
@@ -69860,7 +69462,7 @@ module.exports = {
 
 
 /***/ }),
-/* 197 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70324,7 +69926,7 @@ helpers.removeEvent = removeEventListener;
 
 
 /***/ }),
-/* 198 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70503,7 +70105,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 199 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71457,7 +71059,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 200 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71794,7 +71396,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 201 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71847,7 +71449,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 202 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -72790,7 +72392,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 203 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73745,7 +73347,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 204 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73938,7 +73540,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 205 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -74078,7 +73680,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 206 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -74276,7 +73878,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 207 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -74630,7 +74232,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 208 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75166,7 +74768,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 209 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75956,7 +75558,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 210 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -76221,10 +75823,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 210;
+webpackContext.id = 209;
 
 /***/ }),
-/* 211 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76735,7 +76337,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 212 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76922,7 +76524,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 213 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77228,7 +76830,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 214 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77568,7 +77170,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 215 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77797,7 +77399,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 216 */
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77972,7 +77574,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 217 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78021,7 +77623,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 218 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78039,7 +77641,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 219 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78056,7 +77658,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 220 */
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78074,7 +77676,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 221 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78092,7 +77694,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 222 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78110,7 +77712,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 223 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78128,7 +77730,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 224 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78143,20 +77745,20 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 225 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 module.exports = {};
-module.exports.filler = __webpack_require__(226);
-module.exports.legend = __webpack_require__(227);
-module.exports.title = __webpack_require__(228);
+module.exports.filler = __webpack_require__(225);
+module.exports.legend = __webpack_require__(226);
+module.exports.title = __webpack_require__(227);
 
 
 /***/ }),
-/* 226 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78481,7 +78083,7 @@ module.exports = {
 
 
 /***/ }),
-/* 227 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79064,7 +78666,7 @@ module.exports = {
 
 
 /***/ }),
-/* 228 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79323,7 +78925,7 @@ module.exports = {
 
 
 /***/ }),
-/* 229 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -79360,15 +78962,15 @@ if (false) {
 }
 
 /***/ }),
-/* 230 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(20)
 /* script */
-var __vue_script__ = __webpack_require__(231)
+var __vue_script__ = __webpack_require__(230)
 /* template */
-var __vue_template__ = __webpack_require__(233)
+var __vue_template__ = __webpack_require__(232)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -79407,12 +79009,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 231 */
+/* 230 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__LineChart_js__ = __webpack_require__(232);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__LineChart_js__ = __webpack_require__(231);
 //
 //
 //
@@ -79451,7 +79053,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 232 */
+/* 231 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -79468,7 +79070,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 233 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -79505,7 +79107,7 @@ if (false) {
 }
 
 /***/ }),
-/* 234 */
+/* 233 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
