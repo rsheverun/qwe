@@ -16,6 +16,7 @@ class UsersSeed extends Seeder
             'email' => 'user1@user.com',
             'name' => 'UserOne',
             'password' => bcrypt('123qwe'),
+            'verified' => 1,
             'group_id' => 1,
          ]);
  
@@ -25,6 +26,7 @@ class UsersSeed extends Seeder
             'email' => 'user2@user.com',
             'name' => 'UserTwo',
             'password' => bcrypt('123qwe'),
+            'verified' => 1,
             'group_id' => 2,
          ]);
  
