@@ -5,13 +5,37 @@
 // Variables
 @import 'variables';
 
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+@import 'dashboard';
+html{
+    margin: 0;
+    padding: 0;
+    // overflow-x:hidden;
+}
+.custom-container{
+    padding-left: 15%;
+    padding-right: 15%;
+}
 
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+footer{
+    background-color: #0c4106;
+    color: #fff;
+}
+.footer-nav a{
+    padding-left: 15%;
+    padding-right: 15%;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 30px;
+    text-transform: uppercase;
+    background-color: #0c4206;
+    color: #ffff;
 }
 .zoom {
     // padding: 50px;
@@ -23,5 +47,21 @@
 }
 
 .zoom:hover {
-    transform: scale(2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+@media only screen and (max-width: 450px) {
+    .custom-container {
+        padding-left: 8%;
+        padding-right: 8%;
+    }
+    .nav_menu{
+        padding-left: 8%;
+        padding-right: 8%;
+    }
+    .footer-nav a{
+        padding-left: 8%;
+        padding-right: 8%;
+    }
+    
 }

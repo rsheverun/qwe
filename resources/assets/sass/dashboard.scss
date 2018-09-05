@@ -1,0 +1,131 @@
+
+.content{
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+.nav_menu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 15%;
+    padding-right: 15%;
+    text-transform: uppercase;
+
+    background-color: #0c4206;
+    
+}
+.nav_menu a{
+    color: #ffff;
+    
+}
+.nav_menu ul li{
+    font-size: 18px;
+
+}
+.hunter{
+    background-image: url('/img/hunter.png') cover;
+}
+.logo{
+    font-size: 30px;
+    font-weight: 700;
+    /* Text style for "My Hunting" */
+    letter-spacing: -1.5px;
+    margin-right: 24px;
+}
+.logo a:hover{
+    text-decoration:none;
+}
+.header-link{
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+    padding: 30px 0 30px 30px;
+
+}
+.badge-statistic{
+    width: 146px;
+    height: 18px;
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 10px;
+    margin-bottom: 45px;
+    background-color: #83ba2d;
+}
+.number{
+    color: #3b3b3b;
+    font-family: "Roboto";
+    font-size: 60px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+.text-statistics{
+    color: #3b3b3b;
+    font-family:'Roboto';
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.statistics{
+    margin-top: 45px;
+    margin-bottom: 45px;
+}
+.title{
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #3b3b3b;
+}
+.activity{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.activity img{
+    max-height: 247px;
+}
+.date{
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: 400;
+    
+}
+.info {
+    display: inline-flex;
+}
+.label-cam{
+    color: #3b3b3b;
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+.button-look{
+    text-transform: uppercase;
+    bottom: 0;
+    color: #83ba2d;
+    border-color: #83ba2d;
+}
+.button-img{
+    position: absolute;
+}
+.button-look:hover{
+    color: #fff;
+    background-color: #83ba2d;
+    border-color: #83ba2d;
+}
+hr{
+    width: 100%;
+    border-bottom: 1px solid #3b3b3b;
+}
+.no-image{
+    align-items: center;
+}
+.footer-nav{
+    color: #ffff;
+}
+@media only screen and (max-width: 610px) {
+    .button-img {
+        position: unset;
+    }
+}

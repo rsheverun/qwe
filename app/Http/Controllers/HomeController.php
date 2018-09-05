@@ -29,7 +29,7 @@ class HomeController extends Controller
     public function index()
     {
 
-        return view('home');
+        return view('dashboard.index');
     }
     public function chartData(){
         return [
@@ -59,5 +59,9 @@ class HomeController extends Controller
         App::setLocale(Session::pull('language'));
         return back();
 
+    }
+
+    public function text(){
+        return view ('text');
     }
 }

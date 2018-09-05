@@ -5,15 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
-                <form action="{{ route('change_locale') }}">
-                {{ csrf_field() }}
-                <select name="lang" onchange="this.form.submit()">
-                    <option value="en" @if(Session::get('lang') == "en") selected @endif>En</option>
-                    <option value="ger" @if(Session::get('lang') == "ger") selected @endif>Ger</option>
-                </select>
-                </form>
+                <div class="card-header">@lang('text.title')</div>
+               
             @lang('text.test')
+            @lang('text.main_text')
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -22,6 +17,7 @@
                     @endif
                 <chartline-component></chartline-component>
                 <chartpie-component></chartpie-component>
+                <a href="{{ route('text') }}">text</a>
                 <div class="container">
                     <div class="row text-center">
                         <div class="col md-12">
