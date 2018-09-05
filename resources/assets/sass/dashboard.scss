@@ -6,7 +6,7 @@
 .nav_menu{
     display: flex;
     align-items: center;
-    justify-content: center;
+    // justify-content: center;
     padding-left: 15%;
     padding-right: 15%;
     text-transform: uppercase;
@@ -22,6 +22,9 @@
     font-size: 18px;
 
 }
+.nav_menu img{
+    vertical-align: text-top;
+}
 .hunter{
     background-image: url('/img/hunter.png') cover;
 }
@@ -35,12 +38,13 @@
 .logo a:hover{
     text-decoration:none;
 }
-.header-link{
+.nav_menu li a{
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
     font-weight: 400;
     text-transform: uppercase;
-    padding: 30px 0 30px 30px;
+    padding: 0;
+    margin: 30px 0 30px 30px ;
 
 }
 .badge-statistic{

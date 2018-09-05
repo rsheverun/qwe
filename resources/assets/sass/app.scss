@@ -49,8 +49,21 @@ footer{
 .zoom:hover {
     transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
-
+@media only screen and (max-width: 992px) {
+    .nav_menu li a{
+    margin: 0 ;
+    padding: 8px;
+    }
+    
+}
 @media only screen and (max-width: 450px) {
+    .logo{
+    font-size: 23px;
+    }
+    
+}
+
+@media only screen and (max-width: 770px) {
     .custom-container {
         padding-left: 8%;
         padding-right: 8%;
