@@ -13,9 +13,17 @@
 Route::get('/data-chart', 'HomeController@chartData')->name('chart-data');
 Route::get('/data-pie-chart','HomeController@chartPieData');
 Route::view('/', 'auth.login');
+
 Route::get('/locale','HomeController@change_locale')->name('change_locale');
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/home_text', 'HomeController@text')->name('text');
 
+Route::middleware(['auth','isVerified'])->prefix('dashboard')->group(function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::get('/cemeras','HomeController@cameras')->name('cameras');
+
+    Route::get('/home_text', 'HomeController@text')->name('text');
+
+
+});
 

@@ -18,7 +18,7 @@ class HomeController extends Controller
     public function __construct()
 
     {
-        $this->middleware(['auth','isVerified']);
+        //$this->middleware(['auth','isVerified']);
     }
 
     /**
@@ -30,6 +30,9 @@ class HomeController extends Controller
     {
 
         return view('dashboard.index');
+    }
+    public function cameras(){
+        return view('dashboard.cameras');
     }
     public function chartData(){
         return [
