@@ -36,7 +36,31 @@
                 <td>10.08.2018 18:44:11</td>
                 <td>5</td>
                 <td class="text-right table-button">
-                    <button type="button" class="btn btn-outline-success button-look">look more</button>
+                    <a href="#" class="btn btn-outline-success button-look">details</a>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>mha001</td>
+                <td>Cam at Rosis house</td>
+                <td>bl460p</td>
+                <td>default</td>
+                <td>10.08.2018 18:44:11</td>
+                <td>5</td>
+                <td class="text-right table-button">
+                    <a href="#" class="btn btn-outline-success button-look">details</a>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>mha001</td>
+                <td>Cam at Rosis house</td>
+                <td>bl460p</td>
+                <td>default</td>
+                <td>10.08.2018 18:44:11</td>
+                <td>5</td>
+                <td class="text-right table-button">
+                    <a href="#" class="btn btn-outline-success button-look">details</a>
                 </td>
             </tr>
         </tbody>
@@ -45,7 +69,7 @@
 
     
         <div class="col-md-6 col-xs-12 ">
-            <span class="btn btn-outline-success button-look">20 per page</span>
+            <span class="btn btn-outline-success button-look pagination-info">20 per page</span>
         </div>
         <div class="col-md-6 text-right">
           <nav aria-label="Page navigation example">

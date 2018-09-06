@@ -117,8 +117,13 @@
 .button-look{
     text-transform: uppercase;
     bottom: 0;
+    font-family: Roboto;
+    font-size: 18px;
     color: #83ba2d;
     border-color: #83ba2d;
+}
+.pagination-info{
+    font-size: 14px;
 }
 .button-img{
     position: absolute;
@@ -192,8 +197,11 @@ hr{
     justify-content: flex-end;
 }
 .custom-pagination a {
-    // margin: 0 4px;
+    font-family: 'Roboto';
+    font-size: 14px;
+    font-weight: 400;
     margin-left: 4px;
+    border: 1px solid #83ba2d;
     color: #83ba2d;
 }
 .custom-pagination a:hover{

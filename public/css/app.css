@@ -10612,8 +10612,14 @@ a.text-dark:focus {
 .button-look {
   text-transform: uppercase;
   bottom: 0;
+  font-family: Roboto;
+  font-size: 18px;
   color: #83ba2d;
   border-color: #83ba2d;
+}
+
+.pagination-info {
+  font-size: 14px;
 }
 
 .button-img {
@@ -10703,7 +10709,11 @@ hr {
 }
 
 .custom-pagination a {
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: 400;
   margin-left: 4px;
+  border: 1px solid #83ba2d;
   color: #83ba2d;
 }
 
@@ -10751,7 +10761,7 @@ span {
 
 #map {
   width: 100%;
-  height: 400px;
+  height: 500px;
   background-color: grey;
   margin-top: 30px;
   margin-bottom: 30px;
@@ -10819,6 +10829,12 @@ footer {
 @media only screen and (max-width: 450px) {
   .logo {
     font-size: 23px;
+  }
+}
+
+@media only screen and (max-width: 343px) {
+  .logo {
+    font-size: 20px;
   }
 }
 
