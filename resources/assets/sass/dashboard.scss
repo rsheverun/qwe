@@ -2,6 +2,7 @@
 .content{
     margin-top: 35px;
     margin-bottom: 35px;
+    min-height: calc(100vh - 88px);
 }
 .nav_menu{
     display: flex;
@@ -16,6 +17,7 @@
     
 }
 .nav_menu ul li{
+    font-family: 'Roboto';
     font-size: 18px;
 
 }
@@ -26,9 +28,9 @@
     background-image: url('/img/hunter.png') cover;
 }
 .logo{
+    font-family: 'Acrom Medium';
     font-size: 30px;
     font-weight: 700;
-    /* Text style for "My Hunting" */
     letter-spacing: -1.5px;
     margin-right: 24px;
 }
@@ -41,7 +43,7 @@
     font-weight: 400;
     text-transform: uppercase;
     padding: 0;
-    padding: 30px 0 30px 30px !important;
+    padding: 18px 0 18px 30px !important;
 
 }
 .nav-link{
@@ -57,6 +59,7 @@
     width: 146px;
     height: 18px;
     color: #ffffff;
+    font-family: 'Acrom Medium';
     font-size: 26px;
     font-weight: 700;
     text-transform: uppercase;
@@ -68,7 +71,7 @@
     color: #3b3b3b;
     font-family: "Roboto";
     font-size: 60px;
-    font-weight: 400;
+    font-weight: 900;
     text-transform: uppercase;
 }
 .text-statistics{
@@ -83,6 +86,7 @@
     margin-bottom: 45px;
 }
 .title{
+    font-family: 'Acrom Medium';
     font-size: 18px;
     font-weight: 700;
     text-transform: uppercase;
@@ -141,6 +145,11 @@ hr{
 .footer-nav{
     color: #ffff;
 }
+.footer-nav a {
+    padding-top: 2px;
+    padding-bottom: 0 !important;
+    font-family: 'Roboto';
+}
 .custom-table{
     
         width: 100%;
@@ -150,6 +159,7 @@ hr{
 }
 .custom-table th {
     color: #3b3b3b;
+    font-family: 'Acrom Medium';
     font-size: 18px;
     font-weight: 700;
     text-transform: uppercase;
@@ -159,6 +169,7 @@ hr{
 .custom-table td {
     padding: 30px 20px 30px 0px;
     color: #3b3b3b;
+    font-family: 'Roboto';
     font-size: 14px;
     font-weight: 400;
     text-transform: uppercase;
@@ -170,6 +181,11 @@ hr{
 .custom-dropdown a{
     margin-left: 0;
     padding-left: 30px;
+}
+.custom-dropdown a:hover{
+    background-color: #0c4206 !important;
+    color: #fff;
+
     
 }
 .custom-pagination {
@@ -187,7 +203,7 @@ hr{
 .custom-pagination a:active{
     background-color: #83ba2d !important;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 760px) {
     .custom-pagination {
         margin-top:16px;
         justify-content: center;

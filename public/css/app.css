@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);/*!
+@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,900);/*!
  * Bootstrap v4.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
  * Copyright 2011-2018 Twitter, Inc.
@@ -10474,6 +10474,7 @@ a.text-dark:focus {
 .content {
   margin-top: 35px;
   margin-bottom: 35px;
+  min-height: calc(100vh - 88px);
 }
 
 .nav_menu {
@@ -10493,6 +10494,7 @@ a.text-dark:focus {
 }
 
 .nav_menu ul li {
+  font-family: 'Roboto';
   font-size: 18px;
 }
 
@@ -10505,9 +10507,9 @@ a.text-dark:focus {
 }
 
 .logo {
+  font-family: 'Acrom Medium';
   font-size: 30px;
   font-weight: 700;
-  /* Text style for "My Hunting" */
   letter-spacing: -1.5px;
   margin-right: 24px;
 }
@@ -10522,7 +10524,7 @@ a.text-dark:focus {
   font-weight: 400;
   text-transform: uppercase;
   padding: 0;
-  padding: 30px 0 30px 30px !important;
+  padding: 18px 0 18px 30px !important;
 }
 
 .nav-link {
@@ -10541,6 +10543,7 @@ a.text-dark:focus {
   width: 146px;
   height: 18px;
   color: #ffffff;
+  font-family: 'Acrom Medium';
   font-size: 26px;
   font-weight: 700;
   text-transform: uppercase;
@@ -10553,7 +10556,7 @@ a.text-dark:focus {
   color: #3b3b3b;
   font-family: "Roboto";
   font-size: 60px;
-  font-weight: 400;
+  font-weight: 900;
   text-transform: uppercase;
 }
 
@@ -10571,6 +10574,7 @@ a.text-dark:focus {
 }
 
 .title {
+  font-family: 'Acrom Medium';
   font-size: 18px;
   font-weight: 700;
   text-transform: uppercase;
@@ -10646,6 +10650,12 @@ hr {
   color: #ffff;
 }
 
+.footer-nav a {
+  padding-top: 2px;
+  padding-bottom: 0 !important;
+  font-family: 'Roboto';
+}
+
 .custom-table {
   width: 100%;
   margin-bottom: 1rem;
@@ -10654,6 +10664,7 @@ hr {
 
 .custom-table th {
   color: #3b3b3b;
+  font-family: 'Acrom Medium';
   font-size: 18px;
   font-weight: 700;
   text-transform: uppercase;
@@ -10664,6 +10675,7 @@ hr {
 .custom-table td {
   padding: 30px 20px 30px 0px;
   color: #3b3b3b;
+  font-family: 'Roboto';
   font-size: 14px;
   font-weight: 400;
   text-transform: uppercase;
@@ -10677,6 +10689,11 @@ hr {
 .custom-dropdown a {
   margin-left: 0;
   padding-left: 30px;
+}
+
+.custom-dropdown a:hover {
+  background-color: #0c4206 !important;
+  color: #fff;
 }
 
 .custom-pagination {
@@ -10699,7 +10716,7 @@ hr {
   background-color: #83ba2d !important;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 760px) {
   .custom-pagination {
     margin-top: 16px;
     -webkit-box-pack: center;
@@ -10716,8 +10733,7 @@ hr {
 
 @font-face {
   font-family: 'Acrom Medium';
-  src: url("/fonts/Acrom-Medium.eot");
-  src: url("/fonts/Acrom-Medium.eot?#iefix") format("embedded-opentype"), url("/fonts/Acrom-Medium.woff") format("woff"), url("/fonts/Acrom-Medium.ttf") format("truetype");
+  src: url(/fonts/Acrom-Medium.ttf?eff1aba8aebe5113783baf68647c1dc6);
   font-weight: normal;
   font-style: normal;
 }
@@ -10752,9 +10768,14 @@ span {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+nav {
+  min-height: 50px;
+}
+
 footer {
   background-color: #0c4106;
   color: #fff;
+  min-height: 40px;
 }
 
 .footer-nav {

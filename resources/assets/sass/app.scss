@@ -1,6 +1,7 @@
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700,900');
 
 // Variables
 @import 'variables';
@@ -11,10 +12,7 @@
 @import 'dashboard';
 @font-face {
     font-family: 'Acrom Medium';
-    src: url('/fonts/Acrom-Medium.eot');
-    src: url('/fonts/Acrom-Medium.eot?#iefix') format('embedded-opentype'),
-    url('/fonts/Acrom-Medium.woff') format('woff'),
-    url('/fonts/Acrom-Medium.ttf') format('truetype');
+    src: url('../fonts/Acrom-Medium.ttf');
     font-weight: normal;
     font-style: normal;
     }
@@ -41,9 +39,13 @@ button, a, span{
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+nav{
+    min-height: 50px;
+}
 footer{
     background-color: #0c4106;
     color: #fff;
+    min-height: 40px;
 }
 .footer-nav{
     padding-top: 22px;
