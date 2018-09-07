@@ -36,7 +36,7 @@
         <li class="nav-item dropdown user-item">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 <img src="{{asset('img/hunter.png')}}" class="img-fluid user-logo"></img>
-                {{ Auth::user()->name }} <span class="caret"></span>
+                {{ Auth::user()->first_name }} {{ Auth::user()->last_name }} <span class="caret"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right custom-dropdown" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{ route('logout') }}"

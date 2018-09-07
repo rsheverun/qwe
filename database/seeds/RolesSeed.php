@@ -12,7 +12,7 @@ class RolesSeed extends Seeder
      */
     public function run()
     {
-        Role::Create(['name'=>'inactive']);
-        Role::Create(['name'=>'active']);
+        Role::Create(['name'=>'admin']);
+        Role::Create(['name'=>'user']);
     }
 }
