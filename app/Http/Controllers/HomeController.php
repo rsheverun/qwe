@@ -26,9 +26,17 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function home()
+    {
+        if (Auth::user() == null) {
+            
+            return view('auth.login');
+        }else {
+            return redirect()->route('home');
+        }
+    }
     public function index()
     {
-
         return view('dashboard.index');
     }
     public function cameras(){

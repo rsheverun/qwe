@@ -12,7 +12,7 @@
 */
 Route::get('/data-chart', 'HomeController@chartData')->name('chart-data');
 Route::get('/data-pie-chart','HomeController@chartPieData');
-Route::view('/', 'auth.login');
+Route::get('/', 'HomeController@home');
 
 Route::get('/locale','HomeController@change_locale')->name('change_locale');
 Auth::routes();

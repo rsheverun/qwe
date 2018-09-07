@@ -171,6 +171,9 @@ hr{
     padding-left: 0px;
     padding-right: 20px;
 }
+.custom-table tbody tr {
+    border-bottom: 1px solid #00000078;
+}
 .custom-table td {
     padding: 30px 20px 30px 0px;
     color: #3b3b3b;
@@ -178,7 +181,7 @@ hr{
     font-size: 14px;
     font-weight: 400;
     text-transform: uppercase;
-    border-bottom: 1px solid #00000078;
+    
 }
 .custom-dropdown{
     background-color: #0c4206;

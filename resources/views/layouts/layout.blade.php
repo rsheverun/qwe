@@ -48,5 +48,7 @@
   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTnAHK7-nViSyxtzqwxQvgcDfq5WOzPkU&callback=initMap">
     </script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
 </body>
 </html>

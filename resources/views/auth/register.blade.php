@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
 <div class="container">
@@ -42,9 +42,9 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nickname') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('nnicknameame') ? ' is-invalid' : '' }}" name="nickname" value="{{ old('nickname') }}" required autofocus>
+                                <input id="name" type="text" class="form-control{{ $errors->has('nicknameame') ? ' is-invalid' : '' }}" name="nickname" value="{{ old('nickname') }}" required autofocus>
 
-                                @if ($errors->has('last_name'))
+                                @if ($errors->has('nickname'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('nickname') }}</strong>
                                     </span>
