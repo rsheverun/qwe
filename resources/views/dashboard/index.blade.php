@@ -33,7 +33,7 @@
         <div class="label-cam">
             mhA001 - Cam at Rosis house
         </div>
-        <button type="button" class="btn btn-outline-success button-look button-img" >look more</button>
+        <button type="button" class="btn btn-outline-success button-look button-img btn-green" >look more</button>
     </div>
     <div class="col-6 text-right">
         <img src="{{asset('img/img1.png')}}" class="zoom img-fluid" alt="">
@@ -51,7 +51,7 @@
         </div>
     </div>
         <div class="col-6 text-right">
-        <button type="button" class="btn btn-outline-success button-look">look more</button>
+        <button type="button" class="btn btn-outline-success button-look btn-green">look more</button>
            
     </div>
 </div>
@@ -67,7 +67,7 @@
         </div>
     </div>
         <div class="col-6 text-right">
-        <button type="button" class="btn btn-outline-success button-look">look more</button>
+        <button type="button" class="btn btn-outline-success button-look btn-green">look more</button>
            
     </div>
 </div>
@@ -81,7 +81,7 @@
         <div class="label-cam">
             mhA001 - Cam at Rosis house
         </div>
-        <button type="button" class="btn btn-outline-success button-look button-img">look more</button>
+        <button type="button" class="btn btn-outline-success button-look button-img btn-green">look more</button>
     </div>
     <div class="col-6 text-right">
         <img src="{{asset('img/img2.png')}}" class="zoom img-fluid" alt="">

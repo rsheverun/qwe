@@ -35,13 +35,22 @@ class HomeController extends Controller
             return redirect()->route('home');
         }
     }
+
     public function index()
     {
         return view('dashboard.index');
     }
-    public function cameras(){
+
+    public function cameras()
+    {
         return view('dashboard.cameras');
     }
+    
+    public function images()
+    {
+        return view('dashboard.images');
+    }
+
     public function chartData(){
         return [
             'labels' => ['January', 'February', 'March', 'April'],
@@ -52,6 +61,7 @@ class HomeController extends Controller
             ])
       ];
     }
+
     public function chartPieData(){
         return [
             'labels' => ['January', 'February', 'March', 'April'],
@@ -72,7 +82,8 @@ class HomeController extends Controller
 
     }
 
-    public function text(){
+    public function text()
+    {
         return view ('text');
     }
 }

@@ -32,7 +32,7 @@
     @else
         <a class="nav-link" href="{{ route('home') }}">home</a>
         <a class="nav-link" href="{{ route('cameras') }}">cameras</a>
-        <a class="nav-link" href="#">images</a>
+        <a class="nav-link" href="{{ route('images')}}">images</a>
     @endguest
     </nav>
         <div class="col-12 text-center">

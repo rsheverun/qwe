@@ -22,6 +22,8 @@ Route::middleware(['auth','isVerified'])->prefix('dashboard')->group(function ()
 
     Route::get('/cemeras','HomeController@cameras')->name('cameras');
 
+    Route::get('/images','HomeController@images')->name('images');
+
     Route::get('/home_text', 'HomeController@text')->name('text');
 
 

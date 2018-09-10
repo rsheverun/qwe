@@ -36,7 +36,7 @@
                 <td>10.08.2018 18:44:11</td>
                 <td>5</td>
                 <td class="text-right table-button">
-                    <a href="#" class="btn btn-outline-success button-look">details</a>
+                    <a href="#" class="btn btn-outline-success button-look btn-green">details</a>
                 </td>
             </tr>
             <tr>
@@ -48,7 +48,7 @@
                 <td>10.08.2018 18:44:11</td>
                 <td>5</td>
                 <td class="text-right table-button">
-                    <a href="#" class="btn btn-outline-success button-look">details</a>
+                    <a href="#" class="btn btn-outline-success button-look btn-green">details</a>
                 </td>
             </tr>
             <tr>
@@ -60,7 +60,7 @@
                 <td>10.08.2018 18:44:11</td>
                 <td>5</td>
                 <td class="text-right table-button">
-                    <a href="#" class="btn btn-outline-success button-look">details</a>
+                    <a href="#" class="btn btn-outline-success button-look btn-green">details</a>
                 </td>
             </tr>
         </tbody>
@@ -69,7 +69,7 @@
 
     
         <div class="col-md-6 col-xs-12 ">
-            <span class="btn btn-outline-success button-look pagination-info">20 per page</span>
+            <span class="btn btn-outline-success button-look btn-green pagination-info">20 per page</span>
         </div>
         <div class="col-md-6 text-right">
           <nav aria-label="Page navigation example">

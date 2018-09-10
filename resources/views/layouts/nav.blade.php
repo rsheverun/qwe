@@ -28,7 +28,7 @@
 		    	<a class="nav-link header-link" href="{{ route('cameras') }}">Cameras</a>
             </li>
             <li class="nav-item">
-		    	<a class="nav-link header-link" href="#">Images</a>
+		    	<a class="nav-link header-link" href="{{ route('images')}}">Images</a>
 		    </li>
       		
     	</ul>
