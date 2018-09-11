@@ -36,7 +36,7 @@
                 <td>10.08.2018 18:44:11</td>
                 <td>5</td>
                 <td class="text-right table-button">
-                    <a href="#" class="btn btn-outline-success button-look btn-green">details</a>
+                    <a href="{{ route('details') }}" class="btn btn-outline-success button-look btn-green">details</a>
                 </td>
             </tr>
             <tr>
@@ -48,7 +48,7 @@
                 <td>10.08.2018 18:44:11</td>
                 <td>5</td>
                 <td class="text-right table-button">
-                    <a href="#" class="btn btn-outline-success button-look btn-green">details</a>
+                    <a href="{{ route('details') }}" class="btn btn-outline-success button-look btn-green">details</a>
                 </td>
             </tr>
             <tr>
@@ -60,7 +60,7 @@
                 <td>10.08.2018 18:44:11</td>
                 <td>5</td>
                 <td class="text-right table-button">
-                    <a href="#" class="btn btn-outline-success button-look btn-green">details</a>
+                    <a href="{{ route('details') }}" class="btn btn-outline-success button-look btn-green">details</a>
                 </td>
             </tr>
         </tbody>

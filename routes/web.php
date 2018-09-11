@@ -10,17 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/data-chart', 'HomeController@chartData')->name('chart-data');
-Route::get('/data-pie-chart','HomeController@chartPieData');
 Route::get('/', 'HomeController@home');
 
-Route::get('/locale','HomeController@change_locale')->name('change_locale');
 Auth::routes();
 
 Route::middleware(['auth','isVerified'])->prefix('dashboard')->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::get('/cemeras','HomeController@cameras')->name('cameras');
+
+    Route::get('/details', 'HomeController@details')->name('details');
 
     Route::get('/images','HomeController@images')->name('images');
 

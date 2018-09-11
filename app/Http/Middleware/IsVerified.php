@@ -18,8 +18,6 @@ class IsVerified
      */
     public function handle($request, Closure $next)
     {
-        App::setLocale(Session::get('lang'));
-
         if (!auth()->user()->verified) {
             Session::flush();
             

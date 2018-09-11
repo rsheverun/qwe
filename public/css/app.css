@@ -10709,13 +10709,17 @@ hr {
   font-weight: 700;
   text-transform: uppercase;
   border-top: none;
-  border-bottom: 1px solid black !important;
+  border-bottom: 1px solid #3b3b3b !important;
   padding-left: 0;
 }
 
 .table-images td {
   padding: 20px 30px 20px 0;
-  border-bottom: 1px solid black !important;
+  border-bottom: 1px solid #3b3b3b !important;
+}
+
+.table-images .table-button {
+  vertical-align: bottom;
 }
 
 .name {
@@ -10747,10 +10751,6 @@ hr {
   border-bottom: 1px solid #3b3b3b;
   border-left: none;
   border-right: none;
-}
-
-.button-group {
-  padding-top: 130px;
 }
 
 .custom-dropdown {
@@ -10829,6 +10829,10 @@ hr {
   .button-img {
     position: unset;
   }
+}
+
+.details {
+  margin: 35px 0;
 }
 
 @font-face {

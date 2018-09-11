@@ -199,19 +199,22 @@ hr{
     font-weight: 700;
     text-transform: uppercase;
     border-top: none;
-    border-bottom: 1px solid black !important;
+    border-bottom: 1px solid #3b3b3b !important;
     padding-left: 0;
 
 }
 
 .table-images td {
     padding: 20px 30px 20px 0;
-    border-bottom: 1px solid black !important;
+    border-bottom: 1px solid #3b3b3b !important;
 
 }
 // .table-images tbody tr td{
 //     padding-bottom: 0;
 // }
+.table-images .table-button {
+    vertical-align: bottom;
+}
 .name{
     display: block;
     color: #282828;
@@ -243,7 +246,7 @@ hr{
 }
 .button-group{
     // margin-top: calc(100% - 67px);
-    padding-top: 130px;
+    // padding-top: 130px;
 }
 .custom-dropdown{
     background-color: #0c4206;
