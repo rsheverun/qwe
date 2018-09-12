@@ -1,5 +1,6 @@
 .details{
-    margin: 35px 0;
+    margin-top: 35px;
+    margin-bottom: 20px;
 }
 .inline-text{
     display: -webkit-inline-box;
@@ -11,4 +12,19 @@
 }
 .latest-images img{
     margin-top: 35px;
+    width: 100%;
+}
+.btn-save{
+    margin-top: 20px;
+}
+.usergroups-title{
+    background-color: #d4d4d4;
+    padding: 8px;
+    color: #ffffff;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 9px;
+    margin-right: 9px;
+    text-transform: uppercase;
 }

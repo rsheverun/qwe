@@ -52,6 +52,12 @@ class RegisterController extends Controller
         $this->middleware('guest',['except' => ['getVerification', 'getVerificationError']]);
     }
 
+    public function showRegistrationForm()
+    {
+        $groups = UserGroup::all();
+        return view('auth.register',['groups'=>$groups]);
+    }
+
 
     /**
      * Get a validator for an incoming registration request.

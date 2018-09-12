@@ -11,6 +11,7 @@
 
 @import 'dashboard';
 @import 'details';
+@import 'settings';
 @font-face {
     font-family: 'Acrom Medium';
     src: url('../fonts/Acrom-Medium.ttf');
@@ -86,7 +87,7 @@ footer{
     font-size: 23px;
     }  
 }
-@media only screen and (max-width: 343px) {
+@media only screen and (max-width: 1105px) {
     .logo{
     font-size: 20px;
     }  

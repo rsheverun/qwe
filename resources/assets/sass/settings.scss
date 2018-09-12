@@ -1,0 +1,46 @@
+.name{
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+.name label{
+    margin-right: 15px;
+}
+
+.anotation{
+    color: #3b3b3b;
+    font-family: Roboto;
+    font-size: 12px;
+    font-weight: 400;
+}
+.huntingarea-table{
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+.huntingarea-table th {
+    color: #3b3b3b;
+    font-family: 'Acrom Medium';
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 10px 10px 10px 0;
+    min-width: 100px;
+}
+.huntingarea-table thead tr{
+    border-bottom: 1px solid #3b3b3b;
+}
+.huntingarea-table tbody td {
+color: #3b3b3b;
+font-family: 'Roboto';
+font-size: 14px;
+font-weight: 400;
+padding-top: 23px;
+padding-bottom: 23px;
+border-bottom: 1px solid #3b3b3b;
+}
+.setting-pagination{
+    margin: 35px 0;
+
+}

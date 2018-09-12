@@ -65,34 +65,61 @@
     <!-- right -->
     <div class="col-md-7 col-xs-12">
         <div class="row no-gutters">
-            <div id="map" style="height: 286px;"></div>
+            <div id="map" style="height: 286px; margin-top: 0;"></div>
         </div>
+        <div class="row no-gutters">
+            <div class="col-12 text-right">
+                <a href="#" class="btn btn-outline-success button-look btn-green">show all images</a>
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-12">
+            <span class="title">usergroups</span>
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <span class="usergroups-title">usergroups</span>
+            <span class="usergroups-title">usergroups</span>
+
+        </div>
+
     </div>
     <div class="row details">
     <div class="col-12">
         <span class="badge-statistic">latest images</span>
     </div>
-    <div class="row latest-images col-12 no">
+    <div class="row latest-images col-12">
         <div class="col-md-4">
-            <img src="{{asset('img/img1.png')}}" class=" img-fluid zoom " alt="">
+            <img src="{{asset('img/img1.png')}}" class="zoom " alt="">
             <div class="text-right">
                 <span class="date">09.08.2018 16:30:34</span>            
             </div>
         </div>
         <div class="col-md-4">
-            <img src="{{asset('img/img1.png')}}" class=" img-fluid zoom " alt="">
+            <img src="{{asset('img/img1.png')}}" class="zoom " alt="">
             <div class="text-right">
                 <span class="date">09.08.2018 16:30:34</span>            
             </div>            
         </div>
         <div class="col-md-4">
-            <img src="{{asset('img/img1.png')}}" class="img-fluid zoom " alt="">
+            <img src="{{asset('img/img1.png')}}" class="zoom " alt="">
             <div class="text-right">
                 <span class="date">09.08.2018 16:30:34</span>            
             </div>            
         </div>
     </div>
+    
 </div>
+        <div class="col-12">
+            <div class="text-right">
+                <a href="#" class="btn btn-outline-success button-look btn-green">show all images</a>
+            </div>
+        </div>
+        <div class="btn-save col-12">
+                <div class="text-right">
+                    <span class="badge-statistic">save</span>
+                </div>
+        </div>
 </div>
 </div>
 <script>
