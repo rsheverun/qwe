@@ -10867,13 +10867,15 @@ hr {
   text-transform: uppercase;
 }
 
-.name {
+.block {
   margin-top: 35px;
   margin-bottom: 35px;
 }
 
-.name label {
-  margin-right: 15px;
+.custom-input {
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #3b3b3b;
 }
 
 .anotation {
@@ -10887,8 +10889,6 @@ hr {
   width: 100%;
   margin-bottom: 1rem;
   background-color: transparent;
-  margin-top: 35px;
-  margin-bottom: 35px;
 }
 
 .huntingarea-table th {
@@ -10917,6 +10917,66 @@ hr {
 
 .setting-pagination {
   margin: 35px 0;
+}
+
+.base-settings label,
+.check-box label,
+.users label,
+.usergroups label,
+.configsets label,
+.hunting-areas label {
+  width: 140px;
+  margin-right: 15px;
+  margin-bottom: 0 !important;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+.custom-check {
+  width: 14px;
+  height: 14px;
+  border-radius: none;
+  border: 1px solid #9d9d9d;
+  background-color: #9d9d9d;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#e7e7e7), to(#f8f8f8));
+  background-image: linear-gradient(to top, #e7e7e7 0%, #f8f8f8 100%);
+}
+
+.btn-add {
+  color: #1779cc;
+  border-color: #1779cc;
+  font-family: 'Acrom Medium';
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  right: 0;
+  bottom: 0;
+}
+
+.btn-absolute {
+  position: absolute;
+}
+
+.usergroups,
+.users {
+  position: relative;
+}
+
+.desc-block {
+  margin-top: 35px;
+}
+
+.user-input {
+  margin-bottom: 15px;
+}
+
+.credentials .configsets {
+  margin-top: 35px;
+}
+
+.configsets table,
+.hunting-areas table {
+  margin-bottom: 0 !important;
 }
 
 @font-face {
