@@ -10949,8 +10949,7 @@ hr {
   font-size: 24px;
   font-weight: 700;
   text-transform: uppercase;
-  right: 0;
-  bottom: 0;
+  float: right;
 }
 
 .btn-absolute {
