@@ -8,17 +8,17 @@
 <div class="base-settings">
     <form action="">
         <div class="form-row">
-            <div class="d-flex flex-row col-lg-5 col-xs-12 user-input">
+            <div class="d-flex flex-row col-lg-4 col-md col-xs-12 user-input">
                 <label for="user" class="title">Name:</label>
                 <input type="text" class="align-self-start flex-grow-1 custom-input">
             </div>
         </div>
         <div class="form-row">
-            <div class="d-flex flex-row col-lg-5 col-xs-12">
+            <div class="d-flex flex-row col-lg-5 col-md col-sm col-xs-12">
                 <label for="user" class="title">Short Name:</label>
                 <input type="text" class="align-self-start flex-grow-1 custom-input">
             </div>
-            <div class="d-flex flex-row col pl-lg-3">
+            <div class="d-flex flex-row pl-lg-3">
             <span>Portal URL: https://mha.mycams.com</span>
         </div>
     </form>
@@ -83,57 +83,56 @@
 </div>
 <div class="hunting-areas">
     <div class="row">
-        <div class="col-lg-5 col-xs-12">
+        <div class="col-lg-4 col-xs-12">
             <form action="#">
                     <div class="d-flex flex-row p-0">
                             <label for="name" class="title">name:</label>
                             <input type="text" id="name" class="flex-grow-1 custom-input">
                     </div>
+                    <label for="desc" class="title mt-4">description:</label>
+
                     <div class="d-flex flex-row p-0">
-                        <div class="desc-block">
-                            <label for="desc" class="title">description:</label>
                             <textarea name="desc" id="" cols="30" rows="10" class="desc custom-input"></textarea>
-                        </div>
                     </div>
             </form>
         </div>
-        <div class="col-lg-7 col-xs-12">
+        <div class="col-lg-8 col-xs-12">
         
-        <div class="table-responsive">
-            <table class="table table-sm table-bordered text-center">
-                <thead>
-                    <tr>
-                        <th>Config Key</th>
-                        <th>Value</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>vMAP Instance</td>
-                        <td>https:/mha1.vmap.rocks</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>vMAP Instance</td>
-                        <td>https:/mha1.vmap.rocks</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>vMAP Instance</td>
-                        <td>https:/mha1.vmap.rocks</td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <button type="button" class="btn btn-outline-success btn-add">add</button>
+            <div class="table-responsive">
+                <table class="table table-sm table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>Config Key</th>
+                            <th>Value</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>vMAP Instance</td>
+                            <td>https:/mha1.vmap.rocks</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>vMAP Instance</td>
+                            <td>https:/mha1.vmap.rocks</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>vMAP Instance</td>
+                            <td>https:/mha1.vmap.rocks</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        <button type="button" class="btn btn-outline-success btn-add btn-absolute mr-lg-3">add</button>
 
 
 
 
 
-        </div>
+
     </div>
 </div>
 <div class="row  block">
@@ -179,7 +178,7 @@
 </div>
 <div class="usergroups">
 <form action="#">
-    <div class="d-flex flex-row col-md-5  block p-0">
+    <div class="d-flex flex-row col-lg-4 col-md-5  block p-0">
         <label for="name" class="title">usergroup name:</label>
         <input type="text" id="name" class="align-self-start flex-grow-1 custom-input">
     </div>
@@ -200,12 +199,11 @@
     is guest?
         </label>
         <input  type="checkbox" value="" id="guest" class="custom-check">
-    </div>
-</form>
-<div class="row">
 <button type="button" class="btn btn-outline-success btn-add btn-absolute">add</button>
 
-</div>
+    </div>
+</form>
+
 </div>
 <div class="row block">
     <div class="col-12">
@@ -254,22 +252,22 @@
 <div class="users">
 <form action="#">
     <div class="form-row">
-        <div class="d-flex flex-row col-lg-5 col-xs-12 user-input">
+        <div class="d-flex flex-row col-lg-4 col-md-5 col-xs-12 user-input">
                     <label for="firs_tname" class="title">first name:</label>
                     <input type="text" class="align-self-start flex-grow-1 custom-input">
         </div>
-        <div class="d-flex flex-row col-lg-6 offset-lg-1 col-xs-12 ">
-            <label for="select" class="title">usergroups</label>
+        <div class="d-flex flex-row col-lg-7 offset-lg-1 col-xs-12 ">
+            <label for="select" class="title align-self-start">usergroups</label>
         </div>
     </div>
     <div class="form-row">
-        <div class="d-flex flex-row col-lg-5 col-xs-12 user-input">
+        <div class="d-flex flex-row col-lg-4 col-md-5 col-xs-12 user-input">
             <label for="last name:" class="title">last name:</label>
             <input type="text" class="align-self-start flex-grow-1 custom-input">
         </div>
     </div>
     <div class="form-row">
-        <div class="d-flex flex-row col-lg-5 col-xs-12 ">
+        <div class="d-flex flex-row col-lg-4 col-md-5 col-xs-12 ">
             <label for="email" class="title">email:</label>
             <input type="mail" class="align-self-start flex-grow-1 custom-input">
         </div>
@@ -287,17 +285,17 @@
     </div>
     <div class="credentials">
         <div class="form-row">
-            <div class="d-flex flex-row col-lg-5 col-xs-12 user-input">
+            <div class="d-flex flex-row col-lg-4 col-md-5 col-xs-12 user-input">
                 <label for="user" class="title">user:</label>
                 <input type="text" class="align-self-start flex-grow-1 custom-input">
             </div>
         </div>
         <div class="form-row">
-            <div class="d-flex flex-row col-lg-5 col-xs-12 align-self-start">
+            <div class="d-flex flex-row col-lg-4 col-md-5 col-xs-12 align-self-start">
                 <label for="password" class="title">password:</label>
                 <input type="password" class="align-self-start flex-grow-1 custom-input">
             </div>
-    <button type="button" class="btn btn-outline-success btn-add ml-auto mt-auto">add</button>
+    <button type="button" class="btn btn-outline-success btn-add ml-auto ">add</button>
 
         </div>
     </div>
@@ -342,11 +340,11 @@
 <div class="configsets">
     <form action="#">
     <div class="form-row">
-        <div class="d-flex flex-row col-lg-5 col-xs-12 user-input">
+        <div class="d-flex flex-row col-lg-4 col-md-5 col-xs-12 user-input">
                 <label for="firs_tname" class="title align-self-start">model:</label>
                 <input type="text" class="align-self-start flex-grow-1 custom-input">
         </div>
-        <div class="d-flex flex-row col-lg-5  col-xs-12 ">
+        <div class="d-flex flex-row col-lg-4 col-md-5  col-xs-12 ">
         <div class="table-responsive  pl-lg-1">
             <table class="table table-sm table-bordered text-center">
                 <thead>
@@ -372,7 +370,7 @@
             </table>
         </div>
         </div>
-        <div class="d-flex flex-row col-lg-2 col-xs-12 align-self-end">
+        <div class="d-flex flex-row col-lg-4 col-md-2    col-xs-12 align-self-end">
         <button type="button" class="btn btn-outline-success btn-add ml-auto">add</button>
         </div>
     </form>

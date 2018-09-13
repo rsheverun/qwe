@@ -76,12 +76,15 @@ border-bottom: 1px solid #3b3b3b;
 }
 .btn-absolute{
     position: absolute;
+    bottom: 0;
+    right: 0;
 }
 .usergroups, .users{
     position: relative;
 }
-.desc-block{
-    margin-top: 35px;
+.desc{
+    min-height: 100px;
+    margin-top: 14px;
 }
 .user-input{
     margin-bottom: 15px;
@@ -92,5 +95,16 @@ border-bottom: 1px solid #3b3b3b;
 .configsets, .hunting-areas{
     table{
         margin-bottom: 0 !important;
+    }
+}
+@media only screen and (max-width: 992px) {
+    .btn-add{
+        margin-top: 10px;
+    }
+    .hunting-areas{
+        .btn-absolute{
+            position: unset;
+            float: right;
+        }  
     }
 }

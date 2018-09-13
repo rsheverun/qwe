@@ -10954,6 +10954,8 @@ hr {
 
 .btn-absolute {
   position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 .usergroups,
@@ -10961,8 +10963,9 @@ hr {
   position: relative;
 }
 
-.desc-block {
-  margin-top: 35px;
+.desc {
+  min-height: 100px;
+  margin-top: 14px;
 }
 
 .user-input {
@@ -10976,6 +10979,17 @@ hr {
 .configsets table,
 .hunting-areas table {
   margin-bottom: 0 !important;
+}
+
+@media only screen and (max-width: 992px) {
+  .btn-add {
+    margin-top: 10px;
+  }
+
+  .hunting-areas .btn-absolute {
+    position: unset;
+    float: right;
+  }
 }
 
 @font-face {
