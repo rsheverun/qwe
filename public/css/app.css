@@ -10548,7 +10548,6 @@ a.text-dark:focus {
   font-weight: 700;
   text-transform: uppercase;
   padding: 10px;
-  margin-bottom: 45px;
   background-color: #83ba2d;
 }
 
@@ -10622,7 +10621,8 @@ a.text-dark:focus {
 }
 
 .button-delete {
-  padding: 0 50px;
+  padding: 10px 50px;
+  line-height: 11px;
   font-family: 'Acrom Medium';
   font-size: 18px;
   font-weight: 400;
@@ -10872,10 +10872,16 @@ hr {
   margin-bottom: 35px;
 }
 
+.check-box label {
+  width: 100px;
+  white-space: nowrap;
+}
+
 .custom-input {
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #3b3b3b;
+  border-radius: 0;
 }
 
 .anotation {
@@ -10910,8 +10916,8 @@ hr {
   font-family: 'Roboto';
   font-size: 14px;
   font-weight: 400;
-  padding-top: 23px;
-  padding-bottom: 23px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   border-bottom: 1px solid #3b3b3b;
 }
 
@@ -10925,7 +10931,6 @@ hr {
 .usergroups label,
 .configsets label,
 .hunting-areas label {
-  width: 140px;
   margin-right: 15px;
   margin-bottom: 0 !important;
   -ms-flex-item-align: center;
@@ -10942,6 +10947,31 @@ hr {
   background-image: linear-gradient(to top, #e7e7e7 0%, #f8f8f8 100%);
 }
 
+.settings-save {
+  color: #ffffff;
+  font-family: 'Acrom Medium';
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 10px;
+  background-color: #83ba2d;
+  padding: 11px 54px;
+  line-height: 16px;
+}
+
+.setting-radio {
+  background-color: #d4d4d4;
+  padding: 8px;
+  color: #ffffff;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 700;
+  height: 27px;
+  padding: 8px;
+  line-height: 12px;
+  text-transform: uppercase;
+}
+
 .btn-add {
   color: #1779cc;
   border-color: #1779cc;
@@ -10950,6 +10980,18 @@ hr {
   font-weight: 700;
   text-transform: uppercase;
   float: right;
+  line-height: 14px;
+  padding: 12px;
+}
+
+.btn-add:hover {
+  background-color: #1779cc;
+  border-color: #1779cc;
+}
+
+.btn-add:not(:disabled):not(.disabled):active {
+  background-color: #1779cc;
+  border-color: #1779cc;
 }
 
 .btn-absolute {
@@ -10972,7 +11014,8 @@ hr {
   margin-bottom: 15px;
 }
 
-.credentials .configsets {
+.credentials,
+.configsets {
   margin-top: 35px;
 }
 
@@ -10981,15 +11024,88 @@ hr {
   margin-bottom: 0 !important;
 }
 
+.users-label {
+  width: 107px;
+  max-width: 212px;
+}
+
+.table-settings table tr,
+.table-settings th,
+.table-settings td {
+  border: 1px solid #9d9d9d !important;
+}
+
+.areas input[type="radio"] {
+  display: none;
+}
+
+.users input[type="radio"] {
+  display: none;
+}
+
+.areas input[type="radio"]:checked + label {
+  background-color: #83ba2d;
+}
+
+.users input[type="radio"]:checked + label {
+  background-color: #83ba2d;
+}
+
+@media only screen and (max-width: 1400px) {
+  .title {
+    font-size: 16px;
+  }
+
+  .users-label {
+    max-width: 192px;
+  }
+}
+
 @media only screen and (max-width: 992px) {
+  .users-label {
+    width: 100%;
+  }
+
+  .desc {
+    margin-bottom: 14px;
+  }
+
   .btn-add {
     margin-top: 10px;
+    width: 100%;
   }
 
   .hunting-areas .btn-absolute {
     position: unset;
     float: right;
   }
+
+  .btn-absolute {
+    position: unset;
+  }
+
+  .setting-radio {
+    margin-top: 5px;
+  }
+
+  .settings-save {
+    width: 100%;
+  }
+}
+
+.filter-date {
+  margin: 25px 0;
+}
+
+.sum {
+  color: #3b3b3b;
+  font-family: 'Roboto';
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.number {
+  font-weight: 400;
 }
 
 @font-face {

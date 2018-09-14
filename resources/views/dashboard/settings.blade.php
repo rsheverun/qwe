@@ -1,5 +1,6 @@
 @extends('layouts.layout')
 @section('content')
+
 <div class="row block">
     <div class="col-12">
         <span class="badge-statistic">base settings</span>
@@ -14,12 +15,12 @@
             </div>
         </div>
         <div class="form-row">
-            <div class="d-flex flex-row col-lg-5 col-md col-sm col-xs-12">
-                <label for="user" class="title">Short Name:</label>
-                <input type="text" class="align-self-start flex-grow-1 custom-input">
+            <div class="d-flex flex-row col-lg-4 col-md col-sm col-xs-12">
+                <label for="user" class="title" >Short Name:</label>
+                <input type="text" class="align-self-start col custom-input">
             </div>
             <div class="d-flex flex-row pl-lg-3">
-            <span>Portal URL: https://mha.mycams.com</span>
+            <span class="ml-1">Portal URL: https://mha.mycams.com</span>
         </div>
     </form>
 </div>
@@ -50,7 +51,7 @@
                     urna in venenatis.</td>
                 <td>15.02.2018 15:33:01</td>
                 <td class="text-right table-button">
-                <button type="button" class="btn btn-outline-danger button-delete" style="margin-bottom: 15px;">Delete</button>
+                <button type="button" class="btn btn-outline-danger button-delete" >Delete</button>
                     
                 </td>
             </tr>
@@ -61,7 +62,7 @@
                     urna in venenatis.</td>
                 <td>15.02.2018 15:33:01</td>
                 <td class="text-right table-button">
-                <button type="button" class="btn btn-outline-danger button-delete" style="margin-bottom: 15px;">Delete</button>
+                <button type="button" class="btn btn-outline-danger button-delete" >Delete</button>
                     
                 </td>
             </tr>
@@ -72,15 +73,17 @@
                     urna in venenatis.</td>
                 <td>15.02.2018 15:33:01</td>
                 <td class="text-right table-button">
-                <button type="button" class="btn btn-outline-danger button-delete" style="margin-bottom: 15px;">Delete</button>
+                <button type="button" class="btn btn-outline-danger button-delete" >Delete</button>
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
+
 <div class="block">
  @include('layouts.pagination')
 </div>
+
 <div class="hunting-areas">
     <div class="row">
         <div class="col-lg-4 col-xs-12">
@@ -99,7 +102,7 @@
         <div class="col-lg-8 col-xs-12">
         
             <div class="table-responsive">
-                <table class="table table-sm table-bordered text-center">
+                <table class="table table-sm table-bordered text-center table-settings">
                     <thead>
                         <tr>
                             <th>Config Key</th>
@@ -127,8 +130,6 @@
                 </table>
             </div>
         <button type="button" class="btn btn-outline-success btn-add btn-absolute mr-lg-3">add</button>
-
-
 
 
 
@@ -164,7 +165,7 @@
                 <td>No</td>
                 <td>15.02.2018 15:33:01</td>
                 <td class="text-right table-button">
-                <button type="button" class="btn btn-outline-danger button-delete" style="margin-bottom: 15px;">Delete</button>
+                <button type="button" class="btn btn-outline-danger button-delete" >Delete</button>
                     
                 </td>
             </tr>
@@ -176,11 +177,26 @@
 <div class="block">
  @include('layouts.pagination')
 </div>
+</div>
+
 <div class="usergroups">
 <form action="#">
-    <div class="d-flex flex-row col-lg-4 col-md-5  block p-0">
-        <label for="name" class="title">usergroup name:</label>
-        <input type="text" id="name" class="align-self-start flex-grow-1 custom-input">
+    <div class="form-group row" >
+        <div class="col-lg-3 col-xs-12 users-label pr-0" >
+            <label for="staticEmail" class="title">usergroup name:</label>
+        </div>
+        <div class="col-lg-2 col-xs-12 p-lg-0">
+            <input type="text"  class=" custom-input w-100" id="staticEmail" >
+        </div>
+        <div class="col col-xs-12 areas">
+            <span  class="title align-self-start" style="margin-right: 15px;">hunting areas:</span>
+            <input type="radio" name="area" id="area1">
+            <label for="area1" class="setting-radio">My Hunting Area 1</label>            
+            <input type="radio" name="area" id="area2">
+            <label for="area2" class="setting-radio">North</label>
+            <input type="radio" name="area" id="area3">
+            <label for="area3" class="setting-radio">Custom Area</label>            
+        </div>
     </div>
     <div class="check-box">
     <label class="title " for="admin">
@@ -199,9 +215,38 @@
     is guest?
         </label>
         <input  type="checkbox" value="" id="guest" class="custom-check">
-<button type="button" class="btn btn-outline-success btn-add btn-absolute">add</button>
+        <div class="row pl-3 pr-3 text-right">
+        <button type="button" class="btn btn-outline-success btn-add btn-absolute">add</button>
 
+        </div>
+</div>
+    <!-- <div class="d-flex flex-row col-lg-5 block p-0">
+        <label for="name" class="title">usergroup name:</label>
+        <input type="text" id="name" class="align-self-start flex-grow-1 custom-input col">
     </div>
+    <div class="check-box">
+    <label class="title " for="admin">
+    is admin?
+        </label>
+        <input  type="checkbox" value="" id="admin" class="custom-check">
+    </div>
+    <div class="check-box">
+    <label class="title" for="user">
+    is user?
+        </label>
+        <input  type="checkbox" value="" id="user" class="custom-check">
+    </div>
+    <div class="check-box">
+    <label class="title" for="guest">
+    is guest?
+        </label>
+        <input  type="checkbox" value="" id="guest" class="custom-check">
+        <div class="row">
+        <button type="button" class="btn btn-outline-success btn-add btn-absolute ml-3">add</button>
+
+        </div>
+
+    </div> -->
 </form>
 
 </div>
@@ -239,22 +284,85 @@
                 15:33:01</td>
                 <td>15.02.2018 15:33:01</td>
                 <td class="text-right table-button">
-                <button type="button" class="btn btn-outline-danger button-delete" style="margin-bottom: 15px;">Delete</button>
+                <button type="button" class="btn btn-outline-danger button-delete" >Delete</button>
                     
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
+
 <div class="block">
 @include('layouts.pagination')
 </div>
 <div class="users">
+
+
+<form>
+    <div class="form-group row" >
+        <div class="col-lg-2 col-xs-12 users-label" >
+            <label for="staticEmail" class="title">First name:</label>
+        </div>
+        <div class="col-lg-2 col-xs-12 p-lg-0">
+            <input type="text"  class=" custom-input w-100" id="staticEmail" >
+        </div>
+        <div class="col-lg-7 col-xs-12 offset-lg-1">
+            <span  class="title align-self-start" style="margin-right: 15px;">usergroups:</span>
+            <input type="radio" name="group" id="admins_group">
+            <label for="admins_group" class="setting-radio">Admins</label>            
+            <input type="radio" name="group" id="guest_group">
+            <label for="guest_group" class="setting-radio">HG Guest</label>
+            <input type="radio" name="group" id="main_group">
+            <label for="main_group" class="setting-radio">HG Main</label>
+        </div>
+    </div>
+
+    <div class="form-group row">
+    <div class="col-lg-2 col-xs-12 users-label">
+            <label for="staticEmail" class="title">last name:</label>
+        </div>
+        <div class="col-lg-2 col-xs-12 p-lg-0">
+            <input type="text"  class=" custom-input w-100" id="staticEmail" >
+        </div>
+    </div>
+    <div class="form-group row" >
+    <div class="col-lg-2 col-xs-12 users-label">
+            <label for="staticEmail" class="title">email:</label>
+        </div>
+        <div class="col-lg-2 col-xs-12 p-lg-0" >
+            <input type="text"  class=" custom-input w-100" id="staticEmail" >
+        </div>
+    </div>
+    <div class="form-group row credentials">
+    <div class="col-lg-2 col-xs-12 users-label">
+            <label for="staticEmail" class="title">user:</label>
+        </div>
+        <div class="col-lg-2 col-xs-12 p-lg-0">
+            <input type="text"  class=" custom-input w-100" id="staticEmail" >
+        </div>
+    </div>
+    <div class="form-group row">
+    <div class="col-lg-2 col-xs-12 users-label">
+            <label for="staticEmail" class="title">password:</label>
+        </div>
+        <div class="col-lg-2 col-xs-12 p-lg-0">
+            <input type="text"  class=" custom-input w-100" id="staticEmail" >
+        </div>
+        <div class="col-12">
+            <button type="button" class="btn btn-outline-success btn-add btn-absolute mr-lg-3">add</button>
+            </div>
+    </div>
+    <div class="form-group row">
+ 
+        </div>
+</form>
+</div>
+<!-- <div class="users">
 <form action="#">
     <div class="form-row">
         <div class="d-flex flex-row col-lg-4 col-md-5 col-xs-12 user-input">
                     <label for="firs_tname" class="title">first name:</label>
-                    <input type="text" class="align-self-start flex-grow-1 custom-input">
+                    <input type="text" class="align-self-start col custom-input">
         </div>
         <div class="d-flex flex-row col-lg-7 offset-lg-1 col-xs-12 ">
             <label for="select" class="title align-self-start">usergroups</label>
@@ -263,37 +371,36 @@
     <div class="form-row">
         <div class="d-flex flex-row col-lg-4 col-md-5 col-xs-12 user-input">
             <label for="last name:" class="title">last name:</label>
-            <input type="text" class="align-self-start flex-grow-1 custom-input">
+            <input type="text" class="align-self-start col custom-input">
         </div>
     </div>
     <div class="form-row">
         <div class="d-flex flex-row col-lg-4 col-md-5 col-xs-12 ">
             <label for="email" class="title">email:</label>
-            <input type="mail" class="align-self-start flex-grow-1 custom-input">
+            <input type="mail" class="align-self-start col custom-input">
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-row">
+    <div class="d-flex flex-row col-lg-4 col-md-5 col-xs-12">
         <div class="form-check">
-            <label class="form-check-label" for="gridCheck">
-                
-            </label>
             <input class="form-check-input" type="checkbox" id="gridCheck">
             <label class="form-check-label" for="gridCheck">
             eMail notification for new images?
                 </label>
         </div>
+</div>
     </div>
     <div class="credentials">
         <div class="form-row">
             <div class="d-flex flex-row col-lg-4 col-md-5 col-xs-12 user-input">
                 <label for="user" class="title">user:</label>
-                <input type="text" class="align-self-start flex-grow-1 custom-input">
+                <input type="text" class="align-self-start col custom-input">
             </div>
         </div>
         <div class="form-row">
             <div class="d-flex flex-row col-lg-4 col-md-5 col-xs-12 align-self-start">
                 <label for="password" class="title">password:</label>
-                <input type="password" class="align-self-start flex-grow-1 custom-input">
+                <input type="password" class="align-self-start col custom-input">
             </div>
     <button type="button" class="btn btn-outline-success btn-add ml-auto ">add</button>
 
@@ -302,7 +409,8 @@
 
     
 </form>
-</div>
+</div> -->
+
 <div class="row block">
     <div class="col-12">
         <span class="badge-statistic">configsets</span>
@@ -326,7 +434,7 @@
                 <td>Default</td>
                 <td>15.02.2018 15:33:01</td>
                 <td class="text-right table-button">
-                <button type="button" class="btn btn-outline-danger button-delete" style="margin-bottom: 15px;">Delete</button>
+                <button type="button" class="btn btn-outline-danger button-delete" >Delete</button>
                     
                 </td>
             </tr>
@@ -344,9 +452,9 @@
                 <label for="firs_tname" class="title align-self-start">model:</label>
                 <input type="text" class="align-self-start flex-grow-1 custom-input">
         </div>
-        <div class="d-flex flex-row col-lg-4 col-md-5  col-xs-12 ">
+        <div class="d-flex flex-row col-lg-4 col-md-12 ">
         <div class="table-responsive  pl-lg-1">
-            <table class="table table-sm table-bordered text-center">
+            <table class="table table-sm table-bordered text-center table-settings">
                 <thead>
                     <tr>
                         <th>Key</th>
@@ -370,7 +478,7 @@
             </table>
         </div>
         </div>
-        <div class="d-flex flex-row col-lg-4 col-md-2    col-xs-12 align-self-end">
+        <div class="d-flex flex-row col-lg-4 col-md-12    col-xs-12 align-self-end">
         <button type="button" class="btn btn-outline-success btn-add ml-auto">add</button>
         </div>
     </form>
@@ -379,7 +487,7 @@
 </div>
 <div class="row block text-right">
     <div class="col-12">
-        <span class="badge-statistic">save</span>
+        <button class="btn settings-save">save</button>
     </div>
 </div>
 </div>

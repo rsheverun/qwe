@@ -64,7 +64,6 @@
     font-weight: 700;
     text-transform: uppercase;
     padding: 10px;
-    margin-bottom: 45px;
     background-color: #83ba2d;
 }
 .number{
@@ -123,9 +122,12 @@
     bottom: 0;
     font-family: Roboto;
     font-size: 18px;
+    // padding: 13px 11px;
+    // line-height: 12px;
 }
 .button-delete{
-    padding: 0 50px;
+    padding: 10px 50px;
+    line-height: 11px;
     font-family: 'Acrom Medium';
     font-size: 18px;
     font-weight: 400;

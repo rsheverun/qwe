@@ -39,12 +39,13 @@
                 {{ Auth::user()->first_name }} {{ Auth::user()->last_name }} <span class="caret"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right custom-dropdown" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('settings') }}">Settings</a>
+                <a class="dropdown-item" href="{{ route('account') }}">Account</a>                
                 <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
                     {{ __('Logout') }}
                 </a>
-                <a class="dropdown-item" href="{{ route('settings') }}">Settings</a>
 
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -84,11 +84,12 @@
         </div>
 
     </div>
+</div>
     <div class="row details">
     <div class="col-12">
         <span class="badge-statistic">latest images</span>
     </div>
-    <div class="row latest-images col-12">
+    <div class="row latest-images pl-3  pr-3">
         <div class="col-md-4">
             <img src="{{asset('img/img1.png')}}" class="zoom " alt="">
             <div class="text-right">

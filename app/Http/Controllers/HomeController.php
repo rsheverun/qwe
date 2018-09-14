@@ -60,4 +60,9 @@ class HomeController extends Controller
     {
         return view('dashboard.settings');
     }
+
+    public function account()
+    {
+        return view('dashboard.account');
+    }
 }

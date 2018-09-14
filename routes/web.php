@@ -24,6 +24,9 @@ Route::middleware(['auth','isVerified'])->prefix('dashboard')->group(function ()
     Route::get('/images','HomeController@images')->name('images');
 
     Route::get('/settings','HomeController@settings')->name('settings');
+    
+    Route::get('/account','HomeController@account')->name('account');
+
 
 });
 
