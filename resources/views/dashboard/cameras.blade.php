@@ -36,7 +36,7 @@
                 <td>10.08.2018 18:44:11</td>
                 <td>5</td>
                 <td class="text-right table-button">
-                    <a href="{{ route('details') }}" class="btn btn-outline-success button-look btn-green">details</a>
+                    <a href="{{ route('details') }}" class="btn btn-outline-success button-look btn-green btn-details">details</a>
                 </td>
             </tr>
             <tr>
@@ -48,7 +48,7 @@
                 <td>10.08.2018 18:44:11</td>
                 <td>5</td>
                 <td class="text-right table-button">
-                    <a href="{{ route('details') }}" class="btn btn-outline-success button-look btn-green">details</a>
+                    <a href="{{ route('details') }}" class="btn btn-outline-success button-look btn-green btn-details">details</a>
                 </td>
             </tr>
             <tr>
@@ -60,38 +60,17 @@
                 <td>10.08.2018 18:44:11</td>
                 <td>5</td>
                 <td class="text-right table-button">
-                    <a href="{{ route('details') }}" class="btn btn-outline-success button-look btn-green">details</a>
+                    <a href="{{ route('details') }}" class="btn btn-outline-success button-look btn-green btn-details">details</a>
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
 
-    
-        <div class="col-md-6 col-xs-12 ">
-            <span class="btn btn-outline-success button-look btn-green pagination-info">20 per page</span>
-        </div>
-        <div class="col-md-6 text-right">
-          <nav aria-label="Page navigation example">
-            <ul class="pagination custom-pagination">
-                <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-                </li>
-            </ul>
-          </nav>
-        </div>
+    </div>
+    <div class="block">
+ @include('layouts.pagination')
+</div>
 
     
 </div>    

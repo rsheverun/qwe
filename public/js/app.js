@@ -32755,9 +32755,9 @@ window.Vue = __webpack_require__(173);
 Vue.component('chartpie-component', __webpack_require__(176));
 Vue.component('chartline-component', __webpack_require__(229));
 
-var app = new Vue({
-  el: '#app'
-});
+// const app = new Vue({
+//     el: '#app'
+// });
 
 /***/ }),
 /* 151 */

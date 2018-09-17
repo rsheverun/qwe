@@ -6,8 +6,21 @@
         <span class="badge-statistic">images</span>
     </div>
 </div>
-<form>
-  <div class="form-group row images">
+<form class="images">
+<div class="form-group row">
+        <label for="staticEmail" class="title pl-3" style="width: max-content;">Camera: </label>
+    <div class="col">
+    <select class="filter w-100" id="exampleFormControlSelect1" name="group" required>
+            <option value="1">All</option>
+        </select>
+    </div>
+    <div class="col-lg-7 offset-lg-1">
+        <label for="staticEmail" class="title" id="date_label">date range:</label>
+        <input type="date" id="date_from" class="filter ml-lg-3 mr-3">
+        <input type="date" id="date_to" class="filter">
+    </div>
+</div>
+  <!-- <div class="form-group row images">
     <label for="staticEmail" class="col-sm-1 col-form-label title images-title">Camera: </label>
     <div class="col-sm-3 align-self-center">
         <select class="filter" id="exampleFormControlSelect1" name="group" required>
@@ -16,10 +29,10 @@
     </div>
     <label for="inputPassword" class="col-sm-2 col-form-label title images-title">date range: </label>
     <div class="col-sm-5 align-self-center">
-    <input type="date" class="filter">
-    <input type="date" class="filter">
+    <input type="date" id="date_from" class="filter">
+    <input type="date" id="date_to" class="filter">
     </div>
-  </div>
+  </div> -->
 </form>
  
 <div class="row images">
@@ -58,7 +71,7 @@
                 <td class="text-right table-button">
                     <div class="button-group">
                     <button type="button" class="btn btn-outline-danger button-delete" style="margin-bottom: 15px;">Delete</button>
-                    <button type="button" class="btn btn-outline-success button-look btn-green" style="width: 170px;">forward to <br> email</button>
+                    <button type="button" class="btn btn-outline-success button-look btn-green btn-forward" >forward to <br> email</button>
                     </div>
                 </td>
             </tr>   
@@ -113,7 +126,7 @@
                 <td class="text-right table-button">
                     <div class="button-group">
                     <button type="button" class="btn btn-outline-danger button-delete" style="margin-bottom: 15px;">Delete</button>
-                    <button type="button" class="btn btn-outline-success button-look btn-green" style="width: 170px;">forward to <br> email</button>
+                    <button type="button" class="btn btn-outline-success button-look btn-green btn-forward">forward to <br> email</button>
                     </div>
                 </td>
             </tr>   

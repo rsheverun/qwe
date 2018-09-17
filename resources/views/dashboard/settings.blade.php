@@ -44,38 +44,22 @@
             </tr>
         </thead>
         <tbody>
+            @foreach($areas as $k=>$area)
             <tr>
-                <td>1</td>
-                <td>My Hunting Area 1</td>
-                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut faucibus fringilla
-                    urna in venenatis.</td>
-                <td>15.02.2018 15:33:01</td>
+                <td>{{$k+1}}</td>
+                <td>{{$area->name}}</td>
+                <td>{{$area->description}}</td>
+                <td>{{$area->created_at}}</td>
                 <td class="text-right table-button">
-                <button type="button" class="btn btn-outline-danger button-delete" >Delete</button>
-                    
+                <form action="{{route('settings.destroy', $area->id)}}" method="post" id="hunting_area_destroy">
+                    @csrf
+                    @method('DELETE')
+                    <input type="hidden" name="hunting_area">
+                    <button type="submit" class="btn btn-outline-danger button-delete" >Delete</button>
+                </form>   
                 </td>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>My Hunting Area 1</td>
-                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut faucibus fringilla
-                    urna in venenatis.</td>
-                <td>15.02.2018 15:33:01</td>
-                <td class="text-right table-button">
-                <button type="button" class="btn btn-outline-danger button-delete" >Delete</button>
-                    
-                </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>My Hunting Area 1</td>
-                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut faucibus fringilla
-                    urna in venenatis.</td>
-                <td>15.02.2018 15:33:01</td>
-                <td class="text-right table-button">
-                <button type="button" class="btn btn-outline-danger button-delete" >Delete</button>
-                </td>
-            </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
@@ -87,17 +71,19 @@
 <div class="hunting-areas">
     <div class="row">
         <div class="col-lg-4 col-xs-12">
-            <form action="#">
+            <form id="hunting_areas_store" action="{{route('settings.store')}}" method="post">
+                @csrf
+                <input type="hidden" name="hunting_area">
                     <div class="d-flex flex-row p-0">
                             <label for="name" class="title">name:</label>
-                            <input type="text" id="name" class="flex-grow-1 custom-input">
+                            <input type="text" id="area_name" class="flex-grow-1 custom-input" name="area_name">
                     </div>
                     <label for="desc" class="title mt-4">description:</label>
 
                     <div class="d-flex flex-row p-0">
-                            <textarea name="desc" id="" cols="30" rows="10" class="desc custom-input"></textarea>
+                            <textarea  id="area_desc" name="area_desc"  id="desc" cols="30" rows="10" class="desc custom-input"></textarea>
                     </div>
-            </form>
+           
         </div>
         <div class="col-lg-8 col-xs-12">
         
@@ -129,10 +115,27 @@
                     </tbody>
                 </table>
             </div>
-        <button type="button" class="btn btn-outline-success btn-add btn-absolute mr-lg-3">add</button>
+        <button  id="area_store" class="btn btn-outline-success btn-add btn-absolute mr-lg-3">add</button>
 
-
-
+    </form>
+    <script type="text/javascript" language="javascript">
+$(function() {
+      $('#hunting_areas_store').submit(function(e) {
+        var $form = $(this);
+        $.ajax({
+          type: $form.attr('method'),
+          url: $form.attr('action'),
+          data: $form.serialize()
+        }).done(function() {
+          console.log('success');
+        }).fail(function() {
+          console.log('fail');
+        });
+        //отмена действия по умолчанию для кнопки submit
+        e.preventDefault(); 
+      });
+    });
+</script>
 
     </div>
 </div>
@@ -190,63 +193,24 @@
         </div>
         <div class="col col-xs-12 areas">
             <span  class="title align-self-start" style="margin-right: 15px;">hunting areas:</span>
-            <input type="radio" name="area" id="area1">
-            <label for="area1" class="setting-radio">My Hunting Area 1</label>            
-            <input type="radio" name="area" id="area2">
-            <label for="area2" class="setting-radio">North</label>
-            <input type="radio" name="area" id="area3">
-            <label for="area3" class="setting-radio">Custom Area</label>            
+            @foreach ($areas as $area)
+            <input type="radio" name="area" id="area{{$area->id}}">
+            <label for="area{{$area->id}}" class="setting-radio">{{$area->name}}</label> 
+            @endforeach           
         </div>
     </div>
-    <div class="check-box">
-    <label class="title " for="admin">
-    is admin?
-        </label>
-        <input  type="checkbox" value="" id="admin" class="custom-check">
-    </div>
-    <div class="check-box">
-    <label class="title" for="user">
-    is user?
-        </label>
-        <input  type="checkbox" value="" id="user" class="custom-check">
-    </div>
-    <div class="check-box">
-    <label class="title" for="guest">
-    is guest?
-        </label>
-        <input  type="checkbox" value="" id="guest" class="custom-check">
+    @foreach($roles as $role)
+        <div class="check-box">
+            <label class="title " for="{{$role->name}}">
+            is {{$role->name}}?
+                </label>
+                <input  type="checkbox" value="{{$role->id}}" id="admin" class="custom-check">
+        </div>
+    @endforeach
         <div class="row pl-3 pr-3 text-right">
-        <button type="button" class="btn btn-outline-success btn-add btn-absolute">add</button>
-
+            <button type="button" class="btn btn-outline-success btn-add btn-absolute">add</button>
         </div>
-</div>
-    <!-- <div class="d-flex flex-row col-lg-5 block p-0">
-        <label for="name" class="title">usergroup name:</label>
-        <input type="text" id="name" class="align-self-start flex-grow-1 custom-input col">
     </div>
-    <div class="check-box">
-    <label class="title " for="admin">
-    is admin?
-        </label>
-        <input  type="checkbox" value="" id="admin" class="custom-check">
-    </div>
-    <div class="check-box">
-    <label class="title" for="user">
-    is user?
-        </label>
-        <input  type="checkbox" value="" id="user" class="custom-check">
-    </div>
-    <div class="check-box">
-    <label class="title" for="guest">
-    is guest?
-        </label>
-        <input  type="checkbox" value="" id="guest" class="custom-check">
-        <div class="row">
-        <button type="button" class="btn btn-outline-success btn-add btn-absolute ml-3">add</button>
-
-        </div>
-
-    </div> -->
 </form>
 
 </div>
@@ -357,59 +321,6 @@
         </div>
 </form>
 </div>
-<!-- <div class="users">
-<form action="#">
-    <div class="form-row">
-        <div class="d-flex flex-row col-lg-4 col-md-5 col-xs-12 user-input">
-                    <label for="firs_tname" class="title">first name:</label>
-                    <input type="text" class="align-self-start col custom-input">
-        </div>
-        <div class="d-flex flex-row col-lg-7 offset-lg-1 col-xs-12 ">
-            <label for="select" class="title align-self-start">usergroups</label>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="d-flex flex-row col-lg-4 col-md-5 col-xs-12 user-input">
-            <label for="last name:" class="title">last name:</label>
-            <input type="text" class="align-self-start col custom-input">
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="d-flex flex-row col-lg-4 col-md-5 col-xs-12 ">
-            <label for="email" class="title">email:</label>
-            <input type="mail" class="align-self-start col custom-input">
-        </div>
-    </div>
-    <div class="form-row">
-    <div class="d-flex flex-row col-lg-4 col-md-5 col-xs-12">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-            eMail notification for new images?
-                </label>
-        </div>
-</div>
-    </div>
-    <div class="credentials">
-        <div class="form-row">
-            <div class="d-flex flex-row col-lg-4 col-md-5 col-xs-12 user-input">
-                <label for="user" class="title">user:</label>
-                <input type="text" class="align-self-start col custom-input">
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="d-flex flex-row col-lg-4 col-md-5 col-xs-12 align-self-start">
-                <label for="password" class="title">password:</label>
-                <input type="password" class="align-self-start col custom-input">
-            </div>
-    <button type="button" class="btn btn-outline-success btn-add ml-auto ">add</button>
-
-        </div>
-    </div>
-
-    
-</form>
-</div> -->
 
 <div class="row block">
     <div class="col-12">

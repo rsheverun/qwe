@@ -122,6 +122,8 @@
     bottom: 0;
     font-family: Roboto;
     font-size: 18px;
+    padding: 9px 10px;
+    line-height: 20px;
     // padding: 13px 11px;
     // line-height: 12px;
 }
@@ -135,6 +137,8 @@
 }
 .pagination-info{
     font-size: 14px;
+    line-height: 4px;
+    padding: 10px 6px;
 }
 .button-img{
     position: absolute;
@@ -266,6 +270,13 @@ hr{
 .custom-pagination {
     justify-content: flex-end;
 }
+.custom-pagination .page-link:hover{
+        img{
+             -webkit-filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1);
+        }
+     
+}
 .custom-pagination a {
     font-family: 'Roboto';
     font-size: 14px;
@@ -273,6 +284,14 @@ hr{
     margin-left: 4px;
     border: 1px solid #83ba2d;
     color: #83ba2d;
+    padding: 8px 8px;
+    line-height: 8px;
+}
+.pagination-arrow-2{
+    padding: 4px 6px !important;
+}
+.pagination-arrow-1{
+    padding: 4px 8px !important;
 }
 .custom-pagination a:hover{
     color:#fff;
@@ -281,6 +300,9 @@ hr{
 .custom-pagination a:active{
     background-color: #83ba2d !important;
 }
+// .custom-pagination li{
+//     border: 1px solid #83ba2d;
+// }
 .images{
     margin-top: 40px; 
     margin-bottom: 40px; 
@@ -300,11 +322,32 @@ hr{
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #3b3b3b;
-    opacity: 0.5;
+    align-items: baseline;
 }
 .filter-date{
     width: 144px;
 }
+.btn-details{
+    padding: 9px 10px !important;
+    line-height: 10px !important;
+}
+.btn-details-save{
+    padding: 11px !important;
+}
+.btn-forward{
+    padding: 8px 31px;
+    width: 170px;
+    line-height: 17px;
+}
+input[type="date"]:before {
+    content: attr(placeholder) !important;
+    color: #aaa;
+    margin-right: 0.5em;
+  }
+  input[type="date"]:focus:before,
+  input[type="date"]:valid:before {
+    content: "";
+  }
 @media only screen and (max-width: 760px) {
     .custom-pagination {
         margin-top:16px;
@@ -314,5 +357,13 @@ hr{
 @media only screen and (max-width: 610px) {
     .button-img {
         position: unset;
+    }
+}
+@media only screen and (max-width: 481px) {
+    #date_label{
+        width:100%;
+    }
+    #date_from{
+        margin-bottom: 10px;
     }
 }

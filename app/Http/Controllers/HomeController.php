@@ -58,7 +58,9 @@ class HomeController extends Controller
     
     public function settings()
     {
-        return view('dashboard.settings');
+        $roles = Role::all();
+
+        return view('dashboard.settings',['roles'=>$roles]);
     }
 
     public function account()

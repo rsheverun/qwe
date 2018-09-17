@@ -17,6 +17,6 @@ window.Vue = require('vue');
 Vue.component('chartpie-component', require('./components/ChartpieComponent.vue'));
 Vue.component('chartline-component', require('./components/ChartlineComponent.vue'));
 
-const app = new Vue({
-    el: '#app'
-});
+// const app = new Vue({
+//     el: '#app'
+// });

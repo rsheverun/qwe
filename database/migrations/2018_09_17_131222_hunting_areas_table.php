@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CrateTableUserGroups extends Migration
+class HuntingAreasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CrateTableUserGroups extends Migration
      */
     public function up()
     {
-        Schema::create('user_groups', function (Blueprint $table) {
+        Schema::create('hunting_areas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->unsignedInteger('role_id')->nullable();
-            //$table->foreign('role_id')->references('id')->on('roles');
+            $table->string('description');            
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -29,8 +29,6 @@ class CrateTableUserGroups extends Migration
      */
     public function down()
     {
-        Schema::table('user_groups', function (Blueprint $table) {
-            
-        });
+        Schema::dropIfExists('hunting_areas');
     }
 }

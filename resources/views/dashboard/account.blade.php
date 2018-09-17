@@ -15,12 +15,19 @@
     </div>
 </div>
 <form action="">
-<div class="row mb-4 mt-4">
+<div class="form-group row">
+<div class="col-lg-7">
+        <label for="staticEmail" class="title" id="date_label">date range:</label>
+        <input type="date" id="date_from" class="filter ml-lg-3 mr-3" >
+        <input type="date" id="date_to" class="filter">
+    </div>
+</div>
+<!-- <div class="row mb-4 mt-4">
             <label for="staticEmail" class="title col-lg-2 col-xs-12">date range:</label>
         
         <input type="date" class="filter mr-3">
         <input type="date" class="filter">
-    </div>
+    </div> -->
 </form>
 <div class="table-responsive">
     <table class="huntingarea-table">

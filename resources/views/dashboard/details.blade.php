@@ -69,7 +69,7 @@
         </div>
         <div class="row no-gutters">
             <div class="col-12 text-right">
-                <a href="#" class="btn btn-outline-success button-look btn-green">show all images</a>
+                <a href="#" class="btn btn-outline-success button-look btn-green btn-details">show interactive map</a>
             </div>
         </div>
         <div class="row no-gutters">
@@ -85,33 +85,40 @@
 
     </div>
 </div>
-    <div class="row details">
+<div class="row block">
     <div class="col-12">
         <span class="badge-statistic">latest images</span>
     </div>
-    <div class="row latest-images pl-3  pr-3">
-        <div class="col-md-4">
-            <img src="{{asset('img/img1.png')}}" class="zoom " alt="">
-            <div class="text-right">
-                <span class="date">09.08.2018 16:30:34</span>            
-            </div>
+</div>
+<div class="row pr-lg-3">
+    <div class="col-lg col-xs-12">
+        <div class="text-center">
+            <img src="{{asset('img/img1.png')}}" class="zoom img-fluid w-100" alt="">
         </div>
-        <div class="col-md-4">
-            <img src="{{asset('img/img1.png')}}" class="zoom " alt="">
-            <div class="text-right">
-                <span class="date">09.08.2018 16:30:34</span>            
-            </div>            
-        </div>
-        <div class="col-md-4">
-            <img src="{{asset('img/img1.png')}}" class="zoom " alt="">
-            <div class="text-right">
-                <span class="date">09.08.2018 16:30:34</span>            
-            </div>            
+        <div class="text-right">
+            <span class="date">09.08.2018 16:30:34</span>            
         </div>
     </div>
+    <div class="col-lg col-xs-12">
+        <div class="text-center">
+            <img src="{{asset('img/img1.png')}}" class="zoom img-fluid  w-100" alt="">
+        </div>
+        <div class="text-right">
+            <span class="date">09.08.2018 16:30:34</span>            
+        </div>
+    </div>
+    <div class="col-lg col-xs-12 pr-lg-0">
+        <div class="text-center">
+            <img src="{{asset('img/img1.png')}}" class="zoom img-fluid  w-100  " alt="">
+        </div>
+        <div class="text-right">
+            <span class="date">09.08.2018 16:30:34</span>            
+        </div>
+    </div>
+</div>
     
 </div>
-        <div class="col-12">
+        <!-- <div class="row col-12">
             <div class="text-right">
                 <a href="#" class="btn btn-outline-success button-look btn-green">show all images</a>
             </div>
@@ -120,7 +127,17 @@
                 <div class="text-right">
                     <span class="badge-statistic">save</span>
                 </div>
+        </div> -->
+        <div class="row text-right">
+            <div class="col-12">
+            <a href="#" id="btn_all_img" class="btn btn-outline-success button-look btn-green btn-details">show all images</a>
+            </div>
         </div>
+        <div class="row text-right">
+    <div class="col-12">
+        <button class="btn settings-save btn-details-save">save</button>
+    </div>
+</div>
 </div>
 </div>
 <script>
