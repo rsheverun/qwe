@@ -357,7 +357,56 @@ $(function() {
 </div>
 
 <div class="configsets">
-    <form action="#">
+<div class="row">
+        <div class="col-lg-4 col-xs-12">
+            <form id="hunting_areas_store" action="{{route('settings.store')}}" method="post">
+                @csrf
+                    <div class="form-group row pl-3 pr-3">
+                            <label for="name" class="title">model:</label>
+                            <input type="text" id="area_name" class="col custom-input" name="area_name">
+                    </div>
+                    <div class="form-group row pl-3 pr-3">
+                            <label for="name" class="title ">configset:</label>
+                            <input type="text" id="area_name" class="col custom-input" name="area_name">
+                    </div>
+
+           
+        </div>
+        <div class="col-lg-5 col-xs-12">
+            <div class="table-responsive  pl-lg-1">
+                <table class="table table-sm table-bordered text-center table-settings">
+                    <thead>
+                        <tr>
+                            <th>Key</th>
+                            <td>Value</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>vMAP Instance</td>
+                            <td>https:/mha1.vmap.rocks</td>
+                        </tr>
+                        <tr>
+                            <th>vMAP Instance</td>
+                            <td>https:/mha1.vmap.rocks</td>
+                        </tr>
+                        <tr>
+                            <th>vMAP Instance</td>
+                            <td>https:/mha1.vmap.rocks</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-3">
+        <button  id="area_store" class="btn btn-outline-success btn-add btn-absolute mr-lg-3">add</button>
+        
+        </div>
+
+    </form>
+
+    </div>
+    <!-- <form action="#">
     <div class="form-row">
         <div class="d-flex flex-row col-lg-4 col-md-5 col-xs-12 user-input">
                 <label for="firs_tname" class="title align-self-start">model:</label>
@@ -392,15 +441,15 @@ $(function() {
         <div class="d-flex flex-row col-lg-4 col-md-12    col-xs-12 align-self-end">
         <button type="button" class="btn btn-outline-success btn-add ml-auto">add</button>
         </div>
-    </form>
-</div>
-
+    </form> -->
 </div>
 <div class="row block text-right">
     <div class="col-12">
         <button class="btn settings-save">save</button>
     </div>
 </div>
+</div>
+
 </div>
 
 @endsection
