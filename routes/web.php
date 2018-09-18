@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/getarea', 'SettingsController@getarea');
+Route::post('/deleteitem/{id}', 'SettingsController@deleteitem');
+
 Route::get('/', 'HomeController@home');
 
 Auth::routes();
@@ -25,6 +28,7 @@ Route::middleware(['auth','isVerified'])->prefix('dashboard')->group(function ()
 
     Route::resource('/settings', 'SettingsController');
     //Route::get('/settings','HomeController@settings')->name('settings');
+
     
     Route::get('/account','HomeController@account')->name('account');
 

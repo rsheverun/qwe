@@ -10679,7 +10679,6 @@ hr {
 
 .custom-table {
   width: 100%;
-  margin-bottom: 1rem;
   background-color: transparent;
 }
 
@@ -10989,9 +10988,16 @@ input[type="date"]:valid:before {
   margin: 35px 0;
 }
 
+.configsets-label {
+  min-width: 102px;
+}
+
+.configsets-label {
+  min-width: 113px;
+}
+
 .base-settings label,
 .check-box label,
-.users label,
 .usergroups label,
 .configsets label,
 .hunting-areas label {
@@ -11088,9 +11094,17 @@ input[type="date"]:valid:before {
   margin-bottom: 0 !important;
 }
 
+.usergroup-label {
+  max-width: 212px;
+}
+
+.usergroup-radio {
+  margin-right: 15px;
+}
+
 .users-label {
   width: 107px;
-  max-width: 212px;
+  max-width: 150px;
 }
 
 .table-settings table tr,
@@ -11120,8 +11134,16 @@ input[type="date"]:valid:before {
     font-size: 16px;
   }
 
-  .users-label {
+  .usergroup-label {
     max-width: 192px;
+  }
+
+  .users-label {
+    max-width: 137px;
+  }
+
+  .configsets-label {
+    min-width: 102px;
   }
 }
 
@@ -11233,6 +11255,9 @@ footer {
   text-transform: uppercase;
   background-color: #0c4206;
   color: #ffff;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
 }
 
 .zoom {

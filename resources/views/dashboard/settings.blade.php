@@ -31,7 +31,41 @@
         <span class="badge-statistic">hunting areas</span>
     </div>
 </div>
-<div class="table-responsive">
+<div id="app">
+
+    <!-- <div class="table-responsive">
+        <table class="huntingarea-table">
+            <thead>
+                <tr>
+                <th scope="col" >ID</th>
+                <th scope="col">hunting area</th>
+                <th scope="col">description</th>
+                <th scope="col">created</th>
+                <td scope="col" class="anotation text-right">*click on the field to edit</td>
+                
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($areas as $k=>$area)
+                <tr>
+                    <td>{{$k+1}}</td>
+                    <td>{{$area->name}}</td>
+                    <td>{{$area->description}}</td>
+                    <td>{{$area->created_at}}</td>
+                    <td class="text-right table-button">
+                    <form action="{{route('settings.destroy', $area->id)}}" method="post" id="hunting_area_destroy">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="hunting_area">
+                        <button type="submit" class="btn btn-outline-danger button-delete" >Delete</button>
+                    </form>   
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div> -->
+    <div class="table-responsive">
     <table class="huntingarea-table">
         <thead>
             <tr>
@@ -44,45 +78,36 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($areas as $k=>$area)
-            <tr>
-                <td>{{$k+1}}</td>
-                <td>{{$area->name}}</td>
-                <td>{{$area->description}}</td>
-                <td>{{$area->created_at}}</td>
-                <td class="text-right table-button">
-                <form action="{{route('settings.destroy', $area->id)}}" method="post" id="hunting_area_destroy">
-                    @csrf
-                    @method('DELETE')
-                    <input type="hidden" name="hunting_area">
-                    <button type="submit" class="btn btn-outline-danger button-delete" >Delete</button>
-                </form>   
-                </td>
-            </tr>
-            @endforeach
+        <tr v-for="(item, index) in items">
+            <td>@{{index+1}}</td>
+            <td>@{{item.name}}</td>
+            <td>@{{item.description}}</td>
+            <td>@{{item.created_at}}</td>
+            <td @click.prevent="deleteItem(item)">
+            @csrf
+            <button type="button" class="btn btn-outline-danger button-delete" >Delete</button>
+
+            </td>
+
+        </tr>
         </tbody>
     </table>
 </div>
-
-<div class="block">
- @include('layouts.pagination')
-</div>
-
-<div class="hunting-areas">
+    <div class="hunting-areas">
     <div class="row">
         <div class="col-lg-4 col-xs-12">
-            <form id="hunting_areas_store" action="{{route('settings.store')}}" method="post">
                 @csrf
-                <input type="hidden" name="hunting_area">
+                <input type="hidden" name="hunting_area" v-model="newItem.hunting_area">
                     <div class="d-flex flex-row p-0">
-                            <label for="name" class="title">name:</label>
-                            <input type="text" id="area_name" class="flex-grow-1 custom-input" name="area_name">
+                            <label for="area_name" class="title">name:</label>
+                            <input type="text" id="area_name" class="flex-grow-1 custom-input" name="area_name" v-model="newItem.area_name" required>
                     </div>
-                    <label for="desc" class="title mt-4">description:</label>
+                    <label for="area_desc" class="title mt-4">description:</label>
 
                     <div class="d-flex flex-row p-0">
-                            <textarea  id="area_desc" name="area_desc"  id="desc" cols="30" rows="10" class="desc custom-input"></textarea>
+                            <textarea  id="area_desc" name="area_desc"  id="desc" cols="30" rows="10" class="desc custom-input" v-model="newItem.area_desc" required></textarea>
                     </div>
+                    
            
         </div>
         <div class="col-lg-8 col-xs-12">
@@ -115,30 +140,17 @@
                     </tbody>
                 </table>
             </div>
-        <button  id="area_store" class="btn btn-outline-success btn-add btn-absolute mr-lg-3">add</button>
-
-    </form>
-    <script type="text/javascript" language="javascript">
-$(function() {
-      $('#hunting_areas_store').submit(function(e) {
-        var $form = $(this);
-        $.ajax({
-          type: $form.attr('method'),
-          url: $form.attr('action'),
-          data: $form.serialize()
-        }).done(function() {
-          console.log('success');
-        }).fail(function() {
-          console.log('fail');
-        });
-        //отмена действия по умолчанию для кнопки submit
-        e.preventDefault(); 
-      });
-    });
-</script>
-
-    </div>
+        <button  id="area_store" class="btn btn-outline-success btn-add btn-absolute mr-lg-3" @click.prevent="createItem()">add</button>
 </div>
+</div>
+
+
+
+<div class="block">
+ @include('layouts.pagination')
+</div>
+
+
 <div class="row  block">
     <div class="col-12">
         <span class="badge-statistic">usergroups</span>
@@ -185,7 +197,7 @@ $(function() {
 <div class="usergroups">
 <form action="#">
     <div class="form-group row" >
-        <div class="col-lg-3 col-xs-12 users-label pr-0" >
+        <div class="col-lg-3 col-xs-12 usergroup-label pr-0" >
             <label for="staticEmail" class="title">usergroup name:</label>
         </div>
         <div class="col-lg-2 col-xs-12 p-lg-0">
@@ -273,11 +285,11 @@ $(function() {
         <div class="col-lg-7 col-xs-12 offset-lg-1">
             <span  class="title align-self-start" style="margin-right: 15px;">usergroups:</span>
             <input type="radio" name="group" id="admins_group">
-            <label for="admins_group" class="setting-radio">Admins</label>            
-            <input type="radio" name="group" id="guest_group">
-            <label for="guest_group" class="setting-radio">HG Guest</label>
+            <label for="admins_group" class="setting-radio usergroup-radio">Admins</label>            
+            <input type="radio" name="group" id="guest_group usergroup-radio">
+            <label for="guest_group" class="setting-radio usergroup-radio">HG Guest</label>
             <input type="radio" name="group" id="main_group">
-            <label for="main_group" class="setting-radio">HG Main</label>
+            <label for="main_group" class="setting-radio usergroup-radio">HG Main</label>
         </div>
     </div>
 
@@ -362,11 +374,11 @@ $(function() {
             <form id="hunting_areas_store" action="{{route('settings.store')}}" method="post">
                 @csrf
                     <div class="form-group row pl-3 pr-3">
-                            <label for="name" class="title">model:</label>
+                            <label for="name" class="title configsets-label">model:</label>
                             <input type="text" id="area_name" class="col custom-input" name="area_name">
                     </div>
                     <div class="form-group row pl-3 pr-3">
-                            <label for="name" class="title ">configset:</label>
+                            <label for="name" class="title configsets-label ">configset:</label>
                             <input type="text" id="area_name" class="col custom-input" name="area_name">
                     </div>
 

@@ -40,7 +40,6 @@ class SettingsController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
         if ($request->has('hunting_area')) {
             HuntingArea::create([
                 'name' => $request->area_name,
@@ -95,5 +94,15 @@ class SettingsController extends Controller
             $hunting_area = HuntingArea::destroy($id);
         }
         return back();
+    }
+    public function getarea(){
+        $data = HuntingArea::all();
+        
+        return $data;
+    }
+
+    public function deleteitem(Request $request)
+    {
+        $data = HuntingArea::destroy($request->id);
     }
 }
