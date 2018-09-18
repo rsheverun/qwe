@@ -81,31 +81,39 @@ footer{
     transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 #fb-share-button {
-    background: #3b5998;
-    border-radius: 3px;
-    font-weight: 600;
-    padding: 5px 8px;
-    display: inline-block;
-    position: static;
+    padding: 10px 14px;
+    display: block;
+    position: relative;
+    font-family: "PFDekkaProReg", sans-serif;
+    letter-spacing: normal;
+    color: #000000;
+    text-decoration: none;
+    font-size: 0.875rem;
 }
 
 #fb-share-button:hover {
     cursor: pointer;
-    background: #213A6F
+    
 }
 
-#fb-share-button svg {
-    width: 18px;
-    fill: white;
-    vertical-align: middle;
-    border-radius: 2px
-}
 
+.shared{
+    padding: 10px 14px;
+    display: block;
+    position: relative;
+    font-family: "PFDekkaProReg", sans-serif;
+    letter-spacing: normal;
+    color: #000000;
+    text-decoration: none;
+    font-size: 0.875rem;
+}
+.shared:hover{
+    color: #000000;
+    text-decoration: none;
+    
+}
 #fb-share-button span {
-    vertical-align: middle;
-    color: white;
-    font-size: 14px;
-    padding: 0 3px
+   
 }
 @media only screen and (max-width: 992px) {
     .nav_menu li a{

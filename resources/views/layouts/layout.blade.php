@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+<meta property="og:title" content="Linkedin Share button using Plugins – HTML" />
+<meta property="og:description" content="In this video I have shown how to create the LinkedIn share button in Webpages." />
+<meta property="og:url" content="{{Request::url()}}" />
+<meta property="og:image" content="http://example.com/foo.jpg" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
