@@ -16,17 +16,20 @@ window.Vue = require('vue');
 
 // Vue.component('chartpie-component', require('./components/ChartpieComponent.vue'));
 // Vue.component('chartline-component', require('./components/ChartlineComponent.vue'));
+// Vue.component('areas-list-component', require('./components/AreasListComponent.vue'));
 var app = new Vue({
     
     el: '#app',
-  
+    // components: { 'areas-list-component': app },
     data: {
-
+      hasError: true,
+      hasUnique: true,
       newItem: { 'area_name': '','area_desc': '', 'hunting_area': '' },
       items: []
      },
     mounted: function mounted() {
       this.getItems();
+      
     },
     methods: {
       getItems: function getItems() {
@@ -36,7 +39,9 @@ var app = new Vue({
           _this.items = response.data;
           
         });
+        // console.log(_this.items);
       },
+
     //   setVal(val_id, val_name, val_desc) {
     //       this.e_id = val_id;
     //       this.e_name = val_name;
@@ -47,10 +52,23 @@ var app = new Vue({
       createItem: function createItem() {
         var _this = this;
         var input = this.newItem;
+        _this.hasUnique = true;
+        _this.hasError = true;
+        _this.items.forEach (function(e){
+          if(e.name == input['area_name']) {
+            _this.hasUnique = false;
+            console.log(e.name);
+
+          }
+        });
+        console.log(this.hasUnique);
+
         if (input['area_name'] == '' || input['area_desc'] == '' ) {
-          this.hasError = false;
-        } else {
-          this.hasError = true;
+            this.hasError = false;
+        } else if(_this.hasUnique == true){
+          this.hasUnique = true;
+            this.hasError = true;
+
           axios.post('/dashboard/settings', input).then(function (response) {
             _this.newItem = { 'area_name': '', 'area_desc': '',   };
             _this.getItems();

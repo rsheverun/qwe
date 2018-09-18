@@ -42,9 +42,9 @@ button, a, span{
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
-nav{
-    min-height: 50px;
-}
+// nav{
+//     min-height: 50px;
+// }
 footer{
     background-color: #0c4106;
     color: #fff;
@@ -65,6 +65,9 @@ footer{
     color: #ffff;
     max-width: max-content;
 }
+.hidden{
+    display: none;
+}
 .zoom {
     // padding: 50px;
    // background-image: url("https://via.placeholder.com/350x150");
@@ -76,6 +79,33 @@ footer{
 
 .zoom:hover {
     transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+#fb-share-button {
+    background: #3b5998;
+    border-radius: 3px;
+    font-weight: 600;
+    padding: 5px 8px;
+    display: inline-block;
+    position: static;
+}
+
+#fb-share-button:hover {
+    cursor: pointer;
+    background: #213A6F
+}
+
+#fb-share-button svg {
+    width: 18px;
+    fill: white;
+    vertical-align: middle;
+    border-radius: 2px
+}
+
+#fb-share-button span {
+    vertical-align: middle;
+    color: white;
+    font-size: 14px;
+    padding: 0 3px
 }
 @media only screen and (max-width: 992px) {
     .nav_menu li a{

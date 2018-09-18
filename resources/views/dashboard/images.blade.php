@@ -160,4 +160,14 @@
         </div>
 
 </div>
+
+<!-- Load Facebook SDK for JavaScript -->
+
+
+  <!-- Your share button code -->
+  <!-- <div class="fb-share-button" 
+    data-href="{{Request::url()}}" 
+    data-layout="button_count"> 
+  </div> -->
+
 @endsection

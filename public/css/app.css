@@ -10774,6 +10774,7 @@ hr {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  margin-bottom: 0;
 }
 
 .custom-pagination .page-link:hover img {
@@ -10956,7 +10957,6 @@ input[type="date"]:valid:before {
 
 .huntingarea-table {
   width: 100%;
-  margin-bottom: 1rem;
   background-color: transparent;
 }
 
@@ -10966,8 +10966,7 @@ input[type="date"]:valid:before {
   font-size: 18px;
   font-weight: 700;
   text-transform: uppercase;
-  padding: 10px 10px 10px 0;
-  min-width: 100px;
+  padding: 10px 20px 10px 0;
 }
 
 .huntingarea-table thead tr {
@@ -10981,6 +10980,7 @@ input[type="date"]:valid:before {
   font-weight: 400;
   padding-top: 20px;
   padding-bottom: 20px;
+  padding-right: 20px;
   border-bottom: 1px solid #3b3b3b;
 }
 
@@ -11040,6 +11040,7 @@ input[type="date"]:valid:before {
   padding: 8px;
   line-height: 12px;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .btn-add {
@@ -11231,10 +11232,6 @@ span {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
-nav {
-  min-height: 50px;
-}
-
 footer {
   background-color: #0c4106;
   color: #fff;
@@ -11260,6 +11257,10 @@ footer {
   max-width: max-content;
 }
 
+.hidden {
+  display: none;
+}
+
 .zoom {
   -webkit-transition: -webkit-transform .2s;
   transition: -webkit-transform .2s;
@@ -11272,6 +11273,34 @@ footer {
   -webkit-transform: scale(1.5);
           transform: scale(1.5);
   /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+#fb-share-button {
+  background: #3b5998;
+  border-radius: 3px;
+  font-weight: 600;
+  padding: 5px 8px;
+  display: inline-block;
+  position: static;
+}
+
+#fb-share-button:hover {
+  cursor: pointer;
+  background: #213A6F;
+}
+
+#fb-share-button svg {
+  width: 18px;
+  fill: white;
+  vertical-align: middle;
+  border-radius: 2px;
+}
+
+#fb-share-button span {
+  vertical-align: middle;
+  color: white;
+  font-size: 14px;
+  padding: 0 3px;
 }
 
 @media only screen and (max-width: 992px) {

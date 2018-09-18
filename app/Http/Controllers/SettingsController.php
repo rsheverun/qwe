@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Http\HuntingAreaRequest;
 
 use App\HuntingArea;
 class SettingsController extends Controller
@@ -40,12 +41,10 @@ class SettingsController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->has('hunting_area')) {
             HuntingArea::create([
                 'name' => $request->area_name,
                 'description'=>$request->area_desc
             ]);
-        }
     }
 
     /**

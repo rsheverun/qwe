@@ -29,7 +29,7 @@
 }
 .huntingarea-table{
     width: 100%;
-    margin-bottom: 1rem;
+    // margin-bottom: 1rem;
     background-color: transparent;
 }
 .huntingarea-table th {
@@ -38,8 +38,9 @@
     font-size: 18px;
     font-weight: 700;
     text-transform: uppercase;
-    padding: 10px 10px 10px 0;
-    min-width: 100px;
+    padding: 10px 20px 10px 0;
+    
+
 }
 .huntingarea-table thead tr{
     border-bottom: 1px solid #3b3b3b;
@@ -51,6 +52,7 @@ font-size: 14px;
 font-weight: 400;
 padding-top: 20px;
 padding-bottom: 20px;
+padding-right: 20px;
 border-bottom: 1px solid #3b3b3b;
 }
 .setting-pagination{
@@ -101,6 +103,7 @@ border-bottom: 1px solid #3b3b3b;
     padding: 8px;
     line-height: 12px;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 .btn-add{
     color: #1779cc;
