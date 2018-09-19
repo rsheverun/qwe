@@ -9,12 +9,12 @@
 <form class="images">
 <div class="form-group row">
         <label for="staticEmail" class="title pl-3" style="width: max-content;">Camera: </label>
-    <div class="col">
-    <select class="filter w-100" id="exampleFormControlSelect1" name="group" required>
+    <div class="col" style="max-width: max-content;">
+    <select class="filter" id="exampleFormControlSelect1" name="group" style="width: 213px;" required>
             <option value="1">All</option>
         </select>
     </div>
-    <div class="col-lg-7 offset-lg-1">
+    <div class="col-lg offset-lg-1">
         <label for="staticEmail" class="title" id="date_label">date range:</label>
         <input type="date" id="date_from" class="filter ml-lg-3 mr-3">
         <input type="date" id="date_to" class="filter">

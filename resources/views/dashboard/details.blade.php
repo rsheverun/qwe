@@ -9,7 +9,7 @@
 
 <div class="row">
     <!-- left -->
-    <div class="col-md-5 col-xs-12">
+    <div class="col-lg-5 col-xs-12">
         <div class="row no-gutters">
             <div class="col-md-2 col-xs-4">
                   <span class="title">ID:</span> <span class="">1</span>
@@ -63,7 +63,7 @@
         
     </div><!-- left -->
     <!-- right -->
-    <div class="col-md-7 col-xs-12">
+    <div class="col-lg-7 col-xs-12">
         <div class="row no-gutters">
             <div id="map" style="height: 286px; margin-top: 0;"></div>
         </div>

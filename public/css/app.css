@@ -10578,6 +10578,8 @@ a.text-dark:focus {
   font-weight: 700;
   text-transform: uppercase;
   color: #3b3b3b;
+  vertical-align: middle;
+  margin-bottom: 0;
 }
 
 .activity {
@@ -10825,12 +10827,12 @@ hr {
 }
 
 .filter {
-  background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #3b3b3b;
   -webkit-box-align: baseline;
       -ms-flex-align: baseline;
           align-items: baseline;
+  background-color: #fff;
 }
 
 .filter-date {
@@ -11008,8 +11010,6 @@ input[type="date"]:valid:before {
 }
 
 .custom-check {
-  width: 14px;
-  height: 14px;
   border-radius: none;
   border: 1px solid #9d9d9d;
   background-color: #9d9d9d;
@@ -11027,6 +11027,18 @@ input[type="date"]:valid:before {
   background-color: #83ba2d;
   padding: 11px 54px;
   line-height: 16px;
+}
+
+.email-notify {
+  margin-top: 10px;
+}
+
+.email-notify label {
+  line-height: 12px;
+}
+
+.email-notify input {
+  margin-right: 10px;
 }
 
 .setting-radio {
@@ -11145,6 +11157,12 @@ input[type="date"]:valid:before {
 
   .configsets-label {
     min-width: 102px;
+  }
+}
+
+@media only screen and (max-width: 1040px) {
+  .configsets-label {
+    width: 100%;
   }
 }
 
@@ -11272,7 +11290,6 @@ footer {
 .zoom:hover {
   -webkit-transform: scale(1.5);
           transform: scale(1.5);
-  /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 #fb-share-button {

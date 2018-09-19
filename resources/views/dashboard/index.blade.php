@@ -6,15 +6,15 @@
     </div>
 </div>
 <div class="row statistics">
-    <div class="col-md-4  col-xs-12 text-center">
+    <div class="col-lg-2 offset-lg-1 col-md-4  col-xs-12 text-center">
         <h4 class="number">476</h4>
         <p class="text-statistics">Total number of images per camera</p>
     </div>
-    <div class="col-md-4 col-xs-12 text-center">
+    <div class="col-lg-2 offset-lg-2 col-md-4 col-xs-12 text-center">
         <h4 class="number">12</h4>
         <p class="text-statistics">images last 24 hour per camera</p>
     </div>
-    <div class="col-md-4 col-xs-12 text-center">
+    <div class="col-lg-2 offset-lg-2 col-md-4 col-xs-12 text-center">
         <h4 class="number">4</h4>
         <p class="text-statistics">number of cameras with 0 and >1 image last 24h</p>
     </div>
@@ -95,16 +95,6 @@
   js.src = 'https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v3.1';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-<!-- <div class="" data-href="{{Request::url()}}" data-layout="button_count" 
-    data-size="small" data-mobile-iframe="true">
-    <a onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8000%2Fdashboard%2Fimages&amp;src=sdkpreparse', 
-                         'newwindow', 
-                         'width=300,height=250'); 
-              return false;"
-               target="_blank" 
-               href="https://www.facebook.com/sharer/sharer.php?u&amp;src=sdkpreparse" 
-               class="fb-xfbml-parse-ignore">Поделиться</a>
-               </div> -->
 
 <div class="col w-100">
     <ul style="display: flex;
@@ -118,13 +108,18 @@
     ">
         <li>
         <div id="fb-share-button" class="text-center">
-            <span class="text-center">Share11</span>
+            <span class="text-center">Facebook</span>
         </div>
         </li>
         <li>
         <div  class="text-center">
-        <a class= "shared"href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://staging.fluidmedia.gr/archives/walk-the-wall" target="_blank">
-        as
+        <a class= "shared" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://staging.fluidmedia.gr/archives/walk-the-wall" target="_blank" onclick="
+         window.open('http://www.linkedin.com/shareArticle?mini=true&amp;url=http://staging.fluidmedia.gr/archives/walk-the-wall',
+        'facebook-share-dialog',
+        'width=800,height=600'
+    );
+        ">
+        Linkedin
 </a>
             
         </div>
@@ -147,6 +142,4 @@ fbButton.addEventListener('click', function() {
 </script>
 <script src="http://platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script> 
 
- <!-- <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
-<script type="IN/Share" data-url="http://127.0.0.1:8000/dashboard/images"></script> -->
 @endsection

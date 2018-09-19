@@ -32,39 +32,6 @@
     </div>
 </div>
 <div id="app">
-
-    <!-- <div class="table-responsive">
-        <table class="huntingarea-table">
-            <thead>
-                <tr>
-                <th scope="col" >ID</th>
-                <th scope="col">hunting area</th>
-                <th scope="col">description</th>
-                <th scope="col">created</th>
-                <td scope="col" class="anotation text-right">*click on the field to edit</td>
-                
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($areas as $k=>$area)
-                <tr>
-                    <td>{{$k+1}}</td>
-                    <td>{{$area->name}}</td>
-                    <td>{{$area->description}}</td>
-                    <td>{{$area->created_at}}</td>
-                    <td class="text-right table-button">
-                    <form action="{{route('settings.destroy', $area->id)}}" method="post" id="hunting_area_destroy">
-                        @csrf
-                        @method('DELETE')
-                        <input type="hidden" name="hunting_area">
-                        <button type="submit" class="btn btn-outline-danger button-delete" >Delete</button>
-                    </form>   
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div> -->
     <div class="table-responsive">
     <table class="huntingarea-table">
         <thead>
@@ -83,7 +50,7 @@
             <td>@{{item.name}}</td>
             <td>@{{item.description}}</td>
             <td>@{{item.created_at}}</td>
-            <td class="text-right" @click.prevent="deleteItem(item)">
+            <td class="text-right pr-0" @click.prevent="deleteItem(item)">
             @csrf
             <button type="button" class="btn btn-outline-danger button-delete" >Delete</button>
 
@@ -200,36 +167,7 @@
 </div>
 
 <div class="usergroups">
-<!-- <form action="#">
-    <div class="form-group row areas" >
-        <div class="col-lg-3 col-xs-12 usergroup-label pr-0" >
-            <label for="staticEmail" class="title">usergroup name:</label>
-        </div>
-        <div class="col-lg-2 col-xs-12 p-lg-0">
-            <input type="text"  class=" custom-input w-100" id="staticEmail" >
-        </div>
-        <div class="col-lg-3 col-xs-12 " style="    max-width: 172px;">
-            <span  class="title align-self-start">hunting areas:</span>        
-        </div>
-        <div class="col pr-1" v-for="item in items" style="max-width: max-content;">
-            <input type="radio" name="area" v-bind:id="item.name">
-            <label  v-bind:for="item.name" class="setting-radio" style=" margin-right: 0;">@{{item.name}}</label> 
-        </div>
 
-    </div>
-    @foreach($roles as $role)
-        <div class="check-box">
-            <label class="title " for="{{$role->name}}">
-            is {{$role->name}}?
-                </label>
-                <input  type="checkbox" value="{{$role->id}}" id="admin" class="custom-check">
-        </div>
-    @endforeach
-        <div class="row pl-3 pr-3 text-right">
-            <button type="button" class="btn btn-outline-success btn-add btn-absolute">add</button>
-        </div>
-    </div>
-</form> -->
 <div class="row">
         <div class="col-lg-5 col-xs-12">
             <form id="hunting_areas_store" action="{{route('settings.store')}}" method="post">
@@ -243,7 +181,7 @@
                             <label class="title " for="{{$role->name}}">
                             is {{$role->name}}?
                                 </label>
-                                <input  type="checkbox" value="{{$role->id}}" id="admin" class="custom-check">
+                                <input  type="checkbox" value="{{$role->id}}" id="{{$role->name}}" class="custom-check">
                         </div>
                     @endforeach
 
@@ -251,9 +189,9 @@
         </div>
         <div class="col-lg-7 col-xs-12 areas">
             <span  class="title align-self-start">hunting areas:</span>
-            <span class="col pr-1" v-for="item in items" style="max-width: max-content;">
+            <span class="col pr-1 mt-1" v-for="item in items" style="max-width: max-content;">
             <input type="radio" name="area" v-bind:id="item.name">
-            <label  v-bind:for="item.name" class="setting-radio" style=" margin-right: 0;">@{{item.name}}</label> 
+            <label  v-bind:for="item.name" class="setting-radio mt-1" style=" margin-right: 0;">@{{item.name}}</label> 
         </span>
         </div>
     </form>
@@ -322,7 +260,7 @@
             <input type="radio" name="group" id="admins_group">
             <label for="admins_group" class="setting-radio usergroup-radio" style="margin-bottom: 0;">Admins</label>            
             <input type="radio" name="group" id="guest_group">
-            <label for="guest_group" class="setting-radio usergroup-radio">HG Guest</label>
+            <label for="guest_group" class="setting-radio usergroup-radio mt-1">HG Guest</label>
             <input type="radio" name="group" id="main_group">
             <label for="main_group" class="setting-radio usergroup-radio">HG Main</label>
         </div>
@@ -342,6 +280,12 @@
         </div>
         <div class="col-lg-2 col-xs-12 p-lg-0" >
             <input type="text"  class=" custom-input w-100" id="staticEmail" >
+            <div class="d-flex flex-row email-notify">
+            <input type="checkbox" id="emailNotify" class="custom-check">
+            <label for="emailNotify">eMail notification for new images?</label>
+            </div>
+            
+
         </div>
     </div>
     <div class="form-group row credentials">

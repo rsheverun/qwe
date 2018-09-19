@@ -57,11 +57,8 @@ var app = new Vue({
         _this.items.forEach (function(e){
           if(e.name == input['area_name']) {
             _this.hasUnique = false;
-            console.log(e.name);
-
           }
         });
-        console.log(this.hasUnique);
 
         if (input['area_name'] == '' || input['area_desc'] == '' ) {
             this.hasError = false;

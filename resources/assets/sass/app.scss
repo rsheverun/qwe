@@ -42,9 +42,7 @@ button, a, span{
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
-// nav{
-//     min-height: 50px;
-// }
+
 footer{
     background-color: #0c4106;
     color: #fff;
@@ -69,16 +67,13 @@ footer{
     display: none;
 }
 .zoom {
-    // padding: 50px;
-   // background-image: url("https://via.placeholder.com/350x150");
-    transition: transform .2s; /* Animation */
-    // max-width: 350px;
     
-    // margin: 5px auto;
+    transition: transform .2s; /* Animation */
+    
 }
 
 .zoom:hover {
-    transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    transform: scale(1.5); 
 }
 #fb-share-button {
     padding: 10px 14px;
