@@ -13,12 +13,16 @@ class GroupSeeder extends Seeder
     public function run()
     {
         UserGroup::create([
-            'name'=>'group1',
+            'name'=>'admins',
             'role_id'=>1
         ]);
         UserGroup::create([
-            'name'=>'group2',
+            'name'=>'main',
             'role_id'=>2
+        ]);
+        UserGroup::create([
+            'name'=>'guest',
+            'role_id'=>3
         ]);
     }
 }

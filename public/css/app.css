@@ -1,4 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,900);/*!
+@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,900);@charset "UTF-8";
+
+/*!
  * Bootstrap v4.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
  * Copyright 2011-2018 Twitter, Inc.
@@ -10914,6 +10916,17 @@ input[type="date"]:valid:before {
   margin-top: 20px;
 }
 
+.btn-camera-delete {
+  font-family: 'Acrom Medium';
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  float: right;
+  line-height: 14px;
+  padding: 12px;
+  margin-left: 10px;
+}
+
 .usergroups-title {
   background-color: #d4d4d4;
   padding: 8px;
@@ -10930,6 +10943,67 @@ input[type="date"]:valid:before {
 
 #btn_all_img {
   margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 992px) {
+  .btn-camera-delete {
+    margin-top: 10px;
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+/* Скрываем реальный чекбокс */
+
+.checkbox {
+  display: none;
+}
+
+/* Задаем внешний вид для нашего кастомного чекбокса. Все обязательные свойства прокомментированы, остальные же свойства меняйте по вашему усмотрению */
+
+.checkbox-custom {
+  position: relative;
+  /* Обязательно задаем, чтобы мы могли абсолютным образом позиционировать псевдоэлемент внютри нашего кастомного чекбокса */
+  width: 14px;
+  /* Обязательно задаем ширину */
+  height: 14px;
+  /* Обязательно задаем высоту */
+  border: 1px solid #9d9d9d;
+  border-radius: 3px;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#e7e7e7), to(#f8f8f8));
+  background-image: linear-gradient(to top, #e7e7e7 0%, #f8f8f8 100%);
+}
+
+/* Кастомный чекбокс и лейбл центрируем по вертикали. Если вам это не требуется, то вы можете убрать свойство vertical-align: middle из данного правила, но свойство display: inline-block обязательно должно быть */
+
+.checkbox-custom,
+.label {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 15px;
+}
+
+.label {
+  width: 100%;
+}
+
+/* Если реальный чекбокс у нас отмечен, то тогда добавляем данный признак и к нашему кастомному чекбоксу  */
+
+.checkbox:checked + .checkbox-custom::before {
+  content: "";
+  /* Добавляем наш псевдоэлемент */
+  display: block;
+  /* Делаем его блочным элементом */
+  position: absolute;
+  /* Позиционируем его абсолютным образом */
+  /* Задаем расстояние от верхней, правой, нижней и левой границы */
+  top: 2px;
+  right: 2px;
+  bottom: 2px;
+  left: 2px;
+  background: #413548;
+  /* Добавляем фон. Если требуется, можете поставить сюда картинку в виде "галочки", которая будет символизировать, что чекбокс отмечен */
+  border-radius: 2px;
 }
 
 .block {

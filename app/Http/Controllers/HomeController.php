@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use App\Camimage;
 use Spatie\Permission\Models\Role;
 use Session;
 use App;
@@ -38,7 +39,9 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('dashboard.index');
+        $data = Camimage::orderBy('datum', 'asc')->get();
+
+        return view('dashboard.index',['data'=>$data]);
     }
 
     public function cameras()

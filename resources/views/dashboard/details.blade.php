@@ -2,8 +2,13 @@
 @section('content')
 <div class="row">
     <div class="col-12">
-        <span class="badge-statistic">camera details</span>
+        <span class="badge-statistic col-6">camera details</span>
+    <button class="col-xs-12 btn btn-outline-danger btn-camera-delete">delete</button>
+
+    <button class=" col-xs-12 btn btn-outline-success btn-add">new</button>
+
     </div>
+    
 </div>
 <div class="details no-gutters">
 

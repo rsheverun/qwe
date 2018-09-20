@@ -14,5 +14,7 @@ class RolesSeed extends Seeder
     {
         Role::Create(['name'=>'admin']);
         Role::Create(['name'=>'user']);
+        Role::Create(['name'=>'guest']);
+
     }
 }

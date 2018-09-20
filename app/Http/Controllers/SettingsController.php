@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\HuntingAreaRequest;
 
 use App\HuntingArea;
+use App\UserGroup;
 class SettingsController extends Controller
 {
     /**
@@ -17,9 +18,12 @@ class SettingsController extends Controller
     {
         $roles = Role::all();
         $areas = HuntingArea::all();
+        $groups = UserGroup::all();
+
         return view('dashboard.settings',[
             'roles'=>$roles,
-            'areas'=>$areas
+            'areas'=>$areas,
+            'groups'=>$groups
             ]);
     }
 
@@ -41,10 +45,16 @@ class SettingsController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->has('hunting_area')) {
             HuntingArea::create([
                 'name' => $request->area_name,
                 'description'=>$request->area_desc
             ]);
+        }
+            
+        if ($request->has('configset_store')) {
+            dd($request);
+        }
     }
 
     /**
@@ -91,6 +101,9 @@ class SettingsController extends Controller
     {
         if ($request->has('hunting_area')) {
             $hunting_area = HuntingArea::destroy($id);
+        }
+        if ($request->has('group_destroy')) {
+            UserGroup::destroy($id);
         }
         return back();
     }

@@ -14,5 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call(GroupSeeder::class);
         $this->call(RolesSeed::class);
         $this->call(UsersSeed::class);
+        $this->call(Camimages::class);
+
     }
 }

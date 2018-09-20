@@ -39,7 +39,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/settings';
 
 
     /**
@@ -49,7 +49,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest',['except' => ['getVerification', 'getVerificationError']]);
+        // $this->middleware('web',['except' => ['getVerification', 'getVerificationError']]);
     }
 
     public function showRegistrationForm()
@@ -67,12 +67,13 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
             'first_name' => 'required|string|max:50',
             'last_name' => 'required|string|max:50',
             'email' => 'required|string|email|max:255|unique:users',
             'nickname' => 'required|string|max:50|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:6',
         ]);
     }
 
@@ -85,7 +86,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-       // dd($data);
+        if($data['notification']== null){
+            dd("asd");
+        }
         $user = User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
@@ -108,6 +111,6 @@ class RegisterController extends Controller
         $user = $this->create($request->all());
         UserVerification::generate($user);
         UserVerification::send($user, 'Email Verification');
-        return redirect()->route('login')->withAlert('Register successfully, please verify your email.');
+        return redirect()->route('settings.index')->withAlert('Register successfully, please verify your email.');
     }
 }

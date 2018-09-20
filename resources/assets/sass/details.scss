@@ -17,6 +17,18 @@
 .btn-save{
     margin-top: 20px;
 }
+.btn-camera-delete{
+        font-family: 'Acrom Medium';
+        font-size: 24px;
+        font-weight: 700;
+        text-transform: uppercase;
+        float: right;
+        line-height: 14px;
+        padding: 12px;
+        margin-left: 10px;
+}
+
+
 .usergroups-title{
     background-color: #d4d4d4;
     padding: 8px;
@@ -32,4 +44,11 @@
 }
 #btn_all_img{
     margin-bottom: 20px;
+}
+@media only screen and (max-width: 992px) {
+    .btn-camera-delete{
+        margin-top: 10px;
+        width: 100%;
+        margin-left: 0;
+    }
 }
