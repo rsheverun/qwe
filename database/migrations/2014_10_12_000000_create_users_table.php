@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('nickname')->unique();
             $table->string('password');
             $table->boolean('notification')->default(false);
+            $table->dateTime('last_login')->nullable();
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

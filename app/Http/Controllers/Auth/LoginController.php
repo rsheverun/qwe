@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\UserGroup;
+use Auth;
+use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -37,7 +39,12 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
+    public function authenticated($user)
+    {
+        Auth::user()->last_login = Carbon::now()->toDateTimeString();
+        Auth::user()->save();
+    }
+    
     public function username()
     {
         return 'nickname';

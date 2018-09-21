@@ -25,6 +25,7 @@ class User extends Authenticatable
         'email', 
         'password',
         'group_id',
+        'last_login'
         
     ];
 
@@ -36,4 +37,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function group()
+    {
+        return $this->belongsTo('App\UserGroup');
+    }
 }

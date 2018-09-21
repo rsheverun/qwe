@@ -7,6 +7,9 @@ use Illuminate\Http\HuntingAreaRequest;
 
 use App\HuntingArea;
 use App\UserGroup;
+use App\Configset;
+use App\User;
+
 class SettingsController extends Controller
 {
     /**
@@ -16,14 +19,13 @@ class SettingsController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
-        $areas = HuntingArea::all();
-        $groups = UserGroup::all();
-
+        
         return view('dashboard.settings',[
-            'roles'=>$roles,
-            'areas'=>$areas,
-            'groups'=>$groups
+            'roles'=>Role::get(),
+            'areas'=>HuntingArea::get(),
+            'groups'=>UserGroup::get(),
+            'configsets'=>Configset::get(),
+            'users'=>User::get(),
             ]);
     }
 
@@ -44,17 +46,15 @@ class SettingsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        if($request->has('hunting_area')) {
-            HuntingArea::create([
-                'name' => $request->area_name,
-                'description'=>$request->area_desc
-            ]);
-        }
-            
+    {            
         if ($request->has('configset_store')) {
-            dd($request);
+            Configset::create($request->toArray());
         }
+        if ($request->has('group_store')) {
+            UserGroup::create($request->toArray());
+        }
+
+        return back();
     }
 
     /**
@@ -102,9 +102,23 @@ class SettingsController extends Controller
         if ($request->has('hunting_area')) {
             $hunting_area = HuntingArea::destroy($id);
         }
+        
         if ($request->has('group_destroy')) {
             UserGroup::destroy($id);
         }
+        
+        if ($request->has('configset_destroy')) {
+            Configset::destroy($id);
+        }
+        
+        if ($request->has('user_destroy')) {
+            User::destroy($id);
+        }
+
+        if ($request->has('group_destoy')) {
+            UserGroup::destroy($id);
+        }
+
         return back();
     }
     public function getarea(){
@@ -113,6 +127,13 @@ class SettingsController extends Controller
         return $data;
     }
 
+    public function store_area(Request $request)
+    {
+        HuntingArea::create([
+            'name' => $request->area_name,
+            'description'=>$request->area_desc
+        ]);
+    }
     public function deleteitem(Request $request)
     {
         $data = HuntingArea::destroy($request->id);

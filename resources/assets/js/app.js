@@ -16,7 +16,7 @@ window.Vue = require('vue');
 
 // Vue.component('chartpie-component', require('./components/ChartpieComponent.vue'));
 // Vue.component('chartline-component', require('./components/ChartlineComponent.vue'));
-// Vue.component('areas-list-component', require('./components/AreasListComponent.vue'));
+Vue.component('areas-list-component', require('./components/AreasListComponent.vue'));
 var app = new Vue({
     
     el: '#app',
@@ -66,7 +66,7 @@ var app = new Vue({
           this.hasUnique = true;
             this.hasError = true;
 
-          axios.post('/dashboard/settings', input).then(function (response) {
+          axios.post('/dashboard/store/area', input).then(function (response) {
             _this.newItem = { 'area_name': '', 'area_desc': '',   };
             _this.getItems();
           });

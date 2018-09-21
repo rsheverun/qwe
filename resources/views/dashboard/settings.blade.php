@@ -1,6 +1,23 @@
 @extends('layouts.layout')
 @section('content')
-
+@if ($errors->any())
+             <div class="alert alert-danger alert-dismissible text-center">
+             @foreach ($errors->all() as $error)
+      <div>{{ $error }}</div>    
+      @endforeach               
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        @if (session('status'))
+            <div class="alert alert-success alert-dismissible text-center">
+            {{ session('status') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+        @endif  
 <div class="row block">
     <div class="col-12">
         <span class="badge-statistic">base settings</span>
@@ -168,7 +185,9 @@
                 </td>
                 <td>{{date('d.m.Y H:i:s', strtotime($group->created_at))}}</td>
                 <td class="text-right table-button">
-                    <form action="{{route('settings.destroy',$group->id)}}">
+                    <form action="{{route('settings.destroy',$group->id)}}" method="post">
+                        @csrf
+                        @method('DELETE')
                         <input type="hidden" name="group_destoy">
                     <button type="submit" class="btn btn-outline-danger button-delete" >Delete</button>
                     </form>
@@ -187,21 +206,22 @@
 </div>
 
 <div class="usergroups">
+<form id="usergroup_store" action="{{route('settings.store')}}" method="post"> <!--add new group -->
 
 <div class="row">
         <div class="col-lg-5 col-xs-12">
-            <form id="hunting_areas_store" action="{{route('settings.store')}}" method="post"> <!--add new user -->
                 @csrf
+                    <input type="hidden" name="group_store">
                     <div class="form-group row pl-3 pr-3">
-                            <label for="name" class="title configsets-label">usergroup name:</label>
-                            <input type="text" id="area_name" class="col custom-input" name="area_name">
+                            <label for="group_name" class="title configsets-label">usergroup name:</label>
+                            <input type="text"  class="col custom-input" name="name" id="group_name" required>
                     </div>
                     @foreach($roles as $role)
                         <div class="check-box ">
                             <label class="title " for="{{$role->name}}">
                             is {{$role->name}}?
                                 </label>
-                                <input  type="radio" value="{{$role->id}}" id="{{$role->name}}" name="role" class="custom-check">
+                                <input  type="radio" value="{{$role->id}}" id="{{$role->name}}" name="role_id" class="custom-check" @if ($role->name == 'user') checked @endif>
                             <!-- <label>
                             <span class="label title">is {{$role->name}}?</span>
 
@@ -214,14 +234,19 @@
 
         </div>
         <div class="col-lg-7 col-xs-12 areas">
+
+            <div class="form-group row">
             <span  class="title align-self-start pr-3">hunting areas:</span>
-            <span class="col pr-1 mt-1 pl-0 pr-3" v-for="item in items" style="max-width: max-content;">
+            <span class="col pr-1 pl-0 pr-3" v-for="item in items" style="max-width: max-content;">
             <input type="radio" name="area" v-bind:id="item.name">
-            <label  v-bind:for="item.name" class="setting-radio mt-1" style=" margin-right: 0;">@{{item.name}}</label> 
+            <label  v-bind:for="item.name" class="setting-radio" style=" margin-right: 0;">@{{item.name}}</label> 
         </span>
+            </div>
+            
         </div>
-    <button type="button" class="btn btn-outline-success btn-add btn-absolute mr-3 ml-3 mr-lg-0">add</button>
-    </form> <!--add new user -->
+    <button type="submit" class="btn btn-outline-success btn-add btn-absolute mr-3 ml-3 mr-lg-0">add</button>
+
+    </form> <!--add new group -->
 
     </div>
 
@@ -250,21 +275,29 @@
             </tr>
         </thead>
         <tbody>
+        @foreach($users as $k=>$user)
             <tr>
-                <td>1</td>
-                <td>Max</td>
-                <td>Hunter</td>
-                <td>mhunter</td>
-                <td>Admins, HG Main, HG
-                Guest</td>
-                <td>15.02.2018
-                15:33:01</td>
-                <td>15.02.2018 15:33:01</td>
+                <td>{{$k+1}}</td>
+                <td>{{$user->first_name}}</td>
+                <td>{{$user->last_name}}</td>
+                <td>{{$user->nickname}}</td>
+                <td>{{$user->group->name}}</td>
+                <td>{{date('d.m.Y H:i:s', strtotime($user->created_at))}}</td>
+                <td>
+                @if($user->last_login != null)
+                {{date('d.m.Y H:i:s', strtotime($user->last_login))}}
+                @endif
+                </td>
                 <td class="text-right table-button">
-                <button type="button" class="btn btn-outline-danger button-delete" >Delete</button>
-                    
+                <form action="{{route('settings.destroy',$user->id)}}" method="post">
+                    @csrf
+                    @method("DELETE")
+                    <input type="hidden" name="user_destroy">
+                    <button type="submit" class="btn btn-outline-danger button-delete" >Delete</button>
+                </form>
                 </td>
             </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
@@ -275,19 +308,19 @@
 <div class="users">
 
 
-<form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
+<form id="register" method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
     @csrf
 <div class="form-group row" >
         <div class="col-lg-2 col-xs-12 users-label" >
             <label for="first_name" class="title">First name:</label>
         </div>
         <div class="col-lg-2 col-xs-12 p-lg-0">
-            <input type="text"  class=" custom-input w-100" id="first_name"  name="first_name">
+            <input type="text"  class=" custom-input w-100" id="first_name"  name="first_name" required>
         </div>
         <div class="col-lg-7 col-xs-12 offset-lg-1">
             <span  class="title align-self-start" style="margin-right: 15px;">usergroups:</span>
             @foreach($groups as $group)
-            <input type="radio" name="group" id="{{$group->name}}_group" value="{{$group->id}}">
+            <input type="radio" name="group" id="{{$group->name}}_group" value="{{$group->id}}" @if($group->role->name == 'user') checked @endif >
             <label for="{{$group->name}}_group" class="setting-radio usergroup-radio mt-1">{{$group->name}}</label>
             @endforeach
             <!-- <input type="radio" name="group"  id="admins_group">
@@ -363,16 +396,24 @@
             </tr>
         </thead>
         <tbody>
+        @foreach ($configsets as $k=>$configset)
             <tr>
-                <td>1</td>
-                <td>BL460P</td>
-                <td>Default</td>
-                <td>15.02.2018 15:33:01</td>
+                <td>{{$k+1}}</td>
+                <td>{{$configset->model}}</td>
+                <td>{{$configset->config_name}}</td>
+                <td>{{date('d.m.Y H:i:s', strtotime($configset->created_at))}}</td>
                 <td class="text-right table-button">
-                <button type="button" class="btn btn-outline-danger button-delete" >Delete</button>
+                <form action="{{route('settings.destroy',$configset->id)}}" method="post">
+                @csrf
+                @method('DELETE')
+                <input type="hidden" name="configset_destroy">
+                <button type="submit" class="btn btn-outline-danger button-delete" >Delete</button>
+
+                </form>
                     
                 </td>
             </tr>
+        @endforeach
         </tbody>
     </table>
 </div>
@@ -383,16 +424,16 @@
 <div class="configsets">
 <div class="row">
         <div class="col-lg-4 col-xs-12">
-            <form id="hunting_areas_store" action="{{route('settings.store')}}" method="post">
+            <form  action="{{route('settings.store')}}" method="post">
                 @csrf
                 <input type="hidden" name="configset_store">
                     <div class="form-group row pl-3 pr-3">
                             <label for="name" class="title configsets-label">model:</label>
-                            <input type="text" id="area_name" class="col custom-input" name="model" required>
+                            <input type="text" class="col custom-input" name="model" required>
                     </div>
                     <div class="form-group row pl-3 pr-3">
                             <label for="name" class="title configsets-label ">configset:</label>
-                            <input type="text" id="area_name" class="col custom-input" name="config_name" required>
+                            <input type="text"  class="col custom-input" name="config_name" required>
                     </div>
 
            
@@ -417,7 +458,7 @@
                         </tr>
                         <tr>
                             <th>SMTP-Port</td>
-                            <td><input type="text" name="port" class="custom-input w-100" required></td>
+                            <td><input type="text" name="port" class="custom-input w-100" pattern="^[ 0-9]+$" required></td>
                         </tr>
                         <tr>
                             <th>SMTP-User</td>

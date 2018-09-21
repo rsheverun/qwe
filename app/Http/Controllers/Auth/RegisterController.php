@@ -86,8 +86,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if($data['notification']== null){
-            dd("asd");
+        try{
+            $data['notification'];
+            $notification = 1;
+
+        } catch(\Exception $e) {
+            $notification = 0;
         }
         $user = User::create([
             'first_name' => $data['first_name'],
@@ -96,7 +100,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'group_id' => $data['group'],
-            'notification' => $data['notification'],
+            'notification' => $notification,
            
         ]);
         $user->assignRole('user');
@@ -111,6 +115,6 @@ class RegisterController extends Controller
         $user = $this->create($request->all());
         UserVerification::generate($user);
         UserVerification::send($user, 'Email Verification');
-        return redirect()->route('settings.index')->withAlert('Register successfully, please verify your email.');
+        return redirect()->route('settings.index')->withStatus('Register successfully, please verify your email.');
     }
 }
