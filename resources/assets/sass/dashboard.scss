@@ -288,6 +288,14 @@ hr{
 .pagination-arrow-1{
     padding: 4px 8px !important;
 }
+.active {
+    color:#fff !important;
+    background-color: #83ba2d;
+    img{
+        -webkit-filter: brightness(0) invert(1);
+        filter: brightness(0) invert(1);
+    }
+}
 .custom-pagination a:hover{
     color:#fff;
     background-color: #83ba2d;

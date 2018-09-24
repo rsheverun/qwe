@@ -62,43 +62,55 @@
             </tr>
         </thead>
         <tbody>
-        <tr v-for="(item, index) in items">
-            <td>@{{index+1}}</td>
-            <td>@{{item.name}}</td>
-            <td>@{{item.description}}</td>
-            <td>@{{item.created_at}}</td>
-            <td class="text-right pr-0" @click.prevent="deleteItem(item)">
-            @csrf
-            <button type="button" class="btn btn-outline-danger button-delete" >Delete</button>
+            @foreach  ($areas as $k=>$area)
+        <tr >
+            <td>{{$k+1}}</td>
+            <td>{{$area->name}}</td>
+            <td>{{$area->description}}</td>
+            <td>{{$area->created_at}}</td>
+            <td class="text-right pr-0" >
+                <form action="{{route('settings.destroy',$area->id)}}" method="post">
+                @csrf
+                @method('DELETE')
+                <input type="hidden" name="area_destroy">
+                <button type="submit" class="btn btn-outline-danger button-delete" >Delete</button>
+                </form>
+            
 
             </td>
 
         </tr>
+        @endforeach
         </tbody>
     </table>
 </div>
 
 <div class="block">
- @include('layouts.pagination')
+   {{ $areas->links('layouts.pagination')}}
 </div>
     <div class="hunting-areas">
+    <form action="{{route('settings.store')}}" method="post">
+
     <div class="row">
+
         <div class="col-lg-4 col-xs-12">
-                @csrf
+            @csrf
+            <input type="hidden" name="area_store">
                 <p class="text-center alert alert-danger"
                     v-bind:class="{ hidden: hasError }">Please fill all fields!</p>
                     <p class="text-center alert alert-danger"
                     v-bind:class="{ hidden: hasUnique }">The Name has already been taken.</p>
-                <input type="hidden" name="hunting_area" v-model="newItem.hunting_area">
+                <input type="hidden" name="hunting_area">
                     <div class="d-flex flex-row p-0">
                             <label for="area_name" class="title">name:</label>
-                            <input type="text" id="area_name" class="flex-grow-1 custom-input" name="area_name" v-model="newItem.area_name" required>
+                            <input type="text" id="area_name" class="flex-grow-1 custom-input" name="name" required>
                     </div>
                     <label for="area_desc" class="title mt-4">description:</label>
 
                     <div class="d-flex flex-row p-0">
-                            <textarea  id="area_desc" name="area_desc"  id="desc" cols="30" rows="10" class="desc custom-input" v-model="newItem.area_desc" required></textarea>
+                            <textarea  id="area_desc" name="description"  id="desc" cols="30" rows="10" class="desc custom-input" required></textarea>
                     </div>
+                
                     
            
         </div>
@@ -132,8 +144,11 @@
                     </tbody>
                 </table>
             </div>
-        <button  id="area_store" class="btn btn-outline-success btn-add btn-absolute mr-lg-3" @click.prevent="createItem()">add</button>
-</div>
+        <button type="submit"  id="area_store" class="btn btn-outline-success btn-add btn-absolute mr-lg-3" >add</button>
+
+    </div>
+    </form>
+
 </div>
 
 
@@ -188,7 +203,7 @@
                     <form action="{{route('settings.destroy',$group->id)}}" method="post">
                         @csrf
                         @method('DELETE')
-                        <input type="hidden" name="group_destoy">
+                        <input type="hidden" name="group_destroy">
                     <button type="submit" class="btn btn-outline-danger button-delete" >Delete</button>
                     </form>
                     
@@ -201,7 +216,9 @@
 
 
 <div class="block">
- @include('layouts.pagination')
+ {{
+        $groups->links('layouts.pagination')
+}}
 </div>
 </div>
 
@@ -303,7 +320,9 @@
 </div>
 
 <div class="block">
-@include('layouts.pagination')
+{{
+    $users->links('layouts.pagination')
+}}
 </div>
 <div class="users">
 
@@ -315,7 +334,7 @@
             <label for="first_name" class="title">First name:</label>
         </div>
         <div class="col-lg-2 col-xs-12 p-lg-0">
-            <input type="text"  class=" custom-input w-100" id="first_name"  name="first_name" required>
+            <input type="text"  class=" custom-input w-100" id="first_name"  name="first_name" value="{{old('first_name')}}" required>
         </div>
         <div class="col-lg-7 col-xs-12 offset-lg-1">
             <span  class="title align-self-start" style="margin-right: 15px;">usergroups:</span>
@@ -337,7 +356,7 @@
             <label for="last_name" class="title">last name:</label>
         </div>
         <div class="col-lg-2 col-xs-12 p-lg-0">
-            <input type="text"  class=" custom-input w-100" id="last_name" name="last_name">
+            <input type="text"  class=" custom-input w-100" id="last_name" name="last_name" value="{{old('last_name')}}">
         </div>
     </div>
     <div class="form-group row" >
@@ -345,7 +364,7 @@
             <label for="staticEmail" class="title">email:</label>
         </div>
         <div class="col-lg-2 col-xs-12 p-lg-0" >
-            <input type="text"  class=" custom-input w-100" id="staticEmail" name="email">
+            <input type="text"  class=" custom-input w-100" id="staticEmail" name="email" value="{{old('email')}}">
             <div class="d-flex flex-row email-notify">
             <input type="checkbox" id="emailNotify" class="custom-check" name="notification" value="1">
             <label for="emailNotify">eMail notification for new images?</label>
@@ -418,7 +437,10 @@
     </table>
 </div>
 <div class="block">
-    @include('layouts.pagination')
+    
+ {{
+        $groups->links('layouts.pagination')
+}}
 </div>
 
 <div class="configsets">
@@ -477,6 +499,7 @@
 
     </div>
 </div>
+
 <div class="row block text-right">
     <div class="col-12">
         <button class="btn settings-save">save</button>

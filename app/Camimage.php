@@ -11,4 +11,8 @@ class Camimage extends Model
         'datum',
         'bild',
     ];
+    public function camera()
+    {
+        return $this->belongsTo('App\Camera');
+    }
 }

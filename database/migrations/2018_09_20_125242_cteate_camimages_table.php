@@ -15,7 +15,11 @@ class CteateCamimagesTable extends Migration
     {
         Schema::create('camimages', function (Blueprint $table) {
             $table->increments('id');            
-            $table->string('cam');
+            $table->unsignedInteger('cam_id')
+                    ->nullable()->foreign('cam_id')
+                    ->references('id')
+                    ->on('cameras')
+                    ->onDelete('cascade');
             $table->dateTime('datum')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->string('bild');
             $table->timestamps();

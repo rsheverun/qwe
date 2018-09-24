@@ -8,6 +8,12 @@ class HuntingArea extends Model
 {
     protected $fillable = [
         'name',
-        'description'
+        'description',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
 }

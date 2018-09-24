@@ -25,7 +25,7 @@
         		<a class="nav-link header-link" href="{{ route('home') }}">Home</a>
       		</li>
 		    <li class="nav-item">
-		    	<a class="nav-link header-link" href="{{ route('cameras') }}">Cameras</a>
+		    	<a class="nav-link header-link" href="{{ route('cameras.index') }}">Cameras</a>
             </li>
             <li class="nav-item">
 		    	<a class="nav-link header-link" href="{{ route('images')}}">Images</a>

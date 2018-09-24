@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Requests;
+use Illuminate\Http\Request;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -13,7 +14,7 @@ class HuntingAreaRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +22,26 @@ class HuntingAreaRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
     {
-        return [
-            'area_name'=>'unique:hunting_areas'
-        ];
+        if ($request->has('area_store')) {
+            return [
+                'name'=>'unique:hunting_areas|required',
+                'description'=>'required'
+            ];
+        }
+
+        if ($request->has('configset_store')) {
+            return [
+                'model'=>'unique:configsets,model|required',
+                'config_name'=>'unique:configsets,config_name|required',                 
+            ];
+        }
+        
+        if ($request->has('group_store')) {
+            return [
+                'name'=>'unique:user_groups|required',                                
+            ];
+        }
     }
 }

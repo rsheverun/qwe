@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
-use Illuminate\Http\HuntingAreaRequest;
-
+use App\Http\Requests\HuntingAreaRequest;
 use App\HuntingArea;
 use App\UserGroup;
 use App\Configset;
@@ -19,13 +18,16 @@ class SettingsController extends Controller
      */
     public function index()
     {
-        
+        $groups = UserGroup::paginate(20, ['*'], 'groups');
+        $users = User::paginate(20, ['*'], 'users');
+        $configsets = Configset::paginate(20, ['*'], 'configsets');
+        $areas = HuntingArea::paginate(20, ['*'], 'areas');
         return view('dashboard.settings',[
             'roles'=>Role::get(),
-            'areas'=>HuntingArea::get(),
-            'groups'=>UserGroup::get(),
-            'configsets'=>Configset::get(),
-            'users'=>User::get(),
+            'areas'=>$areas,
+            'groups'=>$groups,
+            'configsets'=>$configsets,
+            'users'=>$users,
             ]);
     }
 
@@ -45,16 +47,25 @@ class SettingsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {            
+    public function store(HuntingAreaRequest $request)
+    {    
+        if ($request->has('area_store')) {
+            HuntingArea::create($request->toArray());
+            $msg = "Hunting area created successfully";
+
+        }
+
         if ($request->has('configset_store')) {
             Configset::create($request->toArray());
+            $msg = "Config set created successfully";
+
         }
         if ($request->has('group_store')) {
             UserGroup::create($request->toArray());
+            $msg = "User group created successfully";
         }
 
-        return back();
+        return back()->withStatus($msg);
     }
 
     /**
@@ -99,30 +110,31 @@ class SettingsController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        if ($request->has('hunting_area')) {
-            $hunting_area = HuntingArea::destroy($id);
+        if ($request->has('area_destroy')) {
+            HuntingArea::destroy($id);
+            $msg = "Area deleted successfully";
         }
         
         if ($request->has('group_destroy')) {
             UserGroup::destroy($id);
+            $msg = "Group deleted successfully";
         }
         
         if ($request->has('configset_destroy')) {
             Configset::destroy($id);
+            $msg = "Config set deleted successfully";
         }
         
         if ($request->has('user_destroy')) {
             User::destroy($id);
+            $msg= "User deleted successfully";
         }
 
-        if ($request->has('group_destoy')) {
-            UserGroup::destroy($id);
-        }
-
-        return back();
+        return back()->withErrors($msg);
     }
     public function getarea(){
-        $data = HuntingArea::all();
+        
+        $data = HuntingArea::paginate(20, ['*'], 'areas');
         
         return $data;
     }

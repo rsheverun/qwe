@@ -5,36 +5,40 @@
         <span class="badge-statistic col-6">camera details</span>
     <button class="col-xs-12 btn btn-outline-danger btn-camera-delete">delete</button>
 
-    <button class=" col-xs-12 btn btn-outline-success btn-add">new</button>
+    <button class=" col-xs-12 btn btn-outline-success btn-add" data-toggle="modal" data-target="#exampleModalLong">new</button>
 
     </div>
-    
+    @include('layouts.create_cam_modal')
 </div>
 <div class="details no-gutters">
 
 <div class="row">
     <!-- left -->
     <div class="col-lg-5 col-xs-12">
+    <form action="">
+
         <div class="row no-gutters">
             <div class="col-md-2 col-xs-4">
-                  <span class="title">ID:</span> <span class="">1</span>
+                  <span class="title">ID:</span> <span class="">{{$camera->id}}</span>
             </div>
             <div class="col-md-5 col-xs-4">
-                  <span class="title">camera:</span> <span class="">mha001</span>                  
+                  <span class="title">camera:</span> <span class="">{{$camera->cam}}</span>                  
             </div>
             <div class="col-md-5 col-xs-4">
-                  <span class="title">name:</span> <span class="">Cam at Rosis house</span>                  
+                  <span class="title">name:</span> <span class="">{{$camera->cam_name}}</span>                  
             </div>
         </div>
         <span class="title">decription:</span>
-        <textarea name="desc" id="" cols="30" rows="10" class="desc"></textarea>
+        <textarea name="desc" id="" cols="30" rows="10" class="desc">{{$camera->desc}}</textarea>
         <span class="title">position:</span>
         <div class="row">
-            <div class="col-6">
-                <span class="lat">latitude:</span> asdas
+            <div class="col-6 form-inline">
+                <span class="lat  col-lg col-md-12 pr-0 pl-0">latitude:</span>
+                <input type="text" class="col custom-input" name="lat" value="{{$camera->lat}}">
             </div>
-            <div class="col-6">
-                <span class="lat">Longitude:</span> sadasd
+            <div class="col-6 form-inline">
+                <span class="lat col-lg  pl-0">Longitude:</span>
+                <input type="text" class="col custom-input" name="long" value="{{$camera->long}}">
             </div>
         </div>
         <div class="row">
@@ -54,19 +58,24 @@
             </tr>
             <tr>
                 <th>Org-Nme </th>
-                <td>MHA</td>
+                <td>{{$camera->configset->org_name}}</td>
             </tr>
             <tr>
-                <th>Org-Nme </th>
-                <td>MHA</td>
+                <th>SMTP-Server </th>
+                <td>{{$camera->configset->server}}</td>
             </tr>
             <tr>
-                <th>Org-Nme </th>
-                <td>MHA</td>
+                <th>SMTP-Port </th>
+                <td>{{$camera->configset->port}}</td>
+            </tr>
+            <tr>
+                <th>SMTP-User </th>
+                <td>{{$camera->configset->user}}</td>
             </tr>
         </table>
-        
+        </form>
     </div><!-- left -->
+    
     <!-- right -->
     <div class="col-lg-7 col-xs-12">
         <div class="row no-gutters">
@@ -90,6 +99,7 @@
 
     </div>
 </div>
+
 <div class="row block">
     <div class="col-12">
         <span class="badge-statistic">latest images</span>

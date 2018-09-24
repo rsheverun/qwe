@@ -23,7 +23,7 @@ Route::post('/store/area','SettingsController@store_area');
     
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('/cemeras','HomeController@cameras')->name('cameras');
+    // Route::get('/cemeras','HomeController@cameras')->name('cameras');
 
     Route::get('/details', 'HomeController@details')->name('details');
 
@@ -32,7 +32,8 @@ Route::post('/store/area','SettingsController@store_area');
     Route::resource('/settings', 'SettingsController');
     //Route::get('/settings','HomeController@settings')->name('settings');
 
-    
+    Route::resource('/cameras', 'CamerasController');
+
     Route::resource('/account','AccountController');
 
 

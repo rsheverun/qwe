@@ -15,7 +15,7 @@ class AddFkUsersOnUserGroups extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->unsignedInteger('group_id')->nullable();
-            $table->foreign('group_id')->references('id')->on('user_groups');
+            $table->foreign('group_id')->references('id')->on('user_groups')->onDelete('cascade');
         });
     }
 

@@ -10,7 +10,10 @@
 @method('DELETE')
 <div class="d-flex justify-content-between flex-row">
     <span class="align-self-center">Delete this Account and all Data permanently</span>    
-    <button type="submit" class="btn btn-outline-danger button-delete align-self-start">DELETE</button>
+    <button type="button" data-toggle="modal" id="{{Auth::user()->id}}"  onclick="modal_data(this.id, 'user_destroy')" data-target="#exampleModal" class="btn btn-outline-danger button-delete align-self-start">DELETE</button>
+<!-- modal -->
+    @include('layouts.modal')
+<!-- endmodal -->
 </div>
 </form>
 <div class="row block">
@@ -57,6 +60,5 @@
     <span class="sum pr-1">Sum per month: </span> <span class="sum number">112</span>
     </div>
     <div class="block">
- @include('layouts.pagination')
 </div>
 @endsection

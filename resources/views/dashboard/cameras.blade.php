@@ -27,49 +27,31 @@
             </tr>
         </thead>
         <tbody>
+        @foreach ($cameras as $k=>$camera)
             <tr>
-                <td>1</td>
-                <td>mha001</td>
-                <td>Cam at Rosis house</td>
-                <td>bl460p</td>
+                <td>{{$k+1}}</td>
+                <td>{{$camera->cam}}</td>
+                <td>{{$camera->cam_name}}</td>
+                <td>{{$camera->cam_model}}</td>
                 <td>default</td>
-                <td>10.08.2018 18:44:11</td>
-                <td>5</td>
+                <td>
+                    {{$camera->updated_at}}
+                </td>
+                <td>
+                    {{$camera->camimages->count()}}
+                </td>
                 <td class="text-right table-button">
-                    <a href="{{ route('details') }}" class="btn btn-outline-success button-look btn-green btn-details">details</a>
+                    <a href="{{ route('cameras.show', $camera->id) }}" class="btn btn-outline-success button-look btn-green btn-details">details</a>
                 </td>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>mha001</td>
-                <td>Cam at Rosis house</td>
-                <td>bl460p</td>
-                <td>default</td>
-                <td>10.08.2018 18:44:11</td>
-                <td>5</td>
-                <td class="text-right table-button">
-                    <a href="{{ route('details') }}" class="btn btn-outline-success button-look btn-green btn-details">details</a>
-                </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>mha001</td>
-                <td>Cam at Rosis house</td>
-                <td>bl460p</td>
-                <td>default</td>
-                <td>10.08.2018 18:44:11</td>
-                <td>5</td>
-                <td class="text-right table-button">
-                    <a href="{{ route('details') }}" class="btn btn-outline-success button-look btn-green btn-details">details</a>
-                </td>
-            </tr>
+        @endforeach
+         
         </tbody>
     </table>
 </div>
 
     </div>
     <div class="block">
- @include('layouts.pagination')
 </div>
 
     

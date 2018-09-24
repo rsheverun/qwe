@@ -34,9 +34,10 @@ var app = new Vue({
     methods: {
       getItems: function getItems() {
         var _this = this;
-  
         axios.get('/getarea').then(function (response) {
-          _this.items = response.data;
+          // console.log(response.data.data[0]);
+
+          _this.items = response.data.data;
           
         });
         // console.log(_this.items);

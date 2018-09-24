@@ -14,4 +14,9 @@ class Configset extends Model
         'port',
         'user'
     ];
+
+    public function cameras()
+    {
+        return $this->hasMany('App\Camera');
+    }
 }

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Camera;
+use App\Configset;
 
-use App\User;
+use Auth;
 
-class AccountController extends Controller
+class CamerasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +17,10 @@ class AccountController extends Controller
      */
     public function index()
     {
-        return view('dashboard.account');
+        return view('dashboard.cameras',[
+            'cameras'=> Camera::where('group_id', Auth::user()->id)
+                                ->paginate(20)
+            ]);
     }
 
     /**
@@ -47,7 +52,14 @@ class AccountController extends Controller
      */
     public function show($id)
     {
-        //
+        $camera = Camera::find($id);
+        // dd($camera->usergroup);
+        return view('dashboard.details',[
+            'camera'=> $camera,
+            'usergroups'=> $camera->usergroup
+            
+        ]);
+        
     }
 
     /**
@@ -79,9 +91,8 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
-        User::destroy($request->user_id);
-        return redirect()->route('login');
+        //
     }
 }

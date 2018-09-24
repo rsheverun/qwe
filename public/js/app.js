@@ -13879,7 +13879,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(40);
+module.exports = __webpack_require__(41);
 
 
 /***/ }),
@@ -13904,7 +13904,7 @@ window.Vue = __webpack_require__(36);
 
 // Vue.component('chartpie-component', require('./components/ChartpieComponent.vue'));
 // Vue.component('chartline-component', require('./components/ChartlineComponent.vue'));
-Vue.component('areas-list-component', __webpack_require__(47));
+Vue.component('areas-list-component', __webpack_require__(39));
 var app = new Vue({
 
   el: '#app',
@@ -13921,9 +13921,10 @@ var app = new Vue({
   methods: {
     getItems: function getItems() {
       var _this = this;
-
       axios.get('/getarea').then(function (response) {
-        _this.items = response.data;
+        // console.log(response.data.data[0]);
+
+        _this.items = response.data.data;
       });
       // console.log(_this.items);
     },
@@ -47241,23 +47242,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(6)))
 
 /***/ }),
-/* 39 */,
-/* 40 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */,
-/* 47 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var normalizeComponent = __webpack_require__(48)
+var normalizeComponent = __webpack_require__(40)
 /* script */
 var __vue_script__ = null
 /* template */
@@ -47285,7 +47273,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 48 */
+/* 40 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -47392,6 +47380,12 @@ module.exports = function normalizeComponent (
   }
 }
 
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
