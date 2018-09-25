@@ -1,5 +1,13 @@
 @extends('layouts.layout')
 @section('content')
+@if (session('status'))
+            <div class="alert alert-success alert-dismissible text-center">
+            {{ session('status') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+        @endif  
 <div class="row">
     <div class="col-12">
         <span class="badge-statistic">map</span>
@@ -35,10 +43,10 @@
                 <td>{{$camera->cam_model}}</td>
                 <td>default</td>
                 <td>
-                    {{$camera->updated_at}}
+                    {{$camera->camimages->max('datum')}}
                 </td>
                 <td>
-                    {{$camera->camimages->count()}}
+                {{$camera->camimages->count()}}
                 </td>
                 <td class="text-right table-button">
                     <a href="{{ route('cameras.show', $camera->id) }}" class="btn btn-outline-success button-look btn-green btn-details">details</a>

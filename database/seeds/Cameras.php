@@ -17,9 +17,9 @@ class Cameras extends Seeder
             'cam_model' => 'BL460P',
             'cam_name' => 'Cam At Rosis house',
             'desc' => 'lorem',
-            'lat' => '48.186487',
-            'long' => '11.552628',
-            'group_id' => 1,
+            // 'group_id' => 1,
+            'latitude' => 48.186487,
+            'longitude' => 11.552628,
             'cam_email' => 'wildcam@jungheinrichs.de.jpg',
             'config_id'=> 1
         ]);

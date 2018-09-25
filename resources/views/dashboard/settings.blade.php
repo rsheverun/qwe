@@ -96,19 +96,16 @@
         <div class="col-lg-4 col-xs-12">
             @csrf
             <input type="hidden" name="area_store">
-                <p class="text-center alert alert-danger"
-                    v-bind:class="{ hidden: hasError }">Please fill all fields!</p>
-                    <p class="text-center alert alert-danger"
-                    v-bind:class="{ hidden: hasUnique }">The Name has already been taken.</p>
+               
                 <input type="hidden" name="hunting_area">
                     <div class="d-flex flex-row p-0">
                             <label for="area_name" class="title">name:</label>
-                            <input type="text" id="area_name" class="flex-grow-1 custom-input" name="name" required>
+                            <input type="text" id="area_name" class="flex-grow-1 custom-input" name="name" value="{{old('name')}}" required>
                     </div>
                     <label for="area_desc" class="title mt-4">description:</label>
 
                     <div class="d-flex flex-row p-0">
-                            <textarea  id="area_desc" name="description"  id="desc" cols="30" rows="10" class="desc custom-input" required></textarea>
+                            <textarea  id="area_desc" name="description"  id="desc" cols="30" rows="10" class="desc custom-input" required>{{old('description')}}</textarea>
                     </div>
                 
                     
@@ -128,19 +125,15 @@
                     <tbody>
                         <tr>
                             <td>vMAP Instance</td>
-                            <td>https:/mha1.vmap.rocks</td>
-                            <td></td>
+                            <td><input type="text" name="instance_value" value="{{old('instance_value')}}" class="custom-input w-100" required></td>
+                            <td><input type="text" name="instance_description" value="{{old('instance_description')}}" class="custom-input w-100" required></td>
                         </tr>
                         <tr>
-                            <td>vMAP Instance</td>
-                            <td>https:/mha1.vmap.rocks</td>
-                            <td></td>
+                            <td>vMAP MapviewID</td>
+                            <td><input type="text" name="mapview_value" value="{{old('mapview_value')}}" class="custom-input w-100" required></td>
+                            <td><input type="text" name="mapview_description" value="{{old('mapview_description')}}" class="custom-input w-100" required></td>
                         </tr>
-                        <tr>
-                            <td>vMAP Instance</td>
-                            <td>https:/mha1.vmap.rocks</td>
-                            <td></td>
-                        </tr>
+                        
                     </tbody>
                 </table>
             </div>
@@ -254,10 +247,12 @@
 
             <div class="form-group row">
             <span  class="title align-self-start pr-3">hunting areas:</span>
-            <span class="col pr-1 pl-0 pr-3" v-for="item in items" style="max-width: max-content;">
-            <input type="radio" name="area" v-bind:id="item.name">
-            <label  v-bind:for="item.name" class="setting-radio" style=" margin-right: 0;">@{{item.name}}</label> 
-        </span>
+            @foreach ($areas as $area)
+            <span class="col pr-1 pl-0 pr-3" style="max-width: max-content;">
+                <input type="radio" name="area" id="area_{{$area->id}}" value="{{$area->id}}">
+                <label  for="area_{{$area->id}}" class="setting-radio" style=" margin-right: 0;">{{$area->name}}</label> 
+             </span>
+            @endforeach
             </div>
             
         </div>

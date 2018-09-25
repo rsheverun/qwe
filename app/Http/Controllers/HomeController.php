@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use App\Camimage;
+use App\UserGroup;
+
 use Spatie\Permission\Models\Role;
 use Session;
 use App;
@@ -39,8 +41,12 @@ class HomeController extends Controller
 
     public function index()
     {
-        $data = Camimage::orderBy('datum', 'asc')->get();
-
+        $data = collect();
+        $camimages = Camimage::orderBy('datum', 'asc')->get();
+        $cameras = UserGroup::find(Auth::user()->group_id)
+                        ->cameras()
+                        ->get();
+        // dd($cameras[0]->camimages()->get());
         return view('dashboard.index',['data'=>$data]);
     }
 

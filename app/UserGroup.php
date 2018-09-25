@@ -17,7 +17,7 @@ class UserGroup extends Model
     }
     public function cameras()
     {
-        return $this->hasMany('App\Camera', 'group_id');
+        return $this->belongsToMany('App\Camera');
     }
     public function users()
     {

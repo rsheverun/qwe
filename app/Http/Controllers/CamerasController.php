@@ -4,6 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Camera;
+use App\Camimage;
+use App\UserGroup;
+use App\CameraUserGroup;
+
+use App\Http\Requests\EditCameraRequest;
+use App\Http\Requests\StoreCameraRequest;
+
 use App\Configset;
 
 use Auth;
@@ -17,9 +24,11 @@ class CamerasController extends Controller
      */
     public function index()
     {
+       
         return view('dashboard.cameras',[
-            'cameras'=> Camera::where('group_id', Auth::user()->id)
-                                ->paginate(20)
+            'cameras'=> UserGroup::find(Auth::user()->group_id)
+                        ->cameras()
+                        ->paginate(20)
             ]);
     }
 
@@ -39,9 +48,31 @@ class CamerasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCameraRequest $request)
     {
-        //
+        if ($request->has('group_id')) {
+            $cam = Camera::create([
+                'cam' => $request->cam,
+                'cam_name' => $request->cam_name,
+                'cam_model' => $request->cam_model,
+                'latitude' => $request->latitude,
+                'longitude' => $request->longitude,
+                'desc' => $request->desc,
+                'cam_email' => $request->cam_email,
+                'config_id' => $request->config_id
+            ]);
+            foreach ($request->group_id as $id) {
+                CameraUserGroup::create([
+                'camera_id' => $cam->id,
+                'user_group_id' => $id
+            ]);
+            }
+
+            return back()->withStatus('New camera added successfully');
+        } else {
+            
+            return back()->withError('Please select a user groups to which the camera belongs');
+        }
     }
 
     /**
@@ -52,11 +83,9 @@ class CamerasController extends Controller
      */
     public function show($id)
     {
-        $camera = Camera::find($id);
-        // dd($camera->usergroup);
         return view('dashboard.details',[
-            'camera'=> $camera,
-            'usergroups'=> $camera->usergroup
+            'camera'=> Camera::find($id),
+            'configsets'=>Configset::all()
             
         ]);
         
@@ -70,7 +99,6 @@ class CamerasController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**
@@ -80,9 +108,10 @@ class CamerasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditCameraRequest $request, Camera $camera)
     {
-        //
+        $camera->update($request->toArray());
+        return back()->withStatus('Camera updated successfully');      
     }
 
     /**
@@ -91,8 +120,10 @@ class CamerasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Camera $camera)
     {
-        //
+       $camera->delete();
+       
+       return redirect()->route('cameras.index')->withStatus('Camera deleted successfully');
     }
 }

@@ -1,22 +1,47 @@
 @extends('layouts.layout')
 @section('content')
+@if ($errors->any())
+             <div class="alert alert-danger alert-dismissible text-center">
+             @foreach ($errors->all() as $error)
+      <div>{{ $error }}</div>    
+      @endforeach               
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        @if (session('status'))
+            <div class="alert alert-success alert-dismissible text-center">
+            {{ session('status') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+        @endif  
 <div class="row">
     <div class="col-12">
         <span class="badge-statistic col-6">camera details</span>
-    <button class="col-xs-12 btn btn-outline-danger btn-camera-delete">delete</button>
+    <button class="col-xs-12 btn btn-outline-danger btn-camera-delete" data-toggle="modal" id="{{$camera->id}}"  onclick="modal_data(this.id, 'camera_destroy')" data-target="#exampleModal">delete</button>
 
     <button class=" col-xs-12 btn btn-outline-success btn-add" data-toggle="modal" data-target="#exampleModalLong">new</button>
 
     </div>
     @include('layouts.create_cam_modal')
+    <form action="{{route('cameras.destroy', $camera->id)}}" method="post">
+    @csrf
+    @method('DELETE')
+    @include('layouts.modal')
+    
+    </form>
 </div>
 <div class="details no-gutters">
 
 <div class="row">
     <!-- left -->
     <div class="col-lg-5 col-xs-12">
-    <form action="">
-
+    <form action="{{route('cameras.update', $camera->id)}}" method="post" id="camera_edit">
+        @csrf
+        @method('PUT')
         <div class="row no-gutters">
             <div class="col-md-2 col-xs-4">
                   <span class="title">ID:</span> <span class="">{{$camera->id}}</span>
@@ -34,11 +59,11 @@
         <div class="row">
             <div class="col-6 form-inline">
                 <span class="lat  col-lg col-md-12 pr-0 pl-0">latitude:</span>
-                <input type="text" class="col custom-input" name="lat" value="{{$camera->lat}}">
+                <input type="text" class="col custom-input" name="latitude" value="{{$camera->latitude}}">
             </div>
             <div class="col-6 form-inline">
                 <span class="lat col-lg  pl-0">Longitude:</span>
-                <input type="text" class="col custom-input" name="long" value="{{$camera->long}}">
+                <input type="text" class="col custom-input" name="longitude" value="{{$camera->longitude}}">
             </div>
         </div>
         <div class="row">
@@ -47,8 +72,16 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12">
+            <!-- <div class="col-12">
                 <span class="title">configset: </span>Default
+            </div> -->
+            <div class="form-inline col">
+            <label class="my-1 mr-2 title" for="inlineFormCustomSelectPref">configset:</label>
+            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="config_id">
+                @foreach($configsets as $configset)
+                <option value="{{$configset->id}}" @if($camera->config_id == $configset->id) selected @endif>{{$configset->config_name}}</option>
+                @endforeach
+            </select>
             </div>
         </div>
         <table class="table table-sm table-bordered text-center">
@@ -88,13 +121,13 @@
         </div>
         <div class="row no-gutters">
             <div class="col-12">
-            <span class="title">usergroups</span>
+                <span class="title">usergroups</span>
             </div>
         </div>
         <div class="row no-gutters">
-            <span class="usergroups-title">usergroups</span>
-            <span class="usergroups-title">usergroups</span>
-
+        @foreach($camera->usergroups as $group)
+            <span class="usergroups-title">{{$group->name}}</span>
+        @endforeach
         </div>
 
     </div>
@@ -105,16 +138,22 @@
         <span class="badge-statistic">latest images</span>
     </div>
 </div>
-<div class="row pr-lg-3">
-    <div class="col-lg col-xs-12">
+
+<div class="row pr-lg">
+@foreach($camera->camimages as $k=>$image)
+    @if($k == 3)
+        @break
+    @endif
+    <div class="col-lg-4 col-xs-12">
         <div class="text-center">
-            <img src="{{asset('img/img1.png')}}" class="zoom img-fluid w-100" alt="">
+            <img src="{{asset($image->bild)}}" class="zoom img-fluid w-100" alt="">
         </div>
         <div class="text-right">
-            <span class="date">09.08.2018 16:30:34</span>            
+            <span class="date">{{date('d.m.Y H:i:s', strtotime($image->datum))}}</span>            
         </div>
     </div>
-    <div class="col-lg col-xs-12">
+@endforeach
+    <!-- <div class="col-lg-4 col-xs-12">
         <div class="text-center">
             <img src="{{asset('img/img1.png')}}" class="zoom img-fluid  w-100" alt="">
         </div>
@@ -122,14 +161,14 @@
             <span class="date">09.08.2018 16:30:34</span>            
         </div>
     </div>
-    <div class="col-lg col-xs-12 pr-lg-0">
+    <div class="col-lg-4 col-xs-12 pr-lg-0">
         <div class="text-center">
             <img src="{{asset('img/img1.png')}}" class="zoom img-fluid  w-100  " alt="">
         </div>
         <div class="text-right">
             <span class="date">09.08.2018 16:30:34</span>            
         </div>
-    </div>
+    </div> -->
 </div>
     
 </div>
@@ -150,7 +189,7 @@
         </div>
         <div class="row text-right">
     <div class="col-12">
-        <button class="btn settings-save btn-details-save">save</button>
+        <button type="submit" form="camera_edit" class="btn settings-save btn-details-save">save</button>
     </div>
 </div>
 </div>

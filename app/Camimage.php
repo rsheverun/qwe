@@ -13,6 +13,6 @@ class Camimage extends Model
     ];
     public function camera()
     {
-        return $this->belongsTo('App\Camera');
+        return $this->belongsTo('App\Camera', 'cam_email', 'cam_email');
     }
 }

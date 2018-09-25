@@ -11,8 +11,8 @@ class Camera extends Model
         'cam_model',
         'cam_name',
         'desc',
-        'lat',
-        'long',
+        'latitude',
+        'longitude',
         'group_id',
         'cam_email',
         'config_id'
@@ -20,12 +20,12 @@ class Camera extends Model
 
     public function camimages()
     {
-        return $this->hasMany('App\Camimage', 'cam_id');
+        return $this->hasMany('App\Camimage', 'cam', 'cam_email');
     }
 
-    public function usergroup()
+    public function usergroups()
     {
-        return $this->belongsTo('App\UserGroup','group_id');
+        return $this->belongsToMany('App\UserGroup', 'camera_user_group', 'camera_id', 'user_group_id');
     }
     public function configset()
     {

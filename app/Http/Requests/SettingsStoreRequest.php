@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class HuntingAreaRequest extends FormRequest
+class SettingsStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,7 +27,11 @@ class HuntingAreaRequest extends FormRequest
         if ($request->has('area_store')) {
             return [
                 'name'=>'unique:hunting_areas|required',
-                'description'=>'required'
+                'description'=>'required',
+                'instance_value' => 'required',
+                'instance_description' =>'required',
+                'mapview_value' => 'required',
+                'mapview_description' => 'required'
             ];
         }
 

@@ -19,14 +19,8 @@ class CreateCamerasTable extends Migration
             $table->string('cam_model');
             $table->string('cam_name');
             $table->string('desc');
-            $table->string('lat');
-            $table->string('long');
-            $table->unsignedInteger('group_id')
-                    ->nullable()->foreign('group_id')
-                    ->references('id')
-                    ->on('user_groups')
-                    ->onDelete('cascade');
-
+            $table->float('latitude', 10, 6);
+            $table->float('longitude', 10, 6);
             $table->string('cam_email')->nullable();
             $table->unsignedInteger('config_id')
                     ->nullable()

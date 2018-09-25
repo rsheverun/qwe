@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
-use App\Http\Requests\HuntingAreaRequest;
+use App\Http\Requests\SettingsStoreRequest;
 use App\HuntingArea;
 use App\UserGroup;
 use App\Configset;
+use App\VmapInstanceConfig;
+use App\VmapMapviewConfig;
 use App\User;
 
 class SettingsController extends Controller
@@ -22,6 +24,7 @@ class SettingsController extends Controller
         $users = User::paginate(20, ['*'], 'users');
         $configsets = Configset::paginate(20, ['*'], 'configsets');
         $areas = HuntingArea::paginate(20, ['*'], 'areas');
+        
         return view('dashboard.settings',[
             'roles'=>Role::get(),
             'areas'=>$areas,
@@ -47,9 +50,21 @@ class SettingsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(HuntingAreaRequest $request)
+    public function store(SettingsStoreRequest $request)
     {    
         if ($request->has('area_store')) {
+            $instace_config = VmapInstanceConfig::create([
+                'value' => $request->instance_value,
+                'description' => $request->instance_description
+            ]);
+            $mapview_config = VmapMapviewConfig::create([
+                'value' => $request->mapview_value,
+                'description' => $request->mapview_description
+            ]);
+            $request->request->add([
+                'vmap_instance_id' => $instace_config->id,
+                'vmap_mapviewid_id' => $mapview_config->id
+            ]);
             HuntingArea::create($request->toArray());
             $msg = "Hunting area created successfully";
 

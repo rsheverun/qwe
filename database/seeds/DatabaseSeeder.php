@@ -12,14 +12,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(ConfigsetsSeeder::class);
-
         $this->call(GroupSeeder::class);
         $this->call(RolesSeed::class);
         $this->call(UsersSeed::class);
         $this->call(Camimages::class);
         $this->call(Cameras::class);
-
-
-
+        $this->call(Camera_UsergroupsSeeder::class);
     }
 }
