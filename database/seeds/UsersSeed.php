@@ -18,7 +18,7 @@ class UsersSeed extends Seeder
             'last_name' => 'One',
             'password' => bcrypt('123qwe'),
             'verified' => 1,
-            'group_id' => 1,
+            // 'group_id' => 1,
             'notification'=> 1,
             'nickname' =>'user_1',
          ]);
@@ -31,7 +31,7 @@ class UsersSeed extends Seeder
             'last_name' => 'Two',
             'password' => bcrypt('123qwe'),
             'verified' => 1,
-            'group_id' => 2,
+            // 'group_id' => 2,
             'notification'=> 0,
             'nickname' =>'user_2',
          ]);

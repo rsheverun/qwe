@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\UserGroup;
 use Auth;
+use Session;
+
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -43,6 +45,17 @@ class LoginController extends Controller
     {
         Auth::user()->last_login = Carbon::now()->toDateTimeString();
         Auth::user()->save();
+         $hunting_areas = collect();
+        $user_areas = collect();
+        foreach (auth()->user()->usergroups as $group) {
+            $hunting_areas->push($group->hunting_areas);
+        }
+        foreach ($hunting_areas as $hunting_area){
+           foreach ($hunting_area as $area) {
+            $user_areas->push($area->name);
+           }
+        }
+        Session::put(['area'=> $user_areas[0]]);
     }
     
     public function username()

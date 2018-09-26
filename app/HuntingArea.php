@@ -18,6 +18,11 @@ class HuntingArea extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function usergroups()
+    {
+        return $this->belongsToMany('App\UserGroup');
+    }
+    
     public function vmap_instance_config()
     {
         return $this->hasOne('App\VmapInstanceConfig');
@@ -27,5 +32,10 @@ class HuntingArea extends Model
     {
         return $this->hasOne('App\VmapMapviewConfig');
     }
+    // public function cameras()
+    // {
+    //     return $this->belongsToMany('App\Camera');
+    // }
+
 
 }

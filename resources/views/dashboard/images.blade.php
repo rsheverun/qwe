@@ -11,7 +11,9 @@
         <label for="staticEmail" class="title pl-3" style="width: max-content;">Camera: </label>
     <div class="col" style="max-width: max-content;">
     <select class="filter" id="exampleFormControlSelect1" name="group" style="width: 213px;" required>
-            <option value="1">All</option>
+            @foreach ($cameras as $camera)
+            <option value="1">{{$camera->cam}}</option>
+            @endforeach
         </select>
     </div>
     <div class="col-lg offset-lg-1">

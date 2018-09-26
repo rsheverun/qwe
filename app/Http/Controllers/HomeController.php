@@ -7,7 +7,7 @@ use Auth;
 use App\User;
 use App\Camimage;
 use App\UserGroup;
-
+use App\HuntingArea;
 use Spatie\Permission\Models\Role;
 use Session;
 use App;
@@ -22,6 +22,7 @@ class HomeController extends Controller
 
     {
         //$this->middleware(['auth','isVerified']);
+        
     }
 
     /**
@@ -42,38 +43,58 @@ class HomeController extends Controller
     public function index()
     {
         $data = collect();
-        $camimages = Camimage::orderBy('datum', 'asc')->get();
-        $cameras = UserGroup::find(Auth::user()->group_id)
-                        ->cameras()
-                        ->get();
+        // $camimages = Camimage::orderBy('datum', 'asc')->get();
+        // $cameras = UserGroup::find(Auth::user()->group_id)
+        //                 ->cameras()
+        //                 ->get();
         // dd($cameras[0]->camimages()->get());
-        return view('dashboard.index',['data'=>$data]);
+        $hunting_areas = collect();
+        $user_areas = collect();
+        foreach (Auth::user()->usergroups as $group) {
+            $hunting_areas->push($group->hunting_areas);
+        }
+        foreach ($hunting_areas as $hunting_area){
+           foreach ($hunting_area as $area)
+            $user_areas->push($area->name);
+        }
+        
+        return view('dashboard.index',[
+            'data'=>$data,
+            'user_areas'=>$user_areas->unique()
+            ]);
     }
 
-    public function cameras()
+    public function change_area(Request $request)
     {
-        return view('dashboard.cameras');
-    }
-    
-    public function images()
-    {
-        return view('dashboard.images');
+        Session::put(['area'=> $request->area]);
+        return back();
     }
 
-    public function details()
-    {
-        return view('dashboard.details');
-    }
-    
-    public function settings()
-    {
-        $roles = Role::all();
-
-        return view('dashboard.settings',['roles'=>$roles]);
-    }
-
-    public function account()
-    {
-        return view('dashboard.account');
+    public function images(){
+        $hunting_areas = collect();
+        $user_areas = collect();
+        $cameras = collect();
+        foreach (Auth::user()->usergroups as $group) {
+            $hunting_areas->push($group->hunting_areas);
+        }
+        foreach ($hunting_areas as $hunting_area){
+           foreach ($hunting_area as $area)
+            $user_areas->push($area->name);
+        }
+        
+        $groups = HuntingArea::where('name', Session::get('area'))
+                                ->first()
+                                ->usergroups()
+                                ->paginate(20);
+        foreach ($groups as $group) {
+            foreach ($group->cameras as $camera) {
+                $cameras->push($camera); 
+            }
+        }
+        return view('dashboard.images', [
+            'user_areas'=>$user_areas,
+            'cameras'=> $cameras->unique('cam'),
+            
+        ]);
     }
 }

@@ -21,10 +21,14 @@ class UserGroup extends Model
     }
     public function users()
     {
-        return $this->hasMany('App\User');
+        return $this->belongsToMany('App\User');
     }
-    public function hunting_area()
+    // public function hunting_area()
+    // {
+    //     return $this->hasMany('App\HuntingArea');
+    // }
+    public function hunting_areas()
     {
-        return $this->hasMany('App\HuntingArea');
+        return $this->belongsToMany('App\HuntingArea');
     }
 }

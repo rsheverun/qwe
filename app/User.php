@@ -37,8 +37,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    public function group()
+
+    public function usergroups()
     {
-        return $this->belongsTo('App\UserGroup');
+        return $this->belongsToMany('App\UserGroup', 'user_user_group', 'user_id', 'user_group_id');
+    }
+    public function hunting_areas()
+    {
+        return $this->belongsToMany('App\HuntingArea');
+        
     }
 }

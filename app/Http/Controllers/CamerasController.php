@@ -7,7 +7,8 @@ use App\Camera;
 use App\Camimage;
 use App\UserGroup;
 use App\CameraUserGroup;
-
+use App\HuntingArea;
+use Session;
 use App\Http\Requests\EditCameraRequest;
 use App\Http\Requests\StoreCameraRequest;
 
@@ -22,13 +23,39 @@ class CamerasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        
+
+    }
     public function index()
     {
-       
+
+        $cameras = collect();
+        $hunting_areas = collect();
+        $user_areas = collect();
+        foreach (Auth::user()->usergroups as $group) {
+            $hunting_areas->push($group->hunting_areas);
+        }
+        foreach ($hunting_areas as $hunting_area){
+           foreach ($hunting_area as $area) {
+            $user_areas->push($area->name);
+           }
+        }
+        $groups = HuntingArea::where('name', Session::get('area'))
+                                ->first()
+                                ->usergroups()
+                                ->paginate(20);
+        foreach ($groups as $group) {
+            foreach ($group->cameras as $camera) {
+                $cameras->push($camera); 
+            }
+        }
+        //   dd($cameras->unique('cam'));
+
         return view('dashboard.cameras',[
-            'cameras'=> UserGroup::find(Auth::user()->group_id)
-                        ->cameras()
-                        ->paginate(20)
+            'cameras'=> $cameras->unique('cam'),
+            'user_areas'=>$user_areas->unique()
             ]);
     }
 
@@ -83,9 +110,21 @@ class CamerasController extends Controller
      */
     public function show($id)
     {
+        $hunting_areas = collect();
+        $user_areas = collect();
+        foreach (Auth::user()->usergroups as $group) {
+            $hunting_areas->push($group->hunting_areas);
+        }
+        foreach ($hunting_areas as $hunting_area){
+           foreach ($hunting_area as $area) {
+            $user_areas->push($area->name);
+           }
+        }
         return view('dashboard.details',[
+            'user_groups'=>UserGroup::all(),
             'camera'=> Camera::find($id),
-            'configsets'=>Configset::all()
+            'configsets'=>Configset::all(),
+            'user_areas'=> $user_areas->unique()
             
         ]);
         

@@ -249,7 +249,7 @@
             <span  class="title align-self-start pr-3">hunting areas:</span>
             @foreach ($areas as $area)
             <span class="col pr-1 pl-0 pr-3" style="max-width: max-content;">
-                <input type="radio" name="area" id="area_{{$area->id}}" value="{{$area->id}}">
+                <input type="checkbox" name="areas[]" id="area_{{$area->id}}" value="{{$area->id}}">
                 <label  for="area_{{$area->id}}" class="setting-radio" style=" margin-right: 0;">{{$area->name}}</label> 
              </span>
             @endforeach
@@ -293,7 +293,11 @@
                 <td>{{$user->first_name}}</td>
                 <td>{{$user->last_name}}</td>
                 <td>{{$user->nickname}}</td>
-                <td>{{$user->group->name}}</td>
+                <td>
+                @foreach($user->usergroups as $group)
+                    {{$group->name}},
+                @endforeach
+                </td>
                 <td>{{date('d.m.Y H:i:s', strtotime($user->created_at))}}</td>
                 <td>
                 @if($user->last_login != null)
@@ -334,7 +338,7 @@
         <div class="col-lg-7 col-xs-12 offset-lg-1">
             <span  class="title align-self-start" style="margin-right: 15px;">usergroups:</span>
             @foreach($groups as $group)
-            <input type="radio" name="group" id="{{$group->name}}_group" value="{{$group->id}}" @if($group->role->name == 'user') checked @endif >
+            <input type="checkbox" name="group[]" id="{{$group->name}}_group" value="{{$group->id}}" @if($group->role->name == 'user') checked @endif >
             <label for="{{$group->name}}_group" class="setting-radio usergroup-radio mt-1">{{$group->name}}</label>
             @endforeach
             <!-- <input type="radio" name="group"  id="admins_group">

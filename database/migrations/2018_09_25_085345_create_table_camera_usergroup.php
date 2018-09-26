@@ -20,6 +20,7 @@ class CreateTableCameraUsergroup extends Migration
                 $table->integer('user_group_id');
                 $table->timestamps();
             });
+            
     }
 
     /**

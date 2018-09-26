@@ -36,6 +36,7 @@
         </thead>
         <tbody>
         @foreach ($cameras as $k=>$camera)
+
             <tr>
                 <td>{{$k+1}}</td>
                 <td>{{$camera->cam}}</td>
@@ -52,6 +53,7 @@
                     <a href="{{ route('cameras.show', $camera->id) }}" class="btn btn-outline-success button-look btn-green btn-details">details</a>
                 </td>
             </tr>
+            
         @endforeach
          
         </tbody>

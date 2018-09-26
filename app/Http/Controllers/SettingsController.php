@@ -10,7 +10,8 @@ use App\Configset;
 use App\VmapInstanceConfig;
 use App\VmapMapviewConfig;
 use App\User;
-
+use App\HuntingAreaUserGroup;
+use Auth;
 class SettingsController extends Controller
 {
     /**
@@ -24,6 +25,16 @@ class SettingsController extends Controller
         $users = User::paginate(20, ['*'], 'users');
         $configsets = Configset::paginate(20, ['*'], 'configsets');
         $areas = HuntingArea::paginate(20, ['*'], 'areas');
+        $hunting_areas = collect();
+        $user_areas = collect();
+        foreach (Auth::user()->usergroups as $group) {
+            $hunting_areas->push($group->hunting_areas);
+        }
+        foreach ($hunting_areas as $hunting_area){
+           foreach ($hunting_area as $area) {
+            $user_areas->push($area->name);
+           }
+        }
         
         return view('dashboard.settings',[
             'roles'=>Role::get(),
@@ -31,6 +42,7 @@ class SettingsController extends Controller
             'groups'=>$groups,
             'configsets'=>$configsets,
             'users'=>$users,
+            'user_areas'=>$user_areas->unique()
             ]);
     }
 
@@ -76,7 +88,18 @@ class SettingsController extends Controller
 
         }
         if ($request->has('group_store')) {
-            UserGroup::create($request->toArray());
+            if ($request->has('areas')) {
+                $group = UserGroup::create($request->toArray());
+                foreach ($request->areas as $id) {
+                    HuntingAreaUserGroup::create([
+                        'hunting_area_id'=>$id,
+                        'user_group_id'=>$group->id
+                    ]);
+                }
+            } else {
+                
+                return back()->withErrors('Please select a hunting areas to which the user group belongs');
+            }
             $msg = "User group created successfully";
         }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\UserGroup;
+use App\UserUserGroup;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -99,11 +100,17 @@ class RegisterController extends Controller
             'nickname' => $data['nickname'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'group_id' => $data['group'],
+            // 'group_id' => $data['group'],
             'notification' => $notification,
            
         ]);
-        $user->assignRole('user');
+        foreach ($data['group'] as $id) {
+            UserUserGroup::create([
+                'user_id'=>$user->id,
+                'user_group_id'=>$id
+            ]);
+        }
+        $user->assignRole('guest');
 
         return $user;
     }

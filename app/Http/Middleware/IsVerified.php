@@ -23,7 +23,7 @@ class IsVerified
             
             return redirect('login')->withAlert('Please verify your email before login.');
         }
-        
+               
         return $next($request);
     }
 }

@@ -27,6 +27,10 @@ class Camera extends Model
     {
         return $this->belongsToMany('App\UserGroup', 'camera_user_group', 'camera_id', 'user_group_id');
     }
+    //    public function hunting_areas()
+    //     {
+    //         return $this->belongsToMany('App\HuntingArea', 'camera_hunting_area', 'camera_id', 'hunting_area_id');
+    //     }
     public function configset()
     {
         return $this->belongsTo('App\Configset','config_id');

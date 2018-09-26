@@ -36,6 +36,7 @@ Route::post('/store/area','SettingsController@store_area');
 
     Route::resource('/account','AccountController');
 
+    Route::get('/change_area','HomeController@change_area')->name('change_area');
 
 });
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFkUsersOnUserGroups extends Migration
+class CreateUserUserGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class AddFkUsersOnUserGroups extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            // $table->unsignedInteger('group_id')->nullable();
-            // $table->foreign('group_id')->references('id')->on('user_groups')->onDelete('cascade');
+        Schema::create('user_user_group', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id');
+            $table->integer('user_group_id');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +28,6 @@ class AddFkUsersOnUserGroups extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('user_user_group');
     }
 }
