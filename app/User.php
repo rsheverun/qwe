@@ -42,9 +42,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\UserGroup', 'user_user_group', 'user_id', 'user_group_id');
     }
-    public function hunting_areas()
-    {
-        return $this->belongsToMany('App\HuntingArea');
+    // public function hunting_areas()
+    // {
+    //     return $this->belongsToMany('App\HuntingArea');
         
-    }
+    // }
 }

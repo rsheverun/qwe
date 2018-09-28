@@ -72,9 +72,6 @@
             </div>
         </div>
         <div class="row">
-            <!-- <div class="col-12">
-                <span class="title">configset: </span>Default
-            </div> -->
             <div class="form-inline col">
             <label class="my-1 mr-2 title" for="inlineFormCustomSelectPref">configset:</label>
             <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="config_id">

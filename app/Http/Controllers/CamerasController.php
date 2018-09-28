@@ -42,16 +42,17 @@ class CamerasController extends Controller
             $user_areas->push($area->name);
            }
         }
-        $groups = HuntingArea::where('name', Session::get('area'))
+        if (Session::get('area') != null) {
+            $groups = HuntingArea::where('name', Session::get('area'))
                                 ->first()
                                 ->usergroups()
                                 ->paginate(20);
-        foreach ($groups as $group) {
-            foreach ($group->cameras as $camera) {
-                $cameras->push($camera); 
+            foreach ($groups as $group) {
+                foreach ($group->cameras as $camera) {
+                    $cameras->push($camera); 
+                }
             }
         }
-        //   dd($cameras->unique('cam'));
 
         return view('dashboard.cameras',[
             'cameras'=> $cameras->unique('cam'),
@@ -130,6 +131,10 @@ class CamerasController extends Controller
         
     }
 
+    public function show_all()
+    {
+        
+    }
     /**
      * Show the form for editing the specified resource.
      *

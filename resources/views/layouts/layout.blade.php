@@ -25,20 +25,21 @@
 <body>
 @include('layouts.nav')
     <div class="custom-container">
-    <div class="form-group col-3 pl-0">
+    <div class="form-group">
     @guest
 
     @else
-    <label for="exampleFormControlSelect1">Hunting Area</label>
-    <form action="{{route('change_area')}}">
-    <select class="form-control" id="exampleFormControlSelect1" name="area" onchange="this.form.submit()">
-      @foreach($user_areas as $area)
-        
-        <option value="{{$area}}" @if(Session::get('area') == $area) selected @endif>
-            {{$area}}
-      </option>
-      @endforeach
-    </select>
+    <form action="{{route('change_area')}}" class="col-3">
+        <select class="form-control" id="exampleFormControlSelect1" name="area" onchange="this.form.submit()">
+        @if($user_areas->count() != 0)
+            @foreach($user_areas as $area)
+                
+                <option value="{{$area}}" @if(Session::get('area') == $area) selected @endif>
+                    {{$area}}
+            </option>
+            @endforeach
+        @endif
+        </select>
     </form>
     
     @endguest

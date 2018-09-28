@@ -23,7 +23,7 @@ class UsersSeed extends Seeder
             'nickname' =>'user_1',
          ]);
  
-         $user1->assignRole('user');
+         $user1->assignRole('guest');
 
          $user2 = User::create([
             'email' => 'user2@user.com',
@@ -36,6 +36,6 @@ class UsersSeed extends Seeder
             'nickname' =>'user_2',
          ]);
  
-         $user2->assignRole('user');
+         $user2->assignRole('guest');
     }
 }

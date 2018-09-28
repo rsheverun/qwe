@@ -67,6 +67,27 @@ class HomeController extends Controller
     public function change_area(Request $request)
     {
         Session::put(['area'=> $request->area]);
+        // $groups =  HuntingArea::where('name',$request->area)->first()
+        //                         ->usergroups;
+        // $groups = auth()->user()->usergroups->whereHas('hunting_areas', function($query){
+        //     return $query->where('name',$request->area );
+        // });
+        // $groups = UserGroup::hunting_areas()->where('name',$request->area);
+
+        // if($groups->count() >1 ) {
+        //     $roles = [];
+        //     foreach ($groups as $k=>$group) {
+        //         $roles[$k] = $group->role->name;
+        //     }
+        // }  
+                        // ->whereHas('usergroups', function($query){
+                        //     return $query->where('user_id', auth()->user()->id);
+                        // })
+                        // ->get());
+    
+        
+// dd($groups);
+
         return back();
     }
 

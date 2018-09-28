@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class HuntingArea extends Model
 {
+    
     protected $fillable = [
         'name',
         'description',
@@ -13,10 +14,10 @@ class HuntingArea extends Model
         'vmap_mapviewid_id'
     ];
 
-    public function user()
-    {
-        return $this->belongsTo('App\User');
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo('App\User');
+    // }
 
     public function usergroups()
     {

@@ -38,5 +38,7 @@ Route::post('/store/area','SettingsController@store_area');
 
     Route::get('/change_area','HomeController@change_area')->name('change_area');
 
+    Route::get('/show_all', 'CamerasController@show_all')->name('show_all');
+
 });
 
