@@ -1,8 +1,16 @@
 <nav class="navbar navbar-expand-lg navbar-dark  nav_menu">
-<div class="logo">
-  	<a  href="{{route('home')}}">My Hunting Area
+<div class="logo" >
+@guest
+<span class="area_name" data-toggle="modal" data-target="#exampleModalCenter">My Hunting Area</span>
       <img src="{{asset('img/target.png')}}" alt="">  
-    </a>
+@else
+
+<form action="{{route('change_area')}}">
+    @include('layouts.change_area')
+</form>
+  	<span class="area_name" data-toggle="modal" data-target="#exampleModalCenter">{{session()->get('area')}}</span>
+      <img src="{{asset('img/target.png')}}" alt="">  
+@endguest
 </div>
   	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbar1" aria-expanded="false" aria-label="Toggle navigation">
     	<span class="navbar-toggler-icon"></span>

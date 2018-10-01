@@ -29,18 +29,7 @@
     @guest
 
     @else
-    <form action="{{route('change_area')}}" class="col-3">
-        <select class="form-control" id="exampleFormControlSelect1" name="area" onchange="this.form.submit()">
-        @if($user_areas->count() != 0)
-            @foreach($user_areas as $area)
-                
-                <option value="{{$area}}" @if(Session::get('area') == $area) selected @endif>
-                    {{$area}}
-            </option>
-            @endforeach
-        @endif
-        </select>
-    </form>
+    
     
     @endguest
   </div>

@@ -6,11 +6,12 @@
         <span class="badge-statistic">images</span>
     </div>
 </div>
-<form class="images">
+<form class="images" action="#">
 <div class="form-group row">
         <label for="staticEmail" class="title pl-3" style="width: max-content;">Camera: </label>
     <div class="col" style="max-width: max-content;">
-    <select class="filter" id="exampleFormControlSelect1" name="group" style="width: 213px;" required>
+    <select class="filter" id="exampleFormControlSelect1" name="group" style="width: 213px;" onchange="this.form.submit()"required>
+            <option value="1">select cam</option>            
             @foreach ($cameras as $camera)
             <option value="1">{{$camera->cam}}</option>
             @endforeach
@@ -18,8 +19,8 @@
     </div>
     <div class="col-lg offset-lg-1">
         <label for="staticEmail" class="title" id="date_label">date range:</label>
-        <input type="date" id="date_from" class="filter ml-lg-3 mr-3">
-        <input type="date" id="date_to" class="filter">
+        <input type="date" id="date_from" class="filter ml-lg-3 mr-3" required>
+        <input type="date" id="date_to" class="filter" required>
     </div>
 </div>
   <!-- <div class="form-group row images">

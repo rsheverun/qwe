@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Auth;
+use Session;
+use App\HuntingArea;
 use App\User;
 
 class AccountController extends Controller
@@ -15,7 +17,26 @@ class AccountController extends Controller
      */
     public function index()
     {
-        return view('dashboard.account');
+        $hunting_areas = collect();
+        $user_areas = collect();
+        foreach (Auth::user()->usergroups as $group) {
+            $hunting_areas->push($group->hunting_areas);
+        }
+        foreach ($hunting_areas as $hunting_area){
+           foreach ($hunting_area as $area) {
+            $user_areas->push($area->name);
+           }
+        }
+        if (Session::get('area') != null) {
+            $groups = HuntingArea::where('name', Session::get('area'))
+                                ->first()
+                                ->usergroups()
+                                ->paginate(20);
+            
+        }
+        return view('dashboard.account',[
+            'user_areas' => $user_areas
+        ]);
     }
 
     /**

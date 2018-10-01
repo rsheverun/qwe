@@ -124,17 +124,13 @@ class CamerasController extends Controller
         return view('dashboard.details',[
             'user_groups'=>UserGroup::all(),
             'camera'=> Camera::find($id),
+            'camimages' => Camera::find($id)->camimages->take(3),
             'configsets'=>Configset::all(),
-            'user_areas'=> $user_areas->unique()
-            
+            'user_areas'=> $user_areas->unique(),
         ]);
         
     }
 
-    public function show_all()
-    {
-        
-    }
     /**
      * Show the form for editing the specified resource.
      *
