@@ -136,7 +136,7 @@
     </div>
 </div>
 
-<div class="row pr-lg">
+<div class="row pr-lg" id="images">
 @foreach($camimages as $k=>$image)
 
     <div class="col-lg-4 col-xs-12">
@@ -148,15 +148,12 @@
         </div>
     </div>
 @endforeach
+<images-component cam="{{$camera}}" :cam="{{$camera}}"></images-component>
 </div>
     
 </div>
 
-    <div class="row text-right">
-        <div class="col-12">
-            <a href="#" id="btn_all_img" class="btn btn-outline-success button-look btn-green btn-details" >show all images</a>
-        </div>
-    </div>
+
     <div class="row text-right">
     <div class="col-12">
         <button type="submit" form="camera_edit" class="btn settings-save btn-details-save">save</button>

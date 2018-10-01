@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
      
      <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     
@@ -33,7 +33,7 @@
     
     @endguest
   </div>
-        <div class="content">
+        <div class="content" >
             @yield('content')        
         </div>
 

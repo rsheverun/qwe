@@ -132,6 +132,15 @@ class CamerasController extends Controller
     }
 
     /**
+     * Display all images of camera.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show_all($id){
+        return Camera::find($id)->camimages;
+    }
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
