@@ -4,7 +4,10 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Carbon\Carbon;
-use App\Camimages;
+use App\Camimage;
+use App\User;
+use Mail;
+use App\Mail\Notification;
 class cronEmail extends Command
 {
     /**
@@ -12,7 +15,7 @@ class cronEmail extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'notify:email';
 
     /**
      * The console command description.
@@ -39,6 +42,17 @@ class cronEmail extends Command
     public function handle()
     {
         $date = Carbon::now()->subMinutes(30);
-        Camimages::where('datum', '>', $date)->get();
+        $images = Camimage::all();
+        // $users = User::all();
+        foreach ($images as $image) {
+            foreach ($image->camera->usergroups as $k=>$group) {
+                if($k%2 == 0) continue;
+                foreach ($group->users as $user){
+                    if ($user->notification == 1) {
+                        Mail::to($user->email)->send(new Notification($user));
+                    }
+                }
+            }
+        }
     }
 }

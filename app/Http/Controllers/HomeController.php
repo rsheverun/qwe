@@ -11,6 +11,7 @@ use App\HuntingArea;
 use Spatie\Permission\Models\Role;
 use Session;
 use App;
+use Carbon\Carbon;
 class HomeController extends Controller
 {
     /**
@@ -39,58 +40,73 @@ class HomeController extends Controller
             return redirect()->route('home');
         }
     }
-
+    
+    /**
+     * Show the home page in dashboard.
+     *
+     * @return void
+     */
     public function index()
     {
-        $data = collect();
-        // $camimages = Camimage::orderBy('datum', 'asc')->get();
-        // $cameras = UserGroup::find(Auth::user()->group_id)
-        //                 ->cameras()
-        //                 ->get();
-        // dd($cameras[0]->camimages()->get());
+        $count_all_images = collect();
+        $count_day_cameras = collect();
+        $groups = auth()->user()->usergroups;
+        foreach ($groups as $group) {
+            $count_day_cameras->push($group->cameras);
+            foreach ($group->cameras as $camera) {
+                $count_all_images->push($camera->camimages);
+                if ($camera->camimages->where('datum', '<', 
+                                        Carbon::now()->subHours(24)
+                                        ->toDateTimeString())->count() != 0) {
+                    $count_day_cameras->push($camera);
+                }
+            }
+        }
+        // Cahnge area
         $hunting_areas = collect();
         $user_areas = collect();
         foreach (Auth::user()->usergroups as $group) {
             $hunting_areas->push($group->hunting_areas);
         }
-        foreach ($hunting_areas as $hunting_area){
-           foreach ($hunting_area as $area)
-            $user_areas->push($area->name);
+        foreach ($hunting_areas as $hunting_area) {
+           foreach ($hunting_area as $area) {
+               $user_areas->push($area->name);
+           }
         }
         
         return view('dashboard.index',[
-            'data'=>$data,
-            'user_areas'=>$user_areas->unique()
+            'data' => Camimage::orderBy('datum', 'desc')->get(),
+            'user_areas' => $user_areas->unique(),
+            'count_all_images' => $count_all_images->unique('id')->first()->count(),
+            'count_day_images' => $count_all_images->unique('id')
+                                                ->where('datum', '<', 
+                                                Carbon::now()->subHours(24)->toDateTimeString()
+                                                )
+                                                ->first()
+                                                ->count(),
+            'count_day_cameras' => $count_day_cameras->unique('id')
+                                                ->first()
+                                                ->count()
             ]);
     }
 
+    /**
+     * change hunting area in dashboard.
+     *
+     * @return void
+     */
     public function change_area(Request $request)
     {
         Session::put(['area'=> $request->area]);
-        // $groups =  HuntingArea::where('name',$request->area)->first()
-        //                         ->usergroups;
-        // $groups = auth()->user()->usergroups->whereHas('hunting_areas', function($query){
-        //     return $query->where('name',$request->area );
-        // });
-        // $groups = UserGroup::hunting_areas()->where('name',$request->area);
-
-        // if($groups->count() >1 ) {
-        //     $roles = [];
-        //     foreach ($groups as $k=>$group) {
-        //         $roles[$k] = $group->role->name;
-        //     }
-        // }  
-                        // ->whereHas('usergroups', function($query){
-                        //     return $query->where('user_id', auth()->user()->id);
-                        // })
-                        // ->get());
-    
-        
-// dd($groups);
 
         return back();
     }
 
+    /**
+     * Show page images in dashboard.
+     *
+     * @return void
+     */
     public function images(){
         $hunting_areas = collect();
         $user_areas = collect();

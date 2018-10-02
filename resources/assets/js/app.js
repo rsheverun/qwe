@@ -18,6 +18,8 @@ Vue.use(require('vue-moment'));
 // Vue.component('chartpie-component', require('./components/ChartpieComponent.vue'));
 // Vue.component('chartline-component', require('./components/ChartlineComponent.vue'));
 Vue.component('images-component', require('./components/ImagesComponent.vue'));
+Vue.component('account-data', require('./components/AccountDataComponent.vue'));
+
 
 // var app = new Vue({
     
@@ -94,5 +96,9 @@ Vue.component('images-component', require('./components/ImagesComponent.vue'));
 
   var iamges = new Vue({
     el: '#images',
+
+});
+var account_data = new Vue({
+  el: '#account_data',
 
 });

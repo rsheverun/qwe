@@ -46,7 +46,7 @@ class CamerasController extends Controller
             $groups = HuntingArea::where('name', Session::get('area'))
                                 ->first()
                                 ->usergroups()
-                                ->paginate(20);
+                                ->get();
             foreach ($groups as $group) {
                 foreach ($group->cameras as $camera) {
                     $cameras->push($camera); 
@@ -111,6 +111,8 @@ class CamerasController extends Controller
      */
     public function show($id)
     {
+        // $img = Camimage::find(1);
+        // dd($img->camera());
         $hunting_areas = collect();
         $user_areas = collect();
         foreach (Auth::user()->usergroups as $group) {

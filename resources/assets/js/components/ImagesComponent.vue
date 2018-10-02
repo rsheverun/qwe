@@ -1,5 +1,5 @@
 <template>
-<div class="container">
+<div class="container-fluid">
     <div class="row" >
 
         <div class="col-lg-4 col-xs-12" v-for="(item, index) in data" v-if="index > 2">
