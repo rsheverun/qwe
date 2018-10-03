@@ -11239,7 +11239,7 @@ input[type="date"]:valid:before {
   display: none;
 }
 
-.users input[type="checkbox"] {
+.users-check input[type="checkbox"] {
   display: none;
 }
 
@@ -11247,7 +11247,7 @@ input[type="date"]:valid:before {
   background-color: #83ba2d;
 }
 
-.users input[type="checkbox"]:checked + label {
+.users-check input[type="checkbox"]:checked + label {
   background-color: #83ba2d;
 }
 

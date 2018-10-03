@@ -335,18 +335,12 @@
         <div class="col-lg-2 col-xs-12 p-lg-0">
             <input type="text"  class=" custom-input w-100" id="first_name"  name="first_name" value="{{old('first_name')}}" required>
         </div>
-        <div class="col-lg-7 col-xs-12 offset-lg-1">
+        <div class="col-lg-7 col-xs-12 offset-lg-1 users-check">
             <span  class="title align-self-start" style="margin-right: 15px;">usergroups:</span>
             @foreach($groups as $group)
             <input type="checkbox" name="group[]" id="{{$group->name}}_group" value="{{$group->id}}" @if($group->role->name == 'user') checked @endif >
             <label for="{{$group->name}}_group" class="setting-radio usergroup-radio mt-1">{{$group->name}}</label>
             @endforeach
-            <!-- <input type="radio" name="group"  id="admins_group">
-            <label for="admins_group" class="setting-radio usergroup-radio" style="margin-bottom: 0;">Admins</label>            
-            <input type="radio" name="group" id="guest_group">
-            <label for="guest_group" class="setting-radio usergroup-radio mt-1">HG Guest</label>
-            <input type="radio" name="group" id="main_group">
-            <label for="main_group" class="setting-radio usergroup-radio">HG Main</label> -->
         </div>
     </div>
 
@@ -364,9 +358,10 @@
         </div>
         <div class="col-lg-2 col-xs-12 p-lg-0" >
             <input type="text"  class=" custom-input w-100" id="staticEmail" name="email" value="{{old('email')}}">
-            <div class="d-flex flex-row email-notify">
-            <input type="checkbox" id="emailNotify" class="custom-check" name="notification" value="1">
-            <label for="emailNotify">eMail notification for new images?</label>
+            <div class="d-flex flex-row form-check email-notify">
+          
+            <input type="checkbox" id="emailNotify" class="form-check-input" name="notification" value="1">
+            <label class="form-check-label" for="emailNotify">eMail notification for new images?</label>
             </div>
             
 

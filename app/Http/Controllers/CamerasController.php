@@ -15,7 +15,7 @@ use App\Http\Requests\StoreCameraRequest;
 use App\Configset;
 
 use Auth;
-
+use DB;
 class CamerasController extends Controller
 {
     /**
@@ -113,6 +113,7 @@ class CamerasController extends Controller
     {
         // $img = Camimage::find(1);
         // dd($img->camera());
+        $camera =  Camera::find($id);
         $hunting_areas = collect();
         $user_areas = collect();
         foreach (Auth::user()->usergroups as $group) {
@@ -123,10 +124,14 @@ class CamerasController extends Controller
             $user_areas->push($area->name);
            }
         }
+        $model = new Camimage;
+        $model->setConnection('camportal');
+        $images = $model->where('cam', $camera->cam_email)->get();
+        
         return view('dashboard.details',[
             'user_groups'=>UserGroup::all(),
             'camera'=> Camera::find($id),
-            'camimages' => Camera::find($id)->camimages->take(3),
+            'camimages' => $images->take(3),
             'configsets'=>Configset::all(),
             'user_areas'=> $user_areas->unique(),
         ]);
@@ -140,7 +145,10 @@ class CamerasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show_all($id){
-        return Camera::find($id)->camimages;
+        $camera = Camera::find($id);
+        $model = new Camimage;
+        $model->setConnection('camportal');
+        return $model->where('cam', $camera->cam_email)->get();
     }
     /**
      * Show the form for editing the specified resource.

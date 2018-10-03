@@ -36,12 +36,12 @@
             <input type="text" class="form-control" id="longitude" placeholder="Enter longitude" name="longitude" value="{{old('longitude')}}" required>
         </div>
         <div class="form-group row">
-            <div class="col-sm-3 title">Usergroups:</div>
-            <div class="col-sm-9">
+            <div class="col-sm-4 title">Usergroups:</div>
+            <div class="col-sm-8">
             <div class="form-check form-check-inline">
             @foreach($user_groups as $k=>$group)
-                <input class="form-check-input" type="checkbox" id="{{$group->id}}" name="group_id[]" value="{{$group->id}}" @if($k==0) checked @endif>
-                <label class="form-check-label mr-3" for="{{$group->id}}">
+                <input class="form-check-input" type="checkbox" id="group_{{$group->id}}" name="group_id[]" value="{{$group->id}}" @if($k==0) checked @endif>
+                <label class="form-check-label mr-3" for="group_{{$group->id}}">
                 {{$group->name}}
                 </label>
             @endforeach

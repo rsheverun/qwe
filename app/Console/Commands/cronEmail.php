@@ -41,9 +41,8 @@ class cronEmail extends Command
      */
     public function handle()
     {
-        $date = Carbon::now()->subMinutes(30);
-        $images = Camimage::all();
-        // $users = User::all();
+        $date = Carbon::now()->subMinutes(30)->toDateTimeString();
+        $images = Camimage::where('datum','>=', $date);
         foreach ($images as $image) {
             foreach ($image->camera->usergroups as $k=>$group) {
                 if($k%2 == 0) continue;

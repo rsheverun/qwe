@@ -12,6 +12,7 @@ use Spatie\Permission\Models\Role;
 use Session;
 use App;
 use Carbon\Carbon;
+use App\Camera;
 class HomeController extends Controller
 {
     /**
@@ -48,20 +49,26 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $count_all_images = collect();
-        $count_day_cameras = collect();
-        $groups = auth()->user()->usergroups;
-        foreach ($groups as $group) {
-            $count_day_cameras->push($group->cameras);
-            foreach ($group->cameras as $camera) {
-                $count_all_images->push($camera->camimages);
-                if ($camera->camimages->where('datum', '<', 
-                                        Carbon::now()->subHours(24)
-                                        ->toDateTimeString())->count() != 0) {
-                    $count_day_cameras->push($camera);
-                }
-            }
+        $model = new Camimage;
+        $model->setConnection('camportal');
+        $user_cameras = Camera::with('usergroups')->whereHas('usergroups', function ($query) {
+                                                        $query->with('users')->whereHas('users', function ($query) {
+                                                            $query->where('user_id', auth()->user()->id);
+                                                        });
+                                                    })
+                                                    ->get();
+        $count_all_images = 0;
+        $count_day_images = 0;
+        foreach ($user_cameras as $camera) {
+            $count_all_images += $model->where('cam', $camera->cam_email)->get()->count();
         }
+        foreach ($user_cameras as $camera) {
+            $count_day_images += $model->where('cam', $camera->cam_email)
+                                        ->where('datum', '>=', Carbon::now()->subHours(24)->toDateTimeString())
+                                        ->get()
+                                        ->count();
+        }
+
         // Cahnge area
         $hunting_areas = collect();
         $user_areas = collect();
@@ -73,20 +80,14 @@ class HomeController extends Controller
                $user_areas->push($area->name);
            }
         }
-        
+
+
         return view('dashboard.index',[
             'data' => Camimage::orderBy('datum', 'desc')->get(),
             'user_areas' => $user_areas->unique(),
-            'count_all_images' => $count_all_images->unique('id')->first()->count(),
-            'count_day_images' => $count_all_images->unique('id')
-                                                ->where('datum', '<', 
-                                                Carbon::now()->subHours(24)->toDateTimeString()
-                                                )
-                                                ->first()
-                                                ->count(),
-            'count_day_cameras' => $count_day_cameras->unique('id')
-                                                ->first()
-                                                ->count()
+            'count_all_images' => $count_all_images,
+            'count_day_images' => $count_day_images,
+            'count_day_cameras' => $user_cameras->count()
             ]);
     }
 
@@ -98,7 +99,15 @@ class HomeController extends Controller
     public function change_area(Request $request)
     {
         Session::put(['area'=> $request->area]);
-
+    
+        $role = HuntingArea::where('name', $request->area)->first()->usergroups()->with('hunting_areas')->whereHas('hunting_areas', function ($query) {
+            $query->with('usergroups')->whereHas('usergroups', function ($query) {
+                $query->with('users')->whereHas('users', function ($query) {
+                    $query->where('user_id', auth()->user()->id);
+                });
+            });
+        })->get();
+        // dd($role);
         return back();
     }
 
