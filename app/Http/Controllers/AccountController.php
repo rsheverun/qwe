@@ -18,37 +18,6 @@ class AccountController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->has('filter')) {
-            $date_start = Carbon::parse($request->date_start)->addHours(23)->addMinutes(59)->toDateTimeString();
-            $date_to = Carbon::parse($request->date_to)->addHours(23)->addMinutes(59)->toDateTimeString();
-            $user_cameras = Camera::with('usergroups')
-                    ->whereHas('usergroups', function ($query) {
-                                                        $query->with('users')->whereHas('users', function ($query) {
-                                                            $query->where('user_id', auth()->user()->id);
-                                                        });
-                                                    })
-                    ->get();
-                    dump($date_start, $date_to);
-                    $data = collect();
-                    foreach($user_cameras as $camera) {
-                        $data->push($camera->camimages
-                        ->where('datum','>=', $date_start)
-                        ->where('datum', '<=', $date_to)
-                        ->groupBy(function($date) {
-                            return Carbon::parse($date->datum)->format('Y-m-d');
-                        }));
-                    }
-                $img = Camimage::where('datum','>=', $date_start);
-                
-                    // dd(
-                    //   $data->first()
-                    // );
-                    return view('dashboard.account',[
-                        'user_areas' => $user_areas,
-                        'data' => $data->first()
-                    ]);
-    }
-
         // change area
         $hunting_areas = collect();
         $user_areas = collect();
@@ -67,9 +36,47 @@ class AccountController extends Controller
                                 ->get();
             
         }
+
+        if ($request->has('filter')) {
+            $date_start = Carbon::parse($request->date_start)
+                                ->toDateTimeString();
+            $date_to = Carbon::parse($request->date_to)
+                                ->addHours(23)
+                                ->addMinutes(59)
+                                ->toDateTimeString();
+            $user_cameras = Camera::with('usergroups')
+                    ->whereHas('usergroups', function ($query) {
+                                                        $query->with('users')->whereHas('users', function ($query) {
+                                                            $query->where('user_id', auth()->user()->id);
+                                                        });
+                                                    })
+                    ->get();
+                    $data = collect();
+                    foreach($user_cameras as $camera) {
+                        $data->push($camera->camimages
+                        ->where('datum','>=', $date_start)
+                        ->where('datum', '<=', $date_to)
+                        ->groupBy(function($date) {
+                            return Carbon::parse($date->datum)->format('Y-m-d');
+                        }));
+                    }
+                // $img = Camimage::where('datum','>=', $date_start);
+                
+                    // dd(
+                    //   $data->first()
+                    // );
+                    return view('dashboard.account',[
+                        'user_areas' => $user_areas,
+                        'data' => $data->first(),
+                        'count' => 0
+                    ]);
+    }
+
+        
         return view('dashboard.account',[
             'user_areas' => $user_areas,
-            'data' => collect()
+            'data' => collect(),
+            'count' => 0
         ]);
     }
 

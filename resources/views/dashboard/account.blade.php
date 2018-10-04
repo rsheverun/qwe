@@ -44,17 +44,19 @@
                 <tbody>
                     @foreach ($data as $index=>$item)
                     <tr>
-                        <td>{{$index}}</td>
-                        <td> - {{$item->first()->cam_name}}</td>
-                        <td>56</td>
-                        <td>Lorem ipsum</td>
+                    <td>{{$index}}</td>
+                    
+                        <td>{{$item->first()->camera->cam}} - {{$item->first()->camera->cam_name}}</td>
+                        <td>{{$item->count()}} </td> 
+                        <td>lorem</td>
                     </tr>
+                    <input type="hidden" value="{{$count += $item->count()}}">
                 @endforeach
                 </tbody>
             </table>
         </div>
         <div class="row col">
-            <span class="sum pr-1">Sum per month: </span> <span class="sum number">112</span>
+            <span class="sum pr-1">Sum per month: </span> <span class="sum number">{{$count}}</span>
         </div>
     </div>
     </form>

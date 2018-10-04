@@ -34,6 +34,7 @@ class HomeController extends Controller
      */
     public function home()
     {
+        
         if (Auth::user() == null) {
             
             return view('auth.login');
@@ -49,8 +50,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $model = new Camimage;
-        $model->setConnection('camportal');
+       
         $user_cameras = Camera::with('usergroups')->whereHas('usergroups', function ($query) {
                                                         $query->with('users')->whereHas('users', function ($query) {
                                                             $query->where('user_id', auth()->user()->id);
@@ -60,10 +60,10 @@ class HomeController extends Controller
         $count_all_images = 0;
         $count_day_images = 0;
         foreach ($user_cameras as $camera) {
-            $count_all_images += $model->where('cam', $camera->cam_email)->get()->count();
+            $count_all_images += Camimage::where('cam', $camera->cam_email)->get()->count();
         }
         foreach ($user_cameras as $camera) {
-            $count_day_images += $model->where('cam', $camera->cam_email)
+            $count_day_images += Camimage::where('cam', $camera->cam_email)
                                         ->where('datum', '>=', Carbon::now()->subHours(24)->toDateTimeString())
                                         ->get()
                                         ->count();

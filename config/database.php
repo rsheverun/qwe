@@ -55,12 +55,12 @@ return [
         ],
 
         'camportal' => [
-            'driver' => 'mysql',
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
+            'driver' => 'pgsql',
+            'host' => '127.0.0.1',
+            'port' => '5432',
             'database' => 'camportal',
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'username' => 'postgres',
+            'password' => 'groom-VGKPpJ',
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
