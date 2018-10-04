@@ -36480,7 +36480,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "text-right" }, [
-                _c("span", [_vm._v(_vm._s(item.created_at))])
+                _c("span", [_vm._v(_vm._s(item.datum))])
               ])
             ])
           : _vm._e()

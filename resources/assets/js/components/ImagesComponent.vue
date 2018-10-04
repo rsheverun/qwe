@@ -7,7 +7,7 @@
                 <img v-bind:src="'http://127.0.0.1:8000' + item.bild"  class="zoom img-fluid w-100" alt="">
             </div>
             <div class="text-right">
-                <span>{{ item.created_at}}</span>
+                <span>{{item.datum}}</span>
             </div>
         </div>
     </div>

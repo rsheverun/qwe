@@ -22,7 +22,7 @@ Route::get('/show_all/{id}', 'CamerasController@show_all');
     
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('/images','HomeController@images')->name('images');
+    Route::get('/images','ImagesController@index')->name('images');
 
     Route::resource('/settings', 'SettingsController');
 

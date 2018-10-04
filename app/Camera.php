@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Camera extends Model
 {
-    protected $connection = 'mysql';
+    protected $connection = 'pgsql';
     protected $fillable = [
         'cam',
         'cam_model',
