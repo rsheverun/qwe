@@ -81,7 +81,6 @@ class HomeController extends Controller
            }
         }
 
-
         return view('dashboard.index',[
             'data' => Camimage::orderBy('datum', 'desc')->get(),
             'user_areas' => $user_areas->unique(),

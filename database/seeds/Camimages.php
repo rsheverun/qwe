@@ -12,9 +12,9 @@ class Camimages extends Seeder
      */
     public function run()
     {
-        Camimage::create([
-            'cam' => 'wildcam@jungheinrichs.de.jpg',
-            'bild'=>'/img/cam/2018-06-11 15_03_35_wildcam@jungheinrichs.de.jpg'
-        ]);
+        // Camimage::create([
+        //     'cam' => 'wildcam@jungheinrichs.de.jpg',
+        //     'bild'=>'/img/cam/2018-06-11 15_03_35_wildcam@jungheinrichs.de.jpg'
+        // ]);
     }
 }
