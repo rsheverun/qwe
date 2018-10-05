@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(GroupSeeder::class);
         $this->call(RolesSeed::class);
         $this->call(UsersSeed::class);
-        $this->call(Camimages::class);
+        // $this->call(Camimages::class);
         $this->call(Cameras::class);
         $this->call(Camera_UsergroupsSeeder::class);
         $this->call(MapInstanceSeeder::class);

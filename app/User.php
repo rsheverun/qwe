@@ -38,13 +38,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function usergroups()
+    public function userGroups()
     {
         return $this->belongsToMany('App\UserGroup', 'user_user_group', 'user_id', 'user_group_id');
     }
-    // public function hunting_areas()
-    // {
-    //     return $this->belongsToMany('App\HuntingArea');
-        
-    // }
+    
+    /**
+     * Relationship between tables users and comments.
+     *
+     * @return void
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Comment', 'user_id');
+    }
 }

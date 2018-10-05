@@ -22,7 +22,9 @@ Route::get('/show_all/{id}', 'CamerasController@show_all');
     
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('/images','ImagesController@index')->name('images');
+    Route::resource('/images','ImagesController');
+    
+    Route::post('/images/{id}/comment','ImagesController@add_comment')->name('add_comment');
 
     Route::resource('/settings', 'SettingsController');
 

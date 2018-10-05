@@ -7,7 +7,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" id="text">
+      <div class="modal-body text-left" id="text">
         ...
       </div>
       <div class="modal-footer">
@@ -29,6 +29,10 @@
         if(title == 'camera_destroy') {
             document.getElementById("title").innerHTML = "Delete camera";
             document.getElementById("text").innerHTML = "Are you sure you want to delete camera?";
+        }
+        if(title == 'image_destroy') {
+            document.getElementById("title").innerHTML = "Delete image";
+            document.getElementById("text").innerHTML = "Are you sure you want to delete image?";
         }
     }
 </script>

@@ -51,7 +51,7 @@ class HomeController extends Controller
     public function index()
     {
        
-        $user_cameras = Camera::with('usergroups')->whereHas('usergroups', function ($query) {
+        $user_cameras = Camera::with('userGroups')->whereHas('userGroups', function ($query) {
                                                         $query->with('users')->whereHas('users', function ($query) {
                                                             $query->where('user_id', auth()->user()->id);
                                                         });
@@ -72,7 +72,7 @@ class HomeController extends Controller
         // Cahnge area
         $hunting_areas = collect();
         $user_areas = collect();
-        foreach (Auth::user()->usergroups as $group) {
+        foreach (Auth::user()->userGroups as $group) {
             $hunting_areas->push($group->hunting_areas);
         }
         foreach ($hunting_areas as $hunting_area) {
@@ -99,14 +99,15 @@ class HomeController extends Controller
     {
         Session::put(['area'=> $request->area]);
     
-        $role = HuntingArea::where('name', $request->area)->first()->usergroups()->with('hunting_areas')->whereHas('hunting_areas', function ($query) {
-            $query->with('usergroups')->whereHas('usergroups', function ($query) {
+        $role = HuntingArea::where('name', $request->area)->first()->userGroups()->with('hunting_areas')->whereHas('hunting_areas', function ($query) {
+            $query->with('userGroups')->whereHas('userGroups', function ($query) {
                 $query->with('users')->whereHas('users', function ($query) {
                     $query->where('user_id', auth()->user()->id);
                 });
             });
         })->get();
         // dd($role);
+
         return back();
     }
 
@@ -119,7 +120,7 @@ class HomeController extends Controller
         $hunting_areas = collect();
         $user_areas = collect();
         $cameras = collect();
-        foreach (Auth::user()->usergroups as $group) {
+        foreach (Auth::user()->userGroups as $group) {
             $hunting_areas->push($group->hunting_areas);
         }
         foreach ($hunting_areas as $hunting_area){
@@ -129,17 +130,17 @@ class HomeController extends Controller
         
         $groups = HuntingArea::where('name', Session::get('area'))
                                 ->first()
-                                ->usergroups()
+                                ->userGroups()
                                 ->paginate(20);
         foreach ($groups as $group) {
             foreach ($group->cameras as $camera) {
                 $cameras->push($camera); 
             }
         }
+
         return view('dashboard.images', [
             'user_areas'=>$user_areas,
             'cameras'=> $cameras->unique('cam'),
-            
         ]);
     }
 }

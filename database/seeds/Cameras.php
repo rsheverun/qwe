@@ -17,10 +17,20 @@ class Cameras extends Seeder
             'cam_model' => 'BL460P',
             'cam_name' => 'Cam At Rosis house',
             'desc' => 'lorem',
-            // 'group_id' => 1,
             'latitude' => 48.186487,
             'longitude' => 11.552628,
             'cam_email' => 'wildcam@jungheinrichs.de.jpg',
+            'config_id'=> 1
+        ]);
+
+        Camera::create([
+            'cam' => 'MHA002',
+            'cam_model' => 'test 2',
+            'cam_name' => 'test cam 2',
+            'desc' => 'lorem',
+            'latitude' => 48.186487,
+            'longitude' => 11.552628,
+            'cam_email' => 'testcam2@jungheinrichs.de.jpg',
             'config_id'=> 1
         ]);
     }

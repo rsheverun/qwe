@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'postgres'),
 
     /*
     |--------------------------------------------------------------------------
@@ -68,18 +68,18 @@ return [
         //     'strict' => true,
         //     'engine' => null,
         // ],
-        'camportal' => [
-            'driver' => 'pgsql',
-            'host' => '127.0.0.1',
-            'port' => '5432',
-            'database' => 'camportal',
-            'username' => 'postgres',
-            'password' => 'groom-VGKPpJ',
-            'charset' => 'utf8',
-            'prefix' => '',
-            'schema' => 'public',
-            'sslmode' => 'prefer',
-        ],
+        // 'camportal' => [
+        //     'driver' => 'pgsql',
+        //     'host' => '127.0.0.1',
+        //     'port' => '5432',
+        //     'database' => 'camportal',
+        //     'username' => 'postgres',
+        //     'password' => 'groom-VGKPpJ',
+        //     'charset' => 'utf8',
+        //     'prefix' => '',
+        //     'schema' => 'public',
+        //     'sslmode' => 'prefer',
+        // ],
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', '127.0.0.1'),

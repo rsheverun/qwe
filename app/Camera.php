@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Camera extends Model
 {
-    protected $connection = 'pgsql';
+    // protected $connection = 'mysql';
     protected $fillable = [
         'cam',
         'cam_model',
@@ -19,19 +19,31 @@ class Camera extends Model
         'config_id'
     ];
 
-    public function camimages()
+    /**
+     * Relationship between tables cameras and camimages.
+     *
+     * @return void
+     */
+    public function camImages()
     {
         return $this->hasMany('App\Camimage', 'cam', 'cam_email');
     }
 
-    public function usergroups()
+    /**
+     * Relationship between tables cameras and usergroups.
+     *
+     * @return void
+     */
+    public function userGroups()
     {
         return $this->belongsToMany('App\UserGroup', 'camera_user_group', 'camera_id', 'user_group_id');
     }
-    //    public function hunting_areas()
-    //     {
-    //         return $this->belongsToMany('App\HuntingArea', 'camera_hunting_area', 'camera_id', 'hunting_area_id');
-    //     }
+
+    /**
+     * Relationship between tables cameras and configsets.
+     *
+     * @return void
+     */
     public function configset()
     {
         return $this->belongsTo('App\Configset','config_id');

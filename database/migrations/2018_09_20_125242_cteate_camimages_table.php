@@ -13,13 +13,18 @@ class CteateCamimagesTable extends Migration
      */
     public function up()
     {
-        // Schema::create('camimages', function (Blueprint $table) {
-        //     $table->increments('id');            
-        //     $table->string('cam');
-        //     $table->dateTime('datum')->default(\DB::raw('CURRENT_TIMESTAMP'));
-        //     $table->string('bild');
-        //     $table->timestamps();
-        // });
+        if (Schema::hasTable('camimages'))
+        {
+            //
+        }else {
+            Schema::create('camimages', function (Blueprint $table) {
+                $table->increments('id');            
+                $table->text('cam');
+                $table->text('datum')->default(\DB::raw('CURRENT_TIMESTAMP'));
+                $table->text('bild');
+            });
+        }
+       
     }
 
     /**
@@ -29,7 +34,7 @@ class CteateCamimagesTable extends Migration
      */
     public function down()
     {
-        // Schema::dropIfExists('users');
+        Schema::dropIfExists('users');
         
     }
 }

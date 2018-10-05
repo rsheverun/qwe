@@ -9,14 +9,8 @@ use Session;
 use App\Camimage;
 use App\Camera;
 use Carbon\Carbon;
-use App\Comment;
 class ImagesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         $hunting_areas = collect();
@@ -86,9 +80,8 @@ class ImagesController extends Controller
                 ->where('datum', '<=', $date_to)
                 ->paginate(20);
             } elseif ($request->camera_id != 0 && $request->has('date_start') == false && $request->has('date_to') == false) {
-                $cam_email = Camera::find($request->camera_id)->cam_email;
                 $camimages = Camimage::with('camera')
-                ->whereHas('camera', function($query) use ($cam_email){
+                ->whereHas('camera', function($query){
                     $query->where('cam_email', $cam_email)
                         ->with('userGroups')
                         ->whereHas('userGroups', function($query){
@@ -98,117 +91,15 @@ class ImagesController extends Controller
                     });
                 })
                 ->paginate(20);
-            } elseif($request->has('date_start') && $request->has('date_to') && $request->camera_id != 0) {
-                $cam_email = Camera::find($request->camera_id)->cam_email;
-                $date_start = Carbon::parse($request->date_start)
-                                ->toDateTimeString();
-                $date_to = Carbon::parse($request->date_to)
-                                    ->addHours(23)
-                                    ->addMinutes(59)
-                                    ->toDateTimeString();
-                $camimages = Camimage::with('camera')
-                    ->whereHas('camera', function($query) use ($cam_email){
-                        $query->where('cam_email', $cam_email)
-                            ->with('userGroups')
-                            ->whereHas('userGroups', function($query){
-                                $query->with('hunting_areas')->whereHas('hunting_areas', function($query){
-                                    $query->where('hunting_area_id', HuntingArea::where('name', Session::get('area'))->first()->id);
-                                });
-                        });
-                    })
-                    ->where('datum', '>=', $date_start)
-                    ->where('datum', '<=', $date_to)
-                    ->paginate(20);
             }
-        } 
+        }
         return view('dashboard.images', [
             'user_areas'=>$user_areas,
             'cameras'=> $user_cameras,
             'camimages' => $camimages
         ]); 
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-
-    /**
-     * Add new comment for image.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function add_comment(Request $request, $id)
-    {
-        Comment::create([
-            'user_id' => auth()->user()->id,
-            'camimage_id' => $id,
-            'text' => $request->text
-        ]);
+            
         
-        return back();
-    }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        Camimage::destroy($id);
-        return back()->withStatus('Images deleted successfully');
+        
     }
 }

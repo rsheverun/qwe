@@ -44,7 +44,7 @@ class cronEmail extends Command
         $date = Carbon::now()->subMinutes(30)->toDateTimeString();
         $images = Camimage::where('datum','>=', $date);
         foreach ($images as $image) {
-            foreach ($image->camera->usergroups as $k=>$group) {
+            foreach ($image->camera->userGroups as $k=>$group) {
                 if($k%2 == 0) continue;
                 foreach ($group->users as $user){
                     if ($user->notification == 1) {

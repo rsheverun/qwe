@@ -21,18 +21,18 @@ class AccountController extends Controller
         // change area
         $hunting_areas = collect();
         $user_areas = collect();
-        foreach (Auth::user()->usergroups as $group) {
+        foreach (Auth::user()->userGroups as $group) {
             $hunting_areas->push($group->hunting_areas);
         }
         foreach ($hunting_areas as $hunting_area){
            foreach ($hunting_area as $area) {
-            $user_areas->push($area->name);
+                $user_areas->push($area->name);
            }
         }
         if (Session::get('area') != null) {
             $groups = HuntingArea::where('name', Session::get('area'))
                                 ->first()
-                                ->usergroups()
+                                ->userGroups()
                                 ->get();
             
         }
@@ -44,8 +44,8 @@ class AccountController extends Controller
                                 ->addHours(23)
                                 ->addMinutes(59)
                                 ->toDateTimeString();
-            $user_cameras = Camera::with('usergroups')
-                    ->whereHas('usergroups', function ($query) {
+            $user_cameras = Camera::with('userGroups')
+                    ->whereHas('userGroups', function ($query) {
                                                         $query->with('users')->whereHas('users', function ($query) {
                                                             $query->where('user_id', auth()->user()->id);
                                                         });
@@ -53,25 +53,20 @@ class AccountController extends Controller
                     ->get();
                     $data = collect();
                     foreach($user_cameras as $camera) {
-                        $data->push($camera->camimages
+                        $data->push($camera->camImages
                         ->where('datum','>=', $date_start)
                         ->where('datum', '<=', $date_to)
                         ->groupBy(function($date) {
                             return Carbon::parse($date->datum)->format('Y-m-d');
                         }));
                     }
-                // $img = Camimage::where('datum','>=', $date_start);
-                
-                    // dd(
-                    //   $data->first()
-                    // );
+               
                     return view('dashboard.account',[
                         'user_areas' => $user_areas,
                         'data' => $data->first(),
                         'count' => 0
                     ]);
-    }
-
+        }
         
         return view('dashboard.account',[
             'user_areas' => $user_areas,

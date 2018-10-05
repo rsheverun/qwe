@@ -294,7 +294,7 @@
                 <td>{{$user->last_name}}</td>
                 <td>{{$user->nickname}}</td>
                 <td>
-                @foreach($user->usergroups as $group)
+                @foreach($user->userGroups as $group)
                     {{$group->name}},
                 @endforeach
                 </td>

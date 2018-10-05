@@ -46,7 +46,7 @@
     @else
         <a class="nav-link" href="{{ route('home') }}">home</a>
         <a class="nav-link" href="{{ route('cameras.index') }}">cameras</a>
-        <a class="nav-link" href="{{ route('images')}}">images</a>
+        <a class="nav-link" href="{{ route('images.index')}}">images</a>
     @endguest
     </nav>
         <div class="col-12 text-center">

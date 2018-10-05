@@ -19,7 +19,7 @@ class HuntingArea extends Model
     //     return $this->belongsTo('App\User');
     // }
 
-    public function usergroups()
+    public function userGroups()
     {
         return $this->belongsToMany('App\UserGroup');
     }

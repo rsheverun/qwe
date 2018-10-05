@@ -23,18 +23,13 @@ class CamerasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        
-
-    }
     public function index()
     {
-
+        // get hunting area
         $cameras = collect();
         $hunting_areas = collect();
         $user_areas = collect();
-        foreach (Auth::user()->usergroups as $group) {
+        foreach (Auth::user()->userGroups as $group) {
             $hunting_areas->push($group->hunting_areas);
         }
         foreach ($hunting_areas as $hunting_area){
@@ -45,7 +40,7 @@ class CamerasController extends Controller
         if (Session::get('area') != null) {
             $groups = HuntingArea::where('name', Session::get('area'))
                                 ->first()
-                                ->usergroups()
+                                ->userGroups()
                                 ->get();
             foreach ($groups as $group) {
                 foreach ($group->cameras as $camera) {
@@ -116,7 +111,7 @@ class CamerasController extends Controller
         $camera =  Camera::find($id);
         $hunting_areas = collect();
         $user_areas = collect();
-        foreach (Auth::user()->usergroups as $group) {
+        foreach (Auth::user()->userGroups as $group) {
             $hunting_areas->push($group->hunting_areas);
         }
         foreach ($hunting_areas as $hunting_area){
@@ -124,9 +119,8 @@ class CamerasController extends Controller
             $user_areas->push($area->name);
            }
         }
-        $model = new Camimage;
-        $model->setConnection('camportal');
-        $images = $model->where('cam', $camera->cam_email)->get();
+
+        $images = $camera->camImages;
         
         return view('dashboard.details',[
             'user_groups'=>UserGroup::all(),
@@ -145,10 +139,8 @@ class CamerasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show_all($id){
-        $camera = Camera::find($id);
-        $model = new Camimage;
-        $model->setConnection('camportal');
-        return $model->where('cam', $camera->cam_email)->get();
+       
+        return Camera::find($id)->camimages;
     }
     /**
      * Show the form for editing the specified resource.

@@ -27,7 +27,7 @@ class SettingsController extends Controller
         $areas = HuntingArea::paginate(20, ['*'], 'areas');
         $hunting_areas = collect();
         $user_areas = collect();
-        foreach (Auth::user()->usergroups as $group) {
+        foreach (Auth::user()->userGroups as $group) {
             $hunting_areas->push($group->hunting_areas);
         }
         foreach ($hunting_areas as $hunting_area){
@@ -97,7 +97,6 @@ class SettingsController extends Controller
                     ]);
                 }
             } else {
-                
                 return back()->withErrors('Please select a hunting areas to which the user group belongs');
             }
             $msg = "User group created successfully";
@@ -168,8 +167,14 @@ class SettingsController extends Controller
             $msg= "User deleted successfully";
         }
 
-        return back()->withErrors($msg);
+        return back()->withStatus($msg);
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function getarea(){
         
         $data = HuntingArea::paginate(20, ['*'], 'areas');
@@ -177,6 +182,12 @@ class SettingsController extends Controller
         return $data;
     }
 
+    /**
+     * Store a newly created hunting area in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store_area(Request $request)
     {
         HuntingArea::create([
@@ -184,6 +195,13 @@ class SettingsController extends Controller
             'description'=>$request->area_desc
         ]);
     }
+
+    /**
+     * Remove the hunting area from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function deleteitem(Request $request)
     {
         $data = HuntingArea::destroy($request->id);

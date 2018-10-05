@@ -44,10 +44,10 @@
                 <td>{{$camera->cam_model}}</td>
                 <td>default</td>
                 <td>
-                    {{$camera->camimages->max('datum')}}
+                    {{$camera->camImages->max('datum')}}
                 </td>
                 <td>
-                {{$camera->camimages->count()}}
+                {{$camera->camImages->count()}}
                 </td>
                 <td class="text-right table-button">
                     <a href="{{ route('cameras.show', $camera->id) }}" class="btn btn-outline-success button-look btn-green btn-details">details</a>

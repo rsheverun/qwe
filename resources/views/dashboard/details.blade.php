@@ -122,7 +122,7 @@
             </div>
         </div>
         <div class="row no-gutters">
-        @foreach($camera->usergroups as $group)
+        @foreach($camera->userGroups as $group)
             <span class="usergroups-title">{{$group->name}}</span>
         @endforeach
         </div>

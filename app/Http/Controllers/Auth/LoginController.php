@@ -47,7 +47,7 @@ class LoginController extends Controller
         Auth::user()->save();
          $hunting_areas = collect();
         $user_areas = collect();
-        foreach (auth()->user()->usergroups as $group) {
+        foreach (auth()->user()->userGroups as $group) {
             $hunting_areas->push($group->hunting_areas);
         }
         foreach ($hunting_areas as $hunting_area){
