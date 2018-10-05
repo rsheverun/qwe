@@ -49,7 +49,7 @@ class ImagesController extends Controller
             ->get();
         if ($request->has('filter')) {
             
-            if ($request->has('date_start') && $request->has('date_to') && $request->has('camera_id') == false) {
+            if ($request->has('date_start') && $request->has('date_to') && $request->has('camera_id') == 0) {
                 $date_start = Carbon::parse($request->date_start)
                                 ->toDateTimeString();
                 $date_to = Carbon::parse($request->date_to)
@@ -67,7 +67,7 @@ class ImagesController extends Controller
                 ->where('datum', '>=', $date_start)
                 ->where('datum', '<=', $date_to)
                 ->paginate(20);
-            } elseif($request->has('date_start') && $request->has('date_to') && $request->camera_id == 0) {
+            } elseif($request->has('date_start') && $request->has('date_to') && $request->camera_id != 0) {
                 $date_start = Carbon::parse($request->date_start)
                                 ->toDateTimeString();
                 $date_to = Carbon::parse($request->date_to)
