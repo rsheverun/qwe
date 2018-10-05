@@ -68,37 +68,6 @@ class ImagesController extends Controller
                 ->where('datum', '<=', $date_to)
                 ->paginate(20);
             } elseif($request->has('date_start') && $request->has('date_to') && $request->camera_id != 0) {
-                $date_start = Carbon::parse($request->date_start)
-                                ->toDateTimeString();
-                $date_to = Carbon::parse($request->date_to)
-                                    ->addHours(23)
-                                    ->addMinutes(59)
-                                    ->toDateTimeString();
-                $camimages = Camimage::with('camera')
-                ->whereHas('camera', function($query){
-                    $query->with('userGroups')->whereHas('userGroups', function($query){
-                            $query->with('hunting_areas')->whereHas('hunting_areas', function($query){
-                                $query->where('hunting_area_id', HuntingArea::where('name', Session::get('area'))->first()->id);
-                            });
-                    });
-                })
-                ->where('datum', '>=', $date_start)
-                ->where('datum', '<=', $date_to)
-                ->paginate(20);
-            } elseif ($request->camera_id != 0 && $request->has('date_start') == false && $request->has('date_to') == false) {
-                $cam_email = Camera::find($request->camera_id)->cam_email;
-                $camimages = Camimage::with('camera')
-                ->whereHas('camera', function($query) use ($cam_email){
-                    $query->where('cam_email', $cam_email)
-                        ->with('userGroups')
-                        ->whereHas('userGroups', function($query){
-                            $query->with('hunting_areas')->whereHas('hunting_areas', function($query){
-                                $query->where('hunting_area_id', HuntingArea::where('name', Session::get('area'))->first()->id);
-                            });
-                    });
-                })
-                ->paginate(20);
-            } elseif($request->has('date_start') && $request->has('date_to') && $request->camera_id != 0) {
                 $cam_email = Camera::find($request->camera_id)->cam_email;
                 $date_start = Carbon::parse($request->date_start)
                                 ->toDateTimeString();
@@ -119,8 +88,22 @@ class ImagesController extends Controller
                     ->where('datum', '>=', $date_start)
                     ->where('datum', '<=', $date_to)
                     ->paginate(20);
+            } elseif ($request->camera_id != 0 && $request->has('date_start') == false && $request->has('date_to') == false) {
+                $cam_email = Camera::find($request->camera_id)->cam_email;
+                $camimages = Camimage::with('camera')
+                ->whereHas('camera', function($query) use ($cam_email){
+                    $query->where('cam_email', $cam_email)
+                        ->with('userGroups')
+                        ->whereHas('userGroups', function($query){
+                            $query->with('hunting_areas')->whereHas('hunting_areas', function($query){
+                                $query->where('hunting_area_id', HuntingArea::where('name', Session::get('area'))->first()->id);
+                            });
+                    });
+                })
+                ->paginate(20);
             }
-        } 
+        }
+         
         return view('dashboard.images', [
             'user_areas'=>$user_areas,
             'cameras'=> $user_cameras,
