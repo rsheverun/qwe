@@ -27,6 +27,7 @@ class CreateTableMapInstanceConfigs extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('vmap_instance_configs');
+        
     }
 }

@@ -34,7 +34,6 @@ class CteateCamimagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
         
     }
 }

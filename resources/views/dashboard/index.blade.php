@@ -32,7 +32,7 @@
             <span class="date">{{date('d.m.Y H:i:s', strtotime($item->datum))}}</span>
         </div>
         <div class="label-cam">
-            {{$item->camera->cam}} - {{$item->camera->cam_name}}
+            {{$item->camera->cam or 'empty'}} - {{$item->camera->cam_name or 'empty'}}
         </div>
     </div>
     <div class="col-6 text-right">
@@ -42,7 +42,9 @@
 <hr>
 @endforeach
 
-
+<div class="block">
+    {{$data->links('layouts.pagination')}}
+</div>
 <!-- <div class="row activity">
     <div class="col-6">
         <div class="info">

@@ -82,7 +82,7 @@ class HomeController extends Controller
         }
 
         return view('dashboard.index',[
-            'data' => Camimage::orderBy('datum', 'desc')->get(),
+            'data' => Camimage::orderBy('datum', 'desc')->paginate(20),
             'user_areas' => $user_areas->unique(),
             'count_all_images' => $count_all_images,
             'count_day_images' => $count_day_images,

@@ -32,6 +32,7 @@ class CreateConfigsets extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('configsets');
 
     }
 }

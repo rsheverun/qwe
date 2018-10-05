@@ -29,8 +29,7 @@ class CrateTableUserGroups extends Migration
      */
     public function down()
     {
-        Schema::table('user_groups', function (Blueprint $table) {
-            
-        });
+        Schema::dropIfExists('user_groups');
+
     }
 }

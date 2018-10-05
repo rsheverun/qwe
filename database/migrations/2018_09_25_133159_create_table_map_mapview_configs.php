@@ -27,6 +27,7 @@ class CreateTableMapMapviewConfigs extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('vmap_mapview_configs');
+        
     }
 }
