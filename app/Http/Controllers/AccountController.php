@@ -50,7 +50,11 @@ class AccountController extends Controller
                                                             $query->where('user_id', auth()->user()->id);
                                                         });
                                                     })
-                    ->get();
+                    ->with('camImages')->whereHas('camImages', function($query) use($date_start,$date_to){
+                        $query->where('datum', '>=', $date_start)->where('datum','<=',$date_to);
+                    })->get();
+
+                    // dd($user_cameras);
                     $data = collect();
                     foreach($user_cameras as $camera) {
                         $data->push($camera->camImages
@@ -60,12 +64,13 @@ class AccountController extends Controller
                             return Carbon::parse($date->datum)->format('Y-m-d');
                         }));
                     }
-               
                     return view('dashboard.account',[
                         'user_areas' => $user_areas,
-                        'data' => $data->first(),
-                        'count' => 0
+                        'data' => $data,
+                        'count' => 0,
+                        'count_mb'=> 0
                     ]);
+                    
         }
         
         return view('dashboard.account',[

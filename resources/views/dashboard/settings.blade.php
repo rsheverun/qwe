@@ -45,11 +45,10 @@
 
 <div class="row block">
     <div class="col-12">
-        <span class="badge-statistic">hunting areas</span>
+        <span class="badge-statistic" id="areas">hunting areas</span>
     </div>
 </div>
-<div id="app">
-    <div class="table-responsive">
+<div class="table-responsive">
     <table class="huntingarea-table">
         <thead>
             <tr>
@@ -86,7 +85,7 @@
 </div>
 
 <div class="block">
-   {{ $areas->links('layouts.pagination')}}
+   {{ $areas->fragment('areas')->links('layouts.pagination')}}
 </div>
     <div class="hunting-areas">
     <form action="{{route('settings.store')}}" method="post">
@@ -150,7 +149,7 @@
 
 <div class="row  block">
     <div class="col-12">
-        <span class="badge-statistic">usergroups</span>
+        <span class="badge-statistic" id="usergroups">usergroups</span>
     </div>
 </div>
 
@@ -210,7 +209,7 @@
 
 <div class="block">
  {{
-        $groups->links('layouts.pagination')
+        $groups->fragment('usergroups')->links('layouts.pagination')
 }}
 </div>
 </div>
@@ -266,7 +265,7 @@
 </div>
 <div class="row block">
     <div class="col-12">
-        <span class="badge-statistic">users</span>
+        <span class="badge-statistic" id="users">users</span>
     </div>
 
 </div>
@@ -320,7 +319,7 @@
 
 <div class="block">
 {{
-    $users->links('layouts.pagination')
+    $users->fragment('users')->links('layouts.pagination')
 }}
 </div>
 <div class="users">
@@ -394,7 +393,7 @@
 
 <div class="row block">
     <div class="col-12">
-        <span class="badge-statistic">configsets</span>
+        <span class="badge-statistic" id="configsets">configsets</span>
     </div>
 </div>
 <div class="table-responsive">
@@ -433,7 +432,7 @@
 <div class="block">
     
  {{
-        $groups->links('layouts.pagination')
+        $groups->fragment('configsets')->links('layouts.pagination')
 }}
 </div>
 

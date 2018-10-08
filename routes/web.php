@@ -17,14 +17,17 @@ Route::get('/', 'HomeController@home');
 Auth::routes();
 
 Route::middleware(['auth','isVerified'])->prefix('dashboard')->group(function () {
-Route::post('/store/area','SettingsController@store_area');
-Route::get('/show_all/{id}', 'CamerasController@show_all');
+    Route::post('/store/area','SettingsController@store_area');
+    
+    Route::get('/show_all/{id}', 'CamerasController@show_all');
     
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::resource('/images','ImagesController');
     
     Route::post('/images/{id}/comment','ImagesController@add_comment')->name('add_comment');
+
+    Route::post('/image/{id}/comments','ImagesController@get_comments')->name('get_comments');
 
     Route::resource('/settings', 'SettingsController');
 

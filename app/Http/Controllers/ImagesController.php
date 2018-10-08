@@ -159,6 +159,10 @@ class ImagesController extends Controller
         
         return redirect()->to(route('images.index').'#img_'.$id);
     }
+
+    public function get_comments($id) {
+        return Camera::find($id)->comments;
+    }
     /**
      * Store a newly created resource in storage.
      *

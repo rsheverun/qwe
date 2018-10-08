@@ -42,16 +42,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $index=>$item)
+                    @foreach ($data as $index=>$items)
+                    <?php $count_mb = 0?>
+                        @foreach($items as $date=>$item)
                     <tr>
-                    <td>{{$index}}</td>
-                    
+                    <td>{{$date}}</td>
                         <td>{{$item->first()->camera->cam}} - {{$item->first()->camera->cam_name}}</td>
                         <td>{{$item->count()}} </td> 
-                        <td>lorem</td>
+                        <td>
+                        @foreach($item as $i)
+                        <?php 
+                            $count_mb += File::size($i->bild)
+                        ?>
+                        @endforeach
+                        {{$count_mb/1000}}
+                        </td>
                     </tr>
                     <input type="hidden" value="{{$count += $item->count()}}">
-                @endforeach
+                        @endforeach
+                    @endforeach
                 </tbody>
             </table>
         </div>

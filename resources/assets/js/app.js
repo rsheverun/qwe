@@ -18,6 +18,7 @@ window.Vue = require('vue');
 // Vue.component('chartline-component', require('./components/ChartlineComponent.vue'));
 Vue.component('images-component', require('./components/ImagesComponent.vue'));
 Vue.component('account-data', require('./components/AccountDataComponent.vue'));
+Vue.component('comments', require('./components/CommentsComponent.vue'));
 
 
 // var app = new Vue({
@@ -101,3 +102,9 @@ var account_data = new Vue({
   el: '#account_data',
 
 });
+
+var comments = new Vue({
+  el: '#comments-data',
+
+});
+
