@@ -56,7 +56,7 @@
                             $count_mb += File::size($i->bild)
                         ?>
                         @endforeach
-                        {{$count_mb/1000}}
+                        {{$count_mb/1000000}}
                         </td>
                     </tr>
                     <input type="hidden" value="{{$count += $item->count()}}">
