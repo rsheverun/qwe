@@ -43,8 +43,9 @@
                 </thead>
                 <tbody>
                     @foreach ($data as $index=>$items)
-                    <?php $count_mb = 0?>
+                   
                         @foreach($items as $date=>$item)
+                        <?php $count_mb = 0?>
                     <tr>
                     <td>{{$date}}</td>
                         <td>{{$item->first()->camera->cam}} - {{$item->first()->camera->cam_name}}</td>
