@@ -28,6 +28,8 @@ class Notification extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.notification');
+        return $this->markdown('email.notification')->with([
+            'url'=>route('home')
+        ]);
     }
 }

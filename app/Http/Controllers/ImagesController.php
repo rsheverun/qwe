@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FilterImagesRequest;
 use Illuminate\Http\Request;
 use Auth;
 use App\HuntingArea;
@@ -17,7 +18,7 @@ class ImagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(FilterImagesRequest $request)
     {
         $hunting_areas = collect();
         $user_areas = collect();
@@ -33,12 +34,14 @@ class ImagesController extends Controller
         $camimages = Camimage::with('camera')
             ->whereHas('camera', function($query){
                 $query->with('userGroups')->whereHas('userGroups', function($query){
-                    $query->with('hunting_areas')->whereHas('hunting_areas', function($query){
+                    $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'))
+                    ->with('hunting_areas')->whereHas('hunting_areas', function($query){
                         $query->where('hunting_area_id', HuntingArea::where('name', Session::get('area'))->first()->id);
                     });
                 });
-            })->paginate(20);
-            
+            })
+            ->orderBy('datum', 'desc')
+            ->paginate(20);
            
         $user_cameras = Camera::with('userGroups')
             ->whereHas('userGroups', function ($query) {
@@ -47,9 +50,10 @@ class ImagesController extends Controller
                                                 });
                                             })
             ->get();
+            
         if ($request->has('filter')) {
             
-            if ($request->has('date_start') && $request->has('date_to') && $request->has('camera_id') == 0) {
+            if ($request->has('date_start') && $request->has('date_to') && $request->camera_id == 0) {
                 $date_start = Carbon::parse($request->date_start)
                                 ->toDateTimeString();
                 $date_to = Carbon::parse($request->date_to)
@@ -66,7 +70,22 @@ class ImagesController extends Controller
                 })
                 ->where('datum', '>=', $date_start)
                 ->where('datum', '<=', $date_to)
+                ->orderBy('datum', 'desc')
                 ->paginate(20);
+            } elseif ($request->date_start == null && $request->date_to == null) {
+                $cam_email = Camera::find($request->camera_id)->cam_email;
+                $camimages = Camimage::with('camera')
+                    ->whereHas('camera', function($query) use($cam_email){
+                        $query->where('cam_email', $cam_email)->with('userGroups')->whereHas('userGroups', function($query){
+                            $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'))
+                            ->with('hunting_areas')->whereHas('hunting_areas', function($query){
+                                $query->where('hunting_area_id', HuntingArea::where('name', Session::get('area'))->first()->id);
+                            });
+                        });
+                })
+                ->orderBy('datum', 'desc')
+                ->paginate(20);
+                
             } elseif($request->has('date_start') && $request->has('date_to') && $request->camera_id != 0) {
                 $cam_email = Camera::find($request->camera_id)->cam_email;
                 $date_start = Carbon::parse($request->date_start)
@@ -87,6 +106,7 @@ class ImagesController extends Controller
                     })
                     ->where('datum', '>=', $date_start)
                     ->where('datum', '<=', $date_to)
+                    ->orderBy('datum', 'desc')
                     ->paginate(20);
             } elseif ($request->camera_id != 0 && $request->has('date_start') == false && $request->has('date_to') == false) {
                 $cam_email = Camera::find($request->camera_id)->cam_email;
@@ -100,6 +120,7 @@ class ImagesController extends Controller
                             });
                     });
                 })
+                ->orderBy('datum', 'desc')
                 ->paginate(20);
             }
         }
@@ -136,7 +157,7 @@ class ImagesController extends Controller
             'text' => $request->text
         ]);
         
-        return back();
+        return redirect()->to(route('images.index').'#img_'.$id);
     }
     /**
      * Store a newly created resource in storage.

@@ -109,7 +109,6 @@ class RegisterController extends Controller
                 'user_group_id'=>$id
             ]);
         }
-        $user->assignRole('guest');
 
         return $user;
     }

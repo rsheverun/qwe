@@ -7,6 +7,16 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
+@endif
+@if ($errors->any())
+    <div class="alert alert-danger alert-dismissible text-center">
+            @foreach ($errors->all() as $error)
+                <div>{{ $error }}</div>    
+            @endforeach               
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 @endif  
 <div class="row">
     <div class="col-12">
@@ -26,8 +36,8 @@
         </div>
         <div class="col-lg offset-lg-1">
             <label for="staticEmail" class="title" id="date_label">date range:</label>
-            <input type="date" id="date_start" name="date_start" class="filter ml-lg-3 mr-3"  required>
-            <input type="date" id="date_to" name="date_to" class="filter"  required>
+            <input type="date" id="date_start" name="date_start" class="filter ml-lg-3 mr-3">
+            <input type="date" id="date_to" name="date_to" class="filter">
     <button type="submit" id="smbt" name="filter"  class="btn btn-outline-success button-look btn-green btn-details mr-3 ml-3 col-xs-12">Filter</button>
         
         </div>
@@ -50,7 +60,7 @@
             </thead>
             <tbody>
             @foreach($camimages as $img)
-                    <tr>
+                    <tr id="img_{{$img->id}}">
                             <td>
                             {{$img->camera->cam}} - {{$img->camera->cam_name}} <br>
                                 {{$img->datum}}
@@ -98,6 +108,7 @@
 </div>
 
 <script>
+
 $('.input').keypress(function (e) {
   if (e.which == 13) {
     $('form#add_comment').submit();

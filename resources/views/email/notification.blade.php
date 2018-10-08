@@ -1,10 +1,10 @@
 @component('mail::message')
 # Introduction
 
-The body of your message.
+You have a new photos from camera
 
-@component('mail::button', ['url' => ''])
-Button Text
+@component('mail::button', ['url' => $url ])
+Click here
 @endcomponent
 
 Thanks,<br>

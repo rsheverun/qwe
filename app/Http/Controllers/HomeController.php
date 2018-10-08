@@ -105,8 +105,11 @@ class HomeController extends Controller
                     $query->where('user_id', auth()->user()->id);
                 });
             });
-        })->get();
+        })->min('role_id');
+        // $role = auth()->user()->getRoleNames();
+        // auth()->user()->removeRole('guest');
         // dd($role);
+        auth()->user()->syncRoles(Role::find($role)->name);
 
         return back();
     }
