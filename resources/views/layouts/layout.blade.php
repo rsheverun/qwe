@@ -34,7 +34,6 @@
     @endguest
   </div>
         <div class="content" >
-        <!-- @dump(auth()->user()->getRoleNames()) -->
             @yield('content')        
         </div>
 
