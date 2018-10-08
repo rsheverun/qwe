@@ -116,9 +116,8 @@ class CamerasController extends Controller
             $user_areas->push($area->name);
            }
         }
+        $images = $camera->camImages->sortByDesc('datum');
 
-        $images = $camera->camImages;
-        
         return view('dashboard.details',[
             'user_groups'=>UserGroup::all(),
             'camera'=> Camera::find($id),
@@ -136,8 +135,8 @@ class CamerasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show_all($id){
-       
-        return Camera::find($id)->camimages;
+        $camimages = Camera::find($id)->camImages->sortByDesc('datum');
+        return $camimages;
     }
     /**
      * Show the form for editing the specified resource.

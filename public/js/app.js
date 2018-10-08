@@ -1787,6 +1787,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.text = 'hide images';
                 axios.get('../show_all/' + this.cam.id).then(function (response) {
                     _this.data = response.data;
+                    console.log(_this.data);
                 });
             } else {
                 this.text = 'show all images';

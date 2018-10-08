@@ -30,7 +30,6 @@
         },
       
         mounted() {
-           
         },
         methods: {
            update: function() {
@@ -38,6 +37,8 @@
                 this.text = 'hide images'
                 axios.get('../show_all/' + this.cam.id).then((response) => {
                     this.data = response.data
+           console.log(this.data);
+
                     
                 });
             }else{
