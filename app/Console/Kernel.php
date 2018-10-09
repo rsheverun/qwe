@@ -26,6 +26,8 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('notify:email')
                  ->everyThirtyMinutes();
+        $schedule->command('fetch:images')
+                 ->everyMinute();
     }
 
     /**

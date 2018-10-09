@@ -8,6 +8,8 @@ use App\Camimage;
 use App\UserGroup;
 use App\CameraUserGroup;
 use App\HuntingArea;
+use App\Activity;
+
 use Session;
 use App\Http\Requests\EditCameraRequest;
 use App\Http\Requests\StoreCameraRequest;
@@ -87,6 +89,11 @@ class CamerasController extends Controller
                 'user_group_id' => $id
             ]);
             }
+            Activity::create([
+                'name' => "new device",
+                'camera_id' => $cam->id,
+                'date' => $cam->created_at
+            ]);
 
             return back()->withStatus('New camera added successfully');
         } else {

@@ -48,4 +48,9 @@ class Camera extends Model
     {
         return $this->belongsTo('App\Configset','config_id');
     }
+
+    public function activity()
+    {
+        return $this->hasOne('App\Activity');
+    }
 }

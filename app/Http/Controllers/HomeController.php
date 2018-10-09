@@ -8,6 +8,7 @@ use App\User;
 use App\Camimage;
 use App\UserGroup;
 use App\HuntingArea;
+use App\Activity;
 use Spatie\Permission\Models\Role;
 use Session;
 use App;
@@ -80,9 +81,26 @@ class HomeController extends Controller
                $user_areas->push($area->name);
            }
         }
-
+        $cameras = Camera::with('userGroups')->whereHas('userGroups', function($query){
+            $query->with('users')->whereHas('users', function($query){
+                $query->where('user_id', auth()->user()->id);
+            });
+        })->get();
+        $camimages_id = [];
+        $k = 0;
+        foreach ($cameras as $camera) {
+            foreach ($camera->camImages as $image) {
+                $camimages_id[$k] = $image->id;
+                $k++; 
+            }
+        }
+        $activity = Activity::whereIn('camera_id', $cameras->pluck('id'))
+                            ->orWhereIn('image_id', $camimages_id)
+                            ->orderBy('date', 'desc')
+                            ->paginate(20);
+        
         return view('dashboard.index',[
-            'data' => Camimage::orderBy('datum', 'desc')->paginate(20),
+            'data' => $activity,
             'user_areas' => $user_areas->unique(),
             'count_all_images' => $count_all_images,
             'count_day_images' => $count_day_images,

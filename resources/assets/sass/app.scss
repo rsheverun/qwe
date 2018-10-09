@@ -71,7 +71,7 @@ footer{
     transition: transform .2s; /* Animation */
     
 }
-.zoom-absolute{
+.zoom-absolute:hover{
     position: absolute;
     z-index: 9;
     top: 0;

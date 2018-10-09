@@ -24,41 +24,46 @@
         <span class="badge-statistic">activity stream</span>
     </div>
 </div>
-@foreach ($data as $item)   
-<div class="row activity">
-    <div class="col-6">
-        <div class="info">
-            <h6 class="title">new image</h6> 
-            <span class="date">{{date('d.m.Y H:i:s', strtotime($item->datum))}}</span>
+@foreach ($data as $item) 
+@if ($item->name == 'new device')
+<div class="row activity no-image">
+    <div class="col-lg-6 col-xs-12">
+         <div class="info">
+            <h6 class="title">{{$item->name}}</h6> 
+            <span class="date">{{date('d.m.Y H:i:s', strtotime($item->date))}}</span>
         </div>
         <div class="label-cam">
             {{$item->camera->cam or 'empty'}} - {{$item->camera->cam_name or 'empty'}}
         </div>
     </div>
-    <div class="col-6 text-right">
-        <img src="{{asset($item->bild)}}" class="zoom img-fluid" alt="">
+        <div class="col-6 text-right">
+            <a href="{{ route('cameras.show', $item->camera_id) }}" class="btn btn-outline-success button-look btn-green">look more</a>
     </div>
 </div>
 <hr>
+@elseif ($item->name == 'new image')  
+<div class="row activity">
+    <div class="col-6">
+        <div class="info">
+            <h6 class="title">{{$item->name}}</h6> 
+            <span class="date">{{date('d.m.Y H:i:s', strtotime($item->date))}}</span>
+        </div>
+        <div class="label-cam">
+            {{$item->camImage->camera->cam or 'empty'}} - {{$item->camImage->camera->cam_name or 'empty'}}
+        </div>
+    </div>
+    <div class="col-6 text-right">
+        <img src="{{asset($item->camImage->bild)}}" class="zoom img-fluid" alt="">
+    </div>
+</div>
+<hr>
+@endif
 @endforeach
+
 
 <div class="block">
     {{$data->links('layouts.pagination')}}
 </div>
-<!-- <div class="row activity">
-    <div class="col-6">
-        <div class="info">
-            <h6 class="title">new image</h6> 
-            <span class="date">10.08.2018 18:44:11</span>
-        </div>
-        <div class="label-cam">
-            mhA001 - Cam at Rosis house
-        </div>
-        <button type="button" class="btn btn-outline-success button-look button-img btn-green">look more</button>
-    </div>
-    <div class="col-6 text-right">
-        <img src="{{asset('img/img2.png')}}" class="zoom img-fluid" alt="">
-    </div>
-</div> -->
+
 
 @endsection
