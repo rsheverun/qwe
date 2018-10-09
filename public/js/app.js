@@ -1716,27 +1716,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['cam'],
     data: function data() {
         return {
-            data: []
+            data: [],
+            text: ''
         };
     },
     mounted: function mounted() {
         this.getComments();
     },
 
+
     methods: {
         getComments: function getComments() {
-            var _this = this;
+            var _this2 = this;
 
-            axios.get('../image/' + this.cam.id + '/comments').then(function (response) {
-                _this.data = response.data;
+            axios.get('../dashboard/image/' + this.cam.id + '/comments/').then(function (response) {
+                _this2.data = response.data;
+            });
+        },
+        addComent: function addComent() {
+            var _this3 = this;
+
+            var _this = this;
+            console.log(_this.text);
+            axios.post('../dashboard/images/' + this.cam.id + '/comment/', {
+                text: _this.text
+            }).then(function (response) {
+                _this.getComments();
+                _this3.text = '';
             });
         }
-
     }
 });
 
@@ -36505,20 +36523,65 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "comment" },
+      _vm._l(_vm.data, function(item) {
+        return _c("div", [
+          _c("span", { staticClass: "name" }, [
+            _vm._v(
+              " " +
+                _vm._s(item.user.first_name) +
+                "  " +
+                _vm._s(item.user.last_name) +
+                ", " +
+                _vm._s(item.created_at)
+            )
+          ]),
+          _vm._v(" "),
+          _c("span", { staticClass: "msg" }, [_vm._v(_vm._s(item.text))])
+        ])
+      })
+    ),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.text,
+          expression: "text"
+        }
+      ],
+      staticClass: "comment-text",
+      attrs: {
+        type: "textarea",
+        placeholder: "Write a message here...",
+        name: "text"
+      },
+      domProps: { value: _vm.text },
+      on: {
+        keyup: function($event) {
+          if (
+            !("button" in $event) &&
+            _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+          ) {
+            return null
+          }
+          return _vm.addComent($event)
+        },
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.text = $event.target.value
+        }
+      }
+    })
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "comment" }, [
-      _c("span", { staticClass: "name" }, [_vm._v("as ")]),
-      _vm._v(" "),
-      _c("span", { staticClass: "msg" }, [_vm._v("asdsa")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -47624,6 +47687,7 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 __webpack_require__("./resources/assets/js/custom.js");
 
 window.Vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -47946,6 +48010,10 @@ function modal_data(id, title) {
     if (title == 'camera_destroy') {
         document.getElementById("title").innerHTML = "Delete camera";
         document.getElementById("text").innerHTML = "Are you sure you want to delete camera?";
+    }
+    if (title == 'image_destroy') {
+        document.getElementById("title").innerHTML = "Delete image";
+        document.getElementById("text").innerHTML = "Are you sure you want to delete image?";
     }
 }
 

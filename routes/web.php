@@ -27,7 +27,7 @@ Route::middleware(['auth','isVerified'])->prefix('dashboard')->group(function ()
     
     Route::post('/images/{id}/comment','ImagesController@add_comment')->name('add_comment');
 
-    Route::post('/image/{id}/comments','ImagesController@get_comments')->name('get_comments');
+    Route::get('/image/{id}/comments','ImagesController@get_comments')->name('get_comments');
 
     Route::resource('/settings', 'SettingsController');
 

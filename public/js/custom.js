@@ -81,6 +81,10 @@ function modal_data(id, title) {
         document.getElementById("title").innerHTML = "Delete camera";
         document.getElementById("text").innerHTML = "Are you sure you want to delete camera?";
     }
+    if (title == 'image_destroy') {
+        document.getElementById("title").innerHTML = "Delete image";
+        document.getElementById("text").innerHTML = "Are you sure you want to delete image?";
+    }
 }
 
 /***/ }),

@@ -151,17 +151,23 @@ class ImagesController extends Controller
      */
     public function add_comment(Request $request, $id)
     {
-        Comment::create([
+        // Comment::create([
+        //     'user_id' => auth()->user()->id,
+        //     'camimage_id' => $id,
+        //     'text' => $request->text
+        // ]);
+        
+        // return redirect()->to(route('images.index').'#img_'.$id);
+         Comment::create([
             'user_id' => auth()->user()->id,
             'camimage_id' => $id,
             'text' => $request->text
         ]);
-        
-        return redirect()->to(route('images.index').'#img_'.$id);
     }
 
     public function get_comments($id) {
-        return Camera::find($id)->comments;
+        $comments = Comment::with('user')->where('camimage_id', $id)->get();
+        return $comments;
     }
     /**
      * Store a newly created resource in storage.

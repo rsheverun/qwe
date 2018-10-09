@@ -48,7 +48,9 @@
  
 <div class="row images">
     <div class="table-responsive col-12">
-        <table class="table-images table">
+    <div id="comments-data">
+       
+    <table class="table-images table">
             <thead>
                 <tr>
                 <th scope="col" style="width: 300px;" >name</th>
@@ -59,61 +61,42 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($camimages as $img)
-                    <tr id="img_{{$img->id}}">
-                            <td>
-                            {{$img->camera->cam}} - {{$img->camera->cam_name}} <br>
-                                {{$img->datum}}
-                            </td>
-                            <td>
-                                <img src="{{trim($img->bild)}}" class="zoom " alt="">
-                            </td>
-                            <td>
-                                <div class="comment">
-                                @foreach ($img->comments as $comment)
-                                    <span class="name">
-                                        {{$comment->user->first_name}} {{$comment->user->last_name}}, {{$comment->created_at}}
-                                    </span>
-                                    <span class="msg">
-                                        {{$comment->text}}
-                                    </span>
-                                @endforeach 
-                                </div>
-                                <form id="add_comment" action="{{route('add_comment', $img->id)}}" method="post">
-                                    @csrf
-                                    <input type="textarea" class="comment-text" placeholder="Write a message here..." name="text">
-                                </form>
-                            </td>
-                            <td class="text-right table-button">
-                                <div class="button-group">
-                                <form action="{{route('images.destroy',$img->id)}}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                    <button type="button" data-toggle="modal" id="{{$img->id}}"  onclick="modal_data(this.id, 'image_destroy')" data-target="#exampleModal" class="btn btn-outline-danger button-delete" style="margin-bottom: 15px;">Delete</button>
-                                    <!-- modal -->
-                                        @include('layouts.modal')
-                                    <!-- endmodal -->
-                                </form>
-                                <button onclick="location.href='mailto:';" type="button" class="btn btn-outline-success button-look btn-green btn-forward" >forward to <br> email</button>
-                                </div>
-                            </td>
-                    </tr>
-            @endforeach   
+                    @foreach($camimages as $img)
+                            <tr id="img_{{$img->id}}">
+                                    <td>
+                                    {{$img->camera->cam}} - {{$img->camera->cam_name}} <br>
+                                        {{$img->datum}}
+                                    </td>
+                                    <td>
+                                        <img src="{{trim($img->bild)}}" class="zoom " alt="">
+                                    </td>
+                                    <td>
+                                       <comments cam="{{$img}}" :cam="{{$img}}"></comments>
+
+                                    </td>
+                                    <td class="text-right table-button">
+                                        <div class="button-group">
+                                        <form action="{{route('images.destroy',$img->id)}}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                            <button type="button" data-toggle="modal" id="{{$img->id}}"  onclick="modal_data(this.id, 'image_destroy')" data-target="#exampleModal" class="btn btn-outline-danger button-delete" style="margin-bottom: 15px;">Delete</button>
+                                            <!-- modal -->
+                                                @include('layouts.modal')
+                                            <!-- endmodal -->
+                                        </form>
+                                        <button onclick="location.href='mailto:';" type="button" class="btn btn-outline-success button-look btn-green btn-forward" >forward to <br> email</button>
+                                        </div>
+                                    </td>
+                            </tr>
+                    @endforeach
             </tbody>
         </table>
+        </div>   
     </div>
 </div>
 <div class="block">
     {{$camimages->links('layouts.pagination')}}
 </div>
 
-<script>
 
-$('.input').keypress(function (e) {
-  if (e.which == 13) {
-    $('form#add_comment').submit();
-    return false;    //<---- Add this line
-  }
-});
-</script>
 @endsection
