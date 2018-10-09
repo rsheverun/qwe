@@ -36546,7 +36546,7 @@ var render = function() {
           ? _c("div", { staticClass: "col-lg-4 col-xs-12" }, [
               _c("div", { staticClass: "text-center" }, [
                 _c("img", {
-                  staticClass: "zoom img-fluid w-100",
+                  staticClass: "zoom zoom-absolute img-fluid w-100",
                   attrs: { src: item.bild, alt: "" }
                 })
               ]),

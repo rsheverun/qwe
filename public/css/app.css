@@ -11399,46 +11399,30 @@ footer {
   /* Animation */
 }
 
+.zoom-absolute {
+  position: absolute;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
 .zoom:hover {
   -webkit-transform: scale(1.5);
           transform: scale(1.5);
-}
-
-#fb-share-button {
-  padding: 10px 14px;
-  display: block;
-  position: relative;
-  font-family: "PFDekkaProReg", sans-serif;
-  letter-spacing: normal;
-  color: #000000;
-  text-decoration: none;
-  font-size: 0.875rem;
-}
-
-#fb-share-button:hover {
-  cursor: pointer;
-}
-
-.shared {
-  padding: 10px 14px;
-  display: block;
-  position: relative;
-  font-family: "PFDekkaProReg", sans-serif;
-  letter-spacing: normal;
-  color: #000000;
-  text-decoration: none;
-  font-size: 0.875rem;
-}
-
-.shared:hover {
-  color: #000000;
-  text-decoration: none;
 }
 
 @media only screen and (max-width: 992px) {
   .nav_menu li a {
     margin: 0;
     padding: 8px;
+  }
+
+  .zoom:hover {
+    transform: unset;
+    -webkit-transform: unset;
+    position: unset;
   }
 }
 
