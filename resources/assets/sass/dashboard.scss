@@ -7,8 +7,8 @@
 .nav_menu{
     display: flex;
     align-items: center;
-    padding-left: 15%;
-    padding-right: 15%;
+    padding-left: 19%;
+    padding-right: 19%;
     background-color: #0c4206;
     
 }
@@ -40,12 +40,11 @@
 .logo a:hover{
     text-decoration:none;
 }
-.nav_menu li a{
+.nav_menu li .nav-link{
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
     font-weight: 400;
     text-transform: uppercase;
-    padding: 0;
     padding: 18px 0 18px 30px !important;
 
 }
@@ -69,7 +68,7 @@
     padding: 10px;
     background-color: #83ba2d;
 }
-.number{
+.number-statistics{
     color: #3b3b3b;
     font-family: "Roboto";
     font-size: 60px;
@@ -212,22 +211,34 @@ hr{
     padding-left: 0;
 
 }
+.comment-wrapper{
+    min-width: 230px;
 
+}
 .table-images td {
     padding: 20px 30px 20px 0;
     border-bottom: 1px solid #3b3b3b !important;
-
 }
 
 .table-images .table-button {
     vertical-align: bottom;
 }
+.table-images tbody .image-date{
+    font-style: italic;
+}
 .name{
     display: block;
     color: #282828;
-    font-family: 'Roboto';
     font-size: 14px;
     font-weight: 700;
+    padding-right: 5px;
+    float: left;
+}
+.comment-date{
+    font-family: 'Roboto';
+    font-size: 13px;
+    font-weight: 500;
+    align-self: flex-end;
 }
 .msg{
     color: #3b3b3b;
@@ -253,19 +264,25 @@ hr{
 
 .custom-dropdown{
     background-color: #0c4206;
+    border: none;
 }
 .custom-dropdown a{
     margin-left: 0;
-    padding-left: 30px;
+    padding: 10px 0 !important;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
 }
 .custom-dropdown a:hover{
     background-color: #0c4206 !important;
     color: #fff;
-
-    
+}
+.custom-dropdown>.dropdown-item{
+    padding: 10px 0;
 }
 .custom-pagination {
-    justify-content: flex-end;
     margin-bottom: 0;
     flex-wrap: wrap;
 }
@@ -311,7 +328,8 @@ hr{
 
 .images{
     margin-top: 40px; 
-    margin-bottom: 40px; 
+    margin-bottom: 40px;
+    flex-wrap: wrap; 
 }
 .images img{
     max-height: 247px;
@@ -326,6 +344,7 @@ hr{
     border: 1px solid #3b3b3b;
     align-items: baseline;
     background-color: #fff;
+    height: 26px;
 }
 .filter-date{
     width: 144px;
@@ -351,9 +370,13 @@ input[type="date"]:before {
   input[type="date"]:valid:before {
     content: "";
   }
+@media only screen and (max-width: 1034px) {
+    .nav_menu li a{
+        font-size: 15px;
+    }
+}
 @media only screen and (max-width: 760px) {
     .custom-pagination {
-        margin-top:16px;
         justify-content: center;
     }
 }

@@ -1,9 +1,9 @@
 <div class="row no-gutters">
-<div class="col-md-6 col-xs-12 ">
+
             <span class="btn btn-outline-success button-look btn-green pagination-info">20 per page</span>
-</div>
+
 @if ($paginator->hasPages())
-        <div class="col-md-6 text-right">
+        <div class="ml-auto">
           <nav aria-label="Page navigation example">
             <ul class="pagination custom-pagination">
             <li class="page-item">

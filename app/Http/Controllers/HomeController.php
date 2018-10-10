@@ -97,7 +97,7 @@ class HomeController extends Controller
         $activity = Activity::whereIn('camera_id', $cameras->pluck('id'))
                             ->orWhereIn('image_id', $camimages_id)
                             ->orderBy('date', 'desc')
-                            ->paginate(20);
+                            ->paginate(1);
         
         return view('dashboard.index',[
             'data' => $activity,

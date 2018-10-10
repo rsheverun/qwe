@@ -34,8 +34,8 @@ button, a, span{
     margin-bottom: 30px;
   }
 .custom-container{
-    padding-left: 15%;
-    padding-right: 15%;
+    padding-left: 19%;
+    padding-right: 19%;
 }
 
 .navbar-laravel {
@@ -109,16 +109,16 @@ footer{
 }
 @media only screen and (max-width: 770px) {
     .custom-container {
-        padding-left: 8%;
-        padding-right: 8%;
+        padding-left: 5%;
+        padding-right: 5%;
     }
     .nav_menu{
-        padding-left: 8%;
-        padding-right: 8%;
+        padding-left: 5%;
+        padding-right: 5%;
     }
     .footer-nav a{
-        padding-left: 8%;
-        padding-right: 8%;
+        padding-left: 5%;
+        padding-right: 5%;
     }
     
 }

@@ -2,7 +2,10 @@
 <div>
     <div class="comment" >
         <div v-for="item in data">
-            <span class="name"> {{item.user.first_name}}  {{item.user.last_name }}, {{moment(item.created_at).format('DD.MM.YYYY HH:mm:ss')}}</span>
+           <div class="w-100">
+               <span class="name"> {{item.user.first_name}}  {{item.user.last_name }}, </span>
+               <span class="comment-date"> {{moment(item.created_at).format('DD.MM.YYYY HH:mm:ss')}}</span>
+            </div> 
             <span class="msg">{{item.text}}</span>
         </div>     
     </div>

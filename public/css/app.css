@@ -10486,8 +10486,8 @@ a.text-dark:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-left: 15%;
-  padding-right: 15%;
+  padding-left: 19%;
+  padding-right: 19%;
   background-color: #0c4206;
 }
 
@@ -10524,12 +10524,11 @@ a.text-dark:focus {
   text-decoration: none;
 }
 
-.nav_menu li a {
+.nav_menu li .nav-link {
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-weight: 400;
   text-transform: uppercase;
-  padding: 0;
   padding: 18px 0 18px 30px !important;
 }
 
@@ -10557,7 +10556,7 @@ a.text-dark:focus {
   background-color: #83ba2d;
 }
 
-.number {
+.number-statistics {
   color: #3b3b3b;
   font-family: "Roboto";
   font-size: 60px;
@@ -10724,6 +10723,10 @@ hr {
   padding-left: 0;
 }
 
+.comment-wrapper {
+  min-width: 230px;
+}
+
 .table-images td {
   padding: 20px 30px 20px 0;
   border-bottom: 1px solid #3b3b3b !important;
@@ -10733,12 +10736,25 @@ hr {
   vertical-align: bottom;
 }
 
+.table-images tbody .image-date {
+  font-style: italic;
+}
+
 .name {
   display: block;
   color: #282828;
-  font-family: 'Roboto';
   font-size: 14px;
   font-weight: 700;
+  padding-right: 5px;
+  float: left;
+}
+
+.comment-date {
+  font-family: 'Roboto';
+  font-size: 13px;
+  font-weight: 500;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
 }
 
 .msg {
@@ -10766,11 +10782,17 @@ hr {
 
 .custom-dropdown {
   background-color: #0c4206;
+  border: none;
 }
 
 .custom-dropdown a {
   margin-left: 0;
-  padding-left: 30px;
+  padding: 10px 0 !important;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .custom-dropdown a:hover {
@@ -10778,10 +10800,11 @@ hr {
   color: #fff;
 }
 
+.custom-dropdown > .dropdown-item {
+  padding: 10px 0;
+}
+
 .custom-pagination {
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
   margin-bottom: 0;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
@@ -10834,6 +10857,8 @@ hr {
 .images {
   margin-top: 40px;
   margin-bottom: 40px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .images img {
@@ -10852,6 +10877,7 @@ hr {
       -ms-flex-align: baseline;
           align-items: baseline;
   background-color: #fff;
+  height: 26px;
 }
 
 .filter-date {
@@ -10884,9 +10910,14 @@ input[type="date"]:valid:before {
   content: "";
 }
 
+@media only screen and (max-width: 1034px) {
+  .nav_menu li a {
+    font-size: 15px;
+  }
+}
+
 @media only screen and (max-width: 760px) {
   .custom-pagination {
-    margin-top: 16px;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -11352,8 +11383,8 @@ span {
 }
 
 .custom-container {
-  padding-left: 15%;
-  padding-right: 15%;
+  padding-left: 19%;
+  padding-right: 19%;
 }
 
 .navbar-laravel {
@@ -11440,18 +11471,18 @@ footer {
 
 @media only screen and (max-width: 770px) {
   .custom-container {
-    padding-left: 8%;
-    padding-right: 8%;
+    padding-left: 5%;
+    padding-right: 5%;
   }
 
   .nav_menu {
-    padding-left: 8%;
-    padding-right: 8%;
+    padding-left: 5%;
+    padding-right: 5%;
   }
 
   .footer-nav a {
-    padding-left: 8%;
-    padding-right: 8%;
+    padding-left: 5%;
+    padding-right: 5%;
   }
 }
 

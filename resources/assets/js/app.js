@@ -4,8 +4,9 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-require('./bootstrap');
 require('./custom');
+
+require('./bootstrap');
 
 window.Vue = require('vue');
 import moment from 'moment'
@@ -17,8 +18,6 @@ Vue.prototype.moment = moment
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.component('chartpie-component', require('./components/ChartpieComponent.vue'));
-// Vue.component('chartline-component', require('./components/ChartlineComponent.vue'));
 Vue.component('images-component', require('./components/ImagesComponent.vue'));
 Vue.component('account-data', require('./components/AccountDataComponent.vue'));
 Vue.component('comments', require('./components/CommentsComponent.vue'));

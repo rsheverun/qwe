@@ -7,15 +7,15 @@
 </div>
 <div class="row statistics">
     <div class="col-lg-2 offset-lg-1 col-md-4  col-xs-12 text-center">
-        <h4 class="number">{{$count_all_images}}</h4>
+        <h4 class="number-statistics">{{$count_all_images}}</h4>
         <p class="text-statistics">Total number of images per camera</p>
     </div>
     <div class="col-lg-2 offset-lg-2 col-md-4 col-xs-12 text-center">
-        <h4 class="number">{{$count_day_images}}</h4>
+        <h4 class="number-statistics">{{$count_day_images}}</h4>
         <p class="text-statistics">images last 24 hour per camera</p>
     </div>
     <div class="col-lg-2 offset-lg-2 col-md-4 col-xs-12 text-center">
-        <h4 class="number">{{$count_day_cameras}}</h4>
+        <h4 class="number-statistics">{{$count_day_cameras}}</h4>
         <p class="text-statistics">number of cameras with 0 and >1 image last 24h</p>
     </div>
 </div>
@@ -53,7 +53,7 @@
         </div>
     </div>
     <div class="col-6 text-right">
-        <img src="{{asset($item->camImage->bild)}}" class="zoom img-fluid" alt="">
+        <img src="{{asset($item->camImage->bild)}}" class="zoom img-fluid" alt="{{$item->id}}">
     </div>
 </div>
 <hr>

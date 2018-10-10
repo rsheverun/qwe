@@ -1720,6 +1720,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -53282,17 +53285,25 @@ var render = function() {
       { staticClass: "comment" },
       _vm._l(_vm.data, function(item) {
         return _c("div", [
-          _c("span", { staticClass: "name" }, [
-            _vm._v(
-              " " +
-                _vm._s(item.user.first_name) +
-                "  " +
-                _vm._s(item.user.last_name) +
-                ", " +
-                _vm._s(
-                  _vm.moment(item.created_at).format("DD.MM.YYYY HH:mm:ss")
-                )
-            )
+          _c("div", { staticClass: "w-100" }, [
+            _c("span", { staticClass: "name" }, [
+              _vm._v(
+                " " +
+                  _vm._s(item.user.first_name) +
+                  "  " +
+                  _vm._s(item.user.last_name) +
+                  ", "
+              )
+            ]),
+            _vm._v(" "),
+            _c("span", { staticClass: "comment-date" }, [
+              _vm._v(
+                " " +
+                  _vm._s(
+                    _vm.moment(item.created_at).format("DD.MM.YYYY HH:mm:ss")
+                  )
+              )
+            ])
           ]),
           _vm._v(" "),
           _c("span", { staticClass: "msg" }, [_vm._v(_vm._s(item.text))])
@@ -64446,8 +64457,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-__webpack_require__("./resources/assets/js/bootstrap.js");
 __webpack_require__("./resources/assets/js/custom.js");
+
+__webpack_require__("./resources/assets/js/bootstrap.js");
 
 window.Vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 
@@ -64459,8 +64471,6 @@ Vue.prototype.moment = __WEBPACK_IMPORTED_MODULE_0_moment___default.a;
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.component('chartpie-component', require('./components/ChartpieComponent.vue'));
-// Vue.component('chartline-component', require('./components/ChartlineComponent.vue'));
 Vue.component('images-component', __webpack_require__("./resources/assets/js/components/ImagesComponent.vue"));
 Vue.component('account-data', __webpack_require__("./resources/assets/js/components/AccountDataComponent.vue"));
 Vue.component('comments', __webpack_require__("./resources/assets/js/components/CommentsComponent.vue"));
