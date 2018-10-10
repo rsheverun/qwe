@@ -7,7 +7,7 @@
                 <img v-bind:src="item.bild"  class="zoom zoom-absolute img-fluid w-100" alt="">
             </div>
             <div class="text-right">
-                <span>{{item.datum}}</span>
+                <span>{{moment(item.datum).format('DD.MM.YYYY HH:mm:ss')}}</span>
             </div>
         </div>
     </div>
@@ -36,10 +36,8 @@
             if(this.text != 'hide images'){
                 this.text = 'hide images'
                 axios.get('../show_all/' + this.cam.id).then((response) => {
-                    this.data = response.data
-           console.log(this.data);
-
-                    
+                    this.data = _.orderBy(response.data, 'datum','desc')
+                    console.log(response.data);
                 });
             }else{
                 this.text= 'show all images'

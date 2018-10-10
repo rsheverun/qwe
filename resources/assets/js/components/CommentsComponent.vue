@@ -2,7 +2,7 @@
 <div>
     <div class="comment" >
         <div v-for="item in data">
-            <span class="name"> {{item.user.first_name}}  {{item.user.last_name }}, {{item.created_at}}</span>
+            <span class="name"> {{item.user.first_name}}  {{item.user.last_name }}, {{moment(item.created_at).format('DD.MM.YYYY HH:mm:ss')}}</span>
             <span class="msg">{{item.text}}</span>
         </div>     
     </div>
