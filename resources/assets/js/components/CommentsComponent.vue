@@ -36,8 +36,7 @@
             },
             addComent: function() {
                 var _this = this;
-                console.log(_this.text);
-                axios.post('../dashboard/images/'+ this.cam.id+ '/comment/', {
+                axios.post('../dashboard/image/'+ this.cam.id+ '/comment/', {
                     text: _this.text
                 }).then((response) => {
                      _this.getComments()
