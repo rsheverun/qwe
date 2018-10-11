@@ -113,7 +113,7 @@
         </div>
         <div class="row no-gutters">
             <div class="col-12 text-right">
-                <a href="#" class="btn btn-outline-success button-look btn-green btn-details">show interactive map</a>
+                <a href="#" class="btn btn-outline-success button-look btn-green btn-details mb-3">show interactive map</a>
             </div>
         </div>
         <div class="row no-gutters">

@@ -361,6 +361,7 @@ hr{
 .btn-details-save{
     padding: 11px !important;
 }
+
 .btn-forward{
     padding: 8px 31px;
     width: 170px;
@@ -385,9 +386,17 @@ input[type="date"]:before {
         font-size: 15px;
     }
 }
+@media only screen and (max-width: 576px){
+    .images{    
+        flex-direction: column;
+    }
+}
 @media only screen and (max-width: 760px) {
     .custom-pagination {
         justify-content: center;
+    }
+    .badge-statistic {
+        font-size: 23px;
     }
 }
 @media only screen and (max-width: 610px) {

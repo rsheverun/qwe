@@ -10929,11 +10929,24 @@ input[type="date"]:valid:before {
   }
 }
 
+@media only screen and (max-width: 576px) {
+  .images {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 @media only screen and (max-width: 760px) {
   .custom-pagination {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+  }
+
+  .badge-statistic {
+    font-size: 23px;
   }
 }
 
