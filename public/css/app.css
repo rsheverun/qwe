@@ -10773,7 +10773,7 @@ hr {
 }
 
 .comment {
-  height: 195px;
+  height: 228px;
   width: 100%;
   overflow-y: auto;
 }
@@ -11464,6 +11464,7 @@ footer {
   transition: transform .2s;
   transition: transform .2s, -webkit-transform .2s;
   /* Animation */
+  max-height: 278px;
 }
 
 .zoom-absolute:hover {

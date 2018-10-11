@@ -69,6 +69,7 @@ footer{
 .zoom {
     
     transition: transform .2s; /* Animation */
+    max-height: 278px;
     
 }
 .zoom-absolute:hover{
