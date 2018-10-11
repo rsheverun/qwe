@@ -141,7 +141,7 @@
 
     <div class="col-lg-4 col-xs-12">
         <div class="text-center">
-            <img src="{{trim($image->bild)}}" class="zoom zoom-absolute img-fluid w-100" alt="">
+            <img src="{{trim($image->bild)}}" class="zoom zoom-absolute img-fluid w-100" alt="{{$image->id}}">
         </div>
         <div class="text-right">
             <span class="date">{{date('d.m.Y H:i:s', strtotime($image->datum))}}</span>            

@@ -10552,7 +10552,7 @@ a.text-dark:focus {
   font-size: 26px;
   font-weight: 700;
   text-transform: uppercase;
-  padding: 5px 10px;
+  padding: 4px 10px;
   background-color: #83ba2d;
 }
 
@@ -10929,12 +10929,9 @@ input[type="date"]:valid:before {
   }
 }
 
-@media only screen and (max-width: 576px) {
-  .images {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+@media only screen and (max-width: 376px) {
+  .btn-filter {
+    width: 100%;
   }
 }
 

@@ -35,9 +35,11 @@
     </div>
     <div class="form-group">
         <label for="staticEmail" class="title" id="date_label">date range:</label>
-        <input type="date" id="date_start" name="date_start" class="filter ml-lg-3 mr-3  mt-2 mb-2">
-        <input type="date" id="date_to" name="date_to" class="filter  mt-2 mb-2">
-        <button type="submit" id="smbt" name="filter"  class="btn btn-outline-success button-look btn-green btn-details mr-lg-3 ml-lg-3 col-xs-12">Filter</button>
+        <input placeholder="From" id="date_start" name="date_start" class="filter ml-lg-3 mr-3  mt-2 mb-2" type="text" onfocus="(this.type='date')" required>
+        <!-- <input type="date" id="date_start" name="date_start" class="filter ml-lg-3 mr-3  mt-2 mb-2"> -->
+        <input placeholder="To" id="date_to" name="date_to" class="filter ml-lg-3 mr-3  mt-2 mb-2" type="text" onfocus="(this.type='date')" required>
+        <!-- <input type="date" id="date_to" name="date_to" class="filter  mt-2 mb-2 mr-3"> -->
+        <button type="submit" id="smbt" name="filter"  class="btn btn-outline-success button-look btn-green btn-details btn-filter">Filter</button>
     </div>    
 </form>
  
