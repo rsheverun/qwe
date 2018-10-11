@@ -71,48 +71,35 @@
 </div>    
 <script>
 
-// function initMap() {
-//     var map = new google.maps.Map(document.getElementById('map'), {
-//           zoom: 5,
-//           center: {lat: {{$latitude}}, lng: {{$longitude}}}
-//         });
-
-//         // Create an array of alphabetical characters used to label the markers.
-//         var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
-//         // Add some markers to the map.
-//         // Note: The code uses the JavaScript Array.prototype.map() method to
-//         // create an array of markers based on a given "locations" array.
-//         // The map() method here has nothing to do with the Google Maps API.
-//         var markers = locations.map(function(location, i) {
-//           return new google.maps.Marker({
-//             position: location,
-//             label: labels[i % labels.length]
-//           });
-//         });
-        
-//         // Add a marker clusterer to manage the markers.
-//         var markerCluster = new MarkerClusterer(map, markers,
-//             {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-//       }
-//       var locations = [
-//         @foreach ($cameras as $camera)
-//         {lat: {{$camera->latitude}}, lng: {{$camera->longitude}}},
-//         @endforeach
-//       ]
 function initMap() {
-        var myLatLng = {lat: -25.363, lng: 131.044};
-
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: myLatLng
+    var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 5,
+          mapTypeId:google.maps.MapTypeId.SATELLITE,
+          center: {lat: {{$latitude}}, lng: {{$longitude}}}
         });
 
-        var marker = new google.maps.Marker({
-          position: myLatLng,
-          map: map,
-          title: 'Hello World!'
+        // Create an array of alphabetical characters used to label the markers.
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        // Add some markers to the map.
+        // Note: The code uses the JavaScript Array.prototype.map() method to
+        // create an array of markers based on a given "locations" array.
+        // The map() method here has nothing to do with the Google Maps API.
+        var markers = locations.map(function(location, i) {
+          return new google.maps.Marker({
+            position: location,
+            label: labels[i % labels.length]
+          });
         });
+        
+        // Add a marker clusterer to manage the markers.
+        var markerCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
       }
+      var locations = [
+        @foreach ($cameras as $camera)
+        {lat: {{$camera->latitude}}, lng: {{$camera->longitude}}},
+        @endforeach
+      ]
 </script>
 @endsection

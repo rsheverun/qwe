@@ -26,12 +26,9 @@
         <div class="form-group row">
             <div class="col-lg-7">
                 <label for="staticEmail" class="title pr-3" id="date_label">date range:</label>
-                <input placeholder="From" id="date_start" name="date_start" class="filter mr-3  mt-2 pl-1" type="text" onfocus="(this.type='date')" onchange="document.getElementById('smbt').click()" required>
-                <!-- <input type="date" id="date_start" name="date_start" class="filter" onchange="document.getElementById('smbt').click()" required> -->
-                <input placeholder="To" id="date_to" name="date_to" class="filter mt-2 pl-1" type="text" onfocus="(this.type='date')" onchange="document.getElementById('smbt').click()" required>
-                <!-- <input type="date" id="date_to" name="date_to" class="filter" onchange="document.getElementById('smbt').click()" required> -->
+                <input placeholder="From" id="date_start" name="date_start" class="filter-date mr-3  mt-2 pl-1" type="text" onfocus="(this.type='date')" onchange="document.getElementById('smbt').click()" required>
+                <input placeholder="To" id="date_to" name="date_to" class="filter-date mt-2 pl-1" type="text" onfocus="(this.type='date')" onchange="document.getElementById('smbt').click()" required>
                 <button type="submit" id="smbt" style="display: none;" name="filter"></button>
-                <!-- <input placeholder="Date" class="filter" type="text" onfocus="(this.type='date')"  id="date"> -->
             </div>
         </div>
         <div class="table-responsive">
