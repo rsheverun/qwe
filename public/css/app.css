@@ -10552,7 +10552,7 @@ a.text-dark:focus {
   font-size: 26px;
   font-weight: 700;
   text-transform: uppercase;
-  padding: 10px;
+  padding: 5px 10px;
   background-color: #83ba2d;
 }
 
@@ -10863,8 +10863,7 @@ hr {
 }
 
 .images {
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin-top: 24px;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }

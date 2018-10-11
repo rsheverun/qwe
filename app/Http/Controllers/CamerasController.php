@@ -42,8 +42,8 @@ class CamerasController extends Controller
 
         $cameras = Camera::with('userGroups')->whereHas('usergroups', function($query){
             $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'))
-            ->with('hunting_areas')->whereHas('hunting_areas', function($query){
-                $query->where('name', Session::get('area'));
+                ->with('hunting_areas')->whereHas('hunting_areas', function($query){
+                    $query->where('name', Session::get('area'));
             });
         })->get();
         return view('dashboard.cameras',[
@@ -110,8 +110,6 @@ class CamerasController extends Controller
      */
     public function show($id)
     {
-        // $img = Camimage::find(1);
-        // dd($img->camera());
         $camera =  Camera::find($id);
         $hunting_areas = collect();
         $user_areas = collect();

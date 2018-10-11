@@ -41,7 +41,7 @@
     </div>    
 </form>
  
-<div class="row images">
+<div class="row">
     <div class="table-responsive col-12">
     <div id="comments-data">
        

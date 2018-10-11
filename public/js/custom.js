@@ -69,6 +69,7 @@
 /***/ (function(module, exports) {
 
 
+
 function modal_data(id, title) {
     var a = document.getElementById("delete-btn");
     a.setAttribute("value", id);
