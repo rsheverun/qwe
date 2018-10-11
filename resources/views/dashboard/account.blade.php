@@ -25,10 +25,13 @@
     <form action="{{route('account.index')}}">
         <div class="form-group row">
             <div class="col-lg-7">
-                <label for="staticEmail" class="title" id="date_label">date range:</label>
-                <input type="date" id="date_start" name="date_start" class="filter" onchange="document.getElementById('smbt').click()" required>
-                <input type="date" id="date_to" name="date_to" class="filter" onchange="document.getElementById('smbt').click()" required>
+                <label for="staticEmail" class="title pr-3" id="date_label">date range:</label>
+                <input placeholder="From" id="date_start" name="date_start" class="filter mr-3  mt-2 pl-1" type="text" onfocus="(this.type='date')" onchange="document.getElementById('smbt').click()" required>
+                <!-- <input type="date" id="date_start" name="date_start" class="filter" onchange="document.getElementById('smbt').click()" required> -->
+                <input placeholder="To" id="date_to" name="date_to" class="filter mt-2 pl-1" type="text" onfocus="(this.type='date')" onchange="document.getElementById('smbt').click()" required>
+                <!-- <input type="date" id="date_to" name="date_to" class="filter" onchange="document.getElementById('smbt').click()" required> -->
                 <button type="submit" id="smbt" style="display: none;" name="filter"></button>
+                <!-- <input placeholder="Date" class="filter" type="text" onfocus="(this.type='date')"  id="date"> -->
             </div>
         </div>
         <div class="table-responsive">
@@ -42,26 +45,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $index=>$items)
-                   
-                        @foreach($items as $date=>$item)
-                        <?php $count_mb = 0?>
-                    <tr>
-                    <td>{{$date}}</td>
-                        <td>{{$item->first()->camera->cam}} - {{$item->first()->camera->cam_name}}</td>
-                        <td>{{$item->count()}} </td> 
-                        <td>
-                        @foreach($item as $i)
-                        <?php 
-                            $count_mb += File::size($i->bild)
-                        ?>
+                    @if($data->count()!=0)
+                        @foreach ($data as $index=>$items)
+                    
+                            @foreach($items as $date=>$item)
+                            <?php $count_mb = 0?>
+                        <tr>
+                        <td>{{$date}}</td>
+                            <td>{{$item->first()->camera->cam}} - {{$item->first()->camera->cam_name}}</td>
+                            <td>{{$item->count()}} </td> 
+                            <td>
+                            @foreach($item as $i)
+                            <?php 
+                                $count_mb += File::size($i->bild)
+                            ?>
+                            @endforeach
+                            {{number_format((float)$count_mb/1048576, 2, '.', '')}}
+                            </td>
+                        </tr>
+                        <input type="hidden" value="{{$count += $item->count()}}">
+                            @endforeach
                         @endforeach
-                        {{number_format((float)$count_mb/1048576, 2, '.', '')}}
-                        </td>
-                    </tr>
-                    <input type="hidden" value="{{$count += $item->count()}}">
-                        @endforeach
-                    @endforeach
+                    @else
+                        <td colspan="4" class="text-center">No data available in table</td>
+                    @endif
                 </tbody>
             </table>
         </div>

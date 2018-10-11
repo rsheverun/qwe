@@ -45,7 +45,7 @@
     font-size: 18px;
     font-weight: 400;
     text-transform: uppercase;
-    padding: 18px 0 18px 30px !important;
+    padding: 23px 0 23px 30px !important;
 
 }
 .nav-link{
@@ -177,6 +177,12 @@ hr{
         width: 100%;
         background-color: transparent;
     
+}
+.filter-camera {
+    padding-right: 89px;
+}
+.filter-camera select{
+    min-width: 200px;
 }
 .custom-table th {
     color: #3b3b3b;
@@ -370,6 +376,11 @@ input[type="date"]:before {
   input[type="date"]:valid:before {
     content: "";
   }
+@media only screen and (max-width:1366px){
+    .filter-camera {
+        padding-right: 14px;
+    }
+}
 @media only screen and (max-width: 1034px) {
     .nav_menu li a{
         font-size: 15px;

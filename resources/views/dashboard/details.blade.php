@@ -42,46 +42,46 @@
     <form action="{{route('cameras.update', $camera->id)}}" method="post" id="camera_edit">
         @csrf
         @method('PUT')
-        <div class="row no-gutters">
-            <div class="col-md-2 col-xs-4">
-                  <span class="title">ID:</span> <span class="">{{$camera->id}}</span>
+        <div class="row no-gutters mb-3 justify-content-between flex-nowrap camera-info">
+                    <div class="d-flex align-items-baseline">
+                  <span class="title">ID:</span> <span class="pl-1 pr-1">{{$camera->id}}</span>
             </div>
-            <div class="col-md-5 col-xs-4">
-                  <span class="title">camera:</span> <span class="">{{$camera->cam}}</span>                  
+            <div class="d-flex align-items-baseline ">
+                  <span class="title">camera:</span> <span class="pl-1 pr-1">{{$camera->cam}}</span>                  
             </div>
-            <div class="col-md-5 col-xs-4">
-                  <span class="title">name:</span> <span class="">{{$camera->cam_name}}</span>                  
+            <div class="d-flex align-items-baseline">
+                  <span class="title">name:</span> <span class="pl-1 pr-1">{{$camera->cam_name}}</span>                  
             </div>
         </div>
         <span class="title">decription:</span>
-        <textarea name="desc" id="" cols="30" rows="10" class="desc">{{$camera->desc}}</textarea>
+        <textarea name="desc mt-3 mb-3" id="" cols="30" rows="10" class="desc mt-3 mb-3">{{$camera->desc}}</textarea>
         <span class="title">position:</span>
-        <div class="row">
-            <div class="col-6 form-inline">
-                <span class="lat  col-lg col-md-12 pr-0 pl-0">latitude:</span>
-                <input type="text" class="col custom-input" name="latitude" value="{{$camera->latitude}}">
+        <div class="row mt-3">
+            <div class="d-flex pt-2">
+                <label class="lat pl-3 pr-3">Latitude:</label>
+                <input type="text" class="custom-input lat-input" name="latitude" value="{{$camera->latitude}}">
             </div>
-            <div class="col-6 form-inline">
-                <span class="lat col-lg  pl-0">Longitude:</span>
-                <input type="text" class="col custom-input" name="longitude" value="{{$camera->longitude}}">
+            <div class="d-flex pt-2">
+                <label class="lat pr-3 pl-3">Longitude:</label>
+                <input type="text" class="custom-input lat-input" name="longitude" value="{{$camera->longitude}}">
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-12">
-                <span class="title">model </span>BL460P
+                <span class="title">mode:</span> <span  class="pl-1 pr-1">BL460P</span>
             </div>
         </div>
         <div class="row">
             <div class="form-inline col">
             <label class="my-1 mr-2 title" for="inlineFormCustomSelectPref">configset:</label>
-            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="config_id">
+            <select class="filter lat-input" id="inlineFormCustomSelectPref" name="config_id">
                 @foreach($configsets as $configset)
                 <option value="{{$configset->id}}" @if($camera->config_id == $configset->id) selected @endif>{{$configset->config_name}}</option>
                 @endforeach
             </select>
             </div>
         </div>
-        <table class="table table-sm table-bordered text-center">
+        <table class="table table-sm table-bordered text-center mt-3">
             <tr>
                 <th style="width: 185px;">Key</th>
                 <td style="width: 284px;">Value</td>

@@ -244,7 +244,7 @@
         </div>
         <div class="col-lg-7 col-xs-12 areas">
 
-            <div class="form-group row">
+            <div class="form-group row pl-3">
             <span  class="title align-self-start pr-3">hunting areas:</span>
             @foreach ($areas as $area)
             <span class="col pr-1 pl-0 pr-3" style="max-width: max-content;">
@@ -360,7 +360,7 @@
             <div class="d-flex flex-row form-check email-notify">
           
             <input type="checkbox" id="emailNotify" class="form-check-input" name="notification" value="1">
-            <label class="form-check-label" for="emailNotify">eMail notification for new images?</label>
+            <label class="form-check-label pt-1" for="emailNotify">eMail notification for new images?</label>
             </div>
             
 

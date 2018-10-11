@@ -35,27 +35,30 @@
             </tr>
         </thead>
         <tbody>
-        @foreach ($cameras as $k=>$camera)
+        @if($cameras->count()!= 0)
+            @foreach ($cameras as $k=>$camera)
 
-            <tr style="@if($k+1 == $cameras->count()) border-bottom: none;@endif">
-                <td>{{$k+1}}</td>
-                <td>{{$camera->cam}}</td>
-                <td>{{$camera->cam_name}}</td>
-                <td>{{$camera->cam_model}}</td>
-                <td>default</td>
-                <td>
-                    {{$camera->camImages->max('datum')}}
-                </td>
-                <td>
-                {{$camera->camImages->count()}}
-                </td>
-                <td class="text-right table-button">
-                    <a href="{{ route('cameras.show', $camera->id) }}" class="btn btn-outline-success button-look btn-green btn-details">details</a>
-                </td>
-            </tr>
-            
-        @endforeach
-         
+                <tr style="@if($k+1 == $cameras->count()) border-bottom: none;@endif">
+                    <td>{{$k+1}}</td>
+                    <td>{{$camera->cam}}</td>
+                    <td>{{$camera->cam_name}}</td>
+                    <td>{{$camera->cam_model}}</td>
+                    <td>default</td>
+                    <td>
+                        {{$camera->camImages->max('datum')}}
+                    </td>
+                    <td>
+                    {{$camera->camImages->count()}}
+                    </td>
+                    <td class="text-right table-button">
+                        <a href="{{ route('cameras.show', $camera->id) }}" class="btn btn-outline-success button-look btn-green btn-details">details</a>
+                    </td>
+                </tr>
+                
+            @endforeach
+        @else
+            <td colspan="4" class="text-center">No data available in table</td>
+        @endif
         </tbody>
     </table>
 </div>

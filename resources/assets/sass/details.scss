@@ -9,12 +9,16 @@
     font-family: Roboto;
     font-size: 14px;
     font-weight: 700;
-    text-transform: uppercase;
+}
+.lat-input{
+    width: 112px;
+    align-items: center;
 }
 .desc{ 
     width: 100%;
     height: 125px;
     border: 1px solid #3b3b3b;
+    padding: 5px;
 }
 .latest-images img{
     margin-top: 35px;
@@ -63,6 +67,11 @@
 }
 #btn_all_img{
     margin-bottom: 20px;
+}
+@media only screen and (max-width: 1265px){
+    .camera-info{
+        flex-direction: column;
+    }
 }
 @media only screen and (max-width: 992px) {
     .btn-camera-delete{

@@ -38,12 +38,14 @@
         <div class="form-group row">
             <div class="col-sm-4 title">Usergroups:</div>
             <div class="col-sm-8">
-            <div class="form-check form-check-inline">
+            <div class="">
             @foreach($user_groups as $k=>$group)
-                <input class="form-check-input" type="checkbox" id="group_{{$group->id}}" name="group_id[]" value="{{$group->id}}" @if($k==0) checked @endif>
-                <label class="form-check-label mr-3" for="group_{{$group->id}}">
+                <input class="ml-2" type="checkbox" id="group_{{$group->id}}" name="group_id[]" value="{{$group->id}}" @if($k==0) checked @endif>
+                <label  for="group_{{$group->id}}">
                 {{$group->name}}
                 </label>
+                
+                
             @endforeach
             </div>
             <!-- <div class="form-check">

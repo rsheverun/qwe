@@ -11,6 +11,7 @@ use App\Camimage;
 use App\Camera;
 use Carbon\Carbon;
 use App\Comment;
+use App\Activity;
 class ImagesController extends Controller
 {
     /**
@@ -151,13 +152,6 @@ class ImagesController extends Controller
      */
     public function add_comment(Request $request, $id)
     {
-        // Comment::create([
-        //     'user_id' => auth()->user()->id,
-        //     'camimage_id' => $id,
-        //     'text' => $request->text
-        // ]);
-        
-        // return redirect()->to(route('images.index').'#img_'.$id);
          Comment::create([
             'user_id' => auth()->user()->id,
             'camimage_id' => $id,
@@ -223,6 +217,12 @@ class ImagesController extends Controller
     public function destroy($id)
     {
         Camimage::destroy($id);
+        try{
+            Activity::where('image_id', $id)->delete();
+        } catch(\Exception $e) {
+            
+        }
+
         return back()->withStatus('Images deleted successfully');
     }
 }

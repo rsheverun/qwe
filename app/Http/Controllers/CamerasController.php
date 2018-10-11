@@ -176,8 +176,13 @@ class CamerasController extends Controller
      */
     public function destroy(Camera $camera)
     {
-       $camera->delete();
-       
-       return redirect()->route('cameras.index')->withStatus('Camera deleted successfully');
+        try{
+            Activity::where('camera_id', $camera->id)->delete();
+        } catch(\Exception $e) {
+                
+        }
+        $camera->delete();
+
+        return redirect()->route('cameras.index')->withStatus('Camera deleted successfully');
     }
 }
