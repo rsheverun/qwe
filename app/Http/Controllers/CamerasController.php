@@ -40,17 +40,21 @@ class CamerasController extends Controller
            }
         }
 
-        $cameras = Camera::with('userGroups')->whereHas('usergroups', function($query){
-            $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'))
-                ->with('hunting_areas')->whereHas('hunting_areas', function($query){
-                    $query->where('name', Session::get('area'));
-            });
-        })->get();
+        $cameras= auth()->user()->usergroups()->whereHas('hunting_areas', function($query) {
+            $query->where('name',Session::get('area'));
+            })->with('cameras')
+            ->get()
+            ->pluck('cameras')
+            ->collapse()
+            ->unique('cam_email');
+
         return view('dashboard.cameras',[
-            'cameras'=> $cameras->unique('cam'),
+            'cameras'=> $cameras,
             'user_areas'=>$user_areas->unique(),
             'latitude'=>$cameras->avg('latitude'),
-            'longitude'=>$cameras->avg('longitude')
+            'longitude'=>$cameras->avg('longitude'),
+            'user_groups'=>UserGroup::all(),
+            'configsets'=>Configset::all(),
             ]);
     }
 
@@ -73,16 +77,7 @@ class CamerasController extends Controller
     public function store(StoreCameraRequest $request)
     {
         if ($request->has('group_id')) {
-            $cam = Camera::create([
-                'cam' => $request->cam,
-                'cam_name' => $request->cam_name,
-                'cam_model' => $request->cam_model,
-                'latitude' => $request->latitude,
-                'longitude' => $request->longitude,
-                'desc' => $request->desc,
-                'cam_email' => $request->cam_email,
-                'config_id' => $request->config_id
-            ]);
+            $cam = Camera::create($request->except('group_id'));
             foreach ($request->group_id as $id) {
                 CameraUserGroup::create([
                 'camera_id' => $cam->id,

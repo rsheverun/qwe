@@ -34,9 +34,9 @@ class ImagesController extends Controller
         
         $camimages = Camimage::with('camera')
             ->whereHas('camera', function($query){
-                $query->with('userGroups')->whereHas('userGroups', function($query){
+                $query->whereHas('userGroups', function($query){
                     $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'))
-                    ->with('hunting_areas')->whereHas('hunting_areas', function($query){
+                    ->whereHas('hunting_areas', function($query){
                         $query->where('hunting_area_id', HuntingArea::where('name', Session::get('area'))->first()->id);
                     });
                 });
@@ -44,13 +44,13 @@ class ImagesController extends Controller
             ->orderBy('datum', 'desc')
             ->paginate(20);
            
-        $user_cameras = Camera::with('userGroups')
-            ->whereHas('userGroups', function ($query) {
-                                                $query->with('users')->whereHas('users', function ($query) {
-                                                    $query->where('user_id', auth()->user()->id);
-                                                });
-                                            })
-            ->get();
+        $user_cameras= auth()->user()->usergroups()->whereHas('hunting_areas', function($query) {
+                $query->where('name',Session::get('area'));
+                })->with('cameras')
+                ->get()
+                ->pluck('cameras')
+                ->collapse()
+                ->unique('cam_email');
             
         if ($request->has('filter')) {
             
@@ -63,9 +63,14 @@ class ImagesController extends Controller
                                     ->toDateTimeString();
                 $camimages = Camimage::with('camera')
                 ->whereHas('camera', function($query){
-                    $query->with('userGroups')->whereHas('userGroups', function($query){
-                        $query->with('hunting_areas')->whereHas('hunting_areas', function($query){
-                            $query->where('hunting_area_id', HuntingArea::where('name', Session::get('area'))->first()->id);
+                    $query->whereHas('userGroups', function($query){
+                        $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'))
+                            ->whereHas('hunting_areas', function($query){
+                                $query->where('hunting_area_id', HuntingArea::where('name', 
+                                                                                    Session::get('area'))
+                                                                                    ->first()
+                                                                                    ->id
+                                                                                );
                         });
                     });
                 })
@@ -73,14 +78,19 @@ class ImagesController extends Controller
                 ->where('datum', '<=', $date_to)
                 ->orderBy('datum', 'desc')
                 ->paginate(20);
-            } elseif ($request->date_start == null && $request->date_to == null) {
+
+            } elseif ($request->date_start == null && $request->date_to == null && $request->camera_id != 0) {
                 $cam_email = Camera::find($request->camera_id)->cam_email;
                 $camimages = Camimage::with('camera')
                     ->whereHas('camera', function($query) use($cam_email){
-                        $query->where('cam_email', $cam_email)->with('userGroups')->whereHas('userGroups', function($query){
+                        $query->where('cam_email', $cam_email)->whereHas('userGroups', function($query){
                             $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'))
                             ->with('hunting_areas')->whereHas('hunting_areas', function($query){
-                                $query->where('hunting_area_id', HuntingArea::where('name', Session::get('area'))->first()->id);
+                                $query->where('hunting_area_id', HuntingArea::where('name', 
+                                                                                    Session::get('area'))
+                                                                                    ->first()
+                                                                                    ->id
+                                                                                );
                             });
                         });
                 })
@@ -98,10 +108,14 @@ class ImagesController extends Controller
                 $camimages = Camimage::with('camera')
                     ->whereHas('camera', function($query) use ($cam_email){
                         $query->where('cam_email', $cam_email)
-                            ->with('userGroups')
                             ->whereHas('userGroups', function($query){
-                                $query->with('hunting_areas')->whereHas('hunting_areas', function($query){
-                                    $query->where('hunting_area_id', HuntingArea::where('name', Session::get('area'))->first()->id);
+                                $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'))
+                                    ->with('hunting_areas')->whereHas('hunting_areas', function($query){
+                                        $query->where('hunting_area_id', HuntingArea::where('name', 
+                                                                                            Session::get('area'))
+                                                                                            ->first()
+                                                                                            ->id
+                                                                                        );
                                 });
                         });
                     })
@@ -109,15 +123,20 @@ class ImagesController extends Controller
                     ->where('datum', '<=', $date_to)
                     ->orderBy('datum', 'desc')
                     ->paginate(20);
+
             } elseif ($request->camera_id != 0 && $request->has('date_start') == false && $request->has('date_to') == false) {
                 $cam_email = Camera::find($request->camera_id)->cam_email;
                 $camimages = Camimage::with('camera')
                 ->whereHas('camera', function($query) use ($cam_email){
                     $query->where('cam_email', $cam_email)
-                        ->with('userGroups')
                         ->whereHas('userGroups', function($query){
-                            $query->with('hunting_areas')->whereHas('hunting_areas', function($query){
-                                $query->where('hunting_area_id', HuntingArea::where('name', Session::get('area'))->first()->id);
+                            $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'))
+                                ->with('hunting_areas')->whereHas('hunting_areas', function($query){
+                                    $query->where('hunting_area_id', HuntingArea::where('name', 
+                                                                                        Session::get('area'))
+                                                                                        ->first()
+                                                                                        ->id
+                                                                                    );
                             });
                     });
                 })
@@ -160,8 +179,7 @@ class ImagesController extends Controller
     }
 
     public function get_comments($id) {
-        $comments = Comment::with('user')->where('camimage_id', $id)->get();
-        return $comments;
+        return Comment::with('user')->where('camimage_id', $id)->get();
     }
     /**
      * Store a newly created resource in storage.

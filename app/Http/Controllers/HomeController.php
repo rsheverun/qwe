@@ -51,13 +51,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-       
-        $user_cameras = Camera::with('userGroups')->whereHas('userGroups', function ($query) {
-                                                        $query->with('users')->whereHas('users', function ($query) {
-                                                            $query->where('user_id', auth()->user()->id);
-                                                        });
-                                                    })
-                                                    ->get();
+        $user_cameras = Camera::whereHas('userGroups', function($query) {
+                $query->whereHas('users', function($query) {
+                    $query->where('user_id', auth()->user()->id);
+                })
+                ->whereHas('hunting_areas', function($query) {
+                    $query->where('name', Session::get('area'));
+                });
+        })->get();
         $count_all_images = 0;
         $count_day_images = 0;
         foreach ($user_cameras as $camera) {
@@ -81,20 +82,22 @@ class HomeController extends Controller
                $user_areas->push($area->name);
            }
         }
-        $cameras = Camera::with('userGroups')->whereHas('userGroups', function($query){
-            $query->with('users')->whereHas('users', function($query){
+
+        //activity stream
+        $cameras = Camera::whereHas('userGroups', function($query){
+            $query->whereHas('users', function($query){
                 $query->where('user_id', auth()->user()->id);
             });
         })->get();
         $camimages_id = [];
         $k = 0;
-        foreach ($cameras as $camera) {
+        foreach ($user_cameras as $camera) {
             foreach ($camera->camImages as $image) {
                 $camimages_id[$k] = $image->id;
                 $k++; 
             }
         }
-        $activity = Activity::whereIn('camera_id', $cameras->pluck('id'))
+        $activity = Activity::whereIn('camera_id', $user_cameras->pluck('id'))
                             ->orWhereIn('image_id', $camimages_id)
                             ->orderBy('date', 'desc')
                             ->paginate(20);
@@ -116,14 +119,9 @@ class HomeController extends Controller
     public function change_area(Request $request)
     {
         Session::put(['area'=> $request->area]);
-    
-        $role = HuntingArea::where('name', $request->area)->first()->userGroups()->with('hunting_areas')->whereHas('hunting_areas', function ($query) {
-            $query->with('userGroups')->whereHas('userGroups', function ($query) {
-                $query->with('users')->whereHas('users', function ($query) {
-                    $query->where('user_id', auth()->user()->id);
-                });
-            });
-        })->min('role_id');
+        $role= auth()->user()->usergroups()->whereHas('hunting_areas', function($query) use($request){
+            $query->where('name',$request->area);
+        })->with('role')->get()->pluck('role')->min('id');
         auth()->user()->syncRoles(Role::find($role)->name);
 
         return back();

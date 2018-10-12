@@ -48,30 +48,22 @@ class LoginController extends Controller
     {
         Auth::user()->last_login = Carbon::now()->toDateTimeString();
         Auth::user()->save();
-        //  $hunting_areas = collect();
-        // $user_areas = collect();
-        // foreach (auth()->user()->userGroups as $group) {
-        //     $hunting_areas->push($group->hunting_areas);
-        // }
-        // foreach ($hunting_areas as $hunting_area){
-        //    foreach ($hunting_area as $area) {
-        //     $user_areas->push($area->name);
-        //    }
-        // }
-        // dd(auth()->user()->usergroups);
         $user_areas = HuntingArea::with('userGroups')->whereHas('userGroups', function($query){
             $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'));
                 
         })->get();
         Session::put(['area'=> $user_areas->first()->name]);
-        // dd(HuntingArea::where('name',$user_areas->first()->name)->userGroups);
-        $role = HuntingArea::where('name',$user_areas->first()->name)->first()->userGroups()->with('hunting_areas')->whereHas('hunting_areas', function ($query) {
-            $query->with('userGroups')->whereHas('userGroups', function ($query) {
-                $query->with('users')->whereHas('users', function ($query) {
-                    $query->where('user_id', auth()->user()->id);
-                });
-            });
-        })->min('role_id');
+        // $role = HuntingArea::where('name',$user_areas->first()->name)->first()->userGroups()->with('hunting_areas')->whereHas('hunting_areas', function ($query) {
+        //     $query->with('userGroups')->whereHas('userGroups', function ($query) {
+        //         $query->with('users')->whereHas('users', function ($query) {
+        //             $query->where('user_id', auth()->user()->id);
+        //         });
+        //     });
+        // })->min('role_id');
+         // })->get();
+         $role= auth()->user()->usergroups()->with('hunting_areas')->whereHas('hunting_areas', function($query) use($user_areas){
+            $query->where('name',$user_areas->first()->name);
+        })->with('role')->get()->pluck('role')->min('id');
         Auth::user()->syncRoles(Role::find($role)->name);
     }
     

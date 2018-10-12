@@ -52,12 +52,15 @@
                 <tr>
                 <th scope="col" style="width: 300px;" >name</th>
                 <th scope="col" style="width: 400px;">image</th>
-                <th scope="col" style="width: 300px;">comments</th>
+                @hasanyrole('admin|user')
+                    <th scope="col" style="width: 300px;">comments</th>
+                @endhasanyrole
                 <th scope="col" style="width: 170px;"> </th>
             
                 </tr>
             </thead>
             <tbody>
+                @if($camimages->count() != 0)
                     @foreach($camimages as $img)
                             <tr id="img_{{$img->id}}">
                                     <td>
@@ -67,25 +70,31 @@
                                     <td>
                                         <img src="{{trim($img->bild)}}" class="zoom " alt="{{$img->id}}">
                                     </td>
-                                    <td class="comment-wrapper">
-                                       <comments cam="{{$img}}" :cam="{{$img}}"></comments>
-
-                                    </td>
+                                    @hasanyrole('admin|user')
+                                        <td class="comment-wrapper">
+                                            <comments cam="{{$img}}" :cam="{{$img}}"></comments>
+                                        </td>
+                                    @endhasanyrole
                                     <td class="text-right table-button">
                                         <div class="button-group">
-                                        <form action="{{route('images.destroy',$img->id)}}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                            <button type="button" data-toggle="modal" id="{{$img->id}}"  onclick="modal_data(this.id, 'image_destroy')" data-target="#exampleModal" class="btn btn-outline-danger button-delete" style="margin-bottom: 15px;">Delete</button>
-                                            <!-- modal -->
-                                                @include('layouts.modal')
-                                            <!-- endmodal -->
-                                        </form>
-                                        <button onclick="location.href='mailto:';" type="button" class="btn btn-outline-success button-look btn-green btn-forward" >forward to <br> email</button>
+                                        @hasanyrole('admin|user')
+                                            <form action="{{route('images.destroy',$img->id)}}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                    <button type="button" data-toggle="modal" id="{{$img->id}}"  onclick="modal_data(this.id, 'image_destroy')" data-target="#exampleModal" class="btn btn-outline-danger button-delete" style="margin-bottom: 15px;">Delete</button>
+                                                    <!-- modal -->
+                                                        @include('layouts.modal')
+                                                    <!-- endmodal -->
+                                            </form>
+                                        @endhasanyrole
+                                            <button onclick="location.href='mailto:';" type="button" class="btn btn-outline-success button-look btn-green btn-forward" >forward to <br> email</button>
                                         </div>
                                     </td>
                             </tr>
                     @endforeach
+                @else
+                    <td colspan="4" class="text-center">No data available in table</td>
+                @endif
             </tbody>
         </table>
         </div>   

@@ -29,13 +29,6 @@ class AccountController extends Controller
                 $user_areas->push($area->name);
            }
         }
-        if (Session::get('area') != null) {
-            $groups = HuntingArea::where('name', Session::get('area'))
-                                ->first()
-                                ->userGroups()
-                                ->get();
-            
-        }
 
         if ($request->has('filter')) {
             $date_start = Carbon::parse($request->date_start)
@@ -44,26 +37,34 @@ class AccountController extends Controller
                                 ->addHours(23)
                                 ->addMinutes(59)
                                 ->toDateTimeString();
-            $user_cameras = Camera::with('userGroups')
-                    ->whereHas('userGroups', function ($query) {
-                                                        $query->with('users')->whereHas('users', function ($query) {
-                                                            $query->where('user_id', auth()->user()->id);
-                                                        });
-                                                    })
-                    ->with('camImages')->whereHas('camImages', function($query) use($date_start,$date_to){
-                        $query->where('datum', '>=', $date_start)->where('datum','<=',$date_to);
-                    })->get();
-
-                    // dd($user_cameras);
-                    $data = collect();
-                    foreach($user_cameras as $camera) {
-                        $data->push($camera->camImages
+            // $user_cameras = Camera::whereHas('userGroups', function ($query) {
+            //                                             $query->with('users')->whereHas('users', function ($query) {
+            //                                                 $query->where('user_id', auth()->user()->id);
+            //                                             });
+            //                                         })
+            //         ->with('camImages')->whereHas('camImages', function($query) use($date_start,$date_to){
+            //             $query->where('datum', '>=', $date_start)->where('datum','<=',$date_to);
+            //         })->get();
+            
+            $user_cameras = auth()->user()->usergroups()->whereHas('hunting_areas', function($query) {
+                $query->where('name',Session::get('area'));
+                })->with('cameras')
+                ->whereHas('hunting_areas', function($query) {
+                    $query->where('name', Session::get('area'));
+                })
+                ->get()
+                ->pluck('cameras')
+                ->collapse()
+                ->unique('cam_email');
+                $data = collect();
+                foreach($user_cameras as $camera) {
+                    $data->push($camera->camImages
                         ->where('datum','>=', $date_start)
                         ->where('datum', '<=', $date_to)
                         ->groupBy(function($date) {
                             return Carbon::parse($date->datum)->format('Y-m-d');
                         }));
-                    }
+                }
                     return view('dashboard.account',[
                         'user_areas' => $user_areas,
                         'data' => $data,

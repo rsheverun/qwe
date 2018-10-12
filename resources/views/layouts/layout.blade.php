@@ -32,7 +32,6 @@
         <div class="content" >
             @yield('content')        
         </div>
-
     </div>
     
     <footer>

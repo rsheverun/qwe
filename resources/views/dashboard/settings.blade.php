@@ -231,12 +231,6 @@
                             is {{$role->name}}?
                                 </label>
                                 <input  type="radio" value="{{$role->id}}" id="{{$role->name}}" name="role_id" class="custom-check" @if ($role->name == 'user') checked @endif>
-                            <!-- <label>
-                            <span class="label title">is {{$role->name}}?</span>
-
-                                <input type="checkbox" class="checkbox" name="checkbox-test">
-                                <span class="checkbox-custom"></span>
-                            </label> -->
                         </div>
 
                     @endforeach

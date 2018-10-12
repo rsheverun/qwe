@@ -17,6 +17,11 @@
 <div class="row">
     <div class="col-12">
         <span class="badge-statistic">cameras</span>
+        @hasanyrole('admin|user')
+            <button class=" col-xs-12 btn btn-outline-success btn-add" data-toggle="modal" data-target="#exampleModalLong">new</button>
+        @endhasanyrole
+    @include('layouts.create_cam_modal')
+
     </div>
 </div>
 <div class="row activity">
@@ -31,33 +36,40 @@
             <th scope="col">Configset</th>
             <th scope="col">Last image</th>
             <th scope="col">Total images</th>
-            <th scope="col"> </th>
+            @hasanyrole('admin|user')
+                <th scope="col"> </th>
+            @endhasanyrole
             </tr>
         </thead>
         <tbody>
         @if($cameras->count()!= 0)
             @foreach ($cameras as $k=>$camera)
+                    <tr style="@if($k+1 == $cameras->count()) border-bottom: none;@endif">
+                        <td>{{$k+1}}</td>
+                        <td>{{$camera->cam}}</td>
+                        <td>{{$camera->cam_name}}</td>
+                        <td>{{$camera->cam_model}}</td>
+                        <td>default</td>
+                        <td>
+                            {{date('d.m.Y H:i:s', strtotime($camera->camImages->max('datum')))}}
+                        </td>
+                        <td>
+                        {{$camera->camImages->count()}}
+                        </td>
+                        @hasanyrole('admin|user')
 
-                <tr style="@if($k+1 == $cameras->count()) border-bottom: none;@endif">
-                    <td>{{$k+1}}</td>
-                    <td>{{$camera->cam}}</td>
-                    <td>{{$camera->cam_name}}</td>
-                    <td>{{$camera->cam_model}}</td>
-                    <td>default</td>
-                    <td>
-                        {{$camera->camImages->max('datum')}}
-                    </td>
-                    <td>
-                    {{$camera->camImages->count()}}
-                    </td>
-                    <td class="text-right table-button">
-                        <a href="{{ route('cameras.show', $camera->id) }}" class="btn btn-outline-success button-look btn-green btn-details">details</a>
-                    </td>
-                </tr>
-                
+                        <td class="text-right table-button">
+                            <a href="{{ route('cameras.show', $camera->id) }}" 
+                                class="btn btn-outline-success button-look btn-green btn-details">
+                                details
+                            </a>
+                        </td>
+                        @endhasanyrole
+
+                    </tr>
             @endforeach
         @else
-            <td colspan="4" class="text-center">No data available in table</td>
+            <td colspan="7" class="text-center">No data available in table</td>
         @endif
         </tbody>
     </table>
@@ -98,7 +110,7 @@ function initMap() {
       }
       var locations = [
         @foreach ($cameras as $camera)
-        {lat: {{$camera->latitude}}, lng: {{$camera->longitude}}},
+                {lat: {{$camera->latitude}}, lng: {{$camera->longitude}}},
         @endforeach
       ]
 </script>
