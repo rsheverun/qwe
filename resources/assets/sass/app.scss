@@ -98,6 +98,12 @@ footer{
     }
     
 }
+@media only screen and (max-width: 946px){
+    .custom-container{
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+}
 @media only screen and (max-width: 450px) {
     .logo{
     font-size: 23px;

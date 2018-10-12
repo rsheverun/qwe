@@ -35,7 +35,7 @@ Route::middleware(['auth','isVerified'])->prefix('dashboard')->group(function ()
 
     Route::resource('/images','ImagesController')->except(['destroy']);
 
-    Route::resource('/cameras', 'CamerasController')->only(['index']);
+    Route::resource('/cameras', 'CamerasController');
 
     Route::resource('/account','AccountController');
 

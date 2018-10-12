@@ -10493,6 +10493,7 @@ a.text-dark:focus {
 
 .area_name {
   color: #ffff;
+  cursor: pointer;
 }
 
 .nav_menu a {
@@ -10694,7 +10695,7 @@ hr {
 }
 
 .filter-camera select {
-  min-width: 200px;
+  min-width: 235px;
 }
 
 .custom-table th {
@@ -10950,6 +10951,24 @@ input[type="date"]:valid:before {
 @media only screen and (max-width: 610px) {
   .button-img {
     position: unset;
+  }
+}
+
+@media only screen and (max-width: 577px) {
+  .filter-date {
+    width: 100% !important;
+  }
+
+  .btn-filter {
+    width: 100%;
+  }
+
+  .filter {
+    width: 100%;
+  }
+
+  .filter-camera {
+    padding-right: 0;
   }
 }
 
@@ -11508,6 +11527,13 @@ footer {
     transform: unset;
     -webkit-transform: unset;
     position: unset;
+  }
+}
+
+@media only screen and (max-width: 946px) {
+  .custom-container {
+    padding-left: 15%;
+    padding-right: 15%;
   }
 }
 

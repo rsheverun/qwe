@@ -14,6 +14,7 @@
 }
 .area_name{
     color: #ffff;
+    cursor: pointer;
 }
 .nav_menu a{
     color: #ffff;
@@ -182,7 +183,7 @@ hr{
     padding-right: 89px;
 }
 .filter-camera select{
-    min-width: 200px;
+    min-width: 235px;
 }
 .custom-table th {
     color: #3b3b3b;
@@ -376,6 +377,7 @@ input[type="date"]:before {
   input[type="date"]:valid:before {
     content: "";
   }
+ 
 @media only screen and (max-width:1366px){
     .filter-camera {
         padding-right: 14px;
@@ -386,6 +388,7 @@ input[type="date"]:before {
         font-size: 15px;
     }
 }
+
 @media only screen and (max-width: 376px){
  
     .btn-filter{
@@ -403,6 +406,21 @@ input[type="date"]:before {
 @media only screen and (max-width: 610px) {
     .button-img {
         position: unset;
+    }
+}
+
+@media only screen and (max-width: 577px) {
+    .filter-date{
+        width: 100% !important;
+    }
+    .btn-filter{
+        width: 100%;
+    }
+    .filter {
+        width: 100%;
+    }
+    .filter-camera{
+        padding-right: 0;
     }
 }
 @media only screen and (max-width: 481px) {

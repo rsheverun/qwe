@@ -105,26 +105,31 @@ class CamerasController extends Controller
      */
     public function show($id)
     {
-        $camera =  Camera::find($id);
-        $hunting_areas = collect();
-        $user_areas = collect();
-        foreach (Auth::user()->userGroups as $group) {
-            $hunting_areas->push($group->hunting_areas);
-        }
-        foreach ($hunting_areas as $hunting_area){
-           foreach ($hunting_area as $area) {
-            $user_areas->push($area->name);
-           }
-        }
-        $images = $camera->camImages->sortByDesc('datum');
+        if(auth()->user()->hasAnyRole('admin|user')){
 
-        return view('dashboard.details',[
-            'user_groups'=>UserGroup::all(),
-            'camera'=> Camera::find($id),
-            'camimages' => $images->take(3),
-            'configsets'=>Configset::all(),
-            'user_areas'=> $user_areas->unique(),
-        ]);
+            $camera =  Camera::find($id);
+            $hunting_areas = collect();
+            $user_areas = collect();
+            foreach (Auth::user()->userGroups as $group) {
+                $hunting_areas->push($group->hunting_areas);
+            }
+            foreach ($hunting_areas as $hunting_area){
+            foreach ($hunting_area as $area) {
+                $user_areas->push($area->name);
+            }
+            }
+            $images = $camera->camImages->sortByDesc('datum');
+
+            return view('dashboard.details',[
+                'user_groups'=>UserGroup::all(),
+                'camera'=> Camera::find($id),
+                'camimages' => $images->take(3),
+                'configsets'=>Configset::all(),
+                'user_areas'=> $user_areas->unique(),
+            ]);
+        } else {
+            return redirect()->route('home');
+        }
         
     }
 

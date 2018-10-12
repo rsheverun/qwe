@@ -36,9 +36,11 @@
             {{$item->camera->cam or 'empty'}} - {{$item->camera->cam_name or 'empty'}}
         </div>
     </div>
+    @hasanyrole('admin|user')
         <div class="col-6 text-right">
             <a href="{{ route('cameras.show', $item->camera_id) }}" class="btn btn-outline-success button-look btn-green">look more</a>
-    </div>
+        </div>
+    @endhasanyrole
 </div>
 <hr>
 @elseif ($item->name == 'new image')  
