@@ -1,5 +1,15 @@
 @extends('layouts.layout')
 @section('content')
+@if ($errors->any())
+    <div class="alert alert-danger alert-dismissible text-center">
+            @foreach ($errors->all() as $error)
+                <div>{{ $error }}</div>    
+            @endforeach               
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif  
 <div class="row block">
     <div class="col-12">
         <span class="badge-statistic">base settings</span>
@@ -27,12 +37,13 @@
             <div class="col">
                 <label for="staticEmail" class="title pr-3" id="date_label">date range:</label>
                 <input  id="date_start" name="date_start" class="filter-date mr-3  mt-2 pl-1" 
-                    type="text" onfocus="(this.type='date')" onchange="document.getElementById('smbt').click()" 
-                    value="{{ $_GET['date_start'] or 'From'}}" required>
-                <input  id="date_to" name="date_to" class="filter-date mt-2 pl-1" type="text" 
-                    onfocus="(this.type='date')" onchange="document.getElementById('smbt').click()" 
-                    value="{{ $_GET['date_to'] or 'To'}}" required>
-                <button type="submit" id="smbt" style="display: none;" name="filter"></button>
+                    type="text" onfocus="(this.type='date')"
+                    placeholder="From" required>
+                <input  id="date_to" name="date_to" class="filter-date mt-2 pl-1 mb-2 mr-3" type="text" 
+                    onfocus="(this.type='date')"
+                    placeholder="To" required>
+        <button type="submit" id="smbt" name="filter"  class="btn btn-outline-success button-look btn-green btn-details btn-filter">Filter</button>
+
             </div>
         </div>
         <div class="table-responsive">

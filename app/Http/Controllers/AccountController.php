@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\FilterImagesRequest;
 use Auth;
 use Session;
 use App\HuntingArea;
@@ -16,7 +17,7 @@ class AccountController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(FilterImagesRequest $request)
     {
         // change area
         $hunting_areas = collect();
@@ -37,15 +38,7 @@ class AccountController extends Controller
                                 ->addHours(23)
                                 ->addMinutes(59)
                                 ->toDateTimeString();
-            // $user_cameras = Camera::whereHas('userGroups', function ($query) {
-            //                                             $query->with('users')->whereHas('users', function ($query) {
-            //                                                 $query->where('user_id', auth()->user()->id);
-            //                                             });
-            //                                         })
-            //         ->with('camImages')->whereHas('camImages', function($query) use($date_start,$date_to){
-            //             $query->where('datum', '>=', $date_start)->where('datum','<=',$date_to);
-            //         })->get();
-            
+           
             $user_cameras = auth()->user()->usergroups()->whereHas('hunting_areas', function($query) {
                 $query->where('name',Session::get('area'));
                 })->with('cameras')

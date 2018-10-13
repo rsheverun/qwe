@@ -105,8 +105,16 @@ class CamerasController extends Controller
      */
     public function show($id)
     {
-        if(auth()->user()->hasAnyRole('admin|user')){
-
+        $available_cameras= auth()->user()->usergroups()->whereHas('hunting_areas', function($query) {
+            $query->where('name',Session::get('area'));
+            })->with('cameras')
+            ->get()
+            ->pluck('cameras')
+            ->collapse()
+            ->unique('cam_email')
+            ->pluck('id')
+            ->search($id, false); // return int or false
+        if(auth()->user()->hasAnyRole('admin|user') && is_int($available_cameras)){
             $camera =  Camera::find($id);
             $hunting_areas = collect();
             $user_areas = collect();
@@ -130,7 +138,6 @@ class CamerasController extends Controller
         } else {
             return redirect()->route('home');
         }
-        
     }
 
     /**

@@ -30,8 +30,8 @@ class FilterImagesRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'date_start'=>'date',
-            // 'date_to'=>'required_if:date_start,!=,null'
+            'date_start'=>'date',
+            'date_to'=>'date'
         ];
     }
 

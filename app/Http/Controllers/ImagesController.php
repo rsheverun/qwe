@@ -53,7 +53,6 @@ class ImagesController extends Controller
                 ->unique('cam_email');
             
         if ($request->has('filter')) {
-            
             if ($request->has('date_start') && $request->has('date_to') && $request->camera_id == 0) {
                 $date_start = Carbon::parse($request->date_start)
                                 ->toDateTimeString();

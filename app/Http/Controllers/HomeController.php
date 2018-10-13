@@ -51,25 +51,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user_cameras = Camera::whereHas('userGroups', function($query) {
-                $query->whereHas('users', function($query) {
-                    $query->where('user_id', auth()->user()->id);
-                })
-                ->whereHas('hunting_areas', function($query) {
-                    $query->where('name', Session::get('area'));
-                });
-        })->get();
-        $count_all_images = 0;
-        $count_day_images = 0;
-        foreach ($user_cameras as $camera) {
-            $count_all_images += Camimage::where('cam', $camera->cam_email)->get()->count();
-        }
-        foreach ($user_cameras as $camera) {
-            $count_day_images += Camimage::where('cam', $camera->cam_email)
-                                        ->where('datum', '>=', Carbon::now()->subHours(24)->toDateTimeString())
-                                        ->get()
-                                        ->count();
-        }
 
         // Cahnge area
         $hunting_areas = collect();
@@ -83,22 +64,38 @@ class HomeController extends Controller
            }
         }
 
+        //statistics
+        $user_cameras = Camera::whereHas('userGroups', function($query) {
+                $query->whereHas('users', function($query) {
+                    $query->where('user_id', auth()->user()->id);
+                })
+                ->whereHas('hunting_areas', function($query) {
+                    $query->where('name', Session::get('area'));
+                });
+        })->with('camImages')->get();
+        $count_all_images = 0;
+        $count_day_images = 0;
+        foreach ($user_cameras as $camera) {
+            $count_all_images += Camimage::where('cam', $camera->cam_email)->get()->count();
+        }
+        foreach ($user_cameras as $camera) {
+            $count_day_images += Camimage::where('cam', $camera->cam_email)
+                                        ->where('datum', '>=', Carbon::now()->subHours(24)->toDateTimeString())
+                                        ->get()
+                                        ->count();
+        }
+
         //activity stream
         $cameras = Camera::whereHas('userGroups', function($query){
             $query->whereHas('users', function($query){
                 $query->where('user_id', auth()->user()->id);
             });
         })->get();
-        $camimages_id = [];
-        $k = 0;
-        foreach ($user_cameras as $camera) {
-            foreach ($camera->camImages as $image) {
-                $camimages_id[$k] = $image->id;
-                $k++; 
-            }
-        }
         $activity = Activity::whereIn('camera_id', $user_cameras->pluck('id'))
-                            ->orWhereIn('image_id', $camimages_id)
+                            ->orWhereIn('image_id', $user_cameras->pluck('camImages')
+                                                                ->collapse()
+                                                                ->pluck('id')
+                                        )
                             ->orderBy('date', 'desc')
                             ->paginate(20);
         
