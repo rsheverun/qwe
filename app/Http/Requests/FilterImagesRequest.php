@@ -29,9 +29,10 @@ class FilterImagesRequest extends FormRequest
     }
     public function rules()
     {
+        // dd(request()->all());
         return [
-            'date_start'=>'date',
-            'date_to'=>'date'
+            'date_start'=>'sometimes|nullable|date',
+            'date_to'=>'sometimes|nullable|date|after_or_equal:date_start'
         ];
     }
 

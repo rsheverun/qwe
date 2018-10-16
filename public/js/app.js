@@ -53375,7 +53375,8 @@ var render = function() {
               _c("div", { staticClass: "text-center" }, [
                 _c("img", {
                   staticClass: "zoom zoom-absolute img-fluid w-100",
-                  attrs: { src: item.bild, alt: "" }
+                  attrs: { src: item.bild },
+                  on: { error: item.id }
                 })
               ]),
               _vm._v(" "),

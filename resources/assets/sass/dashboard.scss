@@ -141,8 +141,9 @@
 }
 .pagination-info{
     font-size: 14px;
-    line-height: 4px;
+    line-height: 8px;
     padding: 10px 6px;
+    cursor: default !important;
 }
 .button-img{
     position: absolute;
@@ -206,7 +207,16 @@ hr{
     text-transform: uppercase;
     
 }
-
+.filter-date{
+    background-clip: padding-box;
+    border: 1px solid #3b3b3b;
+    -webkit-box-align: baseline;
+    -ms-flex-align: baseline;
+    align-items: baseline;
+    background-color: #fff;
+    height: 26px;
+    width: 174px;
+}
 .table-images th{
     color: #3b3b3b;
     font-family: 'Acrom Medium';
@@ -351,10 +361,9 @@ hr{
     align-items: baseline;
     background-color: #fff;
     height: 26px;
+    align-items: center;
 }
-.filter-date{
-    width: 144px;
-}
+
 .btn-details{
     padding: 9px 10px !important;
     line-height: 10px !important;

@@ -10641,8 +10641,9 @@ a.text-dark:focus {
 
 .pagination-info {
   font-size: 14px;
-  line-height: 4px;
+  line-height: 8px;
   padding: 10px 6px;
+  cursor: default !important;
 }
 
 .button-img {
@@ -10719,6 +10720,17 @@ hr {
   font-size: 14px;
   font-weight: 400;
   text-transform: uppercase;
+}
+
+.filter-date {
+  background-clip: padding-box;
+  border: 1px solid #3b3b3b;
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+  background-color: #fff;
+  height: 26px;
+  width: 174px;
 }
 
 .table-images th {
@@ -10886,10 +10898,9 @@ hr {
           align-items: baseline;
   background-color: #fff;
   height: 26px;
-}
-
-.filter-date {
-  width: 144px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .btn-details {
@@ -11404,17 +11415,6 @@ input[type="date"]:valid:before {
   .settings-save {
     width: 100%;
   }
-}
-
-.filter-date {
-  background-clip: padding-box;
-  border: 1px solid #3b3b3b;
-  -webkit-box-align: baseline;
-  -ms-flex-align: baseline;
-  align-items: baseline;
-  background-color: #fff;
-  height: 26px;
-  width: 144px;
 }
 
 .sum {
