@@ -37,7 +37,7 @@
         </div>
     </div>
     @hasanyrole('admin|user')
-        <div class="col-6 text-right">
+        <div class="col-lg-6 col-xs-12 w-100 text-right">
             <a href="{{ route('cameras.show', $item->camera_id) }}" class="btn btn-outline-success button-look btn-green">look more</a>
         </div>
     @endhasanyrole

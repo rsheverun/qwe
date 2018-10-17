@@ -397,7 +397,11 @@ input[type="date"]:before {
         font-size: 15px;
     }
 }
-
+@media only screen and (max-width: 992px) {
+    .button-look{
+        width: 100%;
+    }
+}
 @media only screen and (max-width: 376px){
  
     .btn-filter{

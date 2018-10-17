@@ -10941,6 +10941,12 @@ input[type="date"]:valid:before {
   }
 }
 
+@media only screen and (max-width: 992px) {
+  .button-look {
+    width: 100%;
+  }
+}
+
 @media only screen and (max-width: 376px) {
   .btn-filter {
     width: 100%;
@@ -11088,6 +11094,10 @@ input[type="date"]:valid:before {
     margin-top: 10px;
     width: 100%;
     margin-left: 0;
+  }
+
+  .btn-details {
+    width: 100%;
   }
 }
 
