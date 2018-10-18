@@ -40,15 +40,16 @@ class AccountController extends Controller
                                 ->toDateTimeString();
            
             $user_cameras = auth()->user()->usergroups()->whereHas('hunting_areas', function($query) {
-                $query->where('name',Session::get('area'));
-                })->with('cameras')
-                ->whereHas('hunting_areas', function($query) {
-                    $query->where('name', Session::get('area'));
-                })
-                ->get()
-                ->pluck('cameras')
-                ->collapse()
-                ->unique('cam_email');
+                                                                    $query->where('name',Session::get('area'));
+                                                                    })
+                                                                    ->with('cameras')
+                                                                    ->whereHas('hunting_areas', function($query) {
+                                                                        $query->where('name', Session::get('area'));
+                                                                })
+                                                                ->get()
+                                                                ->pluck('cameras')
+                                                                ->collapse()
+                                                                ->unique('cam_email');
                 $data = collect();
                 foreach($user_cameras as $camera) {
                     $data->push($camera->camImages

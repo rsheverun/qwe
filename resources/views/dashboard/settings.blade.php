@@ -56,7 +56,7 @@
             <th scope="col">hunting area</th>
             <th scope="col">description</th>
             <th scope="col">created</th>
-            <td scope="col" class="anotation text-right">*click on the field to edit</td>
+            <td scope="col" class="anotation text-right"></td>
             
             </tr>
         </thead>
@@ -163,7 +163,7 @@
             <th scope="col">is user?</th>
             <th scope="col">is guest?</th>
             <th scope="col">created</th>
-            <td scope="col" class="anotation text-right">*click on the field to edit</td>
+            <td scope="col" class="anotation text-right"></td>
             
             </tr>
         </thead>
@@ -398,7 +398,7 @@
                 <th scope="col">model</th>
                 <th scope="col">configset name</th>
                 <th scope="col">created</th>
-                <td scope="col" class="anotation text-right">*click on the field to edit</td>
+                <td scope="col" class="anotation text-right"></td>
             </tr>
         </thead>
         <tbody>

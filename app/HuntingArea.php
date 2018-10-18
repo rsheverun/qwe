@@ -14,11 +14,6 @@ class HuntingArea extends Model
         'vmap_mapviewid_id'
     ];
 
-    // public function user()
-    // {
-    //     return $this->belongsTo('App\User');
-    // }
-
     public function userGroups()
     {
         return $this->belongsToMany('App\UserGroup');
@@ -33,10 +28,7 @@ class HuntingArea extends Model
     {
         return $this->hasOne('App\VmapMapviewConfig');
     }
-    // public function cameras()
-    // {
-    //     return $this->belongsToMany('App\Camera');
-    // }
+   
 
 
 }

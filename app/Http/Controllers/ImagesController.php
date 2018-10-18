@@ -243,6 +243,11 @@ class ImagesController extends Controller
         return back()->withStatus('Images deleted successfully');
     }
 
+    /**
+     * Get image information ifrom storage.
+     *
+     * @return data for StatisticsChartComponent
+     */
     public function chartData(){
         $images = $camimages = Camimage::with('camera')
         ->whereHas('camera', function($query){
@@ -261,6 +266,7 @@ class ImagesController extends Controller
             $count[$i]=$img->count();
             $i++;
         }
+
         return [
             'labels' => $images->keys(),
             'datasets' => array([

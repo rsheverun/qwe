@@ -16,13 +16,7 @@
     	<span class="navbar-toggler-icon"></span>
   	</button>
     @guest
-    <div class="collapse navbar-collapse" id="navbar1">
-        <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-
-    </div>
+    
     @else
   	<div class="collapse navbar-collapse" id="navbar1">
     	<ul class="navbar-nav mr-auto">

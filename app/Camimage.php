@@ -34,6 +34,11 @@ class Camimage extends Model
         return $this->hasMany('App\Comment');
     }
 
+    /**
+     * Relationship between tables Activities and Camimages (One to One).
+     *
+     * @return void
+     */
     public function activity()
     {
         return $this->hasOne('App\Activity', 'image_id');

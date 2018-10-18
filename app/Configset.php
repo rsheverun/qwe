@@ -14,7 +14,11 @@ class Configset extends Model
         'port',
         'user'
     ];
-
+    /**
+     * Relationship between tables Configsets and Cameras (One to Many).
+     *
+     * @return void
+     */
     public function cameras()
     {
         return $this->hasMany('App\Camera');

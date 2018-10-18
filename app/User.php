@@ -38,13 +38,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * Relationship between tables users and usergroups(Many to Many).
+     *
+     * @return void
+     */
     public function userGroups()
     {
         return $this->belongsToMany('App\UserGroup', 'user_user_group', 'user_id', 'user_group_id');
     }
     
     /**
-     * Relationship between tables users and comments.
+     * Relationship between tables users and comments.(One to Many)
      *
      * @return void
      */

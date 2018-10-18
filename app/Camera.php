@@ -48,7 +48,11 @@ class Camera extends Model
     {
         return $this->belongsTo('App\Configset','config_id');
     }
-
+    /**
+     * Relationship between tables Activities and Cameras (One to One).
+     *
+     * @return void
+     */
     public function activity()
     {
         return $this->hasOne('App\Activity');
