@@ -275,7 +275,7 @@
             <th scope="col">usergroups</th>
             <th scope="col">created</th>
             <th scope="col">last login</th>
-            <td scope="col" class="anotation text-right">*click on the field to edit</td>
+            <td scope="col" class="anotation text-right"></td>
             
             </tr>
         </thead>

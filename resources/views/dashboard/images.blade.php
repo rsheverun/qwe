@@ -44,6 +44,9 @@
 </form>
  
 <div class="row">
+    <div id="chart-component" class="col">
+        <chart-component></chart-component>
+    </div>
     <div class="table-responsive col-12">
     <div id="comments-data">
        

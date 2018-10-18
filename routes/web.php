@@ -35,6 +35,8 @@ Route::middleware(['auth','isVerified'])->prefix('dashboard')->group(function ()
 
     Route::resource('/images','ImagesController')->except(['destroy']);
 
+    Route::get('/chart-data', 'ImagesController@chartData')->name('chart-data');
+
     Route::resource('/cameras', 'CamerasController');
 
     Route::resource('/account','AccountController');

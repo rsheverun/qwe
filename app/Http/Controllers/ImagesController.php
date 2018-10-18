@@ -31,7 +31,7 @@ class ImagesController extends Controller
            foreach ($hunting_area as $area)
             $user_areas->push($area->name);
         }
-        
+  
         $camimages = Camimage::with('camera')
             ->whereHas('camera', function($query){
                 $query->whereHas('userGroups', function($query){
@@ -242,4 +242,33 @@ class ImagesController extends Controller
 
         return back()->withStatus('Images deleted successfully');
     }
+
+    public function chartData(){
+        $images = $camimages = Camimage::with('camera')
+        ->whereHas('camera', function($query){
+            $query->whereHas('userGroups', function($query){
+                $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'))
+                ->whereHas('hunting_areas', function($query){
+                    $query->where('hunting_area_id', HuntingArea::where('name', Session::get('area'))->first()->id);
+                });
+            });
+        })->where('datum', '>=', Carbon::now()->subDays(6))->get()->groupBy(function($date) {
+            return Carbon::parse($date->datum)->format('d-m-Y');
+        });
+        $count = [];
+        $i =0;
+        foreach($images as $k=>$img) {
+            $count[$i]=$img->count();
+            $i++;
+        }
+        return [
+            'labels' => $images->keys(),
+            'datasets' => array([
+                'label' => 'Count images',
+                'backgroundColor'=> '#83ba2d',
+                'data' => $count,
+            ])
+      ];
+    }
+
 }
