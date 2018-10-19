@@ -20459,6 +20459,11 @@ a.text-dark:focus {
   cursor: default !important;
 }
 
+.pagination-info:hover {
+  color: #83ba2d !important;
+  background-color: #fff !important;
+}
+
 .button-img {
   position: absolute;
 }
