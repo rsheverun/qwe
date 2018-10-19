@@ -1794,20 +1794,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             data: [],
+            count: [],
             text: 'show all images'
         };
     },
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        var _this = this;
+
+        axios.get('../show_all/' + this.cam.id).then(function (response) {
+            _this.count = _.orderBy(response.data, 'datum', 'desc');
+        });
+    },
 
     methods: {
         update: function update() {
-            var _this = this;
+            var _this2 = this;
 
             if (this.text != 'hide images') {
                 this.text = 'hide images';
                 axios.get('../show_all/' + this.cam.id).then(function (response) {
-                    _this.data = _.orderBy(response.data, 'datum', 'desc');
-                    console.log(response.data);
+                    _this2.data = _.orderBy(response.data, 'datum', 'desc');
                 });
             } else {
                 this.text = 'show all images';
@@ -68538,20 +68544,22 @@ var render = function() {
       })
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "row text-right" }, [
-      _c("div", { staticClass: "col-12" }, [
-        _c(
-          "button",
-          {
-            staticClass:
-              "btn btn-outline-success button-look btn-green btn-details",
-            attrs: { type: "button", id: "btn_all_img" },
-            on: { click: _vm.update }
-          },
-          [_vm._v(_vm._s(_vm.text))]
-        )
-      ])
-    ])
+    _vm.count.length > 3
+      ? _c("div", { staticClass: "row text-right" }, [
+          _c("div", { staticClass: "col-12" }, [
+            _c(
+              "button",
+              {
+                staticClass:
+                  "btn btn-outline-success button-look btn-green btn-details",
+                attrs: { type: "button", id: "btn_all_img" },
+                on: { click: _vm.update }
+              },
+              [_vm._v(_vm._s(_vm.text))]
+            )
+          ])
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []

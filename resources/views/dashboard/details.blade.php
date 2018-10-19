@@ -54,7 +54,7 @@
             </div>
         </div>
         <span class="title">decription:</span>
-        <textarea name="desc mt-3 mb-3" id="" cols="30" rows="10" class="desc mt-3 mb-3">{{$camera->desc}}</textarea>
+        <textarea name="desc" id="" cols="30" rows="10" class="desc mt-3 mb-3">{{$camera->desc}}</textarea>
         <span class="title">position:</span>
         <div class="row mt-3">
             <div class="d-flex pt-2">

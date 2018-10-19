@@ -11,7 +11,7 @@
             </div>
         </div>
     </div>
-   <div class="row text-right">
+   <div class="row text-right" v-if="count.length > 3">
             <div class="col-12">
                 <button @click="update" type="button" id="btn_all_img" class="btn btn-outline-success button-look btn-green btn-details" >{{text}}</button>
             </div>
@@ -25,11 +25,15 @@
         data () {
             return {
             data: [],
+            count: [],
             text: 'show all images'
             }
         },
       
         mounted() {
+            axios.get('../show_all/' + this.cam.id).then((response) => {
+                    this.count = _.orderBy(response.data, 'datum','desc')
+                });
         },
         methods: {
            update: function() {
@@ -37,7 +41,6 @@
                 this.text = 'hide images'
                 axios.get('../show_all/' + this.cam.id).then((response) => {
                     this.data = _.orderBy(response.data, 'datum','desc')
-                    console.log(response.data);
                 });
             }else{
                 this.text= 'show all images'
