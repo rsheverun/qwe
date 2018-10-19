@@ -287,8 +287,8 @@
                 <td>{{$user->last_name}}</td>
                 <td>{{$user->nickname}}</td>
                 <td>
-                @foreach($user->userGroups as $group)
-                    {{$group->name}},
+                @foreach($user->userGroups as $k=>$group)
+                    {{$group->name}}@if($k+1 != $user->userGroups->count()), @endif
                 @endforeach
                 </td>
                 <td>{{date('d.m.Y H:i:s', strtotime($user->created_at))}}</td>
