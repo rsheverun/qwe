@@ -9,7 +9,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{route('cameras.store')}}" method="post">
+        <form action="{{route('cameras.store')}}" method="post" id="create_cam">
         @csrf
         <div class="form-group">
             <label for="camera" class="title">Camera:</label>
@@ -38,16 +38,16 @@
         <div class="form-group row">
             <div class="col-sm-4 title">Usergroups:</div>
             <div class="col-sm-8">
-            <div class="">
-            @foreach($user_groups as $k=>$group)
-                <input class="ml-2" type="checkbox" id="group_{{$group->id}}" name="group_id[]" value="{{$group->id}}" @if($k==0) checked @endif>
-                <label  for="group_{{$group->id}}">
-                {{$group->name}}
-                </label>
-                
-                
-            @endforeach
-            </div>
+                <div class="d-flex flex-wrap">
+                @foreach($user_groups as $k=>$group)
+                    <div class="d-flex align-items-baseline">
+                        <input class="ml-2" type="checkbox" id="group_{{$group->id}}" name="group[]" value="{{$group->id}}" @if($k==0) checked @endif >
+                            <label  for="group_{{$group->id}}" class="ml-1">
+                            {{$group->name}}
+                            </label>
+                    </div>
+                @endforeach
+                </div>
             <!-- <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="gridCheck1">
                 <label class="form-check-label" for="gridCheck1">
@@ -70,11 +70,15 @@
   </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn camera-save">Save</button>
+        <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal" onclick="clear_fields()">Close</button>
+        <button type="submit" class="btn camera-save" id="checkBtn">Save</button>
       </div>
       </form>
-
     </div>
   </div>
 </div>
+<script>
+function clear_fields(){
+    document.getElementById('create_cam').reset();
+    }
+</script>

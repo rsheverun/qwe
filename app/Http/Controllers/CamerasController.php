@@ -48,13 +48,15 @@ class CamerasController extends Controller
                                                     ->pluck('cameras')
                                                     ->collapse()
                                                     ->unique('cam_email');
-
+         $usergroups = UserGroup::whereHas('users', function ($query) {
+             $query->where('user_id', auth()->user()->id);
+         })->get();                                           
         return view('dashboard.cameras',[
             'cameras'=> $cameras,
             'user_areas'=>$user_areas->unique(),
             'latitude'=>$cameras->avg('latitude'),
             'longitude'=>$cameras->avg('longitude'),
-            'user_groups'=>UserGroup::all(),
+            'user_groups'=>$usergroups,
             'configsets'=>Configset::all(),
             ]);
     }
@@ -77,9 +79,9 @@ class CamerasController extends Controller
      */
     public function store(StoreCameraRequest $request)
     {
-        if ($request->has('group_id')) {
-            $cam = Camera::create($request->except('group_id'));
-            foreach ($request->group_id as $id) {
+        if ($request->has('group')) {
+            $cam = Camera::create($request->except('group'));
+            foreach ($request->group as $id) {
                 CameraUserGroup::create([
                 'camera_id' => $cam->id,
                 'user_group_id' => $id
@@ -128,9 +130,12 @@ class CamerasController extends Controller
             }
             }
             $images = $camera->camImages->sortByDesc('datum');
+            $usergroups = UserGroup::whereHas('users', function ($query) {
+                $query->where('user_id', auth()->user()->id);
+            })->get(); 
 
             return view('dashboard.details',[
-                'user_groups'=>UserGroup::all(),
+                'user_groups'=>$usergroups,
                 'camera'=> Camera::find($id),
                 'camimages' => $images->take(3),
                 'configsets'=>Configset::all(),

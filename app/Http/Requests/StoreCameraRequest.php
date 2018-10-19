@@ -31,7 +31,7 @@ class StoreCameraRequest extends FormRequest
             'longitude' => 'numeric|max:9999.999999',
             'desc' => 'required',
             'cam_email' => 'unique:cameras,cam_email',
-            'group_id' => 'required'
+            'group' => 'required'
         ];
     }
 }
