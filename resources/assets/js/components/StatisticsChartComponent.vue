@@ -2,7 +2,7 @@
     <div class="chart">
         <div>
             <div class="">
-                <bar-chart v-if="data.length > 0" :chart-data="data" :height="100" :options="options"></bar-chart>
+                <bar-chart v-if="data.datasets.length > 0 " :chart-data="data" :height="100" :options="options"></bar-chart>
             
             </div>
         </div>
@@ -51,6 +51,7 @@ import BarChart from './BarChart.js'
         },
         mounted() {
             this.update()
+            
         },
         methods: {
             update: function() {

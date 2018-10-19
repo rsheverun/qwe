@@ -85729,7 +85729,7 @@ var render = function() {
         "div",
         {},
         [
-          _vm.data.length > 0
+          _vm.data.datasets.length > 0
             ? _c("bar-chart", {
                 attrs: {
                   "chart-data": _vm.data,

@@ -21,6 +21,7 @@ class ImagesController extends Controller
      */
     public function index(FilterImagesRequest $request)
     {
+       
         $hunting_areas = collect();
         $user_areas = collect();
         
