@@ -42,8 +42,8 @@
             <h6 class="title">{{$item->name}}</h6> 
             <span class="date">{{date('d.m.Y H:i:s', strtotime($item->date))}}</span>
         </div>
-        <div class="label-cam">
-            {{$item->camera->cam or 'empty'}} - {{$item->camera->cam_name or 'empty'}}
+        <div>
+            Camera <span class="label-cam">{{$item->camera->cam_name or 'empty'}}</span> was added.
         </div>
     </div>
     @hasanyrole('admin|user')
