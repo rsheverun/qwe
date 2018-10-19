@@ -63,27 +63,44 @@
         <tbody>
             @foreach  ($areas as $k=>$area)
         <tr >
-            <td>{{$k+1}}</td>
+            <td>{{$area->id}}</td>
             <td>{{$area->name}}</td>
             <td>{{$area->description}}</td>
             <td>{{$area->created_at}}</td>
             <td class="text-right pr-0" >
                 <form action="{{route('settings.destroy',$area->id)}}" method="post">
-                @csrf
-                @method('DELETE')
-                <input type="hidden" name="area_destroy">
-                <button type="submit" class="btn btn-outline-danger button-delete" >Delete</button>
+                    @csrf
+                    @method('DELETE')
+                    <button type="button"  data-toggle="modal" data-target="#area_destroy_{{$area->id}}" data-whatever="{{$area->id}}"  name="modal" class="btn btn-outline-danger button-delete align-self-start">DELETE</button>
+                    <!-- modal -->
+                    <div class="modal fade" id="area_destroy_{{$area->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="title">Delete hsunting area</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body text-left" id="text">
+                                Are you sure you want to delete hunting area?
+                            </div>
+                            <div class="modal-footer">
+                            <input type="hidden" name="area_destroy">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-danger" name="delete_id" value="{{$area->id}}">Delete</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- modal -->
                 </form>
-            
-
             </td>
-
         </tr>
         @endforeach
         </tbody>
     </table>
 </div>
-
 <div class="block">
    {{ $areas->fragment('areas')->links('layouts.pagination')}}
 </div>
@@ -170,7 +187,7 @@
         <tbody>
             @foreach($groups as $k=>$group)
             <tr>
-                <td>{{$k+1}}</td>
+                <td>{{$group->id}}</td>
                 <td>{{$group->name}}</td>
                 <td>
                     @if($group->role->name === "admin")
@@ -196,7 +213,29 @@
                         @csrf
                         @method('DELETE')
                         <input type="hidden" name="group_destroy">
-                    <button type="submit" class="btn btn-outline-danger button-delete" >Delete</button>
+                    <button type="button" data-toggle="modal"  data-target="#group_destroy_{{$group->id}}" class="btn btn-outline-danger button-delete align-self-start">DELETE</button>
+                        <!-- modal -->
+                        <div class="modal fade" id="group_destroy_{{$group->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="title">Delete group</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body text-left" id="text">
+                                    Are you sure you want to delete user group?
+                                </div>
+                                <div class="modal-footer">
+                                <input type="hidden" name="group_destroy">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-danger" name="delete_id" value="{{$group->id}}">Delete</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- endmodal -->
                     </form>
                     
                 </td>
@@ -240,8 +279,8 @@
 
             <div class="form-group row pl-3">
             <span  class="title align-self-start pr-3">hunting areas:</span>
-            @foreach ($areas as $area)
-            <span class="col pr-1 pl-0 pr-3" style="max-width: max-content;">
+            @foreach ($areas_list as $area)
+            <span class="col pr-1 pl-0 pr-3 mb-2" style="max-width: max-content;">
                 <input type="checkbox" name="areas[]" id="area_{{$area->id}}" value="{{$area->id}}">
                 <label  for="area_{{$area->id}}" class="setting-radio" style=" margin-right: 0;">{{$area->name}}</label> 
              </span>
@@ -282,7 +321,7 @@
         <tbody>
         @foreach($users as $k=>$user)
             <tr>
-                <td>{{$k+1}}</td>
+                <td>{{$user->id}}</td>
                 <td>{{$user->first_name}}</td>
                 <td>{{$user->last_name}}</td>
                 <td>{{$user->nickname}}</td>
@@ -302,7 +341,29 @@
                     @csrf
                     @method("DELETE")
                     <input type="hidden" name="user_destroy">
-                    <button type="submit" class="btn btn-outline-danger button-delete" >Delete</button>
+                    <button type="button" data-toggle="modal"   data-target="#user_destroy_{{$user->id}}" class="btn btn-outline-danger button-delete align-self-start">DELETE</button>
+                    <!-- modal -->
+                    <div class="modal fade" id="user_destroy_{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="title">Delete user</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body text-left" id="text">
+                                Are you sure you want to delete user?
+                            </div>
+                            <div class="modal-footer">
+                            <input type="hidden" name="area_destroy">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-danger" name="delete_id" value="{{$user->id}}">Delete</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- endmodal -->
                 </form>
                 </td>
             </tr>
@@ -330,7 +391,7 @@
         </div>
         <div class="col-lg-7 col-xs-12 offset-lg-1 users-check">
             <span  class="title align-self-start" style="margin-right: 15px;">usergroups:</span>
-            @foreach($groups as $group)
+            @foreach($groups_list as $group)
             <input type="checkbox" name="group[]" id="{{$group->name}}_group" value="{{$group->id}}" @if($group->role->name == 'user') checked @endif >
             <label for="{{$group->name}}_group" class="setting-radio usergroup-radio mt-1">{{$group->name}}</label>
             @endforeach
@@ -404,7 +465,7 @@
         <tbody>
         @foreach ($configsets as $k=>$configset)
             <tr>
-                <td>{{$k+1}}</td>
+                <td>{{$configset->id}}</td>
                 <td>{{$configset->model}}</td>
                 <td>{{$configset->config_name}}</td>
                 <td>{{date('d.m.Y H:i:s', strtotime($configset->created_at))}}</td>
@@ -413,8 +474,29 @@
                 @csrf
                 @method('DELETE')
                 <input type="hidden" name="configset_destroy">
-                <button type="submit" class="btn btn-outline-danger button-delete" >Delete</button>
-
+                <button type="button" data-toggle="modal"  data-target="#config_destroy_{{$configset->id}}" class="btn btn-outline-danger button-delete align-self-start">DELETE</button>
+                 <!-- modal -->
+                 <div class="modal fade" id="config_destroy_{{$configset->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="title">Delete config set</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body text-left" id="text">
+                                Are you sure you want to delete config set?
+                            </div>
+                            <div class="modal-footer">
+                            <input type="hidden" name="area_destroy">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-danger" name="delete_id" value="{{$configset->id}}">Delete</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- endmodal -->
                 </form>
                     
                 </td>
@@ -426,7 +508,7 @@
 <div class="block">
     
  {{
-        $groups->fragment('configsets')->links('layouts.pagination')
+        $configsets->fragment('configsets')->links('layouts.pagination')
 }}
 </div>
 

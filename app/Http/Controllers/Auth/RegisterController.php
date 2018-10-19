@@ -8,13 +8,13 @@ use App\UserUserGroup;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use Mail;
 
 use Jrean\UserVerification\Traits\VerifiesUsers;
 use Jrean\UserVerification\Facades\UserVerification;
 use Illuminate\Http\Request;
 
-
+use App\Mail\UserRegistered;
 class RegisterController extends Controller
 {
     /*
@@ -119,7 +119,12 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
         $user = $this->create($request->all());
         UserVerification::generate($user);
-        UserVerification::send($user, 'Email Verification');
-        return redirect()->route('settings.index')->withStatus('Register successfully, please verify your email.');
+        Mail::to($request->email)->send(new UserRegistered(
+            $user,
+            $request->password,
+            'Email Verification'
+        ));
+        // UserRegistered::send($user, $request->password, 'Email Verification');
+        return redirect()->route('settings.index')->withStatus('A confirmation link has been sent to the email.');
     }
 }

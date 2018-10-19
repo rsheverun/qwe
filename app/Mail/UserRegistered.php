@@ -11,14 +11,18 @@ class UserRegistered extends Mailable
 {
     use Queueable, SerializesModels;
     public $user;
+    public $password;
+    public $subject;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($user, $password, $subject)
     {
         $this->user = $user;
+        $this->password = $password;
+        $this->subject = $subject;
     }
 
     /**
@@ -29,6 +33,10 @@ class UserRegistered extends Mailable
     public function build()
     {
         return $this->to($this->user->email)
-            ->view('email.confirm');
+            ->subject($this->subject)
+            ->markdown('email.confirm',[
+                $this->user,
+                $this->password
+            ]);
     }
 }

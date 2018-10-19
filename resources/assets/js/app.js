@@ -12,6 +12,9 @@ window.Vue = require('vue');
 import moment from 'moment'
 import VueCharts from 'vue-chartjs'
 import { Bar, Line } from 'vue-chartjs'
+import Vue from 'vue'
+import BootstrapVue from 'bootstrap-vue'
+Vue.use(BootstrapVue);
 Vue.prototype.moment = moment
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -22,10 +25,11 @@ Vue.component('chart-component', require('./components/StatisticsChartComponent.
 Vue.component('images-component', require('./components/ImagesComponent.vue'));
 Vue.component('account-data', require('./components/AccountDataComponent.vue'));
 Vue.component('comments', require('./components/CommentsComponent.vue'));
+Vue.component('modal', require('./components/ModalComponent.vue'));
 
 
 
-  var iamges = new Vue({
+var iamges = new Vue({
     el: '#images',
 });
 var account_data = new Vue({
@@ -37,5 +41,9 @@ var comments = new Vue({
 });
 var chart = new Vue({
   el: '#chart-component',
+});
+
+var modal = new Vue({
+  el: '#modal'
 });
 

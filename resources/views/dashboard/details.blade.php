@@ -68,7 +68,7 @@
         </div>
         <div class="row mt-3">
             <div class="col-12">
-                <span class="title">model:</span> <span  class="pl-1 pr-1">BL460P</span>
+                <span class="title">model:</span> <span  class="pl-1 pr-1">{{$camera->cam_model}}</span>
             </div>
         </div>
         <div class="row">

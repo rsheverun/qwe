@@ -52,19 +52,17 @@ class LoginController extends Controller
             $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'));
                 
         })->get();
-        Session::put(['area'=> $user_areas->first()->name]);
-        // $role = HuntingArea::where('name',$user_areas->first()->name)->first()->userGroups()->with('hunting_areas')->whereHas('hunting_areas', function ($query) {
-        //     $query->with('userGroups')->whereHas('userGroups', function ($query) {
-        //         $query->with('users')->whereHas('users', function ($query) {
-        //             $query->where('user_id', auth()->user()->id);
-        //         });
-        //     });
-        // })->min('role_id');
-         // })->get();
-         $role= auth()->user()->usergroups()->with('hunting_areas')->whereHas('hunting_areas', function($query) use($user_areas){
-            $query->where('name',$user_areas->first()->name);
-        })->with('role')->get()->pluck('role')->min('id');
-        Auth::user()->syncRoles(Role::find($role)->name);
+        try {
+            Session::put(['area'=> $user_areas->first()->name]);
+            $role= auth()->user()->usergroups()->with('hunting_areas')
+                        ->whereHas('hunting_areas', function($query) use($user_areas){
+                            $query->where('name',$user_areas->first()->name);
+                        })->with('role')->get()->pluck('role')->min('id');
+            Auth::user()->syncRoles(Role::find($role)->name);
+        } catch (\Exception $e) {
+            auth()->user()->syncRoles('guest');
+        }
+         
     }
     
     public function username()

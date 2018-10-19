@@ -24,7 +24,7 @@ class SettingsController extends Controller
         $groups = UserGroup::paginate(20, ['*'], 'groups');
         $users = User::paginate(20, ['*'], 'users');
         $configsets = Configset::paginate(20, ['*'], 'configsets');
-        $areas = HuntingArea::paginate(20, ['*'], 'areas');
+        $areas = HuntingArea::paginate(5, ['*'], 'areas');
         $hunting_areas = collect();
         $user_areas = collect();
         foreach (Auth::user()->userGroups as $group) {
@@ -39,7 +39,9 @@ class SettingsController extends Controller
         return view('dashboard.settings',[
             'roles'=>Role::get(),
             'areas'=>$areas,
+            'areas_list'=>HuntingArea::all(),
             'groups'=>$groups,
+            'groups_list'=>UserGroup::all(),
             'configsets'=>$configsets,
             'users'=>$users,
             'user_areas'=>$user_areas->unique()
@@ -148,22 +150,29 @@ class SettingsController extends Controller
     public function destroy(Request $request, $id)
     {
         if ($request->has('area_destroy')) {
-            HuntingArea::destroy($id);
+            HuntingArea::destroy($request->delete_id);
             $msg = "Area deleted successfully";
         }
         
         if ($request->has('group_destroy')) {
-            UserGroup::destroy($id);
-            $msg = "Group deleted successfully";
+            $usergroup = Usergroup::find($request->delete_id)->users;
+            if(Usergroup::find($request->delete_id)->users->count() == 0) {
+                UserGroup::destroy($request->delete_id);
+                $msg = "Group deleted successfully";
+            }
+            else {
+                return back()->withErrors('You can not delete a group in which there are still users');
+            }
+            
         }
         
         if ($request->has('configset_destroy')) {
-            Configset::destroy($id);
+            Configset::destroy($request->delete_id);
             $msg = "Config set deleted successfully";
         }
         
         if ($request->has('user_destroy')) {
-            User::destroy($id);
+            User::destroy($request->delete_id);
             $msg= "User deleted successfully";
         }
 

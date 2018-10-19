@@ -139,7 +139,7 @@ class AccountController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        User::destroy($request->user_id);
+        User::destroy($request->delete_id);
         return redirect()->route('login');
     }
 }

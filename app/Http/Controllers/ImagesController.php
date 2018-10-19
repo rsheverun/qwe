@@ -31,27 +31,30 @@ class ImagesController extends Controller
            foreach ($hunting_area as $area)
             $user_areas->push($area->name);
         }
-  
-        $camimages = Camimage::with('camera')
-            ->whereHas('camera', function($query){
-                $query->whereHas('userGroups', function($query){
-                    $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'))
-                    ->whereHas('hunting_areas', function($query){
-                        $query->where('hunting_area_id', HuntingArea::where('name', Session::get('area'))->first()->id);
+        try {
+
+            $camimages = Camimage::with('camera')
+                ->whereHas('camera', function($query){
+                    $query->whereHas('userGroups', function($query){
+                        $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'))
+                        ->whereHas('hunting_areas', function($query){
+                            $query->where('hunting_area_id', HuntingArea::where('name', Session::get('area'))->first()->id);
+                        });
                     });
-                });
-            })
-            ->orderBy('datum', 'desc')
-            ->paginate(20);
-           
-        $user_cameras= auth()->user()->usergroups()->whereHas('hunting_areas', function($query) {
-                $query->where('name',Session::get('area'));
-                })->with('cameras')
-                ->get()
-                ->pluck('cameras')
-                ->collapse()
-                ->unique('cam_email');
+                })
+                ->orderBy('datum', 'desc')
+                ->paginate(20);
             
+            $user_cameras= auth()->user()->usergroups()->whereHas('hunting_areas', function($query) {
+                    $query->where('name',Session::get('area'));
+                    })->with('cameras')
+                    ->get()
+                    ->pluck('cameras')
+                    ->collapse()
+                    ->unique('cam_email');
+        } catch(\Exception $e){
+            return redirect()->route('home')->withErrors('You do not have any available hunting areas');
+        }
         if ($request->has('filter')) {
             if ($request->has('date_start') && $request->has('date_to') && $request->camera_id == 0) {
                 $date_start = Carbon::parse($request->date_start)
