@@ -136,7 +136,7 @@
     </div>
 </div>
 
-<div class="row pr-lg" id="images">
+<div class="row pr-lg" id="images" style="min-height: 278px;">
 @foreach($camimages as $k=>$image)
 
     <div class="col-lg-4 col-xs-12">
