@@ -33,7 +33,7 @@
         </div>
         <div class="form-row">
             <div class="d-flex flex-row col-lg-4 col-md col-sm col-xs-12">
-                <label for="user" class="title" >Short Name:</label>
+                <label for="user" class="title" style="white-space: nowrap;">Short Name:</label>
                 <input type="text" class="align-self-start col custom-input">
             </div>
             <div class="d-flex flex-row pl-lg-3">

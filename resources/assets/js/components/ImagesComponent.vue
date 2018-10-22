@@ -19,7 +19,7 @@
 </div>
 <div class="container-fluid" v-else>
     <p class="text-center label-cam">
-        No data available in table
+        No data available
     </p>
 </div>
 </template>

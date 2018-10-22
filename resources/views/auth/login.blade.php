@@ -1,16 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
-@if ($errors->any())
-             <div class="alert alert-danger alert-dismissible text-center">
-             @foreach ($errors->all() as $error)
-      <div>{{ $error }}</div>    
-      @endforeach               
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @endif
+
         @if (session('status'))
             <div class="alert alert-danger alert-dismissible text-center">
             {{ session('status') }}
