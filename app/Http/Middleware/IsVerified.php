@@ -21,7 +21,7 @@ class IsVerified
         if (!auth()->user()->verified) {
             Session::flush();
             
-            return redirect('login')->withAlert('Please verify your email before login.');
+            return redirect('login')->withStatus('Please verify your email before login.');
         }
                
         return $next($request);

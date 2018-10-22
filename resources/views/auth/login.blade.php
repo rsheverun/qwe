@@ -1,22 +1,24 @@
 @extends('layouts.layout')
 
 @section('content')
-<div class="container">
-@if(Session::has('alert'))
-
-<div class="alert alert-success">
-
-    {{ Session::get('alert') }}
-
-    @php
-
-    Session::forget('alert');
-
-    @endphp
-
-</div>
-
-@endif
+@if ($errors->any())
+             <div class="alert alert-danger alert-dismissible text-center">
+             @foreach ($errors->all() as $error)
+      <div>{{ $error }}</div>    
+      @endforeach               
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        @if (session('status'))
+            <div class="alert alert-danger alert-dismissible text-center">
+            {{ session('status') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+        @endif   
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
