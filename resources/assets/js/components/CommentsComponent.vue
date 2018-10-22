@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="comment" >
-        <div v-for="item in data">
+        <div class="pb-2" v-for="item in data">
            <div class="w-100">
                <span class="name"> {{item.user.first_name}}  {{item.user.last_name }}, </span>
                <span class="comment-date"> {{moment(item.created_at).format('DD.MM.YYYY HH:mm:ss')}}</span>
