@@ -3,7 +3,7 @@
             <span class="btn btn-outline-success button-look btn-green pagination-info">20 per page</span>
 
 @if ($paginator->hasPages())
-        <div class="ml-auto">
+        <div class="pagination-position">
           <nav aria-label="Page navigation example">
             <ul class="pagination custom-pagination">
             <li class="page-item">

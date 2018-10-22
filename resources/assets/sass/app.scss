@@ -50,7 +50,7 @@ button, a, span{
 footer{
     background-color: #0c4106;
     color: #fff;
-    min-height: 40px;
+    min-height: 103px;
 }
 .footer-nav{
     padding-top: 22px;
@@ -88,7 +88,26 @@ footer{
     transform: scale(1.5); 
    
 }
-
+.pagination-position{
+    margin-left: auto;
+}
+@media only screen and (max-width: 1500px){
+    .custom-container, .nav_menu, .footer-nav a{
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+}
+@media only screen and (max-width: 1367px){
+    .custom-container, .nav_menu, .footer-nav a{
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+}
+@media only screen and (max-width: 1105px) {
+    .logo{
+    font-size: 20px;
+    }  
+}
 @media only screen and (max-width: 992px) {
     .nav_menu li a{
     margin: 0 ;
@@ -100,12 +119,14 @@ footer{
         -webkit-transform: unset;
         position: unset;
     }
-    
+    .pagination-position{
+        margin: auto;
+    }
 }
-@media only screen and (max-width: 946px){
-    .custom-container{
-        padding-left: 15%;
-        padding-right: 15%;
+@media only screen and (max-width: 770px) {
+    .custom-container, .nav_menu, .footer-nav a {
+        padding-left: 4%;
+        padding-right: 4%;
     }
 }
 @media only screen and (max-width: 450px) {
@@ -113,23 +134,4 @@ footer{
     font-size: 23px;
     }  
 }
-@media only screen and (max-width: 1105px) {
-    .logo{
-    font-size: 20px;
-    }  
-}
-@media only screen and (max-width: 770px) {
-    .custom-container {
-        padding-left: 5%;
-        padding-right: 5%;
-    }
-    .nav_menu{
-        padding-left: 5%;
-        padding-right: 5%;
-    }
-    .footer-nav a{
-        padding-left: 5%;
-        padding-right: 5%;
-    }
-    
-}
+

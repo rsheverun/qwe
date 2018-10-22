@@ -34,43 +34,49 @@
         <span class="badge-statistic">activity stream</span>
     </div>
 </div>
-@foreach ($data as $item) 
-@if ($item->name == 'new device')
-<div class="row activity no-image">
-    <div class="col-lg-6 col-xs-12">
-         <div class="info">
-            <h6 class="title">{{$item->name}}</h6> 
-            <span class="date">{{date('d.m.Y H:i:s', strtotime($item->date))}}</span>
+@if($data->count() != null)
+    @foreach ($data as $item) 
+    @if ($item->name == 'new device')
+    <div class="row activity no-image">
+        <div class="col-lg-6 col-xs-12">
+            <div class="info">
+                <h6 class="title">{{$item->name}}</h6> 
+                <span class="date">{{date('d.m.Y H:i:s', strtotime($item->date))}}</span>
+            </div>
+            <div>
+                Camera <span class="label-cam">{{$item->camera->cam_name or 'empty'}}</span> was added.
+            </div>
         </div>
-        <div>
-            Camera <span class="label-cam">{{$item->camera->cam_name or 'empty'}}</span> was added.
+        @hasanyrole('admin|user')
+            <div class="col-lg-6 col-xs-12 w-100 text-right">
+                <a href="{{ route('cameras.show', $item->camera_id) }}" class="btn btn-outline-success button-look btn-green">look more</a>
+            </div>
+        @endhasanyrole
+    </div>
+    <hr>
+    @elseif ($item->name == 'new image')  
+    <div class="row activity">
+        <div class="col-6">
+            <div class="info">
+                <h6 class="title">{{$item->name}}</h6> 
+                <span class="date">{{date('d.m.Y H:i:s', strtotime($item->date))}}</span>
+            </div>
+            <div class="label-cam">
+                {{$item->camImage->camera->cam or 'empty'}} - {{$item->camImage->camera->cam_name or 'empty'}}
+            </div>
+        </div>
+        <div class="col-6 text-right">
+            <img src="{{asset($item->camImage->bild)}}" class="zoom img-fluid" alt="{{$item->id}}">
         </div>
     </div>
-    @hasanyrole('admin|user')
-        <div class="col-lg-6 col-xs-12 w-100 text-right">
-            <a href="{{ route('cameras.show', $item->camera_id) }}" class="btn btn-outline-success button-look btn-green">look more</a>
-        </div>
-    @endhasanyrole
-</div>
-<hr>
-@elseif ($item->name == 'new image')  
-<div class="row activity">
-    <div class="col-6">
-        <div class="info">
-            <h6 class="title">{{$item->name}}</h6> 
-            <span class="date">{{date('d.m.Y H:i:s', strtotime($item->date))}}</span>
-        </div>
-        <div class="label-cam">
-            {{$item->camImage->camera->cam or 'empty'}} - {{$item->camImage->camera->cam_name or 'empty'}}
-        </div>
-    </div>
-    <div class="col-6 text-right">
-        <img src="{{asset($item->camImage->bild)}}" class="zoom img-fluid" alt="{{$item->id}}">
-    </div>
-</div>
+    <hr>
+    @endif
+    @endforeach
+@else
+<p class="text-center label-cam">No available data</p>
 <hr>
 @endif
-@endforeach
+
 
 
 <div class="block">

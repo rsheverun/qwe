@@ -20289,7 +20289,7 @@ a.text-dark:focus {
 .content {
   margin-top: 35px;
   margin-bottom: 35px;
-  min-height: calc(100vh - 88px);
+  min-height: calc(100vh - 237px);
 }
 
 .nav_menu {
@@ -21040,6 +21040,11 @@ input[type="date"]:valid:before {
   margin: 35px 0;
 }
 
+.role-radios {
+  position: absolute;
+  top: 45px;
+}
+
 .configsets-label {
   min-width: 102px;
 }
@@ -21054,7 +21059,7 @@ input[type="date"]:valid:before {
 .configsets label,
 .hunting-areas label {
   margin-right: 15px;
-  margin-bottom: 0 !important;
+  margin-bottom: 0;
   -ms-flex-item-align: center;
       align-self: center;
 }
@@ -21252,6 +21257,11 @@ input[type="date"]:valid:before {
   .settings-save {
     width: 100%;
   }
+
+  .role-radios {
+    position: relative;
+    top: 16px;
+  }
 }
 
 .sum {
@@ -21305,7 +21315,7 @@ span {
 footer {
   background-color: #0c4106;
   color: #fff;
-  min-height: 40px;
+  min-height: 103px;
 }
 
 .footer-nav {
@@ -21354,6 +21364,34 @@ footer {
           transform: scale(1.5);
 }
 
+.pagination-position {
+  margin-left: auto;
+}
+
+@media only screen and (max-width: 1500px) {
+  .custom-container,
+  .nav_menu,
+  .footer-nav a {
+    padding-left: 15%;
+    padding-right: 15%;
+  }
+}
+
+@media only screen and (max-width: 1367px) {
+  .custom-container,
+  .nav_menu,
+  .footer-nav a {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}
+
+@media only screen and (max-width: 1105px) {
+  .logo {
+    font-size: 20px;
+  }
+}
+
 @media only screen and (max-width: 992px) {
   .nav_menu li a {
     margin: 0;
@@ -21365,41 +21403,24 @@ footer {
     -webkit-transform: unset;
     position: unset;
   }
+
+  .pagination-position {
+    margin: auto;
+  }
 }
 
-@media only screen and (max-width: 946px) {
-  .custom-container {
-    padding-left: 15%;
-    padding-right: 15%;
+@media only screen and (max-width: 770px) {
+  .custom-container,
+  .nav_menu,
+  .footer-nav a {
+    padding-left: 4%;
+    padding-right: 4%;
   }
 }
 
 @media only screen and (max-width: 450px) {
   .logo {
     font-size: 23px;
-  }
-}
-
-@media only screen and (max-width: 1105px) {
-  .logo {
-    font-size: 20px;
-  }
-}
-
-@media only screen and (max-width: 770px) {
-  .custom-container {
-    padding-left: 5%;
-    padding-right: 5%;
-  }
-
-  .nav_menu {
-    padding-left: 5%;
-    padding-right: 5%;
-  }
-
-  .footer-nav a {
-    padding-left: 5%;
-    padding-right: 5%;
   }
 }
 

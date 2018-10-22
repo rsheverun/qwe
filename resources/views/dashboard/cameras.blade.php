@@ -85,9 +85,10 @@
     </table>
 </div>
 
-    </div>
-    <div class="block">
 </div>
+    <div class="block">
+        {{$cameras->links('layouts.pagination')}}
+    </div>
 
     
 </div>    

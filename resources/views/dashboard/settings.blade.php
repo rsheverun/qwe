@@ -255,9 +255,41 @@
 
 <div class="usergroups">
 <form id="usergroup_store" action="{{route('settings.store')}}" method="post"> <!--add new group -->
+@csrf
+                    <input type="hidden" name="group_store">
+<!-- <div class="row"> -->
+    <div class="form-group row">
+        <div class="col-lg col-xs-12 pr-0" style="max-width:max-content">
+            <label for="group_name" class="title configsets-label mr-0">usergroup name:</label>
+        </div>
+        <div class="col-lg-3 col-xs-12">
+            <input type="text"  class="col custom-input" name="name" id="group_name" required>
+        </div>
+        <div class="form-group role-radios pl-3 col-lg-3 col-xs-12">
+        @foreach($roles as $role)
+                            <div class="check-box ">
+                                <label class="title " for="{{$role->name}}">
+                                is {{$role->name}}?
+                                    </label>
+                                    <input  type="radio" value="{{$role->id}}" id="{{$role->name}}" name="role_id" class="custom-check" @if ($role->name == 'user') checked @endif>
+                            </div>
 
-<div class="row">
-        <div class="col-lg-5 col-xs-12">
+                        @endforeach
+        </div>
+        <div class="col areas">
+            <span  class="title align-self-start pr-3">hunting areas:</span>
+            @foreach ($areas_list as $area)
+            <span class="col pl-0 mb-2" style="max-width: max-content;">
+                <input type="checkbox" name="areas[]" id="area_{{$area->id}}" value="{{$area->id}}">
+                <label  for="area_{{$area->id}}" class="setting-radio mr-0 mb-2">{{$area->name}}</label> 
+             </span>
+            @endforeach
+    <button type="submit" class="btn btn-outline-success btn-add btn-absolute mr-3 ml-3 mr-lg-0" style="position: relative;">add</button>
+
+        </div>
+    </div>
+
+        <!-- <div class="col-lg-5 col-xs-12">
                 @csrf
                     <input type="hidden" name="group_store">
                     <div class="form-group row pl-3 pr-3">
@@ -288,11 +320,11 @@
             </div>
             
         </div>
-    <button type="submit" class="btn btn-outline-success btn-add btn-absolute mr-3 ml-3 mr-lg-0">add</button>
+    <button type="submit" class="btn btn-outline-success btn-add btn-absolute mr-3 ml-3 mr-lg-0">add</button> -->
 
     </form> <!--add new group -->
 
-    </div>
+    <!-- </div> -->
 
 </div>
 </div>
@@ -393,7 +425,7 @@
             <span  class="title align-self-start" style="margin-right: 15px;">usergroups:</span>
             @foreach($groups_list as $group)
             <input type="checkbox" name="group[]" id="{{$group->name}}_group" value="{{$group->id}}" @if($group->role->name == 'user') checked @endif >
-            <label for="{{$group->name}}_group" class="setting-radio usergroup-radio mt-1">{{$group->name}}</label>
+            <label for="{{$group->name}}_group" class="setting-radio mr-3 mt-1">{{$group->name}}</label>
             @endforeach
         </div>
     </div>

@@ -1788,6 +1788,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['cam'],
@@ -85850,50 +85855,65 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container-fluid" }, [
-    _c(
-      "div",
-      { staticClass: "row" },
-      _vm._l(_vm.data, function(item, index) {
-        return index > 2
-          ? _c("div", { staticClass: "col-lg-4 col-xs-12" }, [
-              _c("div", { staticClass: "text-center" }, [
-                _c("img", {
-                  staticClass: "zoom zoom-absolute img-fluid w-100",
-                  attrs: { src: item.bild },
-                  on: { error: item.id }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "text-right" }, [
-                _c("span", [
-                  _vm._v(
-                    _vm._s(_vm.moment(item.datum).format("DD.MM.YYYY HH:mm:ss"))
-                  )
-                ])
+  return _vm.count.length > 3
+    ? _c("div", { staticClass: "container-fluid" }, [
+        _c(
+          "div",
+          { staticClass: "row" },
+          _vm._l(_vm.data, function(item, index) {
+            return index > 2
+              ? _c(
+                  "div",
+                  {
+                    staticClass: "col-lg-4 col-xs-12",
+                    staticStyle: { "min-height": "278px" }
+                  },
+                  [
+                    _c("div", { staticClass: "text-center" }, [
+                      _c("img", {
+                        staticClass: "zoom zoom-absolute img-fluid w-100",
+                        attrs: { src: item.bild },
+                        on: { error: item.id }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text-right" }, [
+                      _c("span", [
+                        _vm._v(
+                          _vm._s(
+                            _vm.moment(item.datum).format("DD.MM.YYYY HH:mm:ss")
+                          )
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              : _vm._e()
+          })
+        ),
+        _vm._v(" "),
+        _vm.count.length > 3
+          ? _c("div", { staticClass: "row text-right" }, [
+              _c("div", { staticClass: "col-12" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "btn btn-outline-success button-look btn-green btn-details",
+                    attrs: { type: "button", id: "btn_all_img" },
+                    on: { click: _vm.update }
+                  },
+                  [_vm._v(_vm._s(_vm.text))]
+                )
               ])
             ])
           : _vm._e()
-      })
-    ),
-    _vm._v(" "),
-    _vm.count.length > 3
-      ? _c("div", { staticClass: "row text-right" }, [
-          _c("div", { staticClass: "col-12" }, [
-            _c(
-              "button",
-              {
-                staticClass:
-                  "btn btn-outline-success button-look btn-green btn-details",
-                attrs: { type: "button", id: "btn_all_img" },
-                on: { click: _vm.update }
-              },
-              [_vm._v(_vm._s(_vm.text))]
-            )
-          ])
+      ])
+    : _c("div", { staticClass: "container-fluid" }, [
+        _c("p", { staticClass: "text-center label-cam" }, [
+          _vm._v("\n        No data available in table\n    ")
         ])
-      : _vm._e()
-  ])
+      ])
 }
 var staticRenderFns = []
 render._withStripped = true

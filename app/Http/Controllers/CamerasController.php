@@ -39,15 +39,17 @@ class CamerasController extends Controller
             $user_areas->push($area->name);
            }
         }
-
-        $cameras= auth()->user()->usergroups()->whereHas('hunting_areas', function($query) {
-                                                        $query->where('name',Session::get('area'));
-                                                    })
-                                                    ->with('cameras')
-                                                    ->get()
-                                                    ->pluck('cameras')
-                                                    ->collapse()
-                                                    ->unique('cam_email');
+        try {
+            $userGroups_areas = UserGroup::whereHas('hunting_areas', function($query){
+                $query->where('name', Session::get('area'));
+            })->get()->pluck('id');
+            $cameras = Camera::whereHas('userGroups', function($query) use($userGroups_areas) {
+                $query->whereIn('user_group_id', $userGroups_areas);
+            })->paginate(20);
+        } catch(\Exception $e) {
+            //
+        }
+        
          $usergroups = UserGroup::whereHas('users', function ($query) {
              $query->where('user_id', auth()->user()->id);
          })->get();                                           

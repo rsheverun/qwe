@@ -96,6 +96,10 @@ border-bottom: 1px solid #3b3b3b;
     margin: 35px 0;
 
 }
+.role-radios {
+    position: absolute;
+    top: 45px;
+}
 .configsets-label{
     min-width: 102px;
 }
@@ -106,7 +110,7 @@ border-bottom: 1px solid #3b3b3b;
     label{
         // width: 140px;
         margin-right: 15px;
-        margin-bottom: 0 !important;
+        margin-bottom: 0 ;
         align-self: center;
     }
 }
@@ -269,5 +273,10 @@ border-bottom: 1px solid #3b3b3b;
     }
     .settings-save{
         width: 100%;
+    }
+    .role-radios{
+        position: relative;
+        top: 16px;
+
     }
 }

@@ -52,15 +52,14 @@
                     <tr>
                         <th scope="col" >Day</th>
                         <th scope="col">camera</th>
-                        <th scope="col">number of images</th>
-                        <th scope="col">transfer in mb</th>
+                        <th scope="col" @if($data->count()==0) class="text-center" @endif>number of images</th>
+                        <th scope="col" @if($data->count()==0) class="text-center" @endif>transfer in mb</th>
                     </tr>
                 </thead>
                 <tbody>
                     @if($data->count()!=0)
-                        @foreach ($data as $index=>$items)
+                        @foreach ($data as $date=>$item)
                     
-                            @foreach($items as $date=>$item)
                             <?php $count_mb = 0?>
                         <tr>
                         <td>{{$date}}</td>
@@ -75,19 +74,20 @@
                             {{number_format((float)$count_mb/1048576, 2, '.', '')}}
                             </td>
                         </tr>
-                        <input type="hidden" value="{{$count += $item->count()}}">
-                            @endforeach
                         @endforeach
                     @else
-                        <td colspan="4" class="text-center">No data available in table</td>
+                        <td colspan="4" class="text-center">{{$msg}}</td>
                     @endif
                 </tbody>
             </table>
         </div>
-        <div class="row col">
+        <div class="row col pt-3">
             <span class="sum pr-1">Sum per month: </span> <span class="sum number">{{$count}}</span>
         </div>
     </div>
+   
     </form>
-
+    <div class="block">
+        {{$data->links('layouts.pagination')}}
+    </div>
 @endsection

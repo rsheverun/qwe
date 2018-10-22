@@ -147,7 +147,7 @@ class ImagesController extends Controller
                 ->paginate(20);
             }
         }
-         
+
         return view('dashboard.images', [
             'user_areas'=>$user_areas,
             'cameras'=> $user_cameras,
@@ -263,6 +263,8 @@ class ImagesController extends Controller
             });
         })->where('datum', '>=', Carbon::now()->subDays(6))->get()->groupBy(function($date) {
             return Carbon::parse($date->datum)->format('d-m-Y');
+        }) ->sortBy(function($value, $key){
+            return $key;
         });
         $count = [];
         $i =0;

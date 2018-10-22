@@ -24,9 +24,9 @@ class StoreCameraRequest extends FormRequest
     public function rules()
     {
         return [
-            'cam'=>'required',
-            'cam_name'=> 'required',
-            'cam_model'=> 'required',
+            'cam'=>'required|max:50',
+            'cam_name'=> 'required|max:50',
+            'cam_model'=> 'required|max:50',
             'latitude' => 'numeric|max:9999.999999',
             'longitude' => 'numeric|max:9999.999999',
             'desc' => 'required',

@@ -1,8 +1,8 @@
 <template>
-<div class="container-fluid">
+<div class="container-fluid" v-if="count.length > 3">
     <div class="row" >
 
-        <div class="col-lg-4 col-xs-12" v-for="(item, index) in data" v-if="index > 2">
+        <div class="col-lg-4 col-xs-12"  style="min-height: 278px;" v-for="(item, index) in data" v-if="index > 2">
             <div class="text-center" >
                 <img v-bind:src="item.bild"  class="zoom zoom-absolute img-fluid w-100" @error="item.id">
             </div>
@@ -16,6 +16,11 @@
                 <button @click="update" type="button" id="btn_all_img" class="btn btn-outline-success button-look btn-green btn-details" >{{text}}</button>
             </div>
         </div>
+</div>
+<div class="container-fluid" v-else>
+    <p class="text-center label-cam">
+        No data available in table
+    </p>
 </div>
 </template>
 
