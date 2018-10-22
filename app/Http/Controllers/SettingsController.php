@@ -24,7 +24,7 @@ class SettingsController extends Controller
         $groups = UserGroup::paginate(20, ['*'], 'groups');
         $users = User::paginate(20, ['*'], 'users');
         $configsets = Configset::paginate(20, ['*'], 'configsets');
-        $areas = HuntingArea::paginate(5, ['*'], 'areas');
+        $areas = HuntingArea::paginate(1, ['*'], 'areas');
         $hunting_areas = collect();
         $user_areas = collect();
         foreach (Auth::user()->userGroups as $group) {

@@ -20464,6 +20464,11 @@ a.text-dark:focus {
   background-color: #fff !important;
 }
 
+.pagination-info:active {
+  color: #83ba2d !important;
+  background-color: #fff !important;
+}
+
 .button-img {
   position: absolute;
 }
@@ -20475,7 +20480,7 @@ a.text-dark:focus {
 }
 
 .btn-green:active {
-  background-color: #83ba2d !important;
+  background-color: #83ba2d;
   border-color: #83ba2d !important;
 }
 
