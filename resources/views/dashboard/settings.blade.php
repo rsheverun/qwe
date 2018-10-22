@@ -258,7 +258,7 @@
 @csrf
                     <input type="hidden" name="group_store">
 <!-- <div class="row"> -->
-    <div class="form-group row">
+    <div class="form-group row" style="min-height: 130px;">
         <div class="col-lg col-xs-12 pr-0" style="max-width:max-content">
             <label for="group_name" class="title configsets-label mr-0">usergroup name:</label>
         </div>
@@ -284,7 +284,9 @@
                 <label  for="area_{{$area->id}}" class="setting-radio mr-0 mb-2">{{$area->name}}</label> 
              </span>
             @endforeach
-    <button type="submit" class="btn btn-outline-success btn-add btn-absolute mr-3 ml-3 mr-lg-0" style="position: relative;">add</button>
+            <div class="col-xs-12">
+            <button type="submit" class="btn btn-outline-success btn-add btn-absolute" style="position: relative;">add</button>
+            </div>
 
         </div>
     </div>
