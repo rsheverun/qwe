@@ -110,15 +110,14 @@ class CamerasController extends Controller
      */
     public function show($id)
     {
-        $available_cameras= auth()->user()->usergroups()->whereHas('hunting_areas', function($query) {
-            $query->where('name',Session::get('area'));
-            })->with('cameras')
-            ->get()
-            ->pluck('cameras')
-            ->collapse()
-            ->unique('cam_email')
-            ->pluck('id')
-            ->search($id, false); // return int or false
+        $userGroups = auth()->user()->usergroups()->whereHas('hunting_areas', function($query){
+            $query->where('name', Session::get('area'));
+        })->get()->pluck('id');
+        $available_cameras = Camera::whereHas('userGroups',function($query) use($userGroups) {
+            $query->whereIn('user_group_id', $userGroups);
+        })->get()
+        ->pluck('id')
+        ->search($id, false); // return int or false
         if(auth()->user()->hasAnyRole('admin|user') && is_int($available_cameras)){
             $camera =  Camera::find($id);
             $hunting_areas = collect();

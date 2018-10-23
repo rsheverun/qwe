@@ -259,7 +259,7 @@
                     <input type="hidden" name="group_store">
 <!-- <div class="row"> -->
     <div class="form-group row" style="min-height: 130px;">
-        <div class="col-lg col-xs-12 pr-0" style="max-width:max-content">
+        <div class="col-lg col-xs-12 pr-0 max-content">
             <label for="group_name" class="title configsets-label mr-0">usergroup name:</label>
         </div>
         <div class="col-lg-3 col-xs-12">

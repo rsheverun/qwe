@@ -21181,6 +21181,12 @@ input[type="date"]:valid:before {
   border: 1px solid #9d9d9d !important;
 }
 
+.max-content {
+  max-width: -moz-max-content;
+  max-width: -webkit-max-content;
+  max-width: max-content;
+}
+
 .areas input[type="checkbox"] {
   display: none;
 }

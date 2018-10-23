@@ -211,6 +211,10 @@ border-bottom: 1px solid #3b3b3b;
     }
     
 }
+.max-content{
+    max-width: -moz-max-content;
+    max-width: max-content;
+}
 .areas  input[type="checkbox"] {
     display: none;
   }
