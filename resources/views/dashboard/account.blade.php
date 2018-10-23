@@ -68,7 +68,7 @@
                             <td>
                             @foreach($item as $i)
                             <?php 
-                                $count_mb += File::size($i->bild)
+                                $count_mb += filesize($i->bild)
                             ?>
                             @endforeach
                             {{number_format((float)$count_mb/1048576, 2, '.', '')}}
