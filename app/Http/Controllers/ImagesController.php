@@ -18,6 +18,10 @@ use App\Mail\ForwardImage;
 class ImagesController extends Controller
 {
     public $statistics;
+
+    public function __construct(){
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -61,13 +65,14 @@ class ImagesController extends Controller
             return redirect()->route('home')->withErrors('You do not have any available hunting areas');
         }
         if ($request->has('filter')) {
-            if ($request->has('date_start') && $request->has('date_to') && $request->camera_id == 0) {
+            if ($request->date_start != null && $request->date_to != null && $request->camera_id == 0) {
                 $date_start = Carbon::parse($request->date_start)
                                 ->toDateTimeString();
                 $date_to = Carbon::parse($request->date_to)
                                     ->addHours(23)
                                     ->addMinutes(59)
                                     ->toDateTimeString();
+                                    dump($date_start,$date_to);
                 $camimages = Camimage::with('camera')
                 ->whereHas('camera', function($query){
                     $query->whereHas('userGroups', function($query){
@@ -81,11 +86,10 @@ class ImagesController extends Controller
                         });
                     });
                 })
-                ->where('datum', '>=', $date_start)
-                ->where('datum', '<=', $date_to)
+                ->whereDate('datum', '>=', $date_start)
+                ->whereDate('datum', '<=', $date_to)
                 ->orderBy('datum', 'desc')
                 ->paginate(20);
-
             } elseif ($request->date_start == null && $request->date_to == null && $request->camera_id != 0) {
                 $cam_email = Camera::find($request->camera_id)->cam_email;
                 $camimages = Camimage::with('camera')
@@ -104,7 +108,7 @@ class ImagesController extends Controller
                 ->orderBy('datum', 'desc')
                 ->paginate(20);
                 
-            } elseif($request->has('date_start') && $request->has('date_to') && $request->camera_id != 0) {
+            } elseif($request->date_start != null && $request->date_to !=null && $request->camera_id != 0) {
                 $cam_email = Camera::find($request->camera_id)->cam_email;
                 $date_start = Carbon::parse($request->date_start)
                                 ->toDateTimeString();
@@ -126,12 +130,12 @@ class ImagesController extends Controller
                                 });
                         });
                     })
-                    ->where('datum', '>=', $date_start)
-                    ->where('datum', '<=', $date_to)
+                    ->whereDate('datum', '>=', $date_start)
+                    ->whereDate('datum', '<=', $date_to)
                     ->orderBy('datum', 'desc')
                     ->paginate(20);
-
-            } elseif ($request->camera_id != 0 && $request->has('date_start') == false && $request->has('date_to') == false) {
+                    
+            } elseif ($request->camera_id != 0 && $request->date_start == null && $request->date_to == null) {
                 $cam_email = Camera::find($request->camera_id)->cam_email;
                 $camimages = Camimage::with('camera')
                 ->whereHas('camera', function($query) use ($cam_email){
@@ -149,6 +153,9 @@ class ImagesController extends Controller
                 })
                 ->orderBy('datum', 'desc')
                 ->paginate(20);
+            } elseif($request->camera_id == 0 && $request->date_start == null && $request->date_to == null) {
+
+                return redirect()->route('images.index');
             }
         }
 
@@ -257,28 +264,28 @@ class ImagesController extends Controller
      * @return data for StatisticsChartComponent
      */
     public function chartData(){
-        $this->statistics = $camimages = Camimage::with('camera')
-        ->whereHas('camera', function($query){
-            $query->whereHas('userGroups', function($query){
-                $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'))
-                ->whereHas('hunting_areas', function($query){
-                    $query->where('hunting_area_id', HuntingArea::where('name', Session::get('area'))->first()->id);
+            $data = Camimage::with('camera')
+            ->whereHas('camera', function($query){
+                $query->whereHas('userGroups', function($query){
+                    $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'))
+                    ->whereHas('hunting_areas', function($query){
+                        $query->where('hunting_area_id', HuntingArea::where('name', Session::get('area'))->first()->id);
+                    });
                 });
+            })->get()->groupBy(function($date) {
+                return Carbon::parse($date->datum)->format('m-Y');
+            }) ->sortBy(function($value, $key){
+                return $key;
             });
-        })->where('datum', '>=', Carbon::now()->subDays(6))->get()->groupBy(function($date) {
-            return Carbon::parse($date->datum)->format('d-m-Y');
-        }) ->sortBy(function($value, $key){
-            return $key;
-        });
         $count = [];
         $i =0;
-        foreach($this->statistics as $k=>$img) {
+        foreach($data as $k=>$img) {
             $count[$i]=$img->count();
             $i++;
         }
 
         return [
-            'labels' => $this->statistics->keys(),
+            'labels' => $data->keys(),
             'datasets' => array([
                 'label' => 'Count images',
                 'backgroundColor'=> '#83ba2d',
@@ -287,6 +294,11 @@ class ImagesController extends Controller
       ];
     }
 
+    /**
+     * forward image via email.
+     *
+     * @return void
+     */
     public function froward_image(Request $request)
     {
         try {

@@ -26,10 +26,10 @@
 <form class="images d-flex" action="{{route('images.index')}}">
     <div class="form-group filter-camera">
         <label for="staticEmail" class="title pr-3">Camera: </label>
-        <select class="filter mt-2" id="exampleFormControlSelect1" name="camera_id" required>
+        <select class="filter mt-2" id="exampleFormControlSelect1" name="camera_id"  required>
             <option value="0">All</option>            
                 @foreach ($cameras as $camera)
-                    <option value="{{$camera->id}}">{{$camera->cam}}</option>
+                    <option value="{{$camera->id}}" >{{$camera->cam}}</option>
                 @endforeach
         </select>
     </div>

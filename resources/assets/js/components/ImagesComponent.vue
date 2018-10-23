@@ -38,6 +38,7 @@
         mounted() {
             axios.get('../show_all/' + this.cam.id).then((response) => {
                     this.count = _.orderBy(response.data, 'datum','desc')
+                    console.log(response.data)
                 });
         },
         methods: {

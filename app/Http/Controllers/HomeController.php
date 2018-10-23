@@ -80,7 +80,7 @@ class HomeController extends Controller
         }
         foreach ($user_cameras as $camera) {
             $count_day_images += Camimage::where('cam', $camera->cam_email)
-                                        ->where('datum', '>=', Carbon::now()->subHours(24)->toDateTimeString())
+                                        ->whereDate('datum', '>=', Carbon::now()->subHours(24)->toDateTimeString())
                                         ->get()
                                         ->count();
         }

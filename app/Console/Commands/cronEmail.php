@@ -44,7 +44,7 @@ class cronEmail extends Command
         $users = User::where('notification', 1)->whereHas('usergroups', function($query){
             $query->whereHas('cameras', function($query){
                 $query->whereHas('camImages', function($query) {
-                    $query->where('datum', '>=', 
+                    $query->whereDate('datum', '>=', 
                                     Carbon::now()
                                     ->subMinutes(30)
                                     ->toDateTimeString()

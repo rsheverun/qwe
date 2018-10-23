@@ -71,7 +71,7 @@ class AccountController extends Controller
                         $query->whereIn('user_group_id', $usergroups);
                     });
                 })
-            ->where('datum','>=', $date_start)->where('datum', '<=', $date_to)
+            ->whereDate('datum','>=', $date_start)->whereDate('datum', '<=', $date_to)
             ->get();
             // ->groupBy(function($date) {
             //             return Carbon::parse($date->datum)->format('Y-m-d');

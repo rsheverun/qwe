@@ -40,7 +40,7 @@ class FetchImages extends Command
     public function handle()
     {
         $date = Carbon::now()->subMinute()->toDateTimeString();
-        $images = Camimage::where('datum','>=', $date)->get();
+        $images = Camimage::whereDate('datum','>=', $date)->get();
         foreach ($images as $image) {
             Activity::create([
                 'name' => 'new image',
@@ -48,6 +48,5 @@ class FetchImages extends Command
                 'date' => $image->datum
             ]);
         }
-
     }
 }

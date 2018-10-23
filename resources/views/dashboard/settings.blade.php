@@ -290,40 +290,6 @@
 
         </div>
     </div>
-
-        <!-- <div class="col-lg-5 col-xs-12">
-                @csrf
-                    <input type="hidden" name="group_store">
-                    <div class="form-group row pl-3 pr-3">
-                            <label for="group_name" class="title configsets-label">usergroup name:</label>
-                            <input type="text"  class="col custom-input" name="name" id="group_name" required>
-                    </div>
-                    @foreach($roles as $role)
-                        <div class="check-box ">
-                            <label class="title " for="{{$role->name}}">
-                            is {{$role->name}}?
-                                </label>
-                                <input  type="radio" value="{{$role->id}}" id="{{$role->name}}" name="role_id" class="custom-check" @if ($role->name == 'user') checked @endif>
-                        </div>
-
-                    @endforeach
-
-        </div>
-        <div class="col-lg-7 col-xs-12 areas">
-
-            <div class="form-group row pl-3">
-            <span  class="title align-self-start pr-3">hunting areas:</span>
-            @foreach ($areas_list as $area)
-            <span class="col pr-1 pl-0 pr-3 mb-2" style="max-width: max-content;">
-                <input type="checkbox" name="areas[]" id="area_{{$area->id}}" value="{{$area->id}}">
-                <label  for="area_{{$area->id}}" class="setting-radio" style=" margin-right: 0;">{{$area->name}}</label> 
-             </span>
-            @endforeach
-            </div>
-            
-        </div>
-    <button type="submit" class="btn btn-outline-success btn-add btn-absolute mr-3 ml-3 mr-lg-0">add</button> -->
-
     </form> <!--add new group -->
 
     <!-- </div> -->

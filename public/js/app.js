@@ -1808,6 +1808,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         axios.get('../show_all/' + this.cam.id).then(function (response) {
             _this.count = _.orderBy(response.data, 'datum', 'desc');
+            console.log(response.data);
         });
     },
 
