@@ -17,7 +17,7 @@
             </div>
         </div>
 </div>
-<div class="container-fluid" v-else>
+<div class="container-fluid" v-else-if="count.length == 0">
     <p class="text-center label-cam">
         No data available
     </p>
