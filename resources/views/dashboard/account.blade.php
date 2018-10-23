@@ -63,7 +63,7 @@
                             <?php $count_mb = 0?>
                         <tr>
                         <td>{{$date}}</td>
-                            <td style="white-space: nowrap; max-width: 250px;">{{$item->first()->camera->cam}} - {{$item->first()->camera->cam_name}}</td>
+                            <td style="max-width: 250px;">{{$item->first()->camera->cam}} - {{$item->first()->camera->cam_name}}</td>
                             <td>{{$item->count()}} </td> 
                             <td>
                             @foreach($item as $i)
