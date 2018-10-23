@@ -1831,33 +1831,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/ModalComponent.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      modalShow: false
-    };
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/StatisticsChartComponent.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -85545,57 +85518,6 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-465fd2c7\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/ModalComponent.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "b-button",
-        {
-          on: {
-            click: function($event) {
-              _vm.modalShow = !_vm.modalShow
-            }
-          }
-        },
-        [_vm._v("\n    Open Modal\n  ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "b-modal",
-        {
-          model: {
-            value: _vm.modalShow,
-            callback: function($$v) {
-              _vm.modalShow = $$v
-            },
-            expression: "modalShow"
-          }
-        },
-        [_vm._v("\n    Hello From Modal!\n  ")]
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-465fd2c7", module.exports)
-  }
-}
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-6bb212fd\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/AccountDataComponent.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -85734,7 +85656,7 @@ var render = function() {
         "div",
         {},
         [
-          _vm.data.datasets.length > 0
+          _vm.data != 0
             ? _c("bar-chart", {
                 attrs: {
                   "chart-data": _vm.data,
@@ -96991,7 +96913,6 @@ __WEBPACK_IMPORTED_MODULE_2_vue___default.a.component('chart-component', __webpa
 __WEBPACK_IMPORTED_MODULE_2_vue___default.a.component('images-component', __webpack_require__("./resources/assets/js/components/ImagesComponent.vue"));
 __WEBPACK_IMPORTED_MODULE_2_vue___default.a.component('account-data', __webpack_require__("./resources/assets/js/components/AccountDataComponent.vue"));
 __WEBPACK_IMPORTED_MODULE_2_vue___default.a.component('comments', __webpack_require__("./resources/assets/js/components/CommentsComponent.vue"));
-__WEBPACK_IMPORTED_MODULE_2_vue___default.a.component('modal', __webpack_require__("./resources/assets/js/components/ModalComponent.vue"));
 
 var iamges = new __WEBPACK_IMPORTED_MODULE_2_vue___default.a({
   el: '#images'
@@ -97005,10 +96926,6 @@ var comments = new __WEBPACK_IMPORTED_MODULE_2_vue___default.a({
 });
 var chart = new __WEBPACK_IMPORTED_MODULE_2_vue___default.a({
   el: '#chart-component'
-});
-
-var modal = new __WEBPACK_IMPORTED_MODULE_2_vue___default.a({
-  el: '#modal'
 });
 
 /***/ }),
@@ -97226,54 +97143,6 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-be445c04", Component.options)
   } else {
     hotAPI.reload("data-v-be445c04", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ "./resources/assets/js/components/ModalComponent.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
-/* script */
-var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/ModalComponent.vue")
-/* template */
-var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-465fd2c7\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/ModalComponent.vue")
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/ModalComponent.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-465fd2c7", Component.options)
-  } else {
-    hotAPI.reload("data-v-465fd2c7", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true

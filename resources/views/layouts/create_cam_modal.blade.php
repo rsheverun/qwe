@@ -9,7 +9,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{route('cameras.store')}}" method="post" id="create_cam">
+        <form action="{{route('cameras.store')}}" method="post" id="create_modal">
         @csrf
         <div class="form-group">
             <label for="camera" class="title">Camera:</label>
@@ -48,12 +48,6 @@
                     </div>
                 @endforeach
                 </div>
-            <!-- <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck1">
-                <label class="form-check-label" for="gridCheck1">
-                group2
-                </label>
-            </div> -->
             </div>
         </div>
         <div class="form-group">
@@ -77,8 +71,10 @@
     </div>
   </div>
 </div>
+@push('clear_modal')
 <script>
 function clear_fields(){
-    document.getElementById('create_cam').reset();
+    document.getElementById('create_modal').reset();
     }
 </script>
+@endpush

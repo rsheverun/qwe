@@ -42,7 +42,12 @@
         <button type="submit" id="smbt" name="filter"  class="btn btn-outline-success button-look btn-green btn-details btn-filter">Filter</button>
     </div>    
 </form>
- 
+<script>
+    function img(id) { 
+        var a = document.getElementById("submit-btn");
+        a.setAttribute("value", id); 
+    }
+</script>
 <div class="row">
     <div id="chart-component" class="col">
         <chart-component></chart-component>
@@ -90,11 +95,18 @@
                                                     <!-- endmodal -->
                                             </form>
                                         @endhasanyrole
-                                            <button onclick="location.href='mailto:';" type="button" class="btn btn-outline-success button-look btn-green btn-forward" >forward to <br> email</button>
+                                        <form action="{{route('image.forward',$img->id)}}" method="post">
+                                        <button type="button" class="btn btn-outline-success button-look btn-green btn-forward" id="{{$img->id}}" onclick="img({{$img->id}})" data-toggle="modal" data-target="#forward_email">forward to <br> email</button>
+
+                                            @include('layouts.forward_email_modal')
+                                            </form>
+                                            <!-- <button onclick="location.href='mailto:';" type="button" class="btn btn-outline-success button-look btn-green btn-forward" >forward to <br> email</button> -->
                                         </div>
                                     </td>
                             </tr>
                     @endforeach
+                
+
                 @else
                     <td colspan="4" class="text-center">No data available in table</td>
                 @endif

@@ -43,6 +43,7 @@ Route::middleware(['auth','isVerified'])->prefix('dashboard')->group(function ()
 
     Route::get('/change_area','HomeController@change_area')->name('change_area');
 
+    Route::post('/forward/image/{id}','ImagesController@froward_image')->name('image.forward');
 
 });
 

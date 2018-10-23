@@ -25,7 +25,6 @@ Vue.component('chart-component', require('./components/StatisticsChartComponent.
 Vue.component('images-component', require('./components/ImagesComponent.vue'));
 Vue.component('account-data', require('./components/AccountDataComponent.vue'));
 Vue.component('comments', require('./components/CommentsComponent.vue'));
-Vue.component('modal', require('./components/ModalComponent.vue'));
 
 
 
@@ -43,7 +42,5 @@ var chart = new Vue({
   el: '#chart-component',
 });
 
-var modal = new Vue({
-  el: '#modal'
-});
+
 

@@ -12,8 +12,12 @@ use App\Camera;
 use Carbon\Carbon;
 use App\Comment;
 use App\Activity;
+use Mail;
+use App\Mail\ForwardImage;
+
 class ImagesController extends Controller
 {
+    public $statistics;
     /**
      * Display a listing of the resource.
      *
@@ -235,16 +239,16 @@ class ImagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        Camimage::destroy($id);
+        Camimage::destroy($request->delete_id);
         try{
-            Activity::where('image_id', $id)->delete();
+            Activity::where('image_id', $request->delete_id)->delete();
         } catch(\Exception $e) {
             
         }
 
-        return back()->withStatus('Images deleted successfully');
+        return back()->withStatus('Image deleted successfully');
     }
 
     /**
@@ -253,7 +257,7 @@ class ImagesController extends Controller
      * @return data for StatisticsChartComponent
      */
     public function chartData(){
-        $images = $camimages = Camimage::with('camera')
+        $this->statistics = $camimages = Camimage::with('camera')
         ->whereHas('camera', function($query){
             $query->whereHas('userGroups', function($query){
                 $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'))
@@ -268,19 +272,29 @@ class ImagesController extends Controller
         });
         $count = [];
         $i =0;
-        foreach($images as $k=>$img) {
+        foreach($this->statistics as $k=>$img) {
             $count[$i]=$img->count();
             $i++;
         }
 
         return [
-            'labels' => $images->keys(),
+            'labels' => $this->statistics->keys(),
             'datasets' => array([
                 'label' => 'Count images',
                 'backgroundColor'=> '#83ba2d',
                 'data' => $count,
             ])
       ];
+    }
+
+    public function froward_image(Request $request)
+    {
+        try {
+            Mail::to($request->email)->send(new ForwardImage($request));
+        } catch(\Exception $e) {
+            //
+        }
+        return back()->withStatus('Email sent successfully');
     }
 
 }
