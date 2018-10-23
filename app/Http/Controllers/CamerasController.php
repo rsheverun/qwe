@@ -136,12 +136,14 @@ class CamerasController extends Controller
                 $query->where('user_id', auth()->user()->id);
             })->get(); 
 
+            $models = Camera::get()->pluck('cam_model');
             return view('dashboard.details',[
                 'user_groups'=>$usergroups,
                 'camera'=> Camera::find($id),
                 'camimages' => $images->take(3),
                 'configsets'=>Configset::all(),
                 'user_areas'=> $user_areas->unique(),
+                'models_cam'=>$models
             ]);
         } else {
             return redirect()->route('home');

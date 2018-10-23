@@ -67,8 +67,13 @@
             </div>
         </div>
         <div class="row mt-3">
-            <div class="col-12">
-                <span class="title">model:</span> <span  class="pl-1 pr-1">{{$camera->cam_model}}</span>
+            <div class="form-inline col">
+            <label class="my-1 mr-2 title" for="inlineFormCustomSelectPref">model:</label>
+            <select class="filter lat-input" id="inlineFormCustomSelectPref" name="cam_model">
+                @foreach($models_cam as $model)
+                <option value="{{$model}}" @if($camera->cam_model == $model) selected @endif>{{$model}}</option>
+                @endforeach
+            </select>
             </div>
         </div>
         <div class="row">
