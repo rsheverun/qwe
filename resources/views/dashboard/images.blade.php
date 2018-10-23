@@ -46,7 +46,11 @@
     function img(id) { 
         var a = document.getElementById("submit-btn");
         a.setAttribute("value", id); 
+        document.getElementById('forward').reset();
     }
+
+  
+    
 </script>
 <div class="row">
     <div id="chart-component" class="col">
@@ -86,7 +90,7 @@
                                     <td class="text-right table-button">
                                         <div class="button-group">
                                         @hasanyrole('admin|user')
-                                            <form action="{{route('images.destroy',$img->id)}}" method="post">
+                                            <form  action="{{route('images.destroy',$img->id)}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                     <button type="button" data-toggle="modal" id="{{$img->id}}"  onclick="modal_data(this.id, 'image_destroy')" data-target="#exampleModal" class="btn btn-outline-danger button-delete" style="margin-bottom: 15px;">Delete</button>
@@ -95,7 +99,7 @@
                                                     <!-- endmodal -->
                                             </form>
                                         @endhasanyrole
-                                        <form action="{{route('image.forward',$img->id)}}" method="post">
+                                        <form id="forward"  action="{{route('image.forward',$img->id)}}" method="post">
                                         <button type="button" class="btn btn-outline-success button-look btn-green btn-forward" id="{{$img->id}}" onclick="img({{$img->id}})" data-toggle="modal" data-target="#forward_email">forward to <br> email</button>
 
                                             @include('layouts.forward_email_modal')
@@ -118,6 +122,4 @@
 <div class="block">
     {{$camimages->links('layouts.pagination')}}
 </div>
-
-
 @endsection

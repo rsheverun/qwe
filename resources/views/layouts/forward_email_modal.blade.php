@@ -25,11 +25,12 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal" >Close</button>
+          <button type="button" class="btn btn-secondary close-modal" onclick="clear()" data-dismiss="modal" >Close</button>
           <button type="submit" class="btn camera-save" id="submit-btn" name="img_id">send</button>
         </div>
 
       </div>
   </div>
 </div>
+
 
