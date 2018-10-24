@@ -143,8 +143,15 @@ class SettingsController extends Controller
     public function destroy(Request $request, $id)
     {
         if ($request->has('area_destroy')) {
-            HuntingArea::destroy($request->delete_id);
-            $msg = "Area deleted successfully";
+            $areas = HuntingArea::find($request->delete_id)->userGroups;
+            if(HuntingArea::find($request->delete_id)->userGroups->count() == 0) {
+                HuntingArea::destroy($request->delete_id);
+                $msg = "Area deleted successfully";
+            }
+        
+            else {
+                return back()->withErrors('You can not delete a hunting area in which there are still groups');
+            }
         }
         
         if ($request->has('group_destroy')) {
