@@ -142,7 +142,6 @@ class SettingsController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        dd($request,$id);
         if ($request->has('area_destroy')) {
             HuntingArea::destroy($request->delete_id);
             $msg = "Area deleted successfully";
