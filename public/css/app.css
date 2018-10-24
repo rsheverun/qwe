@@ -21021,10 +21021,6 @@ input[type="date"]:valid:before {
   border-bottom: 1px solid #3b3b3b;
 }
 
-.register {
-  max-width: 237px;
-}
-
 .huntingarea-table tbody td {
   color: #3b3b3b;
   font-family: 'Roboto';
@@ -21146,6 +21142,10 @@ input[type="date"]:valid:before {
 .desc {
   min-height: 100px;
   margin-top: 14px;
+}
+
+.register .custom-input {
+  min-width: 250px;
 }
 
 .user-input {

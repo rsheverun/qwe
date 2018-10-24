@@ -79,9 +79,7 @@
 .huntingarea-table thead tr{
     border-bottom: 1px solid #3b3b3b;
 }
-.register{
-    max-width: 237px;
-}
+
 .huntingarea-table tbody td {
 color: #3b3b3b;
 font-family: 'Roboto';
@@ -183,6 +181,11 @@ border-bottom: 1px solid #3b3b3b;
 .desc{
     min-height: 100px;
     margin-top: 14px;
+}
+.register{
+    .custom-input{
+        min-width: 250px;
+    }
 }
 .user-input{
     margin-bottom: 15px;

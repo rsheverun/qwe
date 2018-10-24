@@ -386,7 +386,7 @@
         <div class="col-lg-2 col-xs-12 users-label" >
             <label for="first_name" class="title">First name:</label>
         </div>
-        <div class="col-lg-2 col-xs-12 p-lg-0">
+        <div class="col-lg col-xs-12 p-lg-0">
             <input type="text"  class=" custom-input w-100" id="first_name"  name="first_name" value="{{old('first_name')}}" required>
         </div>
         <div class="col-lg-7 col-xs-12 offset-lg-1 users-check">
@@ -402,39 +402,48 @@
     <div class="col-lg-2 col-xs-12 users-label">
             <label for="last_name" class="title">last name:</label>
         </div>
-        <div class="col-lg-2 col-xs-12 p-lg-0">
+        <div class="col-lg col-xs-12 p-lg-0">
             <input type="text"  class=" custom-input w-100" id="last_name" name="last_name" value="{{old('last_name')}}">
+        </div>
+        <div class="col-lg-8 col-xs-12">
+
         </div>
     </div>
     <div class="form-group row" >
     <div class="col-lg-2 col-xs-12 users-label">
             <label for="staticEmail" class="title">email:</label>
         </div>
-        <div class="col-lg-2 col-xs-12 p-lg-0" >
-            <input type="text"  class=" custom-input w-100" id="staticEmail" name="email" value="{{old('email')}}">
+        <div class="col-lg col-xs-12 p-lg-0" >
+            <input type="email"  class=" custom-input w-100" id="staticEmail" name="email" value="{{old('email')}}">
             <div class="d-flex flex-row form-check email-notify">
-          
-            <input type="checkbox" id="emailNotify" class="form-check-input" name="notification" value="1">
-            <label class="form-check-label pt-1" for="emailNotify">eMail notification for new images?</label>
+                <input type="checkbox" id="emailNotify" class="form-check-input" name="notification" value="1">
+                <label class="form-check-label pt-1" for="emailNotify">eMail notification for new images?</label>
             </div>
-            
+        </div>
+        <div class="col-lg-8 col-xs-12">
 
         </div>
     </div>
     <div class="form-group row credentials">
-    <div class="col-lg-2 col-xs-12 users-label">
-            <label for="nickname" class="title">user:</label>
+        <div class="col-lg-2 col-xs-12 users-label">
+                <label for="nickname" class="title">user:</label>
         </div>
-        <div class="col-lg-2 col-xs-12 p-lg-0">
+        <div class="col-lg col-xs-12 p-lg-0">
             <input type="text"  class=" custom-input w-100" id="nickname" name="nickname" value="{{ old('nickname') }}" required autofocu>
+        </div>
+        <div class="col-lg-8 col-xs-12">
+
         </div>
     </div>
     <div class="form-group row">
     <div class="col-lg-2 col-xs-12 users-label">
             <label for="password" class="title">password:</label>
         </div>
-        <div class="col-lg-2 col-xs-12 p-lg-0">
+        <div class="col-lg col-xs-12 p-lg-0">
             <input type="password"  class=" custom-input w-100" id="password" name="password" required>
+        </div>
+        <div class="col-lg-8 col-xs-12">
+
         </div>
         <div class="col-12">
             <button type="submit" class="btn btn-outline-success btn-add btn-absolute mr-lg-3">add</button>
