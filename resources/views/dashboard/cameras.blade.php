@@ -55,7 +55,7 @@
         @if($cameras->count()!= 0)
             @foreach ($cameras as $k=>$camera)
                     <tr style="@if($k+1 == $cameras->count()) border-bottom: none;@endif">
-                        <td>{{$k+1}}</td>
+                        <td>{{$camera->id}}</td>
                         <td>{{$camera->cam}}</td>
                         <td>{{$camera->cam_name}}</td>
                         <td>{{$camera->cam_model}}</td>

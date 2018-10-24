@@ -1,7 +1,5 @@
-
-import $ from 'jquery';  
-window.jQuery = $; 
-window.$ = $;
+// import jquery from 'jquery';
+// window.$ = window.jQuery=jquery;
 
 
 
@@ -10,14 +8,15 @@ require('./custom');
 
 window.Vue = require('vue');
 import moment from 'moment'
-import Vue from 'vue'
-import BootstrapVue from 'bootstrap-vue'
 import VueCharts from 'vue-chartjs'
 import { Bar, Line } from 'vue-chartjs'
+import Vue from 'vue'
+import BootstrapVue from 'bootstrap-vue'
 Vue.use(BootstrapVue);
 Vue.prototype.moment = moment
 
 var datepicker = require('air-datepicker');
+
 
 
 Vue.component('chart-component', require('./components/StatisticsChartComponent.vue'));

@@ -24,16 +24,9 @@ class AccountController extends Controller
     public function index(FilterImagesRequest $request)
     {
         // change area
-        $hunting_areas = collect();
-        $user_areas = collect();
-        foreach (Auth::user()->userGroups as $group) {
-            $hunting_areas->push($group->hunting_areas);
-        }
-        foreach ($hunting_areas as $hunting_area){
-           foreach ($hunting_area as $area) {
-                $user_areas->push($area->name);
-           }
-        }
+        $user_areas = HuntingArea::with('userGroups')->whereHas('userGroups', function($query){
+            $query->whereIn('user_group_id', auth()->user()->userGroups->pluck('id'));
+        })->get();
 // dd(auth()->user()->usergroups->pluck('id'));
 
 //This would contain all data to be sent to the view//This would contain all data to be sent to the view
@@ -107,7 +100,7 @@ class AccountController extends Controller
                 $data['images']->setPath($request->fullUrl());
                 
                     return view('dashboard.account',[
-                        'user_areas' => $user_areas,
+                        'user_areas' => $user_areas->pluck('name'),
                         'data' => $data['images'],
                         'count' => $images->count(),
                         'count_mb'=> 0,

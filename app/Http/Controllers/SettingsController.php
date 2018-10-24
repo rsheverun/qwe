@@ -25,16 +25,9 @@ class SettingsController extends Controller
         $users = User::paginate(20, ['*'], 'users');
         $configsets = Configset::paginate(20, ['*'], 'configsets');
         $areas = HuntingArea::paginate(20, ['*'], 'areas');
-        $hunting_areas = collect();
-        $user_areas = collect();
-        foreach (Auth::user()->userGroups as $group) {
-            $hunting_areas->push($group->hunting_areas);
-        }
-        foreach ($hunting_areas as $hunting_area){
-           foreach ($hunting_area as $area) {
-            $user_areas->push($area->name);
-           }
-        }
+        $user_areas = HuntingArea::with('userGroups')->whereHas('userGroups', function($query){
+            $query->whereIn('user_group_id', auth()->user()->userGroups->pluck('id'));
+        })->get();
         
         return view('dashboard.settings',[
             'roles'=>Role::get(),
@@ -44,7 +37,7 @@ class SettingsController extends Controller
             'groups_list'=>UserGroup::all(),
             'configsets'=>$configsets,
             'users'=>$users,
-            'user_areas'=>$user_areas->unique()
+            'user_areas'=>$user_areas->pluck('name')
             ]);
     }
 
@@ -149,6 +142,7 @@ class SettingsController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+        dd($request,$id);
         if ($request->has('area_destroy')) {
             HuntingArea::destroy($request->delete_id);
             $msg = "Area deleted successfully";

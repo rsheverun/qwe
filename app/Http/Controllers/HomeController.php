@@ -53,17 +53,10 @@ class HomeController extends Controller
     {
 
         // Cahnge area
-        $hunting_areas = collect();
-        $user_areas = collect();
-        foreach (Auth::user()->userGroups as $group) {
-            $hunting_areas->push($group->hunting_areas);
-        }
-        foreach ($hunting_areas as $hunting_area) {
-           foreach ($hunting_area as $area) {
-               $user_areas->push($area->name);
-           }
-        }
-
+        $user_areas = HuntingArea::with('userGroups')->whereHas('userGroups', function($query){
+            $query->whereIn('user_group_id', auth()->user()->userGroups->pluck('id'));
+        })->get();
+        
         //statistics
         $user_cameras = Camera::whereHas('userGroups', function($query) {
                 $query->whereHas('users', function($query) {
@@ -101,7 +94,7 @@ class HomeController extends Controller
         
         return view('dashboard.index',[
             'data' => $activity,
-            'user_areas' => $user_areas->unique(),
+            'user_areas' => $user_areas->pluck('name'),
             'count_all_images' => $count_all_images,
             'count_day_images' => $count_day_images,
             'count_day_cameras' => $user_cameras->count()

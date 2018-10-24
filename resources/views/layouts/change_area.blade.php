@@ -10,7 +10,7 @@
       <div class="modal-body">
         <select class="form-control" id="exampleFormControlSelect1" name="area">
         @if($user_areas->count() != 0)
-            @foreach($user_areas->unique() as $area)
+            @foreach($user_areas as $area)
                 
                 <option value="{{$area}}" @if(Session::get('area') == $area) selected @endif>
                     {{$area}}

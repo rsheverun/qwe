@@ -28,19 +28,11 @@ class CamerasController extends Controller
     public function index()
     {
         // get hunting area
-        $cameras = collect();
-        $hunting_areas = collect();
-        $user_areas = collect();
-        foreach (Auth::user()->userGroups as $group) {
-            $hunting_areas->push($group->hunting_areas);
-        }
-        foreach ($hunting_areas as $hunting_area){
-           foreach ($hunting_area as $area) {
-            $user_areas->push($area->name);
-           }
-        }
+        $user_areas = HuntingArea::with('userGroups')->whereHas('userGroups', function($query){
+            $query->whereIn('user_group_id', auth()->user()->userGroups->pluck('id'));
+        })->get();
         try {
-            $userGroups_areas = UserGroup::whereHas('hunting_areas', function($query){
+            $userGroups_areas = auth()->user()->usergroups()->whereHas('hunting_areas', function($query){
                 $query->where('name', Session::get('area'));
             })->get()->pluck('id');
             $cameras = Camera::whereHas('userGroups', function($query) use($userGroups_areas) {
@@ -55,7 +47,7 @@ class CamerasController extends Controller
          })->get();                                           
         return view('dashboard.cameras',[
             'cameras'=> $cameras,
-            'user_areas'=>$user_areas->unique(),
+            'user_areas'=>$user_areas->pluck('name'),
             'latitude'=>$cameras->avg('latitude'),
             'longitude'=>$cameras->avg('longitude'),
             'user_groups'=>$usergroups,
@@ -110,6 +102,10 @@ class CamerasController extends Controller
      */
     public function show($id)
     {
+        $user_areas = HuntingArea::with('userGroups')->whereHas('userGroups', function($query){
+            $query->whereIn('user_group_id', auth()->user()->userGroups->pluck('id'));
+        })->get();
+
         $userGroups = auth()->user()->usergroups()->whereHas('hunting_areas', function($query){
             $query->where('name', Session::get('area'));
         })->get()->pluck('id');
@@ -120,16 +116,6 @@ class CamerasController extends Controller
         ->search($id, false); // return int or false
         if(auth()->user()->hasAnyRole('admin|user') && is_int($available_cameras)){
             $camera =  Camera::find($id);
-            $hunting_areas = collect();
-            $user_areas = collect();
-            foreach (Auth::user()->userGroups as $group) {
-                $hunting_areas->push($group->hunting_areas);
-            }
-            foreach ($hunting_areas as $hunting_area){
-            foreach ($hunting_area as $area) {
-                $user_areas->push($area->name);
-            }
-            }
             $images = $camera->camImages->sortByDesc('datum');
             $usergroups = UserGroup::whereHas('users', function ($query) {
                 $query->where('user_id', auth()->user()->id);
@@ -141,7 +127,7 @@ class CamerasController extends Controller
                 'camera'=> Camera::find($id),
                 'camimages' => $images->take(3),
                 'configsets'=>Configset::all(),
-                'user_areas'=> $user_areas->unique(),
+                'user_areas'=> $user_areas->pluck('name'),
                 'models_cam'=>$models
             ]);
         } else {

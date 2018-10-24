@@ -11,13 +11,15 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     
     <!-- Scripts -->
-    <script src="{{ asset('js/custom.js') }}"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <script src="{{ asset('js/custom.js') }}"></script>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     
     @stack('clear_modal')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
 @include('layouts.nav')
@@ -56,6 +58,7 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-3oC0DY09X8eGpDuWX4NQZq7pEgeRCVg&callback=initMap">
     </script>
      @stack('scripts')
+     @stack('calculate')
 <script>
 
    function modal_data(id, title) { 

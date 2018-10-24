@@ -30,16 +30,9 @@ class ImagesController extends Controller
     public function index(FilterImagesRequest $request)
     {
        
-        $hunting_areas = collect();
-        $user_areas = collect();
-        
-        foreach (Auth::user()->userGroups as $group) {
-            $hunting_areas->push($group->hunting_areas);
-        }
-        foreach ($hunting_areas as $hunting_area){
-           foreach ($hunting_area as $area)
-            $user_areas->push($area->name);
-        }
+        $user_areas = HuntingArea::with('userGroups')->whereHas('userGroups', function($query){
+            $query->whereIn('user_group_id', auth()->user()->userGroups->pluck('id'));
+        })->get();
         try {
 
             $camimages = Camimage::with('camera')
@@ -160,7 +153,7 @@ class ImagesController extends Controller
         }
 
         return view('dashboard.images', [
-            'user_areas'=>$user_areas,
+            'user_areas'=>$user_areas->pluck('name'),
             'cameras'=> $user_cameras,
             'camimages' => $camimages
         ]); 
