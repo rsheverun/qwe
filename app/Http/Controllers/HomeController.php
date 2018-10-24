@@ -81,11 +81,6 @@ class HomeController extends Controller
         }
 
         //activity stream
-        $cameras = Camera::whereHas('userGroups', function($query){
-            $query->whereHas('users', function($query){
-                $query->where('user_id', auth()->user()->id);
-            });
-        })->get();
         $activity = Activity::whereIn('camera_id', $user_cameras->pluck('id'))
                             ->orWhereIn('image_id', $user_cameras->pluck('camImages')
                                                                 ->collapse()

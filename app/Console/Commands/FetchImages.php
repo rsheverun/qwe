@@ -39,8 +39,8 @@ class FetchImages extends Command
      */
     public function handle()
     {
-        $date = Carbon::now()->toDateTimeString();
-        $time = Carbon::now()->toTimeString();
+        $date = Carbon::now()->subMinute()->toDateTimeString();
+        $time = Carbon::now()->subMinute()->toTimeString();
         $images = Camimage::whereDate('datum','>=', $date)->whereTime('datum', '>=', $time)->get();
         foreach ($images as $image) {
             Activity::create([
