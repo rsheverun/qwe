@@ -21,6 +21,7 @@
     "ws": "3.3.2"
   },
   "dependencies": {
+    "air-datepicker": "^2.2.3",
     "chart.js": "^2.7.3",
     "lodash": "^4.17.11",
     "vue-chartjs": "^3.4.0"
