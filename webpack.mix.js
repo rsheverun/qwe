@@ -13,7 +13,6 @@ let mix = require('laravel-mix');
 mix.autoload({
     jquery: ['$', 'window.jQuery']
  });
-mix.js('resources/assets/js/app.js', 'public/js')
+mix.js('resources/assets/js/custom.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css')
-   .js('resources/assets/js/custom.js', 'public/js')
    .version();

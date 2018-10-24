@@ -11,9 +11,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}" defer></script>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -58,26 +57,6 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-3oC0DY09X8eGpDuWX4NQZq7pEgeRCVg&callback=initMap">
     </script>
      @stack('scripts')
-     @stack('calculate')
-<script>
 
-   function modal_data(id, title) { 
-    var a = document.getElementById("delete-btn");
-    a.setAttribute("value", id); 
-    
-    if(title == 'user_destroy') {
-        document.getElementById("title").innerHTML = "Delete user";
-        document.getElementById("text").innerHTML = "Are you sure you want to delete user?";
-    }
-    if(title == 'camera_destroy') {
-        document.getElementById("title").innerHTML = "Delete camera";
-        document.getElementById("text").innerHTML = "Are you sure you want to delete camera?";
-    }
-    if(title == 'image_destroy') {
-        document.getElementById("title").innerHTML = "Delete image";
-        document.getElementById("text").innerHTML = "Are you sure you want to delete image?";
-    }
-}
-</script>
 </body>
 </html>

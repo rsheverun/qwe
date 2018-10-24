@@ -145,7 +145,7 @@
 @foreach($camimages as $k=>$image)
 
     <div class="col-lg-4 col-xs-12">
-        <div class="text-center">
+        <div class="text-center img-height">
             <img id="{{$image->id}}" src="{{trim($image->bild)}}" class="zoom zoom-absolute img-fluid w-100" alt="{{$image->id}}">
         </div>
         <div class="text-right">
@@ -166,14 +166,7 @@
 </div>
 </div>
 </div>
-@push('calculate')
-<script>
-$(function() {
-    var height = $("#images").css("height");
-    $("#images").css("min-height",height);
-});
-</script>
-@endpush
+
 <script>
 function initMap() {
          // The location of Uluru
