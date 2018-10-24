@@ -58,14 +58,16 @@ class HomeController extends Controller
         })->get();
         
         //statistics
-        $user_cameras = Camera::whereHas('userGroups', function($query) {
-                $query->whereHas('users', function($query) {
-                    $query->where('user_id', auth()->user()->id);
-                })
-                ->whereHas('hunting_areas', function($query) {
-                    $query->where('name', Session::get('area'));
-                });
-        })->with('camImages')->get();
+        try {
+            $userGroups_areas = auth()->user()->usergroups()->whereHas('hunting_areas', function($query){
+                $query->where('name', Session::get('area'));
+            })->get()->pluck('id');
+            $user_cameras = Camera::whereHas('userGroups', function($query) use($userGroups_areas) {
+                $query->whereIn('user_group_id', $userGroups_areas);
+            })->with('camImages')->get();
+        } catch(\Exception $e) {
+            //
+        }
         $count_all_images = 0;
         $count_day_images = 0;
         foreach ($user_cameras as $camera) {
