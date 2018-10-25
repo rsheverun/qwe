@@ -6,6 +6,9 @@ use Illuminate\Console\Command;
 use App\Camimage;
 use App\Activity;
 use Carbon\Carbon;
+use Mail;
+use App\Mail\Notification;
+
 class FetchImages extends Command
 {
     /**
@@ -48,6 +51,12 @@ class FetchImages extends Command
                 'image_id' => $image->id,
                 'date' => $image->datum
             ]);
+            $users = $image->camera->usergroups()->with('users')->get()->pluck('users')->collapse();
+            foreach ($users as $user) {
+                if($user->notification == true) {
+                    Mail::to($user->email)->send(new Notification($user));
+                }
+            }
         }
     }
 }
