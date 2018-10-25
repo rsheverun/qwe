@@ -182,11 +182,7 @@ border-bottom: 1px solid #3b3b3b;
     min-height: 100px;
     margin-top: 14px;
 }
-.register{
-    .custom-input{
-        min-width: 250px;
-    }
-}
+
 .user-input{
     margin-bottom: 15px;
 }
@@ -207,6 +203,7 @@ border-bottom: 1px solid #3b3b3b;
 .users-label{
     width:107px;
     max-width: 150px;
+    white-space: nowrap;
 }
 .table-settings{
     table tr, th, td{

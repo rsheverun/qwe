@@ -11,6 +11,7 @@
 |
 */
 
+Route::post('/dashboard/settings/get/{id}', 'SettingsController@getData');
 
 Route::get('/', 'HomeController@home');
 

@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\HuntingArea;
 class VmapInstanceConfig extends Model
 {
     public $table = 'vmap_instance_configs';
@@ -16,6 +16,6 @@ class VmapInstanceConfig extends Model
 
     public function hunting_area()
     {
-        return $this->belongsTo('App\HuntingArea','vmap_instance_id');
+        return $this->hasOne('App\HuntingArea');
     }
 }

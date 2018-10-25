@@ -39,6 +39,7 @@
             axios.get('../show_all/' + this.cam.id).then((response) => {
                     this.count = _.orderBy(response.data, 'datum','desc')
                 });
+                console.log(window.location.pathname);
         },
         methods: {
            update: function() {

@@ -1,7 +1,7 @@
 // import jquery from 'jquery';
 // window.$ = window.jQuery=jquery;
 
-
+Vue.config.productionTip = false
 
 require('./bootstrap');
 require('./custom');

@@ -21,12 +21,13 @@ class HuntingArea extends Model
     
     public function vmap_instance_config()
     {
-        return $this->hasOne('App\VmapInstanceConfig');
+        return $this->belongsTo('App\VmapInstanceConfig', 'vmap_instance_id');
+        
     }
 
     public function vmap_mapview_config()
     {
-        return $this->hasOne('App\VmapMapviewConfig');
+        return $this->belongsTo('App\VmapMapviewConfig','vmap_mapviewid_id');
     }
    
 

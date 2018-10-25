@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\HuntingArea;
 
 class VmapMapviewConfig extends Model
 {
@@ -14,8 +15,8 @@ class VmapMapviewConfig extends Model
         'description'
     ];
 
-    public function user()
+    public function hunting_area()
     {
-        return $this->belongsTo('App\HuntingArea', 'vmap_mapviewid_id');
+        return $this->hasOne('App\HuntingArea');
     }
 }

@@ -11,6 +11,8 @@ use App\VmapInstanceConfig;
 use App\VmapMapviewConfig;
 use App\User;
 use App\HuntingAreaUserGroup;
+use App\UserUserGroup;
+
 use Auth;
 class SettingsController extends Controller
 {
@@ -21,10 +23,10 @@ class SettingsController extends Controller
      */
     public function index()
     {
-        $groups = UserGroup::paginate(20, ['*'], 'groups');
-        $users = User::paginate(20, ['*'], 'users');
-        $configsets = Configset::paginate(20, ['*'], 'configsets');
-        $areas = HuntingArea::paginate(20, ['*'], 'areas');
+        $groups = UserGroup::orderBy('created_at')->paginate(20, ['*'], 'groups');
+        $users = User::orderBy('created_at')->paginate(20, ['*'], 'users');
+        $configsets = Configset::orderBy('created_at')->paginate(20, ['*'], 'configsets');
+        $areas = HuntingArea::orderBy('created_at')->paginate(20, ['*'], 'areas');
         $user_areas = HuntingArea::with('userGroups')->whereHas('userGroups', function($query){
             $query->whereIn('user_group_id', auth()->user()->userGroups->pluck('id'));
         })->get();
@@ -131,7 +133,55 @@ class SettingsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->has('area_update')) {
+            $hunting_area = HuntingArea::find($request->area_update);
+            $hunting_area->update($request->toArray());
+            $instance_config = VmapInstanceConfig::find($hunting_area->id);
+            $map_config = VmapMapviewConfig::find($hunting_area->id);
+            $instance_config->value = $request->instance_value;
+            $instance_config->description = $request->instance_description;
+            $instance_config->save();
+            $map_config->value = $request->mapview_value;
+            $map_config->description = $request->mapview_description;
+            $map_config->save();
+            $msg = "Hunting area updated succesfully";
+        }
+        
+        if ($request->has('group_update')) {
+            UserGroup::find($request->group_update)->update($request->toArray());
+            if($request->has('areas')) {
+                HuntingAreaUserGroup::where('user_group_id', $request->group_update)->delete();
+                foreach ($request->areas as $id) {
+                    HuntingAreaUserGroup::create([
+                        'hunting_area_id'=>$id,
+                        'user_group_id'=>$request->group_update
+                    ]);
+                }
+            }
+            $msg = "Group updated succesfully";
+            
+        }
+        
+        if ($request->has('configset_update')) {
+            Configset::find($request->configset_update)->update($request->toArray());
+            $msg = "Config set deleted successfully";
+        }
+        
+        if ($request->has('user_update')) {
+            $user = User::find($request->user_update)->update($request->toArray());
+            if($request->has('group')) {
+                UserUserGroup::where('user_id', $request->user_update)->delete();
+                foreach ($request->group as $id) {
+                    UserUserGroup::create([
+                        'user_group_id'=>$id,
+                        'user_id'=>$request->user_update
+                    ]);
+                }
+            }
+            $msg= "User updated successfully";
+        }
+
+        return back()->withStatus($msg);
     }
 
     /**
@@ -165,16 +215,18 @@ class SettingsController extends Controller
             }
             
         }
-        
+
+        if ($request->has('user_destroy')) {
+            User::destroy($request->delete_id);
+            $msg= "User deleted successfully";
+        }
+
         if ($request->has('configset_destroy')) {
             Configset::destroy($request->delete_id);
             $msg = "Config set deleted successfully";
         }
         
-        if ($request->has('user_destroy')) {
-            User::destroy($request->delete_id);
-            $msg= "User deleted successfully";
-        }
+        
 
         return back()->withStatus($msg);
     }
@@ -214,5 +266,43 @@ class SettingsController extends Controller
     public function deleteitem(Request $request)
     {
         $data = HuntingArea::destroy($request->id);
+    }
+
+    public function getData(Request $request){
+        if($request->has('area_update')) {
+            $area = HuntingArea::find($request->id);
+            $instance_config = VmapInstanceConfig::find($area->id);
+            $map_config = VmapMapviewConfig::find($area->id);
+            // return response()->json(view("layouts.edit_hunting_area_modal")->render());
+            return view("layouts.edit_hunting_area_modal", [
+                'id' => $area->id,
+                'name' =>$area->name,
+                'description' => $area->description,
+                'instance_value' => $instance_config->value,
+                'instance_description' => $instance_config->description,
+                'map_value' => $map_config->value,
+                'map_description' => $map_config->description
+            ])->render();
+        } elseif ($request->has('group_update')) {
+            $group = UserGroup::find($request->id);
+            return view("layouts.edit_group_modal", [
+                'id' => $group->id,
+                'group' => UserGroup::find($request->id),
+                'roles'=> Role::all(),
+                'areas_list' => HuntingArea::all(),
+            ]);
+        
+        }  elseif ($request->has('user_update')) {
+            return view("layouts.edit_user_modal",[
+                'user' => User::find($request->id),
+                'groups_list'=> UserGroup::all(),
+                'user_usergroups' => User::find($request->id),
+            ]);
+        } elseif ($request->has('config_update')) {
+            return view("layouts.edit_config_modal", [
+                'configset' => Configset::find($request->id)
+            ]);
+        }
+
     }
 }

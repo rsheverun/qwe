@@ -41,8 +41,8 @@ class cronEmail extends Command
      */
     public function handle()
     {
-        $date = Carbon::now()->subMinute()->toDateTimeString();
-        $time = Carbon::now()->toTimeString();
+        $date = Carbon::now()->toDateString();
+        $time = Carbon::now()->subMinute()->toTimeString();
         $users = User::where('notification', 1)->whereHas('usergroups', function($query) use($date,$time){
             $query->whereHas('cameras', function($query) use($date,$time){
                 $query->whereHas('camImages', function($query) use($date,$time){

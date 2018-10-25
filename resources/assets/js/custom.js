@@ -5,27 +5,33 @@ $(function() {
     var height = $(".img-height").find("img").css("height");
     $(".img-height").css("min-height",height);
     
-    function modal_data(id, title) { 
-        var a = document.getElementById("delete-btn");
-        a.setAttribute("value", id); 
-        
-        if(title == 'user_destroy') {
-            document.getElementById("title").innerHTML = "Delete user";
-            document.getElementById("text").innerHTML = "Are you sure you want to delete user?";
-        }
-        if(title == 'camera_destroy') {
-            document.getElementById("title").innerHTML = "Delete camera";
-            document.getElementById("text").innerHTML = "Are you sure you want to delete camera?";
-        }
-        if(title == 'image_destroy') {
-            document.getElementById("title").innerHTML = "Delete image";
-            document.getElementById("text").innerHTML = "Are you sure you want to delete image?";
-        }
-    }
-    function clear_fields(){
-        document.getElementById('create_modal').reset();
-    }
     
-});
-
+    $('.open-modal').click(function() {
+        var target = $(this).data('target');
+        var id = $(this).val();
+        var url = $(location).attr('href') +'/get/'+ id
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                url: url,
+                type: "post",
+                data: {
+                    id:id,
+                    [target]: true
+                },
+                success: function(response){ // What to do if we succeed
+                    console.log(response);
+                    $('#editArea').html(response);
+                    $('#editAreaModal').modal('toggle').on('hide.bs.modal', function(){
+                        $('#editArea').html('');
+                    });
+                },
+                error: function(msg){
+                    console.error('ERROR')
+                    //
+                }
+            });
+    })
    
+});
