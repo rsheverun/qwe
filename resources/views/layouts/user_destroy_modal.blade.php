@@ -16,7 +16,7 @@
                                 Are you sure you want to delete user?
                             </div>
                             <div class="modal-footer">
-                            <input type="hidden" name="area_destroy">
+                            <input type="hidden" name="user_destroy">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-danger" name="delete_id" value="{{$user->id}}">Delete</button>
                             </div>
