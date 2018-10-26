@@ -44,6 +44,8 @@ class CamerasController extends Controller
         
          $usergroups = UserGroup::whereHas('users', function ($query) {
              $query->where('user_id', auth()->user()->id);
+         })->whereHas('hunting_areas',function($query) {
+                $query->where('name', Session::get('area'));
          })->get();                                           
         return view('dashboard.cameras',[
             'cameras'=> $cameras,
