@@ -49,7 +49,7 @@
             <div class="d-flex align-items-baseline ">
                   <span class="title">camera:</span> <span class="pl-1 pr-1">{{$camera->cam}}</span>                  
             </div>
-            <div class="d-flex align-items-baseline">
+            <div>
                   <span class="title">name:</span> <span class="pl-1 pr-1">{{$camera->cam_name}}</span>                  
             </div>
         </div>
