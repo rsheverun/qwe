@@ -9,7 +9,7 @@ use App\UserGroup;
 use App\CameraUserGroup;
 use App\HuntingArea;
 use App\Activity;
-
+use App\CamModel;
 use Session;
 use App\Http\Requests\EditCameraRequest;
 use App\Http\Requests\StoreCameraRequest;
@@ -74,7 +74,13 @@ class CamerasController extends Controller
     public function store(StoreCameraRequest $request)
     {
         if ($request->has('group')) {
-            $cam = Camera::create($request->except('group'));
+
+            $cam_model = CamModel::create([
+                'name' => $request->cam_model
+            ]);
+            $request->request->add(['cam_model_id' => $cam_model->id]);
+            $cam = Camera::create($request->except('group','cam_model'));
+            
             foreach ($request->group as $id) {
                 CameraUserGroup::create([
                 'camera_id' => $cam->id,
@@ -128,7 +134,7 @@ class CamerasController extends Controller
                 'camimages' => $images->take(3),
                 'configsets'=>Configset::all(),
                 'user_areas'=> $user_areas->pluck('name'),
-                'models_cam'=>$models
+                'camera_models'=>CamModel::all()
             ]);
         } else {
             return redirect()->route('home');
@@ -165,6 +171,7 @@ class CamerasController extends Controller
     public function update(EditCameraRequest $request, Camera $camera)
     {
         $camera->update($request->toArray());
+        // CamModel::where('camera_id', $camera->id)->update($request->)
         return back()->withStatus('Camera updated successfully');      
     }
 

@@ -16,7 +16,7 @@ class CreateCamerasTable extends Migration
         Schema::create('cameras', function (Blueprint $table) {
             $table->increments('id');
             $table->string('cam');
-            $table->string('cam_model');
+            // $table->string('cam_model');
             $table->string('cam_name');
             $table->string('desc');
             $table->float('latitude', 10, 6);
@@ -28,6 +28,7 @@ class CreateCamerasTable extends Migration
                     ->references('id')
                     ->on('configsets')
                     ->onDelete('cascade');
+            $table->unsignedInteger('cam_model_id');
             $table->timestamps();
         });
     }

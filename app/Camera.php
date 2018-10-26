@@ -3,20 +3,21 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\CamModel;
 
 class Camera extends Model
 {
     // protected $connection = 'mysql';
     protected $fillable = [
         'cam',
-        'cam_model',
         'cam_name',
         'desc',
         'latitude',
         'longitude',
         'group_id',
         'cam_email',
-        'config_id'
+        'config_id',
+        'cam_model_id'
     ];
 
     /**
@@ -56,5 +57,15 @@ class Camera extends Model
     public function activity()
     {
         return $this->hasOne('App\Activity');
+    }
+
+    /**
+     * Relationship between tables Camera and CamMOdel (One to One).
+     *
+     * @return void
+     */
+    public function cam_model()
+    {
+        return $this->belongsTo('App\CamModel');
     }
 }

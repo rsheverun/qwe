@@ -58,7 +58,7 @@
                         <td>{{$camera->id}}</td>
                         <td>{{$camera->cam}}</td>
                         <td>{{$camera->cam_name}}</td>
-                        <td>{{$camera->cam_model}}</td>
+                        <td>{{$camera->cam_model->name}}</td>
                         <td>default</td>
                         <td>
                             {{date('d.m.Y H:i:s', strtotime($camera->camImages->max('datum')))}}
