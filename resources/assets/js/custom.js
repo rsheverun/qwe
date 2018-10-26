@@ -5,7 +5,7 @@ $(function() {
     var height = $(".img-height").find("img").css("height");
     $(".img-height").css("min-height",height);
     
-    
+    //open edit modal on settings page
     $('.open-modal').click(function() {
         var target = $(this).data('target');
         var id = $(this).val();
@@ -33,5 +33,5 @@ $(function() {
                 }
             });
     })
-   
+
 });

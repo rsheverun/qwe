@@ -19,6 +19,7 @@ import BarChart from './BarChart.js'
             return{
                 data: [],
                 options: {
+                     responsive: true,
                      legend: {
                         display: false
                     }, 

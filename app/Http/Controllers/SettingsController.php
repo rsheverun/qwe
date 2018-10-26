@@ -273,7 +273,7 @@ class SettingsController extends Controller
             $area = HuntingArea::find($request->id);
             $instance_config = VmapInstanceConfig::find($area->id);
             $map_config = VmapMapviewConfig::find($area->id);
-            // return response()->json(view("layouts.edit_hunting_area_modal")->render());
+
             return view("layouts.edit_hunting_area_modal", [
                 'id' => $area->id,
                 'name' =>$area->name,
@@ -285,6 +285,7 @@ class SettingsController extends Controller
             ])->render();
         } elseif ($request->has('group_update')) {
             $group = UserGroup::find($request->id);
+            
             return view("layouts.edit_group_modal", [
                 'id' => $group->id,
                 'group' => UserGroup::find($request->id),
@@ -293,12 +294,14 @@ class SettingsController extends Controller
             ]);
         
         }  elseif ($request->has('user_update')) {
+            
             return view("layouts.edit_user_modal",[
                 'user' => User::find($request->id),
                 'groups_list'=> UserGroup::all(),
                 'user_usergroups' => User::find($request->id),
             ]);
         } elseif ($request->has('config_update')) {
+           
             return view("layouts.edit_config_modal", [
                 'configset' => Configset::find($request->id)
             ]);

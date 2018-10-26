@@ -91,14 +91,14 @@
                                             <form  action="{{route('images.destroy',$img->id)}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                    <button type="button" data-toggle="modal" id="{{$img->id}}"  onclick="modal_data(this.id, 'image_destroy')" data-target="#exampleModal" class="btn btn-outline-danger button-delete" style="margin-bottom: 15px;">Delete</button>
+                                                    <button type="button" data-toggle="modal" id="{{$img->id}}"  onclick="modal_data(this.id, 'image_destroy')" data-target="#exampleModal" class="w-100 btn btn-outline-danger button-delete" style="margin-bottom: 15px;">Delete</button>
                                                     <!-- modal -->
                                                         @include('layouts.modal')
                                                     <!-- endmodal -->
                                             </form>
                                         @endhasanyrole
                                         <form id="forward"  action="{{route('image.forward',$img->id)}}" method="post">
-                                        <button type="button" class="btn btn-outline-success button-look btn-green btn-forward" id="{{$img->id}}" onclick="img({{$img->id}})" data-toggle="modal" data-target="#forward_email">forward to <br> email</button>
+                                        <button type="button" class="w-100 btn btn-outline-success button-look btn-green btn-forward" id="{{$img->id}}" onclick="img({{$img->id}})" data-toggle="modal" data-target="#forward_email">forward to <br> email</button>
 
                                             @include('layouts.forward_email_modal')
                                             </form>

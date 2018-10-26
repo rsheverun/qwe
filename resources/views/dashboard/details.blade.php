@@ -93,19 +93,19 @@
             </tr>
             <tr>
                 <th>Org-Nme </th>
-                <td>{{$camera->configset->org_name}}</td>
+                <td>{{$camera->configset->org_name or 'empty'}}</td>
             </tr>
             <tr>
                 <th>SMTP-Server </th>
-                <td>{{$camera->configset->server}}</td>
+                <td>{{$camera->configset->server or 'empty'}}</td>
             </tr>
             <tr>
                 <th>SMTP-Port </th>
-                <td>{{$camera->configset->port}}</td>
+                <td>{{$camera->configset->port or 'empty'}}</td>
             </tr>
             <tr>
                 <th>SMTP-User </th>
-                <td>{{$camera->configset->user}}</td>
+                <td>{{$camera->configset->user or 'empty'}}</td>
             </tr>
         </table>
         </form>
