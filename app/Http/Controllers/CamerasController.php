@@ -42,11 +42,13 @@ class CamerasController extends Controller
             //
         }
         
-         $usergroups = UserGroup::whereHas('users', function ($query) {
-             $query->where('user_id', auth()->user()->id);
-         })->whereHas('hunting_areas',function($query) {
+         $usergroups = UserGroup::whereHas('hunting_areas',function($query) {
                 $query->where('name', Session::get('area'));
-         })->get();                                           
+            })
+            ->whereHas('users', function ($query) {
+                $query->where('user_id', auth()->user()->id);
+            })->get();    
+                                                   
         return view('dashboard.cameras',[
             'cameras'=> $cameras,
             'user_areas'=>$user_areas->pluck('name'),
