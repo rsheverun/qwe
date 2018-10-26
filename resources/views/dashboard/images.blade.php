@@ -118,6 +118,7 @@
     </div>
 </div>
 <div class="block">
-    {{$camimages->links('layouts.pagination')}}
+
+    {{$camimages->appends(request()->input())->links('layouts.pagination')}}
 </div>
 @endsection

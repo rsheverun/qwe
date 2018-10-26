@@ -257,15 +257,15 @@ class ImagesController extends Controller
      * @return data for StatisticsChartComponent
      */
     public function chartData(Request $request){
-        $date_start = Carbon::parse($request->date_start)
-                                ->toDateTimeString();
-        $date_to = Carbon::parse($request->date_to)
-                                    ->addHours(23)
-                                    ->addMinutes(59)
-                                    ->toDateTimeString();
-            // dd($request->has('date_to'));
-            if($request->has('date_to')) {
-                $data = Camimage::whereDate('datum', '>=', $date_start)->where('datum', '<=', $date_to)->with('camera')
+
+        if($request->has('date_to')) {
+            $date_start = Carbon::parse($request->date_start)
+            ->toDateTimeString();
+            $date_to = Carbon::parse($request->date_to)
+                            ->addHours(23)
+                            ->addMinutes(59)
+                            ->toDateTimeString();
+            $data = Camimage::whereDate('datum', '>=', $date_start)->where('datum', '<=', $date_to)->with('camera')
                 ->whereHas('camera', function($query){
                     $query->whereHas('userGroups', function($query){
                         $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'))
