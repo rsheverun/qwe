@@ -49,20 +49,20 @@ class LoginController extends Controller
         Auth::user()->last_login = Carbon::now()->toDateTimeString();
         Auth::user()->save();
         auth()->user()->syncRoles('guest');
-        // $user_areas = HuntingArea::with('userGroups')->whereHas('userGroups', function($query){
-        //     $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'));
+        $user_areas = HuntingArea::with('userGroups')->whereHas('userGroups', function($query){
+            $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'));
                 
-        // })->get();
-        // try {
-        //     Session::put(['area'=> $user_areas->first()->name]);
-        //     $role= auth()->user()->usergroups()->with('hunting_areas')
-        //                 ->whereHas('hunting_areas', function($query) use($user_areas){
-        //                     $query->where('name',$user_areas->first()->name);
-        //                 })->with('role')->get()->pluck('role')->min('id');
-        //     Auth::user()->syncRoles(Role::find($role)->name);
-        // } catch (\Exception $e) {
-        //     auth()->user()->syncRoles('guest');
-        // }
+        })->get();
+        try {
+            Session::put(['area'=> $user_areas->first()->name]);
+            $role= auth()->user()->usergroups()->with('hunting_areas')
+                        ->whereHas('hunting_areas', function($query) use($user_areas){
+                            $query->where('name',$user_areas->first()->name);
+                        })->with('role')->get()->pluck('role')->min('id');
+            Auth::user()->syncRoles(Role::find($role)->name);
+        } catch (\Exception $e) {
+            auth()->user()->syncRoles('guest');
+        }
     }
     
     public function username()

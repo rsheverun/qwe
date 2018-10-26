@@ -35,14 +35,7 @@
             @yield('content')        
         </div>
     </div>
-    @if(Session::get('area') == null && !Request::is('/'))
-        @include('layouts.change_area_first')
-        <script>
-            $(function(){
-                $('#first_modal').modal({backdrop: 'static', keyboard: false})
-            })
-        </script>
-        @endif
+    
     <footer>
     <nav class="nav flex-column footer-nav">
     @guest
