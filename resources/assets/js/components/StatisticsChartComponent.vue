@@ -55,7 +55,9 @@ import BarChart from './BarChart.js'
         },
         methods: {
             update: function() {
-                axios.get('../dashboard/chart-data').then((response) => {
+                let url = new URL(window.location.href)
+                console.log(url)
+                axios.get('/dashboard/chart-data'+url.search).then((response) => {
                     this.data = response.data
                 });
             }

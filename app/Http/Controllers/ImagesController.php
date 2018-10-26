@@ -256,20 +256,44 @@ class ImagesController extends Controller
      *
      * @return data for StatisticsChartComponent
      */
-    public function chartData(){
-            $data = Camimage::with('camera')
-            ->whereHas('camera', function($query){
-                $query->whereHas('userGroups', function($query){
-                    $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'))
-                    ->whereHas('hunting_areas', function($query){
-                        $query->where('hunting_area_id', HuntingArea::where('name', Session::get('area'))->first()->id);
+    public function chartData(Request $request){
+        $date_start = Carbon::parse($request->date_start)
+                                ->toDateTimeString();
+        $date_to = Carbon::parse($request->date_to)
+                                    ->addHours(23)
+                                    ->addMinutes(59)
+                                    ->toDateTimeString();
+            // dd($request->has('date_to'));
+            if($request->has('date_to')) {
+                $data = Camimage::whereDate('datum', '>=', $date_start)->where('datum', '<=', $date_to)->with('camera')
+                ->whereHas('camera', function($query){
+                    $query->whereHas('userGroups', function($query){
+                        $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'))
+                        ->whereHas('hunting_areas', function($query){
+                            $query->where('hunting_area_id', HuntingArea::where('name', Session::get('area'))->first()->id);
+                        });
                     });
+                })->get()->groupBy(function($date) {
+                    return Carbon::parse($date->datum)->format('d-m-Y');
+                }) ->sortBy(function($value, $key){
+                    return $key;
                 });
-            })->get()->groupBy(function($date) {
-                return Carbon::parse($date->datum)->format('m-Y');
-            }) ->sortBy(function($value, $key){
-                return $key;
-            });
+            } else {
+                $data = Camimage::with('camera')
+                ->whereHas('camera', function($query){
+                    $query->whereHas('userGroups', function($query){
+                        $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'))
+                        ->whereHas('hunting_areas', function($query){
+                            $query->where('hunting_area_id', HuntingArea::where('name', Session::get('area'))->first()->id);
+                        });
+                    });
+                })->get()->groupBy(function($date) {
+                    return Carbon::parse($date->datum)->format('m-Y');
+                }) ->sortBy(function($value, $key){
+                    return $key;
+                });
+            }
+            
         $count = [];
         $i =0;
         foreach($data as $k=>$img) {
