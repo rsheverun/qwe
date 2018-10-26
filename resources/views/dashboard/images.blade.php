@@ -37,7 +37,7 @@
         <label for="staticEmail" class="title" id="date_label">date range:</label>
             <input type='text' id="date_start" name="date_start" class='datepicker-here filter-date pl-1 ml-lg-3 mr-3  mt-2 mb-2' placeholder="From" autocomplete="off"/>
             <input type='text' id="date_to" name="date_to" class='datepicker-here filter-date pl-1 ml-lg-3 mr-3  mt-2 mb-2' placeholder="To" autocomplete="off"/>
-        <button type="submit" id="smbt" name="filter"  class="btn btn-outline-success button-look btn-green btn-details btn-filter">Filter</button>
+        <button type="submit" id="smbt" name="filter"  class="btn btn-outline-success btn-green btn-filter">Filter</button>
     </div>    
 </form>
 <script>

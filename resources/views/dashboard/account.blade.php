@@ -45,7 +45,7 @@
                     onfocus="(this.type='date')"
                     placeholder="To" required> -->
             <input type='text' id="date_to" name="date_to" class='datepicker-here filter-date mt-2 pl-1 mb-2 mr-3' placeholder="To" autocomplete="off" required/>
-        <button type="submit" id="smbt" name="filter"  class="btn btn-outline-success button-look btn-green btn-details btn-filter">Filter</button>
+        <button type="submit" id="smbt" name="filter"  class="btn btn-outline-success btn-green btn-filter">Filter</button>
 
             </div>
         </div>
