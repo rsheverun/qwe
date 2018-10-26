@@ -188,7 +188,7 @@
                 <td class="text-right table-button">
                     <button type="button" data-target="group_update" value="{{$group->id}}" class="mb-2 w-100 btn btn-outline-danger button-delete btn-green align-self-start open-modal">edit</button>
                     <div class="edit-group"></div>
-                <button type="button" data-toggle="modal"  data-target="#group_destroy_{{$group->id}}" class="btn btn-outline-danger button-delete align-self-start">DELETE</button>
+                <button type="button" data-toggle="modal"  data-target="#group_destroy_{{$group->id}}" class="w-100 btn btn-outline-danger button-delete align-self-start">DELETE</button>
                     @include('layouts.group_destroy')
                 </td>
             </tr>
@@ -290,7 +290,7 @@
                 </td>
                 <td class="text-right table-button">
                 <button type="button" data-target="user_update" value="{{$user->id}}" class="mb-2 w-100 btn btn-outline-danger button-delete btn-green align-self-start open-modal">edit</button>
-                <button type="button" data-toggle="modal"   data-target="#user_destroy_{{$user->id}}" class="btn btn-outline-danger button-delete align-self-start">DELETE</button>
+                <button type="button" data-toggle="modal"   data-target="#user_destroy_{{$user->id}}" class="w-100 btn btn-outline-danger button-delete align-self-start">DELETE</button>
                 @include('layouts.user_destroy_modal')
                 </td>
             </tr>
@@ -411,7 +411,7 @@
                 @method('DELETE')
                 <input type="hidden" name="configset_destroy">
                 <button type="button" data-target="config_update" value="{{$configset->id}}" class="mb-2 w-100 btn btn-outline-danger button-delete btn-green align-self-start open-modal">edit</button>
-                <button type="button" data-toggle="modal"  data-target="#config_destroy_{{$configset->id}}" class="btn btn-outline-danger button-delete align-self-start">DELETE</button>
+                <button type="button" data-toggle="modal"  data-target="#config_destroy_{{$configset->id}}" class="w-100 btn btn-outline-danger button-delete align-self-start">DELETE</button>
                 @include('layouts.destroy_config_modal')
                 </form>
                 </td>
