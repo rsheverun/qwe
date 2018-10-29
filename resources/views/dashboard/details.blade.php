@@ -42,7 +42,7 @@
     <form action="{{route('cameras.update', $camera->id)}}" method="post" id="camera_edit">
         @csrf
         @method('PUT')
-        <div class="row no-gutters mb-3  flex-wrap camera-info pr-3">
+        <div class="row no-gutters mb-3  flex-wrap camera-info">
                     <div class="d-flex align-items-baseline pr-3">
                   <span class="title">ID:</span> <span class="pl-1 pr-1">{{$camera->id}}</span>
             </div>
