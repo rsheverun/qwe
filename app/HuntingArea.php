@@ -11,7 +11,8 @@ class HuntingArea extends Model
         'name',
         'description',
         'vmap_instance_id',
-        'vmap_mapviewid_id'
+        'vmap_mapviewid_id',
+        'id'
     ];
 
     public function userGroups()

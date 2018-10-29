@@ -51,16 +51,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-
         // Cahnge area
         $user_areas = HuntingArea::with('userGroups')->whereHas('userGroups', function($query){
             $query->whereIn('user_group_id', auth()->user()->userGroups->pluck('id'));
         })->get();
-        
+        $userGroups_areas = auth()->user()->usergroups()->whereHas('hunting_areas', function($query){
+            $query->where('hunting_area_id', Session::get('area'));
+        })->get()->pluck('id');
         //statistics
         try {
             $userGroups_areas = auth()->user()->usergroups()->whereHas('hunting_areas', function($query){
-                $query->where('name', Session::get('area'));
+                $query->where('hunting_area_id', Session::get('area'));
             })->get()->pluck('id');
             $user_cameras = Camera::whereHas('userGroups', function($query) use($userGroups_areas) {
                 $query->whereIn('user_group_id', $userGroups_areas);
@@ -91,7 +92,7 @@ class HomeController extends Controller
         
         return view('dashboard.index',[
             'data' => $activity,
-            'user_areas' => $user_areas->pluck('name'),
+            'user_areas' => $user_areas,
             'count_all_images' => $count_all_images,
             'count_day_images' => $count_day_images,
             'count_day_cameras' => $user_cameras->count()
@@ -107,7 +108,7 @@ class HomeController extends Controller
     {
         Session::put(['area'=> $request->area]);
         $role= auth()->user()->usergroups()->whereHas('hunting_areas', function($query) use($request){
-            $query->where('name',$request->area);
+            $query->where('hunting_area_id',$request->area);
         })->with('role')->get()->pluck('role')->min('id');
         auth()->user()->syncRoles(Role::find($role)->name);
 

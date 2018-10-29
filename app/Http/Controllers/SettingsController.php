@@ -39,7 +39,7 @@ class SettingsController extends Controller
             'groups_list'=>UserGroup::all(),
             'configsets'=>$configsets,
             'users'=>$users,
-            'user_areas'=>$user_areas->pluck('name')
+            'user_areas'=>$user_areas
             ]);
     }
 

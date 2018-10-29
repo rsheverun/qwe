@@ -57,7 +57,7 @@ class AccountController extends Controller
                                 ->addMinutes(59)
                                 ->toDateTimeString();
             $usergroups = UserGroup::whereHas('hunting_areas', function($query){
-                    $query->where('name', Session::get('area'));
+                    $query->where('hunting_area_id', Session::get('area'));
                 })->get()->pluck('id');
             $images = Camimage::with('camera')->whereHas('camera', function($query) use ($usergroups){
                     $query->whereHas('userGroups', function($query) use ($usergroups){
@@ -100,7 +100,7 @@ class AccountController extends Controller
                 $data['images']->setPath($request->fullUrl());
                 
                     return view('dashboard.account',[
-                        'user_areas' => $user_areas->pluck('name'),
+                        'user_areas' => $user_areas,
                         'data' => $data['images'],
                         'count' => $images->count(),
                         'count_mb'=> 0,

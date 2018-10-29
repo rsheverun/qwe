@@ -54,7 +54,7 @@ class LoginController extends Controller
                 
         })->get();
         try {
-            Session::put(['area'=> $user_areas->first()->name]);
+            Session::put(['area'=> $user_areas->first()->id]);
             $role= auth()->user()->usergroups()->with('hunting_areas')
                         ->whereHas('hunting_areas', function($query) use($user_areas){
                             $query->where('name',$user_areas->first()->name);

@@ -12,8 +12,8 @@
         @if($user_areas->count() != 0)
             @foreach($user_areas as $area)
                 
-                <option value="{{$area}}" >
-                    {{$area}}
+                <option value="{{$area->id}}" >
+                    {{$area->name}}
             </option>
             @endforeach
         @endif
