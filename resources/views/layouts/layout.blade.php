@@ -75,5 +75,7 @@
     }
 }
 </script>
+<div id="editArea"></div>
+
 </body>
 </html>

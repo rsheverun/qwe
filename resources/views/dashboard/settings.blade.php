@@ -492,6 +492,5 @@
 </div>
 
 </div>
-<div id="editArea"></div>
 
 @endsection

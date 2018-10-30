@@ -305,6 +305,11 @@ class SettingsController extends Controller
             return view("layouts.edit_config_modal", [
                 'configset' => Configset::find($request->id)
             ]);
+        } elseif ($request->has('change-area-modal')) {
+            $user_areas = HuntingArea::with('userGroups')->whereHas('userGroups', function($query){
+                $query->whereIn('user_group_id', auth()->user()->userGroups->pluck('id'));
+            })->get();
+            return view("layouts.change_area",['user_areas' => $user_areas]);
         }
 
     }

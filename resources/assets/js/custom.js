@@ -8,8 +8,14 @@ $(function() {
     //open edit modal on settings page
     $('.open-modal').click(function() {
         var target = $(this).data('target');
-        var id = $(this).val();
-        var url = $(location).attr('href') +'/get/'+ id
+        console.log(target);
+        if (target != 'change-area-modal') {
+            var id = $(this).val();
+            var url = $(location).attr('href') +'/get/'+ id
+        } else {
+            var id = 'area';
+            var url = '/dashboard/settings/get/'+ id
+        }
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -28,10 +34,11 @@ $(function() {
                     });
                 },
                 error: function(msg){
-                    console.error('ERROR')
+                    console.error('ERROR', msg)
                     //
                 }
             });
     })
+ 
 
 });

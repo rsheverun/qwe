@@ -5,10 +5,7 @@
       <img src="{{asset('img/target.png')}}" alt="">  
 @else
 
-<form action="{{route('change_area')}}">
-    @include('layouts.change_area')
-</form>
-  	<span class="area_name" data-toggle="modal" data-target="#exampleModalCenter">{{$user_areas->find(session()->get('area'))->name}}</span>
+  	<span class="area_name open-modal"  data-target="change-area-modal">{{$user_areas->find(session()->get('area'))->name}}</span>
       <img src="{{asset('img/target.png')}}" alt="">  
 @endguest
 </div>
