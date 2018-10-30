@@ -29,7 +29,7 @@ class Notification extends Mailable
     public function build()
     {
         return $this->markdown('email.notification')->with([
-            'url'=>route('home')
+            'url'=>'http://www.jagdbezirk.info/'
         ]);
     }
 }
