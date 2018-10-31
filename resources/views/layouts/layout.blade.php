@@ -21,6 +21,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
+    <div class="overflow">
 @include('layouts.nav')
     <div class="custom-container">
     <div class="form-group">
@@ -76,6 +77,6 @@
 }
 </script>
 <div id="editArea"></div>
-
+</div>
 </body>
 </html>

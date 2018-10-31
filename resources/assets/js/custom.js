@@ -37,10 +37,10 @@ $(function() {
                 },
                 success: function(response){ // What to do if we succeed
                     $('#editArea').html(response);
-                    $("body").css("overflow","hidden");
+                    $(".overflow").css("overflow","hidden");
                     $('#editAreaModal').modal('toggle').on('hide.bs.modal', function(){
                         $('#editArea').html('');
-                        $("body").css("overflow","auto");
+                        $(".overflow").css("overflow","auto");
 
                     });
                 },
