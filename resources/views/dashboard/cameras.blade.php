@@ -30,6 +30,7 @@
         @hasanyrole('admin|user')
             <button type="button" class=" col-xs-12 btn btn-outline-success btn-add open-modal" data-target="create_cam" value="1">new</button>
         @endhasanyrole
+            <button type="button" class=" col-xs-12 btn btn-outline-success btn-add open-modal" data-target="test" value="1">test btn</button>
 
     </div>
 </div>

@@ -15,6 +15,10 @@ $(function() {
         } else if(target == 'change-area-modal') {
             var id = 'area';
             var url = '/dashboard/settings/get/'+ id
+        } else if(target == 'test') {
+            console.log(target)
+            var id = 'test';
+            var url = '/dashboard/settings/get/'+ id
         } else {
             var id = $(this).val();
             var url = $(location).attr('href') +'/get/'+ id

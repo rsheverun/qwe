@@ -323,6 +323,8 @@ class SettingsController extends Controller
                 'user_groups'=>$usergroups,
                 'configsets'=>Configset::all()
                 ]);
+        } elseif($request->has('test')) {
+            return view ('layouts.test');
         }
 
     }
