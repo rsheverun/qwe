@@ -1,19 +1,19 @@
 
                      <!-- modal edit area-->
-                     <form action="{{route('settings.update',$id)}}" method="post">
-                         @csrf
-                         @method('PUT')
-                     <div class="modal fade text-left" id="editAreaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
+                     
+                     <div class="modal fade" id="editAreaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Edit Hunting Area</h5>
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Edit Hunting Area</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">
+                                <form action="{{route('settings.update',$id)}}" method="post">
                                     @csrf
+                                    @method('PUT')
+                                <div class="modal-body">
                                     <div class="form-group">
                                         <label for="camera" class="title">Name:</label>
                                         <input type="text" class="form-control" name="name" value="{{$name}}" required>
@@ -44,8 +44,9 @@
                                     <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
                                     <button type="submit" class="btn camera-save submit-modal" >edit</button>
                                 </div>
+                </form>
+
                             </div>
                         </div>
                     </div>
                     <!-- /modal -->
-                </form>

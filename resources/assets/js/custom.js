@@ -8,7 +8,6 @@ $(function() {
     //open edit modal
     $('.open-modal').click(function() {
         var target = $(this).data('target');
-        console.log(target);
         if (target == 'create_cam') {
             console.log('1')
             var id = 'create_cam';
@@ -21,7 +20,6 @@ $(function() {
             var url = $(location).attr('href') +'/get/'+ id
             
         }
-        console.log(url)
         //SettingController@getData
             $.ajax({
                 headers: {

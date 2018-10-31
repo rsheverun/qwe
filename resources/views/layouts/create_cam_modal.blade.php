@@ -1,15 +1,14 @@
 <!-- Modal -->
-<form action="{{route('cameras.store')}}" method="post" id="create_modal">
-
-<div class="modal fade" id="editAreaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<div class="modal fade" id="editAreaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Add New Camera</h5>
+        <h5 class="modal-title" id="exampleModalCenterTitle">Add New Camera</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+<form action="{{route('cameras.store')}}" method="post" id="create_modal">
       <div class="modal-body">
         @csrf
         <div class="form-group">
@@ -68,7 +67,9 @@
         <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal" onclick="clear_fields()">Close</button>
         <button type="submit" class="btn camera-save" id="checkBtn">Save</button>
       </div>
+  </form>
+
     </div>
   </div>
-  </form>
+</div>
 

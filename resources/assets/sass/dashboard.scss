@@ -404,6 +404,9 @@ input[type="date"]:before {
   input[type="date"]:valid:before {
     content: "";
   }
+  modal-backdrop {
+      overflow: hidden;
+  }
  
 @media only screen and (max-width:1366px){
     .filter-camera {

@@ -1,16 +1,17 @@
-<form action="{{route('settings.update',$user->id)}}" method="post">
-                    @csrf
-                    @method('PUT')
+
                      <!-- modal edit user-->
-                     <div class="modal fade text-left" id="editAreaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
+                     <div class="modal fade" id="editAreaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Edit user</h5>
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Edit user</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+                        <form action="{{route('settings.update',$user->id)}}" method="post">
+                            @csrf
+                            @method('PUT')
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="camera" class="title">First name:</label>
@@ -56,8 +57,9 @@
                             <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn camera-save" >edit</button>
                         </div>
+                </form>
+
                         </div>
                     </div>
                     </div>
                     <!-- /modal -->
-                </form>
