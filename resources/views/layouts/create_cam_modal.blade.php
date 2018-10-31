@@ -1,5 +1,7 @@
 <!-- Modal -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<form action="{{route('cameras.store')}}" method="post" id="create_modal">
+
+<div class="modal fade" id="editAreaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -9,7 +11,6 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{route('cameras.store')}}" method="post" id="create_modal">
         @csrf
         <div class="form-group">
             <label for="camera" class="title">Camera:</label>
@@ -67,14 +68,7 @@
         <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal" onclick="clear_fields()">Close</button>
         <button type="submit" class="btn camera-save" id="checkBtn">Save</button>
       </div>
-      </form>
     </div>
   </div>
-</div>
-@push('clear_modal')
-<script>
-function clear_fields(){
-    document.getElementById('create_modal').reset();
-    }
-</script>
-@endpush
+  </form>
+

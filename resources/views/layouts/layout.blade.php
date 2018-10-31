@@ -12,10 +12,10 @@
     
     <!-- Scripts -->
 
-    <script src="{{ asset('js/custom.js') }}" defer></script>
+    <script src="{{ mix('js/custom.js') }}" defer></script>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     
     @stack('clear_modal')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

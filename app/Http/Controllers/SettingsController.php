@@ -12,7 +12,7 @@ use App\VmapMapviewConfig;
 use App\User;
 use App\HuntingAreaUserGroup;
 use App\UserUserGroup;
-
+use Session;
 use Auth;
 class SettingsController extends Controller
 {
@@ -269,6 +269,7 @@ class SettingsController extends Controller
     }
 
     public function getData(Request $request){
+
         if($request->has('area_update')) {
             $area = HuntingArea::find($request->id);
             $instance_config = VmapInstanceConfig::find($area->id);
@@ -309,7 +310,19 @@ class SettingsController extends Controller
             $user_areas = HuntingArea::with('userGroups')->whereHas('userGroups', function($query){
                 $query->whereIn('user_group_id', auth()->user()->userGroups->pluck('id'));
             })->get();
+            
             return view("layouts.change_area",['user_areas' => $user_areas]);
+        } elseif ($request->has('create_cam')) {
+            $usergroups = UserGroup::whereHas('hunting_areas',function($query) {
+                $query->where('hunting_area_id', Session::get('area'));
+            })
+            ->whereHas('users', function ($query) {
+                $query->where('user_id', auth()->user()->id);
+            })->get(); 
+            return view("layouts.create_cam_modal",[
+                'user_groups'=>$usergroups,
+                'configsets'=>Configset::all()
+                ]);
         }
 
     }

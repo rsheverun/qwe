@@ -28,9 +28,8 @@
     <div class="col-12">
         <span class="badge-statistic">cameras</span>
         @hasanyrole('admin|user')
-            <button class=" col-xs-12 btn btn-outline-success btn-add" data-toggle="modal" data-target="#exampleModalLong">new</button>
+            <button type="button" class=" col-xs-12 btn btn-outline-success btn-add open-modal" data-target="create_cam" value="1">new</button>
         @endhasanyrole
-    @include('layouts.create_cam_modal')
 
     </div>
 </div>
