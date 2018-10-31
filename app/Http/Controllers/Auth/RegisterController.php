@@ -124,7 +124,6 @@ class RegisterController extends Controller
             $request->password,
             'Email Verification'
         ));
-        // UserRegistered::send($user, $request->password, 'Email Verification');
         return redirect()->route('settings.index')->withStatus('A confirmation link has been sent to the email.');
     }
 }

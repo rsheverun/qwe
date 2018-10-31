@@ -177,7 +177,7 @@ class CamerasController extends Controller
     public function update(EditCameraRequest $request, Camera $camera)
     {
         $camera->update($request->toArray());
-        // CamModel::where('camera_id', $camera->id)->update($request->)
+
         return back()->withStatus('Camera updated successfully');      
     }
 

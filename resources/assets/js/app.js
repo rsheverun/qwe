@@ -21,16 +21,12 @@ var datepicker = require('air-datepicker');
 
 Vue.component('chart-component', require('./components/StatisticsChartComponent.vue'));
 Vue.component('images-component', require('./components/ImagesComponent.vue'));
-Vue.component('account-data', require('./components/AccountDataComponent.vue'));
 Vue.component('comments', require('./components/CommentsComponent.vue'));
 
 
 
 var iamges = new Vue({
     el: '#images',
-});
-var account_data = new Vue({
-  el: '#account_data',
 });
 
 var comments = new Vue({

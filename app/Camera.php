@@ -7,7 +7,6 @@ use App\CamModel;
 
 class Camera extends Model
 {
-    // protected $connection = 'mysql';
     protected $fillable = [
         'cam',
         'cam_name',

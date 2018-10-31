@@ -65,7 +65,6 @@ class ImagesController extends Controller
                                     ->addHours(23)
                                     ->addMinutes(59)
                                     ->toDateTimeString();
-                                    // dump($date_start,$date_to);
                 $camimages = Camimage::with('camera')
                 ->whereHas('camera', function($query){
                     $query->whereHas('userGroups', function($query){

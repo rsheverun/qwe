@@ -36,14 +36,9 @@
         <div class="form-group row">
             <div class="col">
                 <label for="staticEmail" class="title pr-3" id="date_label">date range:</label>
-                <!-- <input  id="date_start" name="date_start" class="filter-date mr-3  mt-2 pl-1" 
-                    type="text" onfocus="(this.type='date')"
-                    placeholder="From" required> -->
+               
             <input type='text' id="date_start" name="date_start" class='datepicker-here filter-date mr-3  mt-2 pl-1' placeholder="From" autocomplete="off" required/>
 
-                <!-- <input  id="date_to" name="date_to" class="filter-date mt-2 pl-1 mb-2 mr-3" type="text" 
-                    onfocus="(this.type='date')"
-                    placeholder="To" required> -->
             <input type='text' id="date_to" name="date_to" class='datepicker-here filter-date mt-2 pl-1 mb-2 mr-3' placeholder="To" autocomplete="off" required/>
         <button type="submit" id="smbt" name="filter"  class="btn btn-outline-success btn-green btn-filter">Filter</button>
 

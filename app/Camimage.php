@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Camimage extends Model
 {
-    // protected $connection = 'camportal';
     public $timestamps = false;
     protected $fillable = [
         'cam',
