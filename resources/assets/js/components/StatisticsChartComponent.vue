@@ -1,8 +1,8 @@
 <template>
     <div class="chart">
         <div>
-            <div class="">
-                <bar-chart v-if="data != 0 " :chart-data="data" :height="100" :options="options"></bar-chart>
+            <div class="" v-if="data.labels.length != 0">
+                <bar-chart :chart-data="data" :height="100" :options="options"></bar-chart>
             
             </div>
         </div>
@@ -59,6 +59,7 @@ import BarChart from './BarChart.js'
                 let url = new URL(window.location.href)
                 axios.get('/dashboard/chart-data'+url.search).then((response) => {
                     this.data = response.data
+                    console.log(this.data.labels.length)
                 });
             }
         }

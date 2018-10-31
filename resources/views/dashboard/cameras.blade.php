@@ -34,8 +34,8 @@
 
     </div>
 </div>
-<div class="row activity">
-    <div class="table-responsive col-12">
+<div class="row activity ml-1 mr-1">
+    <div class="table-responsive">
     <table class="custom-table">
         <thead>
             <tr>

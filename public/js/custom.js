@@ -4172,6 +4172,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var url = new URL(window.location.href);
             axios.get('/dashboard/chart-data' + url.search).then(function (response) {
                 _this.data = response.data;
+                console.log(_this.data.labels.length);
             });
         }
     }
@@ -87929,22 +87930,22 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "chart" }, [
     _c("div", [
-      _c(
-        "div",
-        {},
-        [
-          _vm.data != 0
-            ? _c("bar-chart", {
+      _vm.data.labels.length != 0
+        ? _c(
+            "div",
+            {},
+            [
+              _c("bar-chart", {
                 attrs: {
                   "chart-data": _vm.data,
                   height: 100,
                   options: _vm.options
                 }
               })
-            : _vm._e()
-        ],
-        1
-      )
+            ],
+            1
+          )
+        : _vm._e()
     ])
   ])
 }
