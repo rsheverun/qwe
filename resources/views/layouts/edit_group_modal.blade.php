@@ -21,7 +21,14 @@
                             @foreach($roles as $role)
                                                 <div class="check-box ">
                                                     <label class="title " >
-                                                    is {{$role->name}}?
+                                                        is @if ($role->name == 'admin')
+                                                            admin
+                                                        @elseif($role->name =='user')
+                                                            BENUTZER
+                                                        @elseif($role->name == 'guest')
+                                                            GAST
+                                                        @endif
+                                                        ?
                                                         </label>
                                                         <input  type="radio" value="{{$role->id}}"  name="role_id" class="custom-check" @if($group->role->id == $role->id) checked @endif>
                                                 </div>
@@ -29,7 +36,7 @@
                             @endforeach
                             </div>
                             <div class="form-group areas">
-                            <label for="camera" class="title">hunting areas:</label>
+                            <label for="camera" class="title">Jagdgebiete:</label>
                             @foreach ($areas_list as $area)
                                
                                     <span class="col pl-0 mb-2" style="max-width: max-content;">
@@ -48,8 +55,8 @@
                         </div>
                         <div class="modal-footer">
                             <input type="hidden" name="group_update" value="{{$group->id}}">
-                            <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn camera-save" >edit</button>
+                            <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Schließen</button>
+                            <button type="submit" class="btn camera-save" >Bearbeiten</button>
                         </div>
                 </form>
 

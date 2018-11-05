@@ -7,18 +7,18 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="title">Delete hunting area</h5>
+                                <h5 class="modal-title" id="title">Jagdrevier löschen</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body text-left" id="text">
-                                Are you sure you want to delete hunting area?
+                                Sind Sie sicher, dass Sie das Jagdgebiet löschen wollen?
                             </div>
                             <div class="modal-footer">
                             <input type="hidden" name="area_destroy">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-danger" name="delete_id" value="{{$area->id}}">Delete</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
+                                <button type="submit" class="btn btn-danger" name="delete_id" value="{{$area->id}}">Löschen</button>
                             </div>
                             </div>
                         </div>

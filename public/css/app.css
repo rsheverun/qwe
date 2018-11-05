@@ -20973,6 +20973,10 @@ modal-backdrop {
   width: 100%;
 }
 
+.check-box label {
+  width: 140px !important;
+}
+
 /* Если реальный чекбокс у нас отмечен, то тогда добавляем данный признак и к нашему кастомному чекбоксу  */
 
 .checkbox:checked + .checkbox-custom::before {

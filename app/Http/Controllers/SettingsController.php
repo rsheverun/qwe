@@ -78,7 +78,7 @@ class SettingsController extends Controller
                 'vmap_mapviewid_id' => $mapview_config->id
             ]);
             HuntingArea::create($request->toArray());
-            $msg = "Hunting area created successfully";
+            $msg = "Jagdgebiet erfolgreich angelegt";
 
         }
 
@@ -86,7 +86,7 @@ class SettingsController extends Controller
             $configset = Configset::create($request->toArray());
             $request->request->add(['configset_id'=>$configset->id]);
             Key::create($request->except('configset_store','model','config_name'));
-            $msg = "Config set created successfully";
+            $msg = "Config-Set erfolgreich erstellt";
 
         }
         if ($request->has('group_store')) {
@@ -101,7 +101,7 @@ class SettingsController extends Controller
             } else {
                 return back()->withErrors('Please select a hunting areas to which the user group belongs');
             }
-            $msg = "User group created successfully";
+            $msg = "Benutzergruppe erfolgreich angelegt";
         }
 
         return back()->withStatus($msg);
@@ -149,7 +149,7 @@ class SettingsController extends Controller
             $map_config->value = $request->mapview_value;
             $map_config->description = $request->mapview_description;
             $map_config->save();
-            $msg = "Hunting area updated succesfully";
+            $msg = "Jagdgebiet erfolgreich aktualisiert";
         }
         
         if ($request->has('group_update')) {
@@ -163,7 +163,7 @@ class SettingsController extends Controller
                     ]);
                 }
             }
-            $msg = "Group updated succesfully";
+            $msg = "Gruppe erfolgreich aktualisiert";
             
         }
         
@@ -172,7 +172,7 @@ class SettingsController extends Controller
             $configset->update($request->toArray());
             $request->request->add(['configset_id' => $configset->id]);
             $configset->key->update($request->except('configset_update','model','config_name'));
-            $msg = "Config set updated successfully";
+            $msg = "Konfigurationssatz erfolgreich bearbeitet";
         }
         
         if ($request->has('user_update')) {
@@ -208,7 +208,7 @@ class SettingsController extends Controller
             $areas = HuntingArea::find($request->delete_id)->userGroups;
             if(HuntingArea::find($request->delete_id)->userGroups->count() == 0) {
                 HuntingArea::destroy($request->delete_id);
-                $msg = "Area deleted successfully";
+                $msg = "Bereich erfolgreich gelöscht";
             }
         
             else {
@@ -220,7 +220,7 @@ class SettingsController extends Controller
             $usergroup = Usergroup::find($request->delete_id)->users;
             if(Usergroup::find($request->delete_id)->users->count() == 0) {
                 UserGroup::destroy($request->delete_id);
-                $msg = "Group deleted successfully";
+                $msg = "Gruppe erfolgreich gelöscht";
             }
             else {
                 return back()->withErrors('You can not delete a group in which there are still users');

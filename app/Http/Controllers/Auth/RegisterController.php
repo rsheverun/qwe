@@ -68,7 +68,9 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-
+        $messages = array(
+            'nickname.unique' => 'Der Name wurde bereits vergeben.'
+        );
         return Validator::make($data, [
             'first_name' => 'required|string|max:50',
             'last_name' => 'required|string|max:50',

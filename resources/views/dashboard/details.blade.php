@@ -23,7 +23,7 @@
         <span class="badge-statistic col-6">Kameradetails</span>
     <button class="col-xs-12 btn btn-outline-danger btn-camera-delete" data-toggle="modal" id="{{$camera->id}}"  onclick="modal_data(this.id, 'camera_destroy')" data-target="#exampleModal">Löschen</button>
 
-    <button class=" col-xs-12 btn btn-outline-success btn-add" data-toggle="modal" data-target="#exampleModalLong">Neu</button>
+        <button type="button" class=" col-xs-12 btn btn-outline-success btn-add open-modal" data-target="create_cam" value="1">Neu</button>
 
     </div>
     @include('layouts.create_cam_modal')

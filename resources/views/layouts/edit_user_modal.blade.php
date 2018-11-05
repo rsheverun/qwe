@@ -14,11 +14,11 @@
                             @method('PUT')
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="camera" class="title">First name:</label>
+                                <label for="camera" class="title">VORNAME:</label>
                                 <input type="text" class="form-control" name="first_name" value="{{$user->first_name}}" required>
                             </div>
                             <div class="form-group">
-                                <label for="camera" class="title">last name:</label>
+                                <label for="camera" class="title">NACHNAME:</label>
                                 <input type="text" class="form-control" name="last_name" value="{{$user->last_name}}" required>
                             </div>
                             <div class="form-group">
@@ -26,11 +26,11 @@
                                 <input type="email" class="form-control"  id="user_email_{{$user->id}}" name="email" value="{{$user->email}}" required>
                                 <div class="d-flex flex-row form-check email-notify">
                                     <input type="checkbox" id="emailNotify_{{$user->id}}" class="form-check-input" name="notification" value="1" @if($user->notification == 1) checked @endif>
-                                    <label class="form-check-label pt-1" for="emailNotify_{{$user->id}}">eMail notification for new images?</label>
+                                    <label class="form-check-label pt-1" for="emailNotify_{{$user->id}}">Die E-Mail muss eine gültige E-Mail-Adresse sein.</label>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="camera" class="title">User:</label>
+                                <label for="camera" class="title">BENUTZER:</label>
                                 <input type="text" class="form-control" name="nickname" value="{{$user->nickname}}" required>
                             </div>
                             <div class="form-group">
@@ -54,8 +54,8 @@
                         </div>
                         <div class="modal-footer">
                             <input type="hidden" name="user_update" value="{{$user->id}}">
-                            <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn camera-save" >edit</button>
+                            <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Schließen</button>
+                            <button type="submit" class="btn camera-save" >Bearbeiten</button>
                         </div>
                 </form>
 

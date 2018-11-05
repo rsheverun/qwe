@@ -5,7 +5,7 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalCenterTitle">Edit Hunting Area</h5>
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Jagdgebiet bearbeiten</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
@@ -19,30 +19,30 @@
                                         <input type="text" class="form-control" name="name" value="{{$name}}" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name" class="title">Description:</label>
+                                        <label for="name" class="title">Beschreibung:</label>
                                         <textarea type="text" class="form-control"  rows="5"  name="description" value="{{$description}}" required>{{$description}}</textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name" class="title">vMAP Instance value:</label>
+                                        <label for="name" class="title">VMAP-INSTANZ: </label>
                                         <input type="text" class="form-control"  name="instance_value" value="{{$instance_value}}" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name" class="title">vMAP Instance description:</label>
+                                        <label for="name" class="title">VMAP-INSTANZ BESCHREIBUNG:</label>
                                         <input type="text" class="form-control"  name="instance_description" value="{{$instance_description}}" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name" class="title">vMAP MapviewID value:</label>
+                                        <label for="name" class="title">VMAP MAPVIEWID:</label>
                                         <input type="text" class="form-control"  name="mapview_value" value="{{$map_value}}" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name" class="title">vMAP MapviewID description:</label>
+                                        <label for="name" class="title">VMAP MAPVIEW BESCHREIBUNG:</label>
                                         <input type="text" class="form-control"  name="mapview_description" value="{{$map_description}}" required>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <input type="hidden" name="area_update" value="{{$id}}">
-                                    <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn camera-save submit-modal" >edit</button>
+                                    <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Schließen</button>
+                                    <button type="submit" class="btn camera-save submit-modal" >Bearbeiten</button>
                                 </div>
                 </form>
 

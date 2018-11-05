@@ -3,13 +3,13 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="title">Delete config set</h5>
+                                <h5 class="modal-title" id="title">Konfigurationssatz löschen</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body text-left" id="text">
-                                Are you sure you want to delete config set?
+                                Sind Sie sicher, dass Sie den Konfigurationssatz löschen möchten?
                             </div>
                             <div class="modal-footer">
                             <input type="hidden" name="config_destroy">
