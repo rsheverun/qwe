@@ -257,7 +257,7 @@ class ImagesController extends Controller
                             $query->where('hunting_area_id', Session::get('area'));
                         });
                     });
-                })->orderBy('datum', 'desc')->get()->groupBy(function($date) {
+                })->orderBy('datum', 'ASC')->get()->groupBy(function($date) {
                     return Carbon::parse($date->datum)->format('d-m-Y');
                 });
             } else {
@@ -269,7 +269,7 @@ class ImagesController extends Controller
                             $query->where('hunting_area_id', Session::get('area'));
                         });
                     });
-                })->orderBy('datum', 'desc')->get()->groupBy(function($date) {
+                })->orderBy('datum', 'ASC')->get()->groupBy(function($date) {
                     return Carbon::parse($date->datum)->format('m-Y');
                 });
             }
@@ -285,7 +285,7 @@ class ImagesController extends Controller
                                 $query->where('hunting_area_id', Session::get('area'));
                             });
                         });
-                    })->orderBy('datum', 'desc')->get()->groupBy(function($date) {
+                    })->orderBy('datum', 'ASC')->get()->groupBy(function($date) {
                         return Carbon::parse($date->datum)->format('d-m-Y');
                     });
                 } else {
@@ -297,7 +297,7 @@ class ImagesController extends Controller
                                 $query->where('hunting_area_id', Session::get('area'));
                             });
                         });
-                    })->orderBy('datum', 'desc')->get()->groupBy(function($date) {
+                    })->orderBy('datum', 'ASC')->get()->groupBy(function($date) {
                         return Carbon::parse($date->datum)->format('m-Y');
                     });
                 }
@@ -314,7 +314,7 @@ class ImagesController extends Controller
                                     $query->where('hunting_area_id', Session::get('area'));
                                 });
                         });
-                    })->orderBy('datum', 'desc')->get()->groupBy(function ($date) {
+                    })->orderBy('datum', 'ASC')->get()->groupBy(function ($date) {
                         return Carbon::parse($date->datum)->format('d-m-Y');
                     });
             }
@@ -330,7 +330,7 @@ class ImagesController extends Controller
                             $query->where('hunting_area_id', Session::get('area'));
                         });
                     });
-                })->orderBy('datum', 'desc')->get()->groupBy(function($date) {
+                })->orderBy('datum', 'ASC')->get()->groupBy(function($date) {
                     return Carbon::parse($date->datum)->format('d-m-Y');
                 });
             }
