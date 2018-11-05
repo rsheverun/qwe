@@ -259,8 +259,6 @@ class ImagesController extends Controller
                     });
                 })->orderBy('datum', 'desc')->get()->groupBy(function($date) {
                     return Carbon::parse($date->datum)->format('d-m-Y');
-                }) ->sortBy(function($value, $key){
-                    return $key;
                 });
             } else {
                 $data = Camimage::whereDate('datum', '>=', $date_start)->where('datum', '<=', $date_to)->with('camera')
@@ -273,8 +271,6 @@ class ImagesController extends Controller
                     });
                 })->orderBy('datum', 'desc')->get()->groupBy(function($date) {
                     return Carbon::parse($date->datum)->format('m-Y');
-                }) ->sortBy(function($value, $key){
-                    return $key;
                 });
             }
             
@@ -291,8 +287,6 @@ class ImagesController extends Controller
                         });
                     })->orderBy('datum', 'desc')->get()->groupBy(function($date) {
                         return Carbon::parse($date->datum)->format('d-m-Y');
-                    }) ->sortBy(function($value, $key){
-                        return $key;
                     });
                 } else {
                     $data = Camimage::whereDate('datum', '>=', $date_start)->where('datum', '<=', $date_to)->with('camera')
@@ -305,8 +299,6 @@ class ImagesController extends Controller
                         });
                     })->orderBy('datum', 'desc')->get()->groupBy(function($date) {
                         return Carbon::parse($date->datum)->format('m-Y');
-                    }) ->sortBy(function($value, $key){
-                        return $key;
                     });
                 }
                  
@@ -324,8 +316,6 @@ class ImagesController extends Controller
                         });
                     })->orderBy('datum', 'desc')->get()->groupBy(function ($date) {
                         return Carbon::parse($date->datum)->format('d-m-Y');
-                    })->sortBy(function ($value, $key) {
-                        return $key;
                     });
             }
 
@@ -342,8 +332,6 @@ class ImagesController extends Controller
                     });
                 })->orderBy('datum', 'desc')->get()->groupBy(function($date) {
                     return Carbon::parse($date->datum)->format('d-m-Y');
-                }) ->sortBy(function($value, $key){
-                    return $key;
                 });
             }
             
