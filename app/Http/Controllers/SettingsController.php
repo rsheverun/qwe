@@ -131,7 +131,7 @@ class SettingsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SettingsStoreRequest $request, $id)
     {
         if ($request->has('area_update')) {
             $hunting_area = HuntingArea::find($request->area_update);
@@ -164,7 +164,7 @@ class SettingsController extends Controller
         
         if ($request->has('configset_update')) {
             Configset::find($request->configset_update)->update($request->toArray());
-            $msg = "Config set deleted successfully";
+            $msg = "Config set updated successfully";
         }
         
         if ($request->has('user_update')) {
