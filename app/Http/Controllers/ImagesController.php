@@ -257,7 +257,7 @@ class ImagesController extends Controller
                             $query->where('hunting_area_id', Session::get('area'));
                         });
                     });
-                })->orderBy('datum','DESC')->get()->groupBy(function($date) {
+                })->orderBy('datum', 'desc')->get()->groupBy(function($date) {
                     return Carbon::parse($date->datum)->format('d-m-Y');
                 }) ->sortBy(function($value, $key){
                     return $key;
@@ -271,7 +271,7 @@ class ImagesController extends Controller
                             $query->where('hunting_area_id', Session::get('area'));
                         });
                     });
-                })->get()->groupBy(function($date) {
+                })->orderBy('datum', 'desc')->get()->groupBy(function($date) {
                     return Carbon::parse($date->datum)->format('m-Y');
                 }) ->sortBy(function($value, $key){
                     return $key;
@@ -289,7 +289,7 @@ class ImagesController extends Controller
                                 $query->where('hunting_area_id', Session::get('area'));
                             });
                         });
-                    })->get()->groupBy(function($date) {
+                    })->orderBy('datum', 'desc')->get()->groupBy(function($date) {
                         return Carbon::parse($date->datum)->format('d-m-Y');
                     }) ->sortBy(function($value, $key){
                         return $key;
@@ -303,7 +303,7 @@ class ImagesController extends Controller
                                 $query->where('hunting_area_id', Session::get('area'));
                             });
                         });
-                    })->get()->groupBy(function($date) {
+                    })->orderBy('datum', 'desc')->get()->groupBy(function($date) {
                         return Carbon::parse($date->datum)->format('m-Y');
                     }) ->sortBy(function($value, $key){
                         return $key;
@@ -322,7 +322,7 @@ class ImagesController extends Controller
                                     $query->where('hunting_area_id', Session::get('area'));
                                 });
                         });
-                    })->get()->groupBy(function ($date) {
+                    })->orderBy('datum', 'desc')->get()->groupBy(function ($date) {
                         return Carbon::parse($date->datum)->format('d-m-Y');
                     })->sortBy(function ($value, $key) {
                         return $key;
@@ -340,7 +340,7 @@ class ImagesController extends Controller
                             $query->where('hunting_area_id', Session::get('area'));
                         });
                     });
-                })->get()->groupBy(function($date) {
+                })->orderBy('datum', 'desc')->get()->groupBy(function($date) {
                     return Carbon::parse($date->datum)->format('d-m-Y');
                 }) ->sortBy(function($value, $key){
                     return $key;
