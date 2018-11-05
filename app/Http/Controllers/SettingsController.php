@@ -168,6 +168,10 @@ class SettingsController extends Controller
         }
         
         if ($request->has('user_update')) {
+
+            if($request->notification == null) {
+                $request->request->add(['notification' => 0]);
+            }
             $user = User::find($request->user_update)->update($request->toArray());
             if($request->has('group')) {
                 UserUserGroup::where('user_id', $request->user_update)->delete();
