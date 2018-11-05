@@ -459,6 +459,9 @@ input[type="date"]:before {
     .chart {
         display: none;
     }
+    .overflow{
+        overflow-x: hidden;
+    }
 }
 @media only screen and (max-width: 481px) {
     #date_label{
