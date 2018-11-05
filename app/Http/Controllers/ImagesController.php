@@ -310,7 +310,8 @@ class ImagesController extends Controller
                     });
                 }
                  
-            } else if($request->camera_id !=0 && $request->date_to == null) {
+            }
+            if($request->camera_id !=0 && $request->date_to == null) {
                 $cam_email = Camera::find($request->camera_id)->cam_email;
                 $data = Camimage::whereDate('datum', '<=',Carbon::now()->toDateTimeString())
                     ->whereDate('datum', '>=', Carbon::now()->subDays(7)->toDateTimeString())->with('camera')
