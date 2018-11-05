@@ -22,7 +22,9 @@
 </head>
 <body>
     <div class="overflow">
-@include('layouts.nav')
+        <div id="editArea"></div>
+
+        @include('layouts.nav')
     <div class="custom-container">
     <div class="form-group">
     @guest
@@ -76,7 +78,6 @@
     }
 }
 </script>
-<div id="editArea"></div>
 </div>
 </body>
 </html>
