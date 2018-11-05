@@ -1,6 +1,6 @@
 <div class="row no-gutters">
 
-            <span class="btn btn-outline-success button-look btn-green pagination-info">20 per page</span>
+            <span class="btn btn-outline-success button-look btn-green pagination-info">20 pro Seite</span>
 
 @if ($paginator->hasPages())
         <div class="pagination-position">

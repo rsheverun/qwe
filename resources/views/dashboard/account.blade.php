@@ -12,15 +12,15 @@
 @endif  
 <div class="row block">
     <div class="col-12">
-        <span class="badge-statistic">base settings</span>
+        <span class="badge-statistic">GRUNDSEINSTELLUNGEN</span>
     </div>
 </div>
 <form action="{{route('account.destroy', Auth::user()->id)}}" method="post">
 @csrf
 @method('DELETE')
 <div class="d-flex justify-content-between flex-row">
-    <span class="align-self-center">Delete this Account and all Data permanently</span>    
-    <button type="button" data-toggle="modal" id="{{Auth::user()->id}}"  onclick="modal_data(this.id, 'user_destroy')" data-target="#exampleModal" class="btn btn-outline-danger button-delete align-self-start">DELETE</button>
+    <span class="align-self-center">Diesen Account und alle Daten dauerhaft löschen</span>
+    <button type="button" data-toggle="modal" id="{{Auth::user()->id}}"  onclick="modal_data(this.id, 'user_destroy')" data-target="#exampleModal" class="btn btn-outline-danger button-delete align-self-start">Löschen</button>
 <!-- modal -->
     @include('layouts.modal')
 <!-- endmodal -->
@@ -28,19 +28,19 @@
 </form>
 <div class="row block">
     <div class="col-12">
-        <span class="badge-statistic">usage</span>
+        <span class="badge-statistic">Verwendung</span>
     </div>
 </div>
 <div id="account_data">
     <form action="{{route('account.index')}}">
         <div class="form-group row">
             <div class="col">
-                <label for="staticEmail" class="title pr-3" id="date_label">date range:</label>
+                <label for="staticEmail" class="title pr-3" id="date_label">Datumsbereich:</label>
                
-            <input type='text' id="date_start" name="date_start" class='datepicker-here filter-date mr-3  mt-2 pl-1' placeholder="From" autocomplete="off" required/>
+            <input type='text' id="date_start" name="date_start" class='datepicker-here filter-date mr-3  mt-2 pl-1' placeholder="Von" autocomplete="off" required/>
 
-            <input type='text' id="date_to" name="date_to" class='datepicker-here filter-date mt-2 pl-1 mb-2 mr-3' placeholder="To" autocomplete="off" required/>
-        <button type="submit" id="smbt" name="filter"  class="btn btn-outline-success btn-green btn-filter">Filter</button>
+            <input type='text' id="date_to" name="date_to" class='datepicker-here filter-date mt-2 pl-1 mb-2 mr-3' placeholder="Zu" autocomplete="off" required/>
+        <button type="submit" id="smbt" name="filter"  class="btn btn-outline-success btn-green btn-filter">filtern</button>
 
             </div>
         </div>
@@ -48,9 +48,9 @@
             <table class="huntingarea-table">
                 <thead>
                     <tr>
-                        <th scope="col" >Day</th>
-                        <th scope="col">camera</th>
-                        <th scope="col" @if($data->count()==0) class="text-center" @endif>number of images</th>
+                        <th scope="col" >Tag</th>
+                        <th scope="col">Kamera</th>
+                        <th scope="col" @if($data->count()==0) class="text-center" @endif>Anzahl der Bilder</th>
                         <th scope="col" @if($data->count()==0) class="text-center" @endif>transfer in mb</th>
                     </tr>
                 </thead>
@@ -80,7 +80,7 @@
             </table>
         </div>
         <div class="row col pt-3">
-            <span class="sum pr-1">Sum per month: </span> <span class="sum number">{{$count}}</span>
+            <span class="sum pr-1">Summe pro Monat: </span> <span class="sum number">{{$count}}</span>
         </div>
     </div>
    

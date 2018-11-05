@@ -20,23 +20,23 @@
 @endif  
 <div class="row">
     <div class="col-12">
-        <span class="badge-statistic">images</span>
+        <span class="badge-statistic">Bilder</span>
     </div>
 </div>
 <form class="images d-flex" action="{{route('images.index')}}">
     <div class="form-group filter-camera">
-        <label for="staticEmail" class="title pr-3">Camera: </label>
+        <label for="staticEmail" class="title pr-3">Kamera: </label>
         <select class="filter mt-2" id="exampleFormControlSelect1" name="camera_id"  required>
-            <option value="0">All</option>            
+            <option value="0">Alle</option>
                 @foreach ($cameras as $camera)
                     <option value="{{$camera->id}}" >{{$camera->cam}}</option>
                 @endforeach
         </select>
     </div>
     <div class="form-group">
-        <label for="staticEmail" class="title" id="date_label">date range:</label>
-            <input type='text' id="date_start" name="date_start" class='datepicker-here filter-date pl-1 ml-lg-3 mr-3  mt-2 mb-2' placeholder="From" autocomplete="off"/>
-            <input type='text' id="date_to" name="date_to" class='datepicker-here filter-date pl-1 ml-lg-3 mr-3  mt-2 mb-2' placeholder="To" autocomplete="off"/>
+        <label for="staticEmail" class="title" id="date_label">Datumsbereich:</label>
+            <input type='text' id="date_start" name="date_start" class='datepicker-here filter-date pl-1 ml-lg-3 mr-3  mt-2 mb-2' placeholder="Von" autocomplete="off"/>
+            <input type='text' id="date_to" name="date_to" class='datepicker-here filter-date pl-1 ml-lg-3 mr-3  mt-2 mb-2' placeholder="Bis" autocomplete="off"/>
         <button type="submit" id="smbt" name="filter"  class="btn btn-outline-success btn-green btn-filter">Filter</button>
     </div>    
 </form>
@@ -61,9 +61,9 @@
             <thead>
                 <tr>
                 <th scope="col" style="width: 300px;" >name</th>
-                <th scope="col" style="width: 400px;">image</th>
+                <th scope="col" style="width: 400px;">Bild</th>
                 @hasanyrole('admin|user')
-                    <th scope="col" style="width: 300px;">comments</th>
+                    <th scope="col" style="width: 300px;">Kommentare</th>
                 @endhasanyrole
                 <th scope="col" style="width: 170px;"> </th>
             
@@ -91,14 +91,14 @@
                                             <form  action="{{route('images.destroy',$img->id)}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                    <button type="button" data-toggle="modal" id="{{$img->id}}"  onclick="modal_data(this.id, 'image_destroy')" data-target="#exampleModal" class="w-100 btn btn-outline-danger button-delete" style="margin-bottom: 15px;">Delete</button>
+                                                    <button type="button" data-toggle="modal" id="{{$img->id}}"  onclick="modal_data(this.id, 'image_destroy')" data-target="#exampleModal" class="w-100 btn btn-outline-danger button-delete" style="margin-bottom: 15px;">Löschen</button>
                                                     <!-- modal -->
                                                         @include('layouts.modal')
                                                     <!-- endmodal -->
                                             </form>
                                         @endhasanyrole
                                         <form id="forward"  action="{{route('image.forward',$img->id)}}" method="post">
-                                        <button type="button" class="w-100 btn btn-outline-success button-look btn-green btn-forward" id="{{$img->id}}" onclick="img({{$img->id}})" data-toggle="modal" data-target="#forward_email">forward to <br> email</button>
+                                        <button type="button" class="w-100 btn btn-outline-success button-look btn-green btn-forward" id="{{$img->id}}" onclick="img({{$img->id}})" data-toggle="modal" data-target="#forward_email">An E-Mail  <br> weiterleiten</button>
 
                                             @include('layouts.forward_email_modal')
                                             </form>

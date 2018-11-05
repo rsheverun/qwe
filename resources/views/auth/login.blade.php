@@ -19,14 +19,14 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('Nickname') }}</label>
+                            <label for="email" class="col-sm-4 col-form-label text-md-right">Benutzer</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="text" class="form-control{{ $errors->has('nickname') ? ' is-invalid' : '' }}" name="nickname" value="{{ old('nickname') }}" required autofocus>
 
                                @if ($errors->has('nickname'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('nickname') }}</strong>
+                                        <strong>Anmeldung fehlgeschlagen</strong>
                                     </span>
                                 @endif
                             </div>

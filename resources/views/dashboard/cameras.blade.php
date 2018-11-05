@@ -20,15 +20,15 @@
         @endif   
 <div class="row">
     <div class="col-12">
-        <span class="badge-statistic">map</span>
+        <span class="badge-statistic">Karte</span>
     </div>
 </div>
 <div id="map"></div>
 <div class="row">
     <div class="col-12">
-        <span class="badge-statistic">cameras</span>
+        <span class="badge-statistic">kameras</span>
         @hasanyrole('admin|user')
-            <button type="button" class=" col-xs-12 btn btn-outline-success btn-add open-modal" data-target="create_cam" value="1">new</button>
+            <button type="button" class=" col-xs-12 btn btn-outline-success btn-add open-modal" data-target="create_cam" value="1">Neu</button>
         @endhasanyrole
     </div>
 </div>
@@ -38,12 +38,12 @@
         <thead>
             <tr>
             <th scope="col" >ID</th>
-            <th scope="col">Camera</th>
+            <th scope="col">KAMERA</th>
             <th scope="col">Name</th>
-            <th scope="col">Model</th>
-            <th scope="col">Configset</th>
-            <th scope="col">Last image</th>
-            <th scope="col">Total images</th>
+            <th scope="col">MODELL</th>
+            <th scope="col">KONFIGURATIONSSATZ</th>
+            <th scope="col">LETZTES BILD</th>
+            <th scope="col">GESAMTBILDER</th>
             @hasanyrole('admin|user')
                 <th scope="col"> </th>
             @endhasanyrole
@@ -69,7 +69,7 @@
                         <td class="text-right table-button">
                             <a href="{{ route('cameras.show', $camera->id) }}" 
                                 class="btn btn-outline-success button-look btn-green btn-details">
-                                details
+                                Details
                             </a>
                         </td>
                         @endhasanyrole

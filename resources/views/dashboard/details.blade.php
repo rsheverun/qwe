@@ -20,10 +20,10 @@
         @endif  
 <div class="row">
     <div class="col-12">
-        <span class="badge-statistic col-6">camera details</span>
-    <button class="col-xs-12 btn btn-outline-danger btn-camera-delete" data-toggle="modal" id="{{$camera->id}}"  onclick="modal_data(this.id, 'camera_destroy')" data-target="#exampleModal">delete</button>
+        <span class="badge-statistic col-6">Kameradetails</span>
+    <button class="col-xs-12 btn btn-outline-danger btn-camera-delete" data-toggle="modal" id="{{$camera->id}}"  onclick="modal_data(this.id, 'camera_destroy')" data-target="#exampleModal">Löschen</button>
 
-    <button class=" col-xs-12 btn btn-outline-success btn-add" data-toggle="modal" data-target="#exampleModalLong">new</button>
+    <button class=" col-xs-12 btn btn-outline-success btn-add" data-toggle="modal" data-target="#exampleModalLong">Neu</button>
 
     </div>
     @include('layouts.create_cam_modal')
@@ -47,28 +47,28 @@
                   <span class="title">ID:</span> <span class="pl-1 pr-1">{{$camera->id}}</span>
             </div>
             <div class="d-flex align-items-baseline pr-3">
-                  <span class="title">camera:</span> <span class="pl-1 pr-1">{{$camera->cam}}</span>                  
+                  <span class="title">Kamera:</span> <span class="pl-1 pr-1">{{$camera->cam}}</span>
             </div>
             <div class="pr-3">
                   <span class="title">name:</span> <span class="pl-1 pr-1">{{$camera->cam_name}}</span>                  
             </div>
         </div>
-        <span class="title">decription:</span>
+        <span class="title">BESCHREIBUNG:</span>
         <textarea name="desc" id="" cols="30" rows="10" class="desc mt-3 mb-3">{{$camera->desc}}</textarea>
-        <span class="title">position:</span>
+        <span class="title">POSITION:</span>
         <div class="row mt-3">
             <div class="d-flex pt-2">
-                <label class="lat pl-3 pr-3">Latitude:</label>
+                <label class="lat pl-3 pr-3">Breitengrad:</label>
                 <input type="text" class="custom-input lat-input" name="latitude" value="{{$camera->latitude}}">
             </div>
             <div class="d-flex pt-2">
-                <label class="lat pr-3 pl-3">Longitude:</label>
+                <label class="lat pr-3 pl-3">Längengrad:</label>
                 <input type="text" class="custom-input lat-input" name="longitude" value="{{$camera->longitude}}">
             </div>
         </div>
         <div class="row mt-3">
             <div class="form-inline col">
-            <label class="my-1 mr-2 title" for="inlineFormCustomSelectPref">model:</label>
+            <label class="my-1 mr-2 title" for="inlineFormCustomSelectPref">modell:</label>
             <select class="filter lat-input" id="inlineFormCustomSelectPref" name="cam_model_id">
                 @foreach($camera_models as $model)
                 <option value="{{$model->id}}" @if($camera->cam_model->id == $model->id) selected @endif>{{$model->name}}</option>
@@ -78,7 +78,7 @@
         </div>
         <div class="row">
             <div class="form-inline col">
-            <label class="my-1 mr-2 title" for="inlineFormCustomSelectPref">configset:</label>
+            <label class="my-1 mr-2 title" for="inlineFormCustomSelectPref">KONFIGURATIONSSATZ:</label>
             <select class="filter lat-input" id="inlineFormCustomSelectPref" name="config_id">
                 @foreach($configsets as $configset)
                 <option value="{{$configset->id}}" @if($camera->config_id == $configset->id) selected @endif>{{$configset->config_name}}</option>
@@ -91,22 +91,27 @@
                 <th style="width: 185px;">Key</th>
                 <td style="width: 284px;">Value</td>
             </tr>
+            @foreach ($keys as $key=>$name)
+                @if($key<=3 )
+                    @continue
+                @endif
             <tr>
-                <th>Org-Nme </th>
-                <td>{{$camera->configset->org_name or 'empty'}}</td>
+                <th>{{$name}}</th>
+                <td>{{$camera->configset->key->$name or 'empty'}}</td>
             </tr>
-            <tr>
-                <th>SMTP-Server </th>
-                <td>{{$camera->configset->server or 'empty'}}</td>
-            </tr>
-            <tr>
-                <th>SMTP-Port </th>
-                <td>{{$camera->configset->port or 'empty'}}</td>
-            </tr>
-            <tr>
-                <th>SMTP-User </th>
-                <td>{{$camera->configset->user or 'empty'}}</td>
-            </tr>
+                @endforeach
+            {{--<tr>--}}
+                {{--<th>SMTP-Server </th>--}}
+                {{--<td>{{$camera->configset->server or 'empty'}}</td>--}}
+            {{--</tr>--}}
+            {{--<tr>--}}
+                {{--<th>SMTP-Port </th>--}}
+                {{--<td>{{$camera->configset->port or 'empty'}}</td>--}}
+            {{--</tr>--}}
+            {{--<tr>--}}
+                {{--<th>SMTP-User </th>--}}
+                {{--<td>{{$camera->configset->user or 'empty'}}</td>--}}
+            {{--</tr>--}}
         </table>
         </form>
     </div><!-- left -->
@@ -118,7 +123,7 @@
         </div>
         <div class="row no-gutters">
             <div class="col-12 text-right">
-                <a href="https://www.google.com/maps/?q={{$camera->latitude}},{{$camera->longitude}}" target="_blank" class="btn btn-outline-success button-look btn-green btn-details mb-3">show interactive map</a>
+                <a href="https://www.google.com/maps/?q={{$camera->latitude}},{{$camera->longitude}}" target="_blank" class="btn btn-outline-success button-look btn-green btn-details mb-3">Interaktive Karte anzeigen</a>
             </div>
         </div>
         <div class="row no-gutters">
@@ -137,7 +142,7 @@
 
 <div class="row block">
     <div class="col-12">
-        <span class="badge-statistic">latest images</span>
+        <span class="badge-statistic">Neueste Bilder</span>
     </div>
 </div>
 
@@ -161,7 +166,7 @@
 
     <div class="row text-right">
     <div class="col-12">
-        <button type="submit" form="camera_edit" class="btn settings-save btn-details-save">save</button>
+        <button type="submit" form="camera_edit" class="btn settings-save btn-details-save">Speichern</button>
     </div>
 </div>
 </div>

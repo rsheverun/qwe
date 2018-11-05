@@ -302,7 +302,7 @@ hr{
 }
 .custom-dropdown a{
     margin-left: 0;
-    padding: 10px 0 !important;
+    padding: 10px 5px !important;
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
     font-weight: 400;
@@ -455,6 +455,9 @@ input[type="date"]:before {
     }
     .filter-camera{
         padding-right: 0;
+    }
+    .chart {
+        display: none;
     }
 }
 @media only screen and (max-width: 481px) {

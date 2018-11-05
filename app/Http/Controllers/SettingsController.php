@@ -243,31 +243,7 @@ class SettingsController extends Controller
         return back()->withStatus($msg);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getarea(){
-        
-        $data = HuntingArea::paginate(20, ['*'], 'areas');
-        
-        return $data;
-    }
 
-    /**
-     * Store a newly created hunting area in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store_area(Request $request)
-    {
-        HuntingArea::create([
-            'name' => $request->area_name,
-            'description'=>$request->area_desc
-        ]);
-    }
 
     /**
      * Remove the hunting area from storage.

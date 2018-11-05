@@ -13,9 +13,8 @@ use App\CamModel;
 use Session;
 use App\Http\Requests\EditCameraRequest;
 use App\Http\Requests\StoreCameraRequest;
-
 use App\Configset;
-
+use Illuminate\Support\Facades\Schema;
 use Auth;
 use DB;
 class CamerasController extends Controller
@@ -97,7 +96,7 @@ class CamerasController extends Controller
                 'date' => $cam->created_at
             ]);
 
-            return back()->withStatus('New camera added successfully');
+            return back()->withStatus('Neue Kamera erfolgreich hinzugefügt');
         } else {
             
             return back()->withError('Please select a user groups to which the camera belongs');
@@ -140,7 +139,8 @@ class CamerasController extends Controller
                 'camimages' => $images->take(3),
                 'configsets'=>Configset::all(),
                 'user_areas'=> $user_areas,
-                'camera_models'=>CamModel::all()
+                'camera_models'=>CamModel::all(),
+                'keys' => Schema::getColumnListing('keys')
             ]);
         } else {
             return redirect()->route('home');

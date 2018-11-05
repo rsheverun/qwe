@@ -31,7 +31,7 @@
             return {
             data: [],
             count: [],
-            text: 'show all images'
+            text: 'Alle Bilder anzeigen'
             }
         },
       
@@ -43,13 +43,13 @@
         },
         methods: {
            update: function() {
-            if(this.text != 'hide images'){
-                this.text = 'hide images'
+            if(this.text != 'Bilder ausblenden'){
+                this.text = 'Bilder ausblenden'
                 axios.get('../show_all/' + this.cam.id).then((response) => {
                     this.data = _.orderBy(response.data, 'datum','desc')
                 });
             }else{
-                this.text= 'show all images'
+                this.text= 'Alle Bilder anzeigen'
                 this.data = null
             }
             },

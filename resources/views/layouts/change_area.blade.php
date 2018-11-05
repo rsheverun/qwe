@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Please select a hunting area</h5>
+        <h5 class="modal-title" id="exampleModalCenterTitle">Bitte wählen Sie ein Jagdgebiet aus</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -22,8 +22,8 @@
         </select>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="area-modal-close" >Close</button>
-        <button type="submit" class="btn camera-save">Change</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="area-modal-close" >Schließen</button>
+        <button type="submit" class="btn camera-save">Ändern</button>
       </div>
 </form>
   

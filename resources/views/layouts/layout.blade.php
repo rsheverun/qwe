@@ -44,13 +44,13 @@
     @guest
     
     @else
-        <a class="nav-link" href="{{ route('home') }}">home</a>
-        <a class="nav-link" href="{{ route('cameras.index') }}">cameras</a>
-        <a class="nav-link" href="{{ route('images.index')}}">images</a>
+        <a class="nav-link" href="{{ route('home') }}">Startseite</a>
+        <a class="nav-link" href="{{ route('cameras.index') }}">Kameras</a>
+        <a class="nav-link" href="{{ route('images.index')}}">Bilder</a>
     @endguest
     </nav>
         <div class="col-12 text-center">
-        © 2018 My Hunting Area, Inc
+            © 2018 Jagdbezirk.info
         </div>
     </footer>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
@@ -65,16 +65,16 @@
     a.setAttribute("value", id); 
     
     if(title == 'user_destroy') {
-        document.getElementById("title").innerHTML = "Delete user";
-        document.getElementById("text").innerHTML = "Are you sure you want to delete user?";
+        document.getElementById("title").innerHTML = "Benutzer löschen";
+        document.getElementById("text").innerHTML = "Sind Sie sicher, dass Sie den Benutzer löschen möchten?";
     }
     if(title == 'camera_destroy') {
-        document.getElementById("title").innerHTML = "Delete camera";
-        document.getElementById("text").innerHTML = "Are you sure you want to delete camera?";
+            document.getElementById("title").innerHTML = "Kamera löschen";
+        document.getElementById("text").innerHTML = "Sind Sie sicher, dass Sie die Kamera löschen möchten?";
     }
     if(title == 'image_destroy') {
-        document.getElementById("title").innerHTML = "Delete image";
-        document.getElementById("text").innerHTML = "Are you sure you want to delete image?";
+        document.getElementById("title").innerHTML = "Bild löschen";
+        document.getElementById("text").innerHTML = "Sind Sie sicher, dass Sie das Bild löschen möchten?";
     }
 }
 </script>

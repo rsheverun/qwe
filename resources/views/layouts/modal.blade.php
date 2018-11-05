@@ -11,8 +11,8 @@
         ...
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-danger" id="delete-btn" name="delete_id">Delete</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
+        <button type="submit" class="btn btn-danger" id="delete-btn" name="delete_id">Löschen</button>
       </div>
     </div>
   </div>

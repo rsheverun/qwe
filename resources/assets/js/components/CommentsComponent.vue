@@ -9,7 +9,7 @@
             <span class="msg">{{item.text}}</span>
         </div>     
     </div>
-    <input type="textarea" class="comment-text" placeholder="Write a message here..." @keyup.enter="addComent" v-model="text" name="text">
+    <input type="textarea" class="comment-text" placeholder="Schreiben Sie hier eine Nachricht..." @keyup.enter="addComent" v-model="text" name="text">
 </div>
 </template>
 

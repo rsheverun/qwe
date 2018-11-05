@@ -113,7 +113,7 @@ class AccountController extends Controller
             'user_areas' => $user_areas,
             'data' => $data['images'],
             'count' => 0,
-            'msg'=>'Please select a date range'
+            'msg'=>'Bitte wählen Sie einen Datumsbereich aus'
         ]);
     }
 

@@ -231,7 +231,7 @@ class ImagesController extends Controller
             
         }
 
-        return back()->withStatus('Image deleted successfully');
+        return back()->withStatus('Bilder wurden erfolgreich gelöscht');
     }
 
     /**
@@ -257,7 +257,7 @@ class ImagesController extends Controller
                             $query->where('hunting_area_id', Session::get('area'));
                         });
                     });
-                })->get()->groupBy(function($date) {
+                })->orderBy('datum','DESC')->get()->groupBy(function($date) {
                     return Carbon::parse($date->datum)->format('d-m-Y');
                 }) ->sortBy(function($value, $key){
                     return $key;
@@ -282,8 +282,8 @@ class ImagesController extends Controller
                 $cam_email = Camera::find($request->camera_id)->cam_email;
                 if (Carbon::parse($date_start)->addMonth() >= Carbon::parse($date_to)) {
                     $data = Camimage::whereDate('datum', '>=', $date_start)->where('datum', '<=', $date_to)->with('camera')
-                    ->whereHas('camera', function($query){
-                        $query->whereHas('userGroups', function($query){
+                    ->whereHas('camera', function($query) use($cam_email){
+                        $query->where('cam_email',$cam_email)->whereHas('userGroups', function($query){
                             $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'))
                             ->whereHas('hunting_areas', function($query){
                                 $query->where('hunting_area_id', Session::get('area'));
@@ -310,8 +310,24 @@ class ImagesController extends Controller
                     });
                 }
                  
+            } else if($request->camera_id !=0 && $request->date_to == null) {
+                $cam_email = Camera::find($request->camera_id)->cam_email;
+                $data = Camimage::whereDate('datum', '<=',Carbon::now()->toDateTimeString())
+                    ->whereDate('datum', '>=', Carbon::now()->subDays(7)->toDateTimeString())->with('camera')
+                    ->whereHas('camera', function ($query) use ($cam_email) {
+                        $query->where('cam_email', $cam_email)->whereHas('userGroups', function ($query) {
+                            $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'))
+                                ->whereHas('hunting_areas', function ($query) {
+                                    $query->where('hunting_area_id', Session::get('area'));
+                                });
+                        });
+                    })->get()->groupBy(function ($date) {
+                        return Carbon::parse($date->datum)->format('d-m-Y');
+                    })->sortBy(function ($value, $key) {
+                        return $key;
+                    });
             }
-                
+
             else {
                 $data = Camimage::whereDate('datum', '<=',Carbon::now()->toDateTimeString())
                 ->whereDate('datum', '>=', Carbon::now()->subDays(7)->toDateTimeString())
