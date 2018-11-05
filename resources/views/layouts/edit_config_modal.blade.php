@@ -21,22 +21,27 @@
                                     <label for="name" class="title">configset:</label>
                                     <input type="text" class="form-control"  name="config_name" value="{{$configset->config_name}}">
                                 </div>
+                                @foreach ($keys as $key=>$name)
+                                @if($key<=3 )
+                                        @continue
+                                    @endif
                                 <div class="form-group">
-                                    <label for="name" class="title">Org-name:</label>
-                                    <input type="text" class="form-control"  name="org_name" value="{{$configset->org_name}}">
+                                    <label for="name" class="title">{{$name}}:</label>
+                                    <input type="text" class="form-control"  name="{{$name}}" value="{{$configset->key->$name}}">
                                 </div>
-                                <div class="form-group">
-                                    <label for="name" class="title">SMTP-Server:</label>
-                                    <input type="text" class="form-control"  name="server" value="{{$configset->server}}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="name" class="title">SMTP-Port:</label>
-                                    <input type="text" class="form-control"  name="port" value="{{$configset->port}}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="name" class="title">SMTP-User:</label>
-                                    <input type="text" class="form-control"  name="user" value="{{$configset->user}}">
-                                </div>
+                                @endforeach
+                                {{--<div class="form-group">--}}
+                                    {{--<label for="name" class="title">SMTP-Server:</label>--}}
+                                    {{--<input type="text" class="form-control"  name="server" value="{{$configset->server}}">--}}
+                                {{--</div>--}}
+                                {{--<div class="form-group">--}}
+                                    {{--<label for="name" class="title">SMTP-Port:</label>--}}
+                                    {{--<input type="text" class="form-control"  name="port" value="{{$configset->port}}">--}}
+                                {{--</div>--}}
+                                {{--<div class="form-group">--}}
+                                    {{--<label for="name" class="title">SMTP-User:</label>--}}
+                                    {{--<input type="text" class="form-control"  name="user" value="{{$configset->user}}">--}}
+                                {{--</div>--}}
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>

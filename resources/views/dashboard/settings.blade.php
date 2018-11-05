@@ -454,22 +454,16 @@
                         </tr>
                     </thead>
                     <tbody>
+                    @foreach ($keys as $key=>$value)
+                        @if($key<=3 )
+                            @continue
+                            @endif
                         <tr>
-                            <th>Org-Nme</td>
-                            <td><input type="text" name="org_name" class="custom-input w-100" required></td>
+                            <th>{{$value}}</td>
+                            <td><input type="text" name="{{$value}}" class="custom-input w-100" required></td>
                         </tr>
-                        <tr>
-                            <th>SMTP-Server</td>
-                            <td><input type="text" name="server" class="custom-input w-100" required></td>
-                        </tr>
-                        <tr>
-                            <th>SMTP-Port</td>
-                            <td><input type="text" name="port" class="custom-input w-100" pattern="^[ 0-9]+$" required></td>
-                        </tr>
-                        <tr>
-                            <th>SMTP-User</td>
-                            <td><input type="text" name="user" class="custom-input w-100" required></td>
-                        </tr>
+                        @endforeach
+
                     </tbody>
                 </table>
             </div>

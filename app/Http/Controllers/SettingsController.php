@@ -12,8 +12,10 @@ use App\VmapMapviewConfig;
 use App\User;
 use App\HuntingAreaUserGroup;
 use App\UserUserGroup;
+use App\Key;
 use Session;
 use Auth;
+use Illuminate\Support\Facades\Schema;
 class SettingsController extends Controller
 {
     /**
@@ -39,8 +41,9 @@ class SettingsController extends Controller
             'groups_list'=>UserGroup::all(),
             'configsets'=>$configsets,
             'users'=>$users,
-            'user_areas'=>$user_areas
-            ]);
+            'user_areas'=>$user_areas,
+            'keys' => Schema::getColumnListing('keys')
+        ]);
     }
 
     /**
@@ -80,7 +83,9 @@ class SettingsController extends Controller
         }
 
         if ($request->has('configset_store')) {
-            Configset::create($request->toArray());
+            $configset = Configset::create($request->toArray());
+            $request->request->add(['configset_id'=>$configset->id]);
+            Key::create($request->except('configset_store','model','config_name'));
             $msg = "Config set created successfully";
 
         }
@@ -163,7 +168,10 @@ class SettingsController extends Controller
         }
         
         if ($request->has('configset_update')) {
-            Configset::find($request->configset_update)->update($request->toArray());
+            $configset = Configset::find($request->configset_update);
+            $configset->update($request->toArray());
+            $request->request->add(['configset_id' => $configset->id]);
+            $configset->key->update($request->except('configset_update','model','config_name'));
             $msg = "Config set updated successfully";
         }
         
@@ -308,7 +316,8 @@ class SettingsController extends Controller
         } elseif ($request->has('config_update')) {
            
             return view("layouts.edit_config_modal", [
-                'configset' => Configset::find($request->id)
+                'configset' => Configset::find($request->id),
+                'keys' => Schema::getColumnListing('keys')
             ]);
         } elseif ($request->has('change-area-modal')) {
             $user_areas = HuntingArea::with('userGroups')->whereHas('userGroups', function($query){
