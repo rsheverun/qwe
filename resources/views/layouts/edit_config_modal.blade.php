@@ -15,11 +15,11 @@
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="camera" class="title">Modell:</label>
-                                    <input type="text" class="form-control" name="model" value="{{$configset->model}}">
+                                    <input type="text" class="form-control" name="model" value="{{$configset->model or 'null'}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="name" class="title">KONFIGURATIONEN :</label>
-                                    <input type="text" class="form-control"  name="config_name" value="{{$configset->config_name}}">
+                                    <input type="text" class="form-control"  name="config_name" value="{{$configset->config_name or 'null'}}">
                                 </div>
 
                                 @foreach ($keys as $key=>$name)
@@ -28,7 +28,7 @@
                                     @endif
                                 <div class="form-group">
                                     <label for="name" class="title">{{$name}}:</label>
-                                    <input type="text" class="form-control"  name="{{$name}}" value="{{$configset->key->$name}}">
+                                    <input type="text" class="form-control"  name="{{$name}}" value="{{$configset->key->$name or 'null'}}">
                                 </div>
                                 @endforeach
 
