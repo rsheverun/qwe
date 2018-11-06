@@ -3,7 +3,7 @@
     <div class="row" >
 
         <div class="col-lg-4 col-xs-12"   v-for="(item, index) in data" v-if="index > 2">
-            <div class="text-center" >
+            <div class="text-center img-height" >
                 <img v-bind:src="item.bild"  class="zoom zoom-absolute img-fluid w-100" @error="item.id">
             </div>
             <div class="text-right">

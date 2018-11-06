@@ -297,7 +297,7 @@
                 </td>
                 <td class="text-right table-button">
                 <button type="button" data-target="user_update" value="{{$user->id}}" class="mb-2 w-100 btn btn-outline-danger button-delete btn-green align-self-start open-modal">Bearbeiten</button>
-                <button type="button" data-toggle="modal"   data-target="#user_destroy_{{$user->id}}" class="w-100 btn btn-outline-danger button-delete align-self-start">DELETE</button>
+                <button type="button" data-toggle="modal"   data-target="#user_destroy_{{$user->id}}" class="w-100 btn btn-outline-danger button-delete align-self-start">Löschen</button>
                 @include('layouts.user_destroy_modal')
                 </td>
             </tr>
@@ -418,7 +418,7 @@
                 @method('DELETE')
                 <input type="hidden" name="configset_destroy">
                 <button type="button" data-target="config_update" value="{{$configset->id}}" class="mb-2 w-100 btn btn-outline-danger button-delete btn-green align-self-start open-modal">Bearbeiten</button>
-                <button type="button" data-toggle="modal"  data-target="#config_destroy_{{$configset->id}}" class="w-100 btn btn-outline-danger button-delete align-self-start">DELETE</button>
+                <button type="button" data-toggle="modal"  data-target="#config_destroy_{{$configset->id}}" class="w-100 btn btn-outline-danger button-delete align-self-start">Löschen</button>
                 @include('layouts.destroy_config_modal')
                 </form>
                 </td>
@@ -457,7 +457,7 @@
                     <thead>
                         <tr>
                             <th>Key</th>
-                            <td>Value</td>
+                            <td>Wert</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -487,7 +487,7 @@
 
 <div class="row block text-right">
     <div class="col-12">
-        <button class="btn settings-save">save</button>
+        <button class="btn settings-save">Speichern</button>
     </div>
 </div>
 </div>
