@@ -247,7 +247,7 @@ class ImagesController extends Controller
                         ->addMinutes(59)
                         ->toDateTimeString();
 
-        if($request->has('date_to') && $request->camera_id == 0) {
+        if($request->date_to != null && $request->camera_id == 0) {
             if (Carbon::parse($date_start)->addMonth() >= Carbon::parse($date_to)) {
                 $data = Camimage::whereDate('datum', '>=', $date_start)->where('datum', '<=', $date_to)->with('camera')
                 ->whereHas('camera', function($query){
@@ -274,7 +274,7 @@ class ImagesController extends Controller
                 });
             }
             
-            } else if($request->has('date_to') && $request->camera_id != 0) {
+            } else if($request->date_to != null && $request->camera_id != 0) {
                 $cam_email = Camera::find($request->camera_id)->cam_email;
                 if (Carbon::parse($date_start)->addMonth() >= Carbon::parse($date_to)) {
                     $data = Camimage::whereDate('datum', '>=', $date_start)->where('datum', '<=', $date_to)->with('camera')
@@ -303,7 +303,7 @@ class ImagesController extends Controller
                 }
                  
             }
-            if($request->camera_id !=0 && $request->date_to == null) {
+            if($request->Scamera_id !=0 && $request->date_to == null) {
                 $cam_email = Camera::find($request->camera_id)->cam_email;
                 $data = Camimage::whereDate('datum', '<=',Carbon::now()->toDateTimeString())
                     ->whereDate('datum', '>=', Carbon::now()->subDays(7)->toDateTimeString())->with('camera')

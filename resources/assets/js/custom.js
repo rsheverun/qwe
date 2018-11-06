@@ -37,7 +37,10 @@ $(function() {
                 },
                 success: function(response){ // What to do if we succeed
                     $('#editArea').html(response);
-                    $(".overflow").css("overflow","hidden");
+                    $(".overflow").css({
+                        "overflow" : "hidden",
+                        "position" : "relative"
+                    });
                     $('#editAreaModal').modal('toggle').on('hide.bs.modal', function(){
                         $('#editArea').html('');
                         $(".overflow").css("overflow","auto");
