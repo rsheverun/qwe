@@ -248,7 +248,7 @@ class ImagesController extends Controller
                         ->toDateTimeString();
 
         if($request->date_to != null && $request->camera_id == 0) {
-            if (Carbon::parse($date_start)->addMonth() >= Carbon::parse($date_to)) {
+            if (Carbon::parse($date_to)<= Carbon::parse($date_start)->addMonth()) {
                 $data = Camimage::whereDate('datum', '>=', $date_start)->where('datum', '<=', $date_to)->with('camera')
                 ->whereHas('camera', function($query){
                     $query->whereHas('userGroups', function($query){
@@ -261,8 +261,9 @@ class ImagesController extends Controller
                     return Carbon::parse($date->datum)->format('d-m-Y');
                 });
             } else {
+
                 $data = Camimage::whereDate('datum', '>=', $date_start)->where('datum', '<=', $date_to)->with('camera')
-                ->whereHas('camera', function($query){
+                ->whereHas('camera', function($query) {
                     $query->whereHas('userGroups', function($query){
                         $query->whereIn('user_group_id', auth()->user()->usergroups->pluck('id'))
                         ->whereHas('hunting_areas', function($query){
@@ -303,7 +304,7 @@ class ImagesController extends Controller
                 }
                  
             }
-            if($request->Scamera_id !=0 && $request->date_to == null) {
+            else if($request->camera_id !=0 && $request->date_to == null) {
                 $cam_email = Camera::find($request->camera_id)->cam_email;
                 $data = Camimage::whereDate('datum', '<=',Carbon::now()->toDateTimeString())
                     ->whereDate('datum', '>=', Carbon::now()->subDays(7)->toDateTimeString())->with('camera')
