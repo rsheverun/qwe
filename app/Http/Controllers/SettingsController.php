@@ -171,12 +171,12 @@ class SettingsController extends Controller
             $configset = Configset::find($request->configset_update);
             $configset->update($request->toArray());
             $request->request->add(['configset_id' => $configset->id]);
-            try {
+            if ($configset->key != null) {
                 $configset->key->update($request->except('configset_update','model','config_name','_method', '_token'));
-            } catch (\Exception $e) {
+            } else {
                 Key::create($request->except('configset_update','model','config_name','_method', '_token'));
             }
-            
+
             $msg = "Konfigurationssatz erfolgreich bearbeitet";
         }
         
