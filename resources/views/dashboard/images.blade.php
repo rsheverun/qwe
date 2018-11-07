@@ -88,21 +88,12 @@
                                     <td class="text-right table-button">
                                         <div class="button-group">
                                         @hasanyrole('admin|user')
-                                            <form  action="{{route('images.destroy',$img->id)}}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                    <button type="button" data-toggle="modal" id="{{$img->id}}"  onclick="modal_data(this.id, 'image_destroy')" data-target="#exampleModal" class="w-100 btn btn-outline-danger button-delete" style="margin-bottom: 15px;">Löschen</button>
-                                                    <!-- modal -->
-                                                        @include('layouts.modal')
-                                                    <!-- endmodal -->
-                                            </form>
+                                            <button type="button" data-target="image_destroy" value="{{$img->id}}" class="w-100 btn btn-outline-danger button-delete mb-3 open-modal">Löschen</button>
                                         @endhasanyrole
                                         <form id="forward"  action="{{route('image.forward',$img->id)}}" method="post">
                                         <button type="button" class="w-100 btn btn-outline-success button-look btn-green btn-forward" id="{{$img->id}}" onclick="img({{$img->id}})" data-toggle="modal" data-target="#forward_email">An E-Mail  <br> weiterleiten</button>
-
                                             @include('layouts.forward_email_modal')
                                             </form>
-                                            <!-- <button onclick="location.href='mailto:';" type="button" class="btn btn-outline-success button-look btn-green btn-forward" >forward to <br> email</button> -->
                                         </div>
                                     </td>
                             </tr>

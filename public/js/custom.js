@@ -23635,7 +23635,6 @@ $(function () {
     $('.open-modal').click(function () {
         var target = $(this).data('target');
         if (target == 'create_cam') {
-            console.log('1');
             var id = 'create_cam';
             var url = '/dashboard/settings/get/' + id;
         } else if (target == 'change-area-modal') {
@@ -23647,7 +23646,7 @@ $(function () {
             var url = '/dashboard/settings/get/' + id;
         } else {
             var id = $(this).val();
-            var url = $(location).attr('href') + '/get/' + id;
+            var url = '/dashboard/settings/get/' + id;
         }
         //SettingController@getData
         $.ajax({

@@ -17,25 +17,12 @@ $(function() {
         } else if(target == 'test') {
             console.log(target)
             var id = 'test';
-            var url = '/dashboard/settings/get/'+ id
-        } else if (target == 'area_destroy') {
+            var url = '/dashboard/settings/get/' + id
+        } else {
             var id = $(this).val();
-            var url = $(location).attr('href') +'/get/'+ id
-        } else if (target == 'group_destroy') {
-            var id = $(this).val();
-            var url = $(location).attr('href') +'/get/'+ id
-        } else if (target == 'user_destroy') {
-            var id = $(this).val();
-            var url = $(location).attr('href') +'/get/'+ id
-        }
-        else if (target == 'config_destroy') {
-            var id = $(this).val();
-            var url = $(location).attr('href') +'/get/'+ id
-        }
-        else {
-            var id = $(this).val();
-            var url = $(location).attr('href') +'/get/'+ id
-            
+            var url = '/dashboard/settings/get/' + id
+
+
         }
         //SettingController@getData
             $.ajax({

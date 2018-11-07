@@ -269,7 +269,7 @@ class SettingsController extends Controller
             $instance_config = VmapInstanceConfig::find($area->id);
             $map_config = VmapMapviewConfig::find($area->id);
 
-            return view("layouts.hunting_area.edit_hunting_area_modal", [
+            return view("layouts.edit_modal.edit_hunting_area_modal", [
                 'id' => $area->id,
                 'name' => $area->name,
                 'description' => $area->description,
@@ -292,7 +292,7 @@ class SettingsController extends Controller
         } elseif ($request->has('group_update')) {
             $group = UserGroup::find($request->id);
             
-            return view("layouts.edit_group_modal", [
+            return view("layouts.edit_modal.edit_group_modal", [
                 'id' => $group->id,
                 'group' => UserGroup::find($request->id),
                 'roles'=> Role::all(),
@@ -312,7 +312,7 @@ class SettingsController extends Controller
 
         } elseif ($request->has('user_update')) {
             
-            return view("layouts.edit_user_modal",[
+            return view("layouts.edit_modal.edit_user_modal",[
                 'user' => User::find($request->id),
                 'groups_list'=> UserGroup::all(),
                 'user_usergroups' => User::find($request->id),
@@ -329,7 +329,7 @@ class SettingsController extends Controller
             ]);
         } elseif ($request->has('config_update')) {
            
-            return view("layouts.edit_config_modal", [
+            return view("layouts.edit_modal.edit_config_modal", [
                 'configset' => Configset::find($request->id),
                 'keys' => Schema::getColumnListing('keys')
             ]);
@@ -361,8 +361,16 @@ class SettingsController extends Controller
                 'user_groups'=>$usergroups,
                 'configsets'=>Configset::all()
                 ]);
-        } elseif($request->has('test')) {
-            return view ('layouts.test');
+        } elseif($request->has('image_destroy')) {
+            $title = "Bild löschen";
+            $body = "Sind Sie sicher, dass Sie das Bild löschen möchten?";
+
+            return view ('layouts.destroy_modal',[
+                'title' => $title,
+                'body' => $body,
+                'id' => $request->id,
+                'key'=> 'image_destroy'
+            ]);
         }
 
     }

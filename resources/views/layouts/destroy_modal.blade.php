@@ -8,7 +8,11 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        <form action="{{route('settings.destroy',$id)}}" method="post">
+        @if($key == 'image_destroy')
+            <form action="{{route('images.destroy',$id)}}" method="post">
+            @else
+            <form action="{{route('settings.destroy',$id)}}" method="post">
+         @endif
             @csrf
             @method('DELETE')
 
