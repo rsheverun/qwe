@@ -69,10 +69,7 @@
             <td>{{$area->created_at}}</td>
             <td class="text-right pr-0" style="width: 175px;">
             <button type="button" data-target="area_update" class=" mb-2 w-100 btn btn-outline-danger button-delete btn-green align-self-start open-modal" value="{{$area->id}}">Bearbeiten</button>
-            <button type="button"  data-toggle="modal" data-target="#area_destroy_{{$area->id}}" data-whatever="{{$area->id}}"  name="modal" class="w-100 btn btn-outline-danger button-delete align-self-start">Löschen</button>
-            <div class="edit-area"></div>
-            @include('layouts.destroy_hunting_area_modal')    
-            </td>
+            <button type="button"  data-target="area_destroy" data-whatever="{{$area->id}}"  name="modal" class="w-100 btn btn-outline-danger button-delete align-self-start open-modal" value="{{$area->id}}">Löschen</button>
         </tr>
         @endforeach
         </tbody>
@@ -188,8 +185,7 @@
                 <td class="text-right table-button">
                     <button type="button" data-target="group_update" value="{{$group->id}}" class="mb-2 w-100 btn btn-outline-danger button-delete btn-green align-self-start open-modal">Bearbeiten</button>
                     <div class="edit-group"></div>
-                <button type="button" data-toggle="modal"  data-target="#group_destroy_{{$group->id}}" class="w-100 btn btn-outline-danger button-delete align-self-start">Löschen</button>
-                    @include('layouts.group_destroy')
+                <button type="button"  data-target="group_destroy" value="{{$group->id}}" class="w-100 btn btn-outline-danger button-delete align-self-start open-modal">Löschen</button>
                 </td>
             </tr>
             @endforeach
@@ -297,8 +293,7 @@
                 </td>
                 <td class="text-right table-button">
                 <button type="button" data-target="user_update" value="{{$user->id}}" class="mb-2 w-100 btn btn-outline-danger button-delete btn-green align-self-start open-modal">Bearbeiten</button>
-                <button type="button" data-toggle="modal"   data-target="#user_destroy_{{$user->id}}" class="w-100 btn btn-outline-danger button-delete align-self-start">Löschen</button>
-                @include('layouts.user_destroy_modal')
+                <button type="button" data-target="user_destroy" value="{{$user->id}}"  class="w-100 btn btn-outline-danger button-delete align-self-start open-modal">Löschen</button>
                 </td>
             </tr>
             @endforeach
@@ -413,14 +408,10 @@
                 <td>{{$configset->config_name}}</td>
                 <td>{{date('d.m.Y H:i:s', strtotime($configset->created_at))}}</td>
                 <td class="text-right table-button">
-                <form action="{{route('settings.destroy',$configset->id)}}" method="post">
-                @csrf
-                @method('DELETE')
+
                 <input type="hidden" name="configset_destroy">
                 <button type="button" data-target="config_update" value="{{$configset->id}}" class="mb-2 w-100 btn btn-outline-danger button-delete btn-green align-self-start open-modal">Bearbeiten</button>
-                <button type="button" data-toggle="modal"  data-target="#config_destroy_{{$configset->id}}" class="w-100 btn btn-outline-danger button-delete align-self-start">Löschen</button>
-                @include('layouts.destroy_config_modal')
-                </form>
+                <button type="button" data-target="config_destroy" value="{{$configset->id}}" class="w-100 btn btn-outline-danger button-delete align-self-start open-modal">Löschen</button>
                 </td>
             </tr>
         @endforeach

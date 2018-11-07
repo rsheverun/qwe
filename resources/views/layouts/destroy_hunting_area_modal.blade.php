@@ -1,4 +1,4 @@
-<form action="{{route('settings.destroy',$area->id)}}" method="post">
+<form action="{{route('settings.destroy',$id)}}" method="post">
                     @csrf
                     @method('DELETE')
                    
@@ -18,7 +18,7 @@
                             <div class="modal-footer">
                             <input type="hidden" name="area_destroy">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
-                                <button type="submit" class="btn btn-danger" name="delete_id" value="{{$area->id}}">Löschen</button>
+                                <button type="submit" class="btn btn-danger" name="delete_id" value="{{$id}}">Löschen</button>
                             </div>
                             </div>
                         </div>

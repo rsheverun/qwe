@@ -261,22 +261,34 @@ class SettingsController extends Controller
         $data = HuntingArea::destroy($request->id);
     }
 
-    public function getData(Request $request){
+    public function getData(Request $request)
+    {
 
-        if($request->has('area_update')) {
+        if ($request->has('area_update')) {
             $area = HuntingArea::find($request->id);
             $instance_config = VmapInstanceConfig::find($area->id);
             $map_config = VmapMapviewConfig::find($area->id);
 
-            return view("layouts.edit_hunting_area_modal", [
+            return view("layouts.hunting_area.edit_hunting_area_modal", [
                 'id' => $area->id,
-                'name' =>$area->name,
+                'name' => $area->name,
                 'description' => $area->description,
                 'instance_value' => $instance_config->value,
                 'instance_description' => $instance_config->description,
                 'map_value' => $map_config->value,
                 'map_description' => $map_config->description
             ])->render();
+        } elseif ($request->has('area_destroy')) {
+
+            $title = "Jagdrevier löschen";
+            $body = "Sind Sie sicher, dass Sie das Jagdgebiet löschen wollen?";
+
+            return view ('layouts.destroy_modal',[
+                'title' => $title,
+                'body' => $body,
+                'id' => $request->id,
+                'key'=> 'area_destroy'
+                ]);
         } elseif ($request->has('group_update')) {
             $group = UserGroup::find($request->id);
             
@@ -287,12 +299,33 @@ class SettingsController extends Controller
                 'areas_list' => HuntingArea::all(),
             ]);
         
-        }  elseif ($request->has('user_update')) {
+        } elseif ($request->has('group_destroy')) {
+            $title = "Gruppe löschen";
+            $body = "Sind Sie sicher, dass Sie den usergroup löschen möchten?";
+
+            return view ('layouts.destroy_modal',[
+                'title' => $title,
+                'body' => $body,
+                'id' => $request->id,
+                'key'=> 'group_destroy'
+                ]);
+
+        } elseif ($request->has('user_update')) {
             
             return view("layouts.edit_user_modal",[
                 'user' => User::find($request->id),
                 'groups_list'=> UserGroup::all(),
                 'user_usergroups' => User::find($request->id),
+            ]);
+        } elseif ($request->has('user_destroy')) {
+            $title = "Benutzer löschen";
+            $body = "Sind Sie sicher, dass Sie den Benutzer löschen möchten?";
+
+            return view ('layouts.destroy_modal',[
+                'title' => $title,
+                'body' => $body,
+                'id' => $request->id,
+                'key'=> 'user_destroy'
             ]);
         } elseif ($request->has('config_update')) {
            
@@ -300,7 +333,18 @@ class SettingsController extends Controller
                 'configset' => Configset::find($request->id),
                 'keys' => Schema::getColumnListing('keys')
             ]);
-        } elseif ($request->has('change-area-modal')) {
+        } elseif ($request->has('config_destroy')) {
+            $title = "Konfigurationssatz löschen";
+            $body = "Sind Sie sicher, dass Sie den Konfigurationssatz löschen möchten?";
+
+            return view ('layouts.destroy_modal',[
+                'title' => $title,
+                'body' => $body,
+                'id' => $request->id,
+                'key'=> 'configset_destroy'
+            ]);
+        }
+        elseif ($request->has('change-area-modal')) {
             $user_areas = HuntingArea::with('userGroups')->whereHas('userGroups', function($query){
                 $query->whereIn('user_group_id', auth()->user()->userGroups->pluck('id'));
             })->get();

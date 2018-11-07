@@ -9,7 +9,6 @@ $(function() {
     $('.open-modal').click(function() {
         var target = $(this).data('target');
         if (target == 'create_cam') {
-            console.log('1')
             var id = 'create_cam';
             var url = '/dashboard/settings/get/'+ id 
         } else if(target == 'change-area-modal') {
@@ -19,7 +18,21 @@ $(function() {
             console.log(target)
             var id = 'test';
             var url = '/dashboard/settings/get/'+ id
-        } else {
+        } else if (target == 'area_destroy') {
+            var id = $(this).val();
+            var url = $(location).attr('href') +'/get/'+ id
+        } else if (target == 'group_destroy') {
+            var id = $(this).val();
+            var url = $(location).attr('href') +'/get/'+ id
+        } else if (target == 'user_destroy') {
+            var id = $(this).val();
+            var url = $(location).attr('href') +'/get/'+ id
+        }
+        else if (target == 'config_destroy') {
+            var id = $(this).val();
+            var url = $(location).attr('href') +'/get/'+ id
+        }
+        else {
             var id = $(this).val();
             var url = $(location).attr('href') +'/get/'+ id
             
