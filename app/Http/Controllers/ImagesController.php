@@ -363,8 +363,10 @@ class ImagesController extends Controller
         try {
             Mail::to($request->email)->send(new ForwardImage($request));
         } catch(\Exception $e) {
-            //
+
+            return back()->withErrors('There was an error while sending your email. Please try again');
         }
+
         return back()->withStatus('Email sent successfully');
     }
 

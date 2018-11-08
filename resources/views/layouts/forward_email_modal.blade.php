@@ -27,7 +27,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary close-modal" onclick="clear()" data-dismiss="modal" >Close</button>
-          <button type="submit" class="btn camera-save" id="submit-btn" name="img_id">send</button>
+          <button type="submit" class="btn camera-save" id="submit-btn" value="{{$id}}" name="img_id">send</button>
         </div>
         </form>
       </div>
