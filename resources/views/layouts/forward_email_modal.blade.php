@@ -1,6 +1,6 @@
 <!-- Modal -->
 
-<div class="modal fade text-left" id="forward_email" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade text-left" id="editAreaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -9,6 +9,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+        <form id="forward"  action="{{route('image.forward',$id)}}" method="post">
         <div class="modal-body">
           @csrf
           <div class="form-group">
@@ -28,7 +29,7 @@
           <button type="button" class="btn btn-secondary close-modal" onclick="clear()" data-dismiss="modal" >Close</button>
           <button type="submit" class="btn camera-save" id="submit-btn" name="img_id">send</button>
         </div>
-
+        </form>
       </div>
   </div>
 </div>

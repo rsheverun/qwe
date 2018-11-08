@@ -90,10 +90,8 @@
                                         @hasanyrole('admin|user')
                                             <button type="button" data-target="image_destroy" value="{{$img->id}}" class="w-100 btn btn-outline-danger button-delete mb-3 open-modal">Löschen</button>
                                         @endhasanyrole
-                                        <form id="forward"  action="{{route('image.forward',$img->id)}}" method="post">
-                                        <button type="button" class="w-100 btn btn-outline-success button-look btn-green btn-forward" id="{{$img->id}}" onclick="img({{$img->id}})" data-toggle="modal" data-target="#forward_email">An E-Mail  <br> weiterleiten</button>
-                                            @include('layouts.forward_email_modal')
-                                            </form>
+                                        <button type="button" data-target="image_forward" value="{{$img->id}}" class="w-100 btn btn-outline-success button-look btn-green btn-forward open-modal">An E-Mail  <br> weiterleiten</button>
+
                                         </div>
                                     </td>
                             </tr>

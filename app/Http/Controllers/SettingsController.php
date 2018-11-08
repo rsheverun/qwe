@@ -371,6 +371,11 @@ class SettingsController extends Controller
                 'id' => $request->id,
                 'key'=> 'image_destroy'
             ]);
+        } elseif ($request->has('image_forward')) {
+
+            return view ('layouts.forward_email_modal', [
+                'id' => $request->id
+            ]);
         }
 
     }
