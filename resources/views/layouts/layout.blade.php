@@ -21,8 +21,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
-    <div class="overflow">
-        <div id="editArea"></div>
 
         @include('layouts.nav')
     <div class="custom-container">
@@ -78,6 +76,7 @@
     }
 }
 </script>
-</div>
+        <div id="editArea"></div>
+
 </body>
 </html>
