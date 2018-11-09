@@ -40,16 +40,7 @@
         <button type="submit" id="smbt" name="filter"  class="btn btn-outline-success btn-green btn-filter">Filter</button>
     </div>    
 </form>
-<script>
-    function img(id) { 
-        var a = document.getElementById("submit-btn");
-        a.setAttribute("value", id); 
-        document.getElementById('forward').reset();
-    }
 
-  
-    
-</script>
 <div class="row">
     <div id="chart-component" class="col">
         <chart-component></chart-component>
