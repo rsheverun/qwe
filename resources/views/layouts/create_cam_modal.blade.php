@@ -13,15 +13,15 @@
         @csrf
         <div class="form-group">
             <label for="camera" class="title">KAMERA:</label>
-            <input type="text" class="form-control" id="camera" placeholder="Enter camera" name="cam" value="{{old('cam')}}"required>
+            <input type="text" class="form-control" id="camera" placeholder="Kamera eingeben" name="cam" value="{{old('cam')}}"required>
         </div>
         <div class="form-group">
             <label for="name" class="title">Name:</label>
-            <input type="text" class="form-control" id="name"  placeholder="Enter name" name="cam_name" value="{{old('cam_name')}}"required>
+            <input type="text" class="form-control" id="name"  placeholder="Name eingeben" name="cam_name" value="{{old('cam_name')}}"required>
         </div>
         <div class="form-group">
             <label for="model" class="title">Modell:</label>
-            <input type="text" class="form-control" id="model" placeholder="Enter model" name="cam_model" value="{{old('cam_model')}}" required>
+            <input type="text" class="form-control" id="model" placeholder="Modell eingeben" name="cam_model" value="{{old('cam_model')}}" required>
         </div>
         <div class="form-group">
             <label for="desc" class="title">BESCHREIBUNG:</label>
@@ -29,11 +29,11 @@
         </div>
         <div class="form-group">
             <label for="lat" class="title">Breitengrad:</label>
-            <input type="text" class="form-control" id="latitude" placeholder="Enter latitude" name="latitude" value="{{old('latitude')}}" required>
+            <input type="text" class="form-control" id="latitude" placeholder="Breitengrad eingeben" name="latitude" value="{{old('latitude')}}" required>
         </div>
         <div class="form-group">
             <label for="long" class="title">Längengrad:</label>
-            <input type="text" class="form-control" id="longitude" placeholder="Enter longitude" name="longitude" value="{{old('longitude')}}" required>
+            <input type="text" class="form-control" id="longitude" placeholder="Längengrad eingeben" name="longitude" value="{{old('longitude')}}" required>
         </div>
         <div class="form-group row">
             <div class="col-sm-4 title">USERGRUPPE:</div>
@@ -52,7 +52,7 @@
         </div>
         <div class="form-group">
             <label for="cam_email" class="title">KAMERA-E-MAIL:</label>
-            <input type="email" class="form-control" id="cam_email" name="cam_email" placeholder="Enter camera email" required>
+            <input type="email" class="form-control" id="cam_email" name="cam_email" placeholder="Geben Sie die E-Mail der Kamera ein" required>
         </div>
         <div class="form-group">
     <label for="config" class="title">KONFIGURATIONSSATZ :</label>

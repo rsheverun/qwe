@@ -14,14 +14,14 @@
                             @method('PUT')
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="camera" class="title">usergroup name:</label>
+                                <label for="camera" class="title">usergroup-name:</label>
                                 <input type="text" class="form-control"  name="name" value="{{$group->name}}" required>
                             </div>
                             <div class="form-group">
                             @foreach($roles as $role)
                                                 <div class="check-box ">
                                                     <label class="title " >
-                                                        is @if ($role->name == 'admin')
+                                                        @if ($role->name == 'admin')
                                                             admin
                                                         @elseif($role->name =='user')
                                                             BENUTZER

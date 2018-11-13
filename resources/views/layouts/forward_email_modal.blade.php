@@ -4,7 +4,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Forward email</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">E-Mail weiterleiten</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -14,11 +14,11 @@
           @csrf
           <div class="form-group">
               <label for="email" class="title">Email:</label>
-              <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="{{old('email')}}"required>
+              <input type="email" class="form-control" id="email" placeholder="Email eingeben" name="email" value="{{old('email')}}"required>
           </div>
           <div class="form-group">
               <label for="subject" class="title">Subject:</label>
-              <input type="text" class="form-control" id="subject" placeholder="Enter subject" name="subject" value="{{old('subject')}}"required>
+              <input type="text" class="form-control" id="subject" placeholder="Betreff eingeben" name="subject" value="{{old('subject')}}"required>
           </div>
           <div class="form-group">
               <label for="desc" class="title">Description:</label>
@@ -26,8 +26,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary close-modal" onclick="clear()" data-dismiss="modal" >Close</button>
-          <button type="submit" class="btn camera-save" id="submit-btn" value="{{$id}}" name="img_id">send</button>
+          <button type="button" class="btn btn-secondary close-modal" onclick="clear()" data-dismiss="modal" >Schließen</button>
+          <button type="submit" class="btn camera-save" id="submit-btn" value="{{$id}}" name="img_id">senden</button>
         </div>
         </form>
       </div>

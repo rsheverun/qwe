@@ -4,7 +4,7 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalCenterTitle">Edit user</h5>
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Benutzer bearbeiten</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
@@ -37,7 +37,7 @@
                             
                             </div>
                             <div class="form-group areas">
-                            <label for="camera" class="title">usergroup name:</label>
+                            <label for="camera" class="title">usergroup-name:</label>
                             @foreach ($groups_list as $group)
                             <span class="col pl-0 mb-2" style="max-width: max-content;">
                                 <input type="checkbox" name="group[]" id="group_{{$group->id}}_{{$user->id}}" value="{{$group->id}}"

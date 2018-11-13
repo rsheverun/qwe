@@ -149,7 +149,7 @@
         <thead>
             <tr>
             <th scope="col" style="width: 79px;">ID</th>
-            <th scope="col">usergroup name</th>
+            <th scope="col">usergroup-name</th>
             <th scope="col">ADMIN?</th>
             <th scope="col">BENUTZER?</th>
             <th scope="col">GAST?</th>
@@ -208,7 +208,7 @@
 <!-- <div class="row"> -->
     <div class="form-group row" style="min-height: 130px;">
         <div class="col-lg col-xs-12 pr-0 max-content">
-            <label for="group_name" class="title configsets-label mr-0">usergroup name:</label>
+            <label for="group_name" class="title configsets-label mr-0">usergroup-name:</label>
         </div>
         <div class="col-lg-3 col-xs-12">
             <input type="text"  class="col custom-input" name="name" id="group_name" required>
@@ -217,7 +217,7 @@
         @foreach($roles as $role)
                             <div class="check-box ">
                                 <label class="title " for="{{$role->name}}">
-                                is @if ($role->name == 'admin')
+                                @if ($role->name == 'admin')
                                         admin
                                         @elseif($role->name =='user')
                                         BENUTZER
