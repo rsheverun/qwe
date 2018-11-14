@@ -165,20 +165,20 @@
                 <td>{{$group->name}}</td>
                 <td>
                     @if($group->role->name === "admin")
-                        Yes
-                        @else No
+                        Ja
+                        @else Nein
                     @endif
                 </td>
                 <td>
                 @if($group->role->name == "user")
-                        Yes
-                        @else No
+                        Ja
+                        @else Nein
                     @endif
                 </td>
                 <td>
                 @if($group->role->name == "guest")
-                        Yes
-                        @else No
+                        Ja
+                        @else Nein
                     @endif
                 </td>
                 <td>{{date('d.m.Y H:i:s', strtotime($group->created_at))}}</td>
