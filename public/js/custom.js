@@ -98387,6 +98387,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             data: [],
             options: {
                 responsive: true,
+                barValueSpacing: 2,
                 legend: {
                     display: false
                 },

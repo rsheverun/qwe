@@ -20824,6 +20824,7 @@ modal-backdrop {
 
   .chart {
     overfow: auto;
+    width: 100%;
   }
 
   .overflow {
