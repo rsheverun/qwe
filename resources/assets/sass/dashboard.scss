@@ -456,9 +456,10 @@ input[type="date"]:before {
     .filter-camera{
         padding-right: 0;
     }
-    //.chart {
-    //    display: none;
-    //}
+    .chart {
+        overfow: auto;
+        
+    }
     .overflow{
         overflow-x: hidden;
     }

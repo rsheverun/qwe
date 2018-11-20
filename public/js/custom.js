@@ -98386,7 +98386,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             data: [],
             options: {
-                responsive: false,
+                responsive: true,
                 legend: {
                     display: false
                 },
@@ -98465,7 +98465,7 @@ var render = function() {
               _c("bar-chart", {
                 attrs: {
                   "chart-data": _vm.data,
-                  height: 150,
+                  height: 100,
                   options: _vm.options
                 }
               })

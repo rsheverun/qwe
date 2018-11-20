@@ -20822,6 +20822,10 @@ modal-backdrop {
     padding-right: 0;
   }
 
+  .chart {
+    overfow: auto;
+  }
+
   .overflow {
     overflow-x: hidden;
   }
