@@ -2,7 +2,7 @@
     <div class="chart" v-if="data.labels.length != 0">
         <div>
             <div >
-                <bar-chart :chart-data="data" :height="100"  :options="options"></bar-chart>
+                <bar-chart :chart-data="data" :height="200"  :options="options"></bar-chart>
             
             </div>
         </div>
@@ -21,6 +21,7 @@ import BarChart from './BarChart.js'
                 options: {
                     responsive: true,
                     barValueSpacing: 2,
+                    maintainAspectRatio: false,
                      legend: {
                         display: false
                     }, 

@@ -98388,6 +98388,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             options: {
                 responsive: true,
                 barValueSpacing: 2,
+                maintainAspectRatio: false,
                 legend: {
                     display: false
                 },
@@ -98466,7 +98467,7 @@ var render = function() {
               _c("bar-chart", {
                 attrs: {
                   "chart-data": _vm.data,
-                  height: 100,
+                  height: 200,
                   options: _vm.options
                 }
               })
