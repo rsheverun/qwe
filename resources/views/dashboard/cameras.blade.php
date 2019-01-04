@@ -89,7 +89,10 @@
     </div>
 
     
-</div>    
+</div> 
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-3oC0DY09X8eGpDuWX4NQZq7pEgeRCVg&callback=initMap">
+    </script>   
 <script>
 try {
 function initMap() {

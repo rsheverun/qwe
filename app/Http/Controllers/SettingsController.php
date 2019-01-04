@@ -269,7 +269,6 @@ class SettingsController extends Controller
 
     public function getData(Request $request)
     {
-
         if ($request->has('area_update')) {
             $area = HuntingArea::find($request->id);
             $instance_config = VmapInstanceConfig::find($area->id);

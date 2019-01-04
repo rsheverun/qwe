@@ -20,19 +20,22 @@ $(function() {
     });
     //open edit modal
     $('.open-modal').click(function() {
-        var target = $(this).data('target');
-        if (target == 'create_cam') {
-            var id = 'create_cam';
-            var url = '/dashboard/settings/get/'+ id 
-        } else if(target == 'change-area-modal') {
-            var id = 'area';
-            var url = '/dashboard/settings/get/'+ id
-        }  else {
-            var id = $(this).val();
-            var url = '/dashboard/settings/get/' + id
-
-
+        var target = $(this).data("target");
+        var url, id
+        switch (target) {
+            case "create_cam":
+                id = "create_cam";
+                url = "/dashboard/settings/get/" + id;
+                break;
+            case "change-area-modal":
+                id = "area";
+                url = "/dashboard/settings/get/" + id;
+                break;
+            default:
+                id = $(this).val();
+                url = "/dashboard/settings/get/" + id;
         }
+        
         //SettingController@getData
             $.ajax({
                 headers: {
@@ -58,6 +61,4 @@ $(function() {
                 }
             });
     })
- 
-
 });

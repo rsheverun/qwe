@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,9 +53,7 @@
     </footer>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
     </script>
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-3oC0DY09X8eGpDuWX4NQZq7pEgeRCVg&callback=initMap">
-    </script>
+  
      @stack('scripts')
 <script>
    function modal_data(id, title) { 
