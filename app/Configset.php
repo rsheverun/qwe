@@ -8,7 +8,7 @@ class Configset extends Model
 {
     protected $fillable = [
         'model',
-        'config_name',
+        'name',
     ];
     /**
      * Relationship between tables Configsets and Cameras (One to Many).
@@ -19,8 +19,13 @@ class Configset extends Model
     {
         return $this->hasMany('App\Camera');
     }
-    public function key()
+    public function keys()
     {
-        return $this->hasOne('App\Key');
+        return $this->belongsToMany('App\Key', 'configset_keys', 'configset_id', 'key_id');
+    }
+
+    public function configsetKeys()
+    {
+        return $this->belongsTo('App\ConfigsetKey');
     }
 }

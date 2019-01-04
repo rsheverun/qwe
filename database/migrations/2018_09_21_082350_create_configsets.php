@@ -16,11 +16,7 @@ class CreateConfigsets extends Migration
         Schema::create('configsets', function (Blueprint $table) {
             $table->increments('id');
             $table->string('model');
-            $table->string('config_name');
-            $table->string('org_name');
-            $table->string('server');
-            $table->unsignedInteger('port');
-            $table->string('user');
+            $table->string('name');
             $table->timestamps();
         });
     }

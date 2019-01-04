@@ -81,7 +81,7 @@
             <label class="my-1 mr-2 title" for="inlineFormCustomSelectPref">KONFIGURATIONSSATZ:</label>
             <select class="filter lat-input" id="inlineFormCustomSelectPref" name="config_id">
                 @foreach($configsets as $configset)
-                <option value="{{$configset->id}}" @if($camera->config_id == $configset->id) selected @endif>{{$configset->config_name}}</option>
+                <option value="{{$configset->id}}" @if($camera->config_id == $configset->id) selected @endif>{{$configset->name}}</option>
                 @endforeach
             </select>
             </div>
@@ -91,27 +91,12 @@
                 <th style="width: 185px;">Key</th>
                 <td style="width: 284px;">Value</td>
             </tr>
-            @foreach ($keys as $key=>$name)
-                @if($key<=3 )
-                    @continue
-                @endif
+            @foreach ($camera->configset->keys as $key)
             <tr>
-                <th>{{$name}}</th>
-                <td>{{$camera->configset->key->$name or 'empty'}}</td>
+                <th>{{$key->name}}</th>
+                <td>{{\App\ConfigsetKeys::where('configset_id', $camera->configset->id)->where('key_id', $key->id)->first()->value}}</td>
             </tr>
                 @endforeach
-            {{--<tr>--}}
-                {{--<th>SMTP-Server </th>--}}
-                {{--<td>{{$camera->configset->server or 'empty'}}</td>--}}
-            {{--</tr>--}}
-            {{--<tr>--}}
-                {{--<th>SMTP-Port </th>--}}
-                {{--<td>{{$camera->configset->port or 'empty'}}</td>--}}
-            {{--</tr>--}}
-            {{--<tr>--}}
-                {{--<th>SMTP-User </th>--}}
-                {{--<td>{{$camera->configset->user or 'empty'}}</td>--}}
-            {{--</tr>--}}
         </table>
         </form>
     </div><!-- left -->

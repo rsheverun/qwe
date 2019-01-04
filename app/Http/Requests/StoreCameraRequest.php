@@ -27,8 +27,8 @@ class StoreCameraRequest extends FormRequest
             'cam'=>'required|max:50',
             'cam_name'=> 'required|max:50',
             'cam_model'=> 'required|max:50',
-            'latitude' => 'numeric|max:9999.999999',
-            'longitude' => 'numeric|max:9999.999999',
+            'latitude' => 'numeric|between:-90,90',
+            'longitude' => 'numeric|between:-180,180',
             'desc' => 'required',
             'cam_email' => 'unique:cameras,cam_email',
             'group' => 'required'

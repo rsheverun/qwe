@@ -19,16 +19,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="name" class="title">KONFIGURATIONEN :</label>
-                                    <input type="text" class="form-control"  name="config_name" value="{{$configset->config_name or 'null'}}">
+                                    <input type="text" class="form-control"  name="name" value="{{$configset->name or 'null'}}">
                                 </div>
-
-                                @foreach ($keys as $key=>$name)
-                                @if($key<=3 )
-                                        @continue
-                                    @endif
+                                @foreach ($keys as $key)
                                 <div class="form-group">
-                                    <label for="name" class="title">{{$name}}:</label>
-                                    <input type="text" class="form-control"  name="{{$name}}" value="{{$configset->key->$name or 'null'}}">
+                                    <label for="name" class="title">{{$key->name}}:</label>
+                                    <input type="text" class="form-control"  name="keys[{{$key->id}}][]" value="{{App\ConfigsetKeys::where('configset_id', $configset->id)->where('key_id', $key->id)->first()->value}}">
                                 </div>
                                 @endforeach
 

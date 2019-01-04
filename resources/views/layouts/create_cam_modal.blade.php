@@ -58,7 +58,7 @@
     <label for="config" class="title">KONFIGURATIONSSATZ :</label>
     <select class="form-control" id="config" name="config_id" required>
     @foreach($configsets as $configset)
-                <option value="{{$configset->id}}">{{$configset->config_name}}</option>
+                <option value="{{$configset->id}}">{{$configset->name}}</option>
     @endforeach
     </select>
   </div>

@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call(HuntingAreasSeeder::class);
         $this->call(AreaGroupSeeder::class);
         $this->call(UserUserGroupSeeder::class);
+        $this->call(KeySeeder::class);
     }
 }

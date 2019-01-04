@@ -62,7 +62,6 @@ import BarChart from './BarChart.js'
                 let url = new URL(window.location.href)
                 axios.get('/dashboard/chart-data'+url.search).then((response) => {
                     this.data = response.data
-                    console.log(this.data.labels.length)
                 });
             }
         }

@@ -76,6 +76,7 @@ class CamerasController extends Controller
      */
     public function store(StoreCameraRequest $request)
     {
+        // dd(1);
         if ($request->has('group')) {
 
             $cam_model = CamModel::create([

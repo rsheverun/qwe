@@ -50,13 +50,13 @@ class SettingsStoreRequest extends FormRequest
 
             return [
                 'model'=>'unique:configsets,model|required',
-                'config_name'=>'unique:configsets,config_name|required',                 
+                'name'=>'unique:configsets,name|required',                 
             ];
         } elseif ($request->has('configset_update')) {
 
             return [
                 'model'=>'required|unique:configsets,model,'.$request->configset_update,
-                'config_name'=>'required|unique:configsets,config_name,'.$request->configset_update,
+                'name'=>'required|unique:configsets,name,'.$request->configset_update,
             ];
         }
         

@@ -405,7 +405,7 @@
             <tr>
                 <td>{{$configset->id}}</td>
                 <td>{{$configset->model}}</td>
-                <td>{{$configset->config_name}}</td>
+                <td>{{$configset->name}}</td>
                 <td>{{date('d.m.Y H:i:s', strtotime($configset->created_at))}}</td>
                 <td class="text-right table-button">
 
@@ -437,7 +437,7 @@
                     </div>
                     <div class="form-group row pl-3 pr-3">
                             <label for="name" class="title configsets-label ">KONFIGURATIONEN:</label>
-                            <input type="text"  class="col custom-input" name="config_name" required>
+                            <input type="text"  class="col custom-input" name="name" required>
                     </div>
 
            
@@ -452,13 +452,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach ($keys as $key=>$value)
-                        @if($key<=3 )
-                            @continue
-                            @endif
+                    @foreach ($keys as $key)
                         <tr>
-                            <th>{{$value}}</td>
-                            <td><input type="text" name="{{$value}}" class="custom-input w-100" required></td>
+                            <th>{{$key->name}}</td>
+                            <td><input type="text" name="keys[{{$key->id}}][]" class="custom-input w-100" required></td>
                         </tr>
                         @endforeach
 

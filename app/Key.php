@@ -8,8 +8,13 @@ class Key extends Model
 {
     protected $guarded = [];
 
-    public function configset()
+    public function configsets()
     {
-        return $this->belongsTo('App\Configset','configset_id');
+        return $this->belongsToMany('App\Configset');
+    }
+
+    public function configsetKeys()
+    {
+        return $this->belongsTo('App\ConfigsetKey');
     }
 }

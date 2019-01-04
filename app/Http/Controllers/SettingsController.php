@@ -13,6 +13,7 @@ use App\User;
 use App\HuntingAreaUserGroup;
 use App\UserUserGroup;
 use App\Key;
+use App\ConfigsetKeys;
 use Session;
 use Auth;
 use Illuminate\Support\Facades\Schema;
@@ -32,7 +33,7 @@ class SettingsController extends Controller
         $user_areas = HuntingArea::with('userGroups')->whereHas('userGroups', function($query){
             $query->whereIn('user_group_id', auth()->user()->userGroups->pluck('id'));
         })->get();
-        
+        // dd(Key::all());
         return view('dashboard.settings',[
             'roles'=>Role::get(),
             'areas'=>$areas,
@@ -42,7 +43,7 @@ class SettingsController extends Controller
             'configsets'=>$configsets,
             'users'=>$users,
             'user_areas'=>$user_areas,
-            'keys' => Schema::getColumnListing('keys')
+            'keys' => Key::all()
         ]);
     }
 
@@ -84,10 +85,14 @@ class SettingsController extends Controller
 
         if ($request->has('configset_store')) {
             $configset = Configset::create($request->toArray());
-            $request->request->add(['configset_id'=>$configset->id]);
-            Key::create($request->except('configset_store','model','config_name'));
+            foreach ($request->keys as $key => $value) {
+                ConfigsetKeys::create([
+                    'configset_id' => $configset->id,
+                    'key_id' => $key,
+                    'value' => array_get($value,'0')
+                ]);
+            }
             $msg = "Config-Set erfolgreich erstellt";
-
         }
         if ($request->has('group_store')) {
             if ($request->has('areas')) {
@@ -169,14 +174,15 @@ class SettingsController extends Controller
         
         if ($request->has('configset_update')) {
             $configset = Configset::find($request->configset_update);
-            $configset->update($request->toArray());
-            $request->request->add(['configset_id' => $configset->id]);
-            if ($configset->key != null) {
-                $configset->key->update($request->except('configset_update','model','config_name','_method', '_token'));
-            } else {
-                Key::create($request->except('configset_update','model','config_name','_method', '_token'));
+            // $configset->update($request->toArray());
+            foreach ($request->keys as $key => $value) {
+                
+                ConfigsetKeys::where('configset_id', $configset->id)
+                    ->where('key_id', $key)
+                    ->update([
+                        'value' => array_get($value,'0')
+                    ]);
             }
-
             $msg = "Konfigurationssatz erfolgreich bearbeitet";
         }
         
@@ -328,10 +334,11 @@ class SettingsController extends Controller
                 'key'=> 'user_destroy'
             ]);
         } elseif ($request->has('config_update')) {
-           
+            // dd(ConfigsetKeys::where('configset_id', $request->id)->get()->first()->key);
+           $configset = Configset::find($request->id);
             return view("layouts.edit_modal.edit_config_modal", [
-                'configset' => Configset::find($request->id),
-                'keys' => Schema::getColumnListing('keys')
+                'configset' => $configset,
+                'keys' => $configset->keys
             ]);
         } elseif ($request->has('config_destroy')) {
             $title = "Konfigurationssatz löschen";

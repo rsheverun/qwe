@@ -36,10 +36,12 @@
                     //
                 });
             },
-            addComent: function(event) {
+            addComent: function() {
                 var _this = this;
+                var comment = _this.text
+                this.text = ''
                 axios.post('../dashboard/addcomment/'+ this.cam.id, {
-                    text: _this.text
+                    text: comment
                 }).then((response) => {
                      _this.getComments()
                      this.text = ''
