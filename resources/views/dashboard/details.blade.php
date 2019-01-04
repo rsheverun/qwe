@@ -173,6 +173,7 @@
 </div>
 
 <script>
+    try {
 function initMap() {
          // The location of Uluru
     var uluru = {lat: {{$camera->latitude}}, lng: {{$camera->longitude}}};
@@ -182,5 +183,9 @@ function initMap() {
     // The marker, positioned at Uluru
     var marker = new google.maps.Marker({position: uluru, map: map});
       }
+    } catch (e) {
+        //
+    }
+
 </script>
 @endsection

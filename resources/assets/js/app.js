@@ -17,8 +17,6 @@ Vue.prototype.moment = moment
 
 var datepicker = require('air-datepicker');
 
-
-
 Vue.component('chart-component', require('./components/StatisticsChartComponent.vue'));
 Vue.component('images-component', require('./components/ImagesComponent.vue'));
 Vue.component('comments', require('./components/CommentsComponent.vue'));

@@ -49,7 +49,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function index()
+    public function index(Request $request)
     {
         // Cahnge area
         $user_areas = HuntingArea::with('userGroups')->whereHas('userGroups', function($query){

@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use App\Comment;
 use App\Activity;
 use Mail;
+use File;
 use App\Mail\ForwardImage;
 
 class ImagesController extends Controller
@@ -224,11 +225,18 @@ class ImagesController extends Controller
      */
     public function destroy(Request $request)
     {
+        $camImage = Camimage::find($request->delete_id);
         Camimage::destroy($request->delete_id);
         try{
             Activity::where('image_id', $request->delete_id)->delete();
         } catch(\Exception $e) {
+            //
+        }
+         try {
+            File::delete($camImage->bild);
+        } catch (\Exception $e) {
             
+            return back()->withStatus('Bilder wurden erfolgreich gelöscht, aber das Bild wurde nicht gelöscht');
         }
 
         return back()->withStatus('Bilder wurden erfolgreich gelöscht');

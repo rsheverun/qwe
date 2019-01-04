@@ -42,7 +42,7 @@
                                 <div class="modal-footer">
                                     <input type="hidden" name="area_update" value="{{$id}}">
                                     <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Schließen</button>
-                                    <button type="submit" class="btn camera-save submit-modal" >Bearbeiten</button>
+                                    <button type="submit" class="btn camera-save submit-modal" >Speichern</button>
                                 </div>
                 </form>
 

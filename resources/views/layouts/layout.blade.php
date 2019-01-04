@@ -48,7 +48,7 @@
     @endguest
     </nav>
         <div class="col-12 text-center">
-            © 2018 Jagdbezirk.info
+            © {{ Carbon\Carbon::now()->format('Y')}} Jagdbezirk.info
         </div>
     </footer>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">

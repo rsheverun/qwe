@@ -19,7 +19,7 @@ class CreateKeysTable extends Migration
             $table->unsignedInteger('configset_id')->nullable();
             $table->string('org_name')->nullable();
             $table->string('server')->nullable();
-            $table->sting('port')->nullable();
+            $table->string('port')->nullable();
             $table->string('user')->nullable();
         });
     }

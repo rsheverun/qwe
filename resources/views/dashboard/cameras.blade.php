@@ -91,12 +91,12 @@
     
 </div>    
 <script>
-
+try {
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 5,
           mapTypeId:google.maps.MapTypeId.SATELLITE,
-          center: {lat: {{$latitude}}, lng: {{$longitude}}}
+          center: {lat: {{$latitude or ''}}, lng: {{$longitude or ''}}}
         });
 
         // Create an array of alphabetical characters used to label the markers.
@@ -119,8 +119,12 @@ function initMap() {
       }
       var locations = [
         @foreach ($cameras as $camera)
-                {lat: {{$camera->latitude}}, lng: {{$camera->longitude}}},
+                {lat: {{$camera->latitude or ''}}, lng: {{$camera->longitude or ''}}},
         @endforeach
       ]
+    } catch(e) {
+        //
+    }
+
 </script>
 @endsection

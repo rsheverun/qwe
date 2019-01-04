@@ -4,7 +4,20 @@ import "./app"
 $(function() {
     var height = $(".img-height").find("img").css("height");
     $(".img-height").css("min-height",height);
-    
+    $(".datepicker-here").datepicker({
+        language: {
+            days: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+            daysShort: ['Son', 'Mon', 'Die', 'Mit', 'Don', 'Fre', 'Sam'],
+            daysMin: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+            months: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+            monthsShort: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+            today: 'Heute',
+            clear: 'Aufräumen',
+            dateFormat: 'dd.mm.yyyy',
+            timeFormat: 'hh:ii',
+            firstDay: 1
+        }
+    });
     //open edit modal
     $('.open-modal').click(function() {
         var target = $(this).data('target');

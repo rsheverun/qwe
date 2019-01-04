@@ -55,7 +55,7 @@
                         <div class="modal-footer">
                             <input type="hidden" name="user_update" value="{{$user->id}}">
                             <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Schließen</button>
-                            <button type="submit" class="btn camera-save" >Bearbeiten</button>
+                            <button type="submit" class="btn camera-save" >Speichern</button>
                         </div>
                 </form>
 

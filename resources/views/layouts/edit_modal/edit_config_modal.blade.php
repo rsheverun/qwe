@@ -35,7 +35,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Schließen</button>
-                                <button type="submit" class="btn camera-save" name="configset_update" value="{{$configset->id}}">Bearbeiten</button>
+                                <button type="submit" class="btn camera-save" name="configset_update" value="{{$configset->id}}">Speichern</button>
                             </div>
                             </form>
                             </div>

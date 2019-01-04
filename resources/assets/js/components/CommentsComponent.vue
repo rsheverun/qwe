@@ -9,7 +9,7 @@
             <span class="msg">{{item.text}}</span>
         </div>     
     </div>
-    <input type="textarea" class="comment-text" placeholder="Schreiben Sie hier eine Nachricht..." @keyup.enter="addComent" v-model="text" name="text">
+    <input type="textarea" class="comment-text" placeholder="Schreiben Sie hier eine Nachricht..." @keyup.enter="addComent" v-model="text" name="text" >
 </div>
 </template>
 
@@ -32,16 +32,20 @@
            getComments: function() {
                 axios.get('../dashboard/image/'+ this.cam.id+ '/comments/' ).then((response) => {
                     this.data = response.data
+                }).catch(error => {
+                    //
                 });
             },
-            addComent: function() {
+            addComent: function(event) {
                 var _this = this;
                 axios.post('../dashboard/addcomment/'+ this.cam.id, {
                     text: _this.text
                 }).then((response) => {
                      _this.getComments()
                      this.text = ''
-                });
+                }).catch(error => {
+                        alert('Kommentar darf nicht leer sein')
+                    });
             }
         }
     }

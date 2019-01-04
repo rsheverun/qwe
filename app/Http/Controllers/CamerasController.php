@@ -128,9 +128,15 @@ class CamerasController extends Controller
         if(auth()->user()->hasAnyRole('admin|user') && is_int($available_cameras)){
             $camera =  Camera::find($id);
             $images = $camera->camImages->sortByDesc('datum');
-            $usergroups = UserGroup::whereHas('users', function ($query) {
+            // $usergroups = UserGroup::whereHas('users', function ($query) {
+            //     $query->where('user_id', auth()->user()->id);
+            // })->get(); 
+            $usergroups = UserGroup::whereHas('hunting_areas',function($query) {
+                $query->where('hunting_area_id', Session::get('area'));
+            })
+            ->whereHas('users', function ($query) {
                 $query->where('user_id', auth()->user()->id);
-            })->get(); 
+            })->get();
             $models = Camera::get()->pluck('cam_model');
             
             return view('dashboard.details',[
